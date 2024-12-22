@@ -6,9 +6,9 @@
 # `jekyll serve`. If you change this file, please restart the server process.
 
 # Site Settings
-title                    : "Lorem ipsum"
-description              : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ornare aliquet ipsum, ac tempus justo dapibus sit amet. "
-repository               : "RayeRen/acad-homepage.github.io"
+title                    : "Jinhua Hao (郝进华)"
+description              : "Research Engineer at Kuaishou. Focusing on image/video processing and generation."
+repository               : "Eric-Hao/Eric-Hao.github.io"
 google_scholar_stats_use_cdn : true
 
 # google analytics
@@ -21,14 +21,14 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 
 # Site Author
 author:
-  name             : "Lorem ipsum"
-  avatar           : "images/android-chrome-512x512.png"
-  bio              : "Lorem ipsum College"
+  name             : "Jinhua Hao (郝进华)"
+  avatar           : "images/eric-hao.png"
+  bio              : "Kuaishou Technology"
   location         : "Beijing, China"
-  employer         :
   pubmed           : 
-  googlescholar    : "https://scholar.google.com/citations?user=YOUR_GOOGLE_SCHOLAR_ID"
-  email            : "Lorem@ipsum.com"
+  googlescholar    : "https://scholar.google.com/citations?user=hVMNCSQAAAAJ"
+  email            : "haojinhua206@gmail.com"
+  employer         :
   researchgate     :  # e.g., "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -37,14 +37,14 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : # e.g., "github username"
+  github           : "Eric-Hao"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : # e.g., "https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         : # e.g., "linkedin username"
-  dblp             : # e.g., "https://dblp.org/pid/xx/xxxx.html"
+  dblp             : "https://dblp.org/pid/372/0042.html"
   orcid            : # e.g., "https://orcid.org/xxxx"
   pinterest        :
   soundcloud       :
@@ -65,15 +65,12 @@ include:
   - _pages
   - files
 exclude:
-  - docs
-  - google_scholar_crawler
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache
   - .bundle
   - .jekyll-assets-cache
   - .sass-cache
-  - .github
   - CHANGELOG
   - Capfile
   - Gemfile
@@ -91,6 +88,8 @@ exclude:
   - package.json
   - tmp
   - vendor
+  - google_scholar_crawler
+  - github_myprofile_updater
 keep_files:
   - .git
   - .svn

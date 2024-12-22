@@ -1,0 +1,4 @@
+# 🚀 Projects 
+- *2023.01*: We have deployed several image and video processing algorithms, including Kuaishou Enhancement Processing (KEP) and Kuaishou Restoration Processing (KRP), such as video deartifacts, deblur, and SR. [![WX](https://img.shields.io/badge/Post-blue?logo=wechat&logoColor=white&style=flat&labelColor=505050)](https://mp.weixin.qq.com/s/gUvhyUOgUavmxEpPXPXcnA)
+- *2022.07*: We have deployed cutting-edge super-resolution algorithms in Kuaishou App. [![WX](https://img.shields.io/badge/Post-blue?logo=wechat&logoColor=white&style=flat&labelColor=505050)](https://mp.weixin.qq.com/s/c0VxPw3uVoWpelsYtn8wEg)
+- *2021.12*: We have deployed several UGC video quality assessment algorithms, including those for detecting noise, blockiness, and blurness. [![WX](https://img.shields.io/badge/Post-blue?logo=wechat&logoColor=white&style=flat&labelColor=505050)](https://mp.weixin.qq.com/s/8rf-Bm918oCF6OGKTuGEUg)
