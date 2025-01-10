@@ -1,4 +1,4 @@
-I am currently a research engineer in the Algorithms Research Center, Video Technology of [Kuaishou](https://ir.kuaishou.com/), based in Beijing, China. I joined Kuaishou in 2020 and I am currently working in [Ming Sun](https://msunming.github.io/)'s team to evaluate and promote the quality of user-generated videos on the Kuaishou platform.
+I am currently a research engineer in the Algorithms Research Center, Video Technology of [Kuaishou](https://ir.kuaishou.com/) <img src='./images/kuaishou-full.svg' style='width: 2.8em;'>, based in Beijing, China. I joined Kuaishou in 2020 and I am currently working in [Ming Sun](https://msunming.github.io/)'s team to evaluate and promote the quality of user-generated videos on the Kuaishou platform.
 
 I received my Ph.D. in Fluid Mechanics from [Peking University](https://english.pku.edu.cn/) in 2020, advised by Prof. [Yue Yang](https://en.coe.pku.edu.cn/faculty/facultyaz/891197.htm). I also obtained my B.S. in [Mechanics](https://en.coe.pku.edu.cn/) and [Economics](https://en.nsd.pku.edu.cn/) (double major) from Peking University in 2015.
 
