@@ -8,6 +8,7 @@
 
   *Preprint* 
   [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2501.18993) 
+  [![Code](https://img.shields.io/badge/Code-blue?logo=github&logoColor=black&style=social&labelColor=505050)](https://github.com/quyp2000/VARSR) 
 
 - **Plug-and-Play Tri-Branch Invertible Block for Image Rescaling**
 
@@ -57,6 +58,13 @@
 
   *Preprint* 
   [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2403.11451) 
+
+- **HPGN: Hybrid Priors-Guided Network for Compressed Low-Light Image Enhancement**
+
+  Hantang Li, **Jinhua Hao**, Lei Xiong, and Shuyuan Zhu
+
+  *Preprint* 
+  [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2504.02373) 
 
 - **Effects of magnetic–vortical interactions on magnetic splitting**
 
