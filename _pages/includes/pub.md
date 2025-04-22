@@ -71,6 +71,7 @@
   Linlin Kang, Yanru Wang, Zhongzheng Jiang, **Jinhua Hao**, Shiying Xiong, Dixia Fan, Weicheng Cui
 
   *Journal of Fluid Mechanics, 2025* 
+  [![DOI](https://img.shields.io/badge/Paper-blue?logo=doi&logoColor=black&style=social&labelColor=505050)](https://doi.org/10.1017/jfm.2025.263) 
 
 - **Magnetic knot cascade via the stepwise reconnection of helical flux tubes**
 
@@ -78,7 +79,7 @@
 
   *Journal of Fluid Mechanics, 2021* 
   [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://www.researchgate.net/profile/Yue-Yang-11/publication/349411681_Magnetic_knot_cascade_via_the_stepwise_reconnection_of_helical_flux_tubes/links/602f631392851c4ed58062be/Magnetic-knot-cascade-via-the-stepwise-reconnection-of-helical-flux-tubes.pdf) 
-  [![DOI](https://img.shields.io/badge/Paper-blue?logo=doi&logoColor=black&style=social&labelColor=505050)](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/magnetic-knot-cascade-via-the-stepwise-reconnection-of-helical-flux-tubes/B356EACB1EDB95A98223264A0205B129) 
+  [![DOI](https://img.shields.io/badge/Paper-blue?logo=doi&logoColor=black&style=social&labelColor=505050)](https://doi.org/10.1017/jfm.2020.1145) 
   [![PKU](https://img.shields.io/badge/PKU-News-blue?style=social&labelColor=505050)](https://www.coe.pku.edu.cn/newsfocus/fast/11585.html) 
 
 - **Tracking vortex surfaces frozen in the virtual velocity in non-ideal flows**
@@ -87,7 +88,7 @@
 
   *Journal of Fluid Mechanics, 2019* 
   [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://www.researchgate.net/profile/Yue-Yang-11/publication/330640967_Tracking_vortex_surfaces_frozen_in_the_virtual_velocity_in_non-ideal_flows/links/5c4bb76692851c22a3911051/Tracking-vortex-surfaces-frozen-in-the-virtual-velocity-in-non-ideal-flows.pdf) 
-  [![DOI](https://img.shields.io/badge/Paper-blue?logo=doi&logoColor=black&style=social&labelColor=505050)](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/tracking-vortex-surfaces-frozen-in-the-virtual-velocity-in-nonideal-flows/64E2BACB47FD757AB7808626EB9C232D) 
+  [![DOI](https://img.shields.io/badge/Paper-blue?logo=doi&logoColor=black&style=social&labelColor=505050)](https://doi.org/10.1017/jfm.2018.1014) 
   [![PKU](https://img.shields.io/badge/PKU-News-blue?style=social&labelColor=505050)](https://www.coe.pku.edu.cn/research/progress/6710.html) 
 
 <span class='anchor' id='projects'></span>
