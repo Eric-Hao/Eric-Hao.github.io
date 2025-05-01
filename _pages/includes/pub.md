@@ -6,7 +6,7 @@
 
   Yunpeng Qu, Kun Yuan, **Jinhua Hao**, Kai Zhao, Qizhi Xie, Ming Sun, Chao Zhou
 
-  *Preprint* 
+  *ICML 2025* 
   [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2501.18993) 
   [![Code](https://img.shields.io/badge/Code-blue?logo=github&logoColor=black&style=social&labelColor=505050)](https://github.com/quyp2000/VARSR) 
 
