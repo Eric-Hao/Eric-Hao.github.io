@@ -9,6 +9,7 @@
   *ICML 2025* 
   [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2501.18993) 
   [![Code](https://img.shields.io/badge/Code-blue?logo=github&logoColor=black&style=social&labelColor=505050)](https://github.com/quyp2000/VARSR) 
+  [![WX](https://img.shields.io/badge/Post-blue?logo=wechat&logoColor=black&style=social&labelColor=505050)](https://mp.weixin.qq.com/s/ogBBftschUT4-R0_6I26SQ)
 
 - **Plug-and-Play Tri-Branch Invertible Block for Image Rescaling**
 
