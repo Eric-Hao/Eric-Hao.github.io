@@ -1,0 +1,24 @@
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Person",
+  "name": "{{ site.author.name }}",
+  "url": "{{ site.url }}",
+  "jobTitle": "Research Engineer",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "Kuaishou Technology"
+  },
+  "alumniOf": {
+    "@type": "CollegeOrUniversity",
+    "name": "Peking University"
+  },
+  "description": "{{ site.description }}",
+  "image": "{{ site.url }}/{{ site.author.avatar }}",
+  "sameAs": [
+    "{{ site.author.googlescholar }}",
+    "{{ site.author.dblp }}",
+    "https://github.com/{{ site.author.github }}"
+  ]
+}
+</script>

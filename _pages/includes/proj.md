@@ -1,3 +1,4 @@
+<span class='anchor' id='projects'></span>
 # Competitions 
 - *CVPR 2024*: 2nd Place in NTIRE Challenge on Image Super-Resolution (x4). **Jinhua Hao<sup>*</sup>**, Kai Zhao, Kun Yuan, Ming Sun, Chao Zhou. 
 [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Chen_NTIRE_2024_Challenge_on_Image_Super-Resolution_x4_Methods_and_Results_CVPRW_2024_paper.pdf) 

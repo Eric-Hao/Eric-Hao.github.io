@@ -1,23 +1,32 @@
 name: Update github myprofile
 
-on: 'page_build'
+on:
+  page_build:
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Reqs
-      run: |
-        sudo apt-get install python3-setuptools
-    - name: Run
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+        
+    - name: Run Updater
       run: |
         cd ./github_myprofile_updater
         python3 update.py
-        git init
-        git config --local user.name "${GITHUB_ACTOR}"
-        git config --local user.email "haojinhua@pku.edu.cn"
-        export remote_repo="https://${GITHUB_ACTOR}:${{ secrets.GHRS_GITHUB_API_TOKEN }}@github.com/Eric-Hao/Eric-Hao.git"
+        git config --local user.name "github-actions[bot]"
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
         git add README.md
         git add images
-        git commit -m "update my description automatically"
-        git push "${remote_repo}" HEAD:main --force
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "update my description automatically"
+          git push "https://${{ github.actor }}:${{ secrets.GHRS_GITHUB_API_TOKEN }}@github.com/Eric-Hao/Eric-Hao.git" HEAD:main --force
+        fi
+

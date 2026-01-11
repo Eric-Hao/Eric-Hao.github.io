@@ -1,3 +1,4 @@
+<span class='anchor' id='news'></span>
 # News
 - *2025.05*: One paper is accepted by ICML 2025.
 - *2024.12*: One paper is accepted by AAAI 2025.
