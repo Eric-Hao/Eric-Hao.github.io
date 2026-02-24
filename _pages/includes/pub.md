@@ -1,6 +1,13 @@
 <span class='anchor' id='publications'></span>
 
 # Publications
+- **InstantViR: Real-Time Video Inverse Problem Solver with Distilled Diffusion Prior**
+
+  Weimin Bai, Suzhe Xu, Yiwei Ren, **Jinhua Hao**, Ming Sun, Wenzheng Chen, He Sun
+
+  *CVPR 2026* 
+  [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2511.14208) 
+  [![Project](https://img.shields.io/badge/Project-blue?logo=googlechrome&logoColor=black&style=social&labelColor=505050)](https://ai4scientificimaging.org/instantvir/)
 
 - **Visual Autoregressive Modeling for Image Super-Resolution**
 
