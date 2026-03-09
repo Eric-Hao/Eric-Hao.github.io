@@ -1,6 +1,14 @@
 <span class='anchor' id='publications'></span>
 
 # Publications
+- **ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration**
+
+  Xiaolong Zeng, Yitong Yu, Shiyao Xiong, **Jinhua Hao**, Ming Sun, Chao Zhou, Bin Wang
+
+  *CVPR 2026*
+  [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.00906) 
+  [![Code](https://img.shields.io/badge/Code-blue?logo=github&logoColor=black&style=social&labelColor=505050)](https://github.com/Sailor-t/ShiftLUT)
+
 - **InstantViR: Real-Time Video Inverse Problem Solver with Distilled Diffusion Prior**
 
   Weimin Bai, Suzhe Xu, Yiwei Ren, **Jinhua Hao**, Ming Sun, Wenzheng Chen, He Sun
