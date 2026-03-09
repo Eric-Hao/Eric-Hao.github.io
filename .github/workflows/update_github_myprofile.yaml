@@ -27,6 +27,6 @@ jobs:
           echo "No changes to commit"
         else
           git commit -m "update my description automatically"
-          git push "https://${{ github.actor }}:${{ secrets.GHRS_GITHUB_API_TOKEN }}@github.com/Eric-Hao/Eric-Hao.git" HEAD:main --force
+          git push "https://Eric-Hao:${{ secrets.GHRS_GITHUB_API_TOKEN }}@github.com/Eric-Hao/Eric-Hao.git" HEAD:main --force
         fi
 
