@@ -11,7 +11,8 @@ if __name__ == '__main__':
         
     with open(os.path.join(base_dir, 'news.md'), 'r') as f:
         _news = f.read().strip()
-        
+    _news = _news.split("# News")[-1]
+    
     readme_path = os.path.join(script_dir, 'README.md')
     with open(readme_path, 'w') as f:
         f.write(_header)
