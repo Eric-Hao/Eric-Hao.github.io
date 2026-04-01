@@ -1,6 +1,22 @@
 <span class='anchor' id='publications'></span>
 
 # Publications
+
+- **KAT-Coder-V2 Technical Report**
+
+  Fengxiang Li, Han Zhang, Haoyang Huang, Jinghui Wang, **Jinhua Hao**, Kun Yuan, Mengtong Li, Minglei Zhang, Pengcheng Xu, Wenhao Zhuang, Yizhen Shao, Zongxian Feng, et al.
+
+  *arXiv 2026*
+  [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.27703)
+
+- **Tuning Real-World Image Restoration at Inference: A Test-Time Scaling Paradigm for Flow Matching Models**
+
+  Purui Bai, Junxian Duan, Pin Wang, **Jinhua Hao**, Ming Sun, Chao Zhou, Huaibo Huang
+
+  *arXiv 2026*
+  [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.22027)
+
+
 - **ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration**
 
   Xiaolong Zeng, Yitong Yu, Shiyao Xiong, **Jinhua Hao**, Ming Sun, Chao Zhou, Bin Wang
