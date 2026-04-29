@@ -2,6 +2,14 @@
 
 # Publications
 
+- **WebCompass: Towards Multimodal Web Coding Evaluation for Code Language Models**
+
+  Xinping Lei, Xinyu Che, Junqi Xiong, Chenchen Zhang, Yukai Huang, Chenyu Zhou, Haoyang Huang, Minghao Liu, Letian Zhu, Hongyi Ye, **Jinhua Hao**, Ken Deng, Zizheng Zhan, Han Li, Dailin Li, Yifan Yao, Ming Sun, Zhaoxiang Zhang, Jiaheng Liu
+
+  *arXiv 2026*
+  [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2604.18224)
+  [![Code](https://img.shields.io/badge/Code-blue?logo=github&logoColor=black&style=social&labelColor=505050)](https://github.com/NJU-LINK/WebCompass)
+
 - **KAT-Coder-V2 Technical Report**
 
   Fengxiang Li, Han Zhang, Haoyang Huang, Jinghui Wang, **Jinhua Hao**, Kun Yuan, Mengtong Li, Minglei Zhang, Pengcheng Xu, Wenhao Zhuang, Yizhen Shao, Zongxian Feng, et al.

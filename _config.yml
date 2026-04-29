@@ -7,7 +7,8 @@
 
 # Site Settings
 title                    : "Jinhua Hao (郝进华)"
-description              : "Research Engineer at Kuaishou. Focusing on image/video processing and generation."
+description              : "Research interests include large language models, agentic coding, diffusion-based image/video generation and processing."
+
 repository               : "Eric-Hao/Eric-Hao.github.io"
 google_scholar_stats_use_cdn : true
 
@@ -27,7 +28,7 @@ author:
   location         : "Beijing, China"
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=hVMNCSQAAAAJ"
-  email            : "haojinhua206@gmail.com"
+  email            : "haojinhua206@163.com"
   employer         :
   researchgate     :  # e.g., "https://www.researchgate.net/profile/yourprofile"
   uri              :
@@ -44,6 +45,7 @@ author:
   impactstory      : # e.g., "https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
   linkedin         : # e.g., "linkedin username"
+  wechat           : "haojinhua206"
   dblp             : "https://dblp.org/pid/372/0042.html"
   orcid            : # e.g., "https://orcid.org/xxxx"
   pinterest        :
