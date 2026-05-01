@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Jinhua Hao (郝进华)"
-description              : "Research interests include large language models, agentic coding, diffusion-based image/video generation and processing."
+description              : "LLM, AIGC, Image/Video Generation and Restoration."
 
 repository               : "Eric-Hao/Eric-Hao.github.io"
 google_scholar_stats_use_cdn : true
