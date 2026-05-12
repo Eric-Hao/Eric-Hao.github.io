@@ -9,11 +9,14 @@ main:
   - title: "Publications"
     url: "#publications"
 
+  - title: "Competitions"
+    url: "#competitions"
+
   - title: "Projects"
     url: "#projects"
 
-  - title: "Honors and Awards"
+  - title: "Honors"
     url: "#honors"
 
-  - title: "Educations"
+  - title: "Education"
     url: "#education"

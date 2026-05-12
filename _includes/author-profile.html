@@ -6,8 +6,8 @@
 
   <div class="author__avatar">
     <picture>
-      <source srcset="images/eric-hao.webp" type="image/webp">
-      <img src="{{ author.avatar }}" class="author__avatar" alt="Profile photo of {{ author.name }}">
+      <source srcset="{{ '/images/eric-hao.webp' | prepend: site.baseurl }}" type="image/webp">
+      <img src="{{ author.avatar | prepend: site.baseurl }}" class="author__avatar" alt="Profile photo of {{ author.name }}">
     </picture>
   </div>
 
@@ -218,6 +218,9 @@
       {% endif %}
       {% if author.wikipedia %}
         <a href="https://en.wikipedia.org/wiki/User:{{ author.wikipedia }}"><i class="fab fa-fw fa-wikipedia-w" aria-hidden="true"></i></a>
+      {% endif %}
+      {% if author.wechat %}
+        <span class="author__wechat-sm" style="white-space: nowrap;"><i class="fab fa-fw fa-weixin" aria-hidden="true"></i> {{ author.wechat }}</span>
       {% endif %}
     </div>
   </div>

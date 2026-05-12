@@ -1,13 +1,20 @@
-<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-<link rel="manifest" href="images/site.webmanifest">
+<!-- DNS prefetch & preconnect for external resources -->
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="dns-prefetch" href="//scholar.google.com">
+<link rel="dns-prefetch" href="//raw.githubusercontent.com">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+
+<link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | prepend: site.baseurl }}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | prepend: site.baseurl }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ '/images/favicon-16x16.png' | prepend: site.baseurl }}">
+<link rel="manifest" href="{{ '/images/site.webmanifest' | prepend: site.baseurl }}">
 
 <meta name="msapplication-TileColor" content="#000000">
-<meta name="msapplication-TileImage" content="images/mstile-144x144.png?v=M44lzPylqQ">
-<meta name="msapplication-config" content="images/browserconfig.xml?v=M44lzPylqQ">
+<meta name="msapplication-TileImage" content="{{ '/images/mstile-144x144.png?v=M44lzPylqQ' | prepend: site.baseurl }}">
+<meta name="msapplication-config" content="{{ '/images/browserconfig.xml?v=M44lzPylqQ' | prepend: site.baseurl }}">
 <meta name="theme-color" content="#ffffff">
-<link rel="stylesheet" href="assets/css/academicons.css"/>
+<link rel="stylesheet" href="{{ '/assets/css/academicons.css' | prepend: site.baseurl }}"/>
 
 <script>
   window.MathJax = {

@@ -244,5 +244,3 @@ Linlin Kang, Yanru Wang, Zhongzheng Jiang, **<u>Jinhua Hao</u>**, Shiying Xiong,
 *J. Fluid Mech. 2019* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://www.researchgate.net/profile/Yue-Yang-11/publication/330640967_Tracking_vortex_surfaces_frozen_in_the_virtual_velocity_in_non-ideal_flows/links/5c4bb76692851c22a3911051/Tracking-vortex-surfaces-frozen-in-the-virtual-velocity-in-non-ideal-flows.pdf) [![DOI](https://img.shields.io/badge/Paper-blue?logo=doi&logoColor=black&style=social&labelColor=505050)](https://doi.org/10.1017/jfm.2018.1014) [![PKU](https://img.shields.io/badge/PKU-News-blue?style=social&labelColor=505050)](https://www.coe.pku.edu.cn/research/progress/6710.html)
 </div>
 </div>
-
-<span class='anchor' id='projects'></span>

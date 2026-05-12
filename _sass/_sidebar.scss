@@ -264,6 +264,11 @@
       text-decoration: underline;
     }
   }
+  .author__wechat-sm {
+    font-size: 0.6em;
+    display: inline-block;
+    vertical-align: middle;
+  }
   @include breakpoint($large) {
     display: none;
   }
