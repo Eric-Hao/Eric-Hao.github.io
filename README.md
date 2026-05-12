@@ -1,72 +1,134 @@
+# Eric-Hao.github.io
 
-<h1 align="center">
-AcadHomepage
-</h1>
+Personal academic homepage of **Jinhua Hao (郝进华)**, Research Engineer at Kuaishou Technology.
 
-<div align="center">
+**Live site:** https://Eric-Hao.github.io
 
-[![](https://img.shields.io/github/stars/RayeRen/acad-homepage.github.io)](https://github.com/RayeRen/acad-homepage.github.io)
-[![](https://img.shields.io/github/forks/RayeRen/acad-homepage.github.io)](https://github.com/RayeRen/acad-homepage.github.io)
-[![](https://img.shields.io/github/issues/RayeRen/acad-homepage.github.io)](https://github.com/RayeRen/acad-homepage.github.io)
-[![](https://img.shields.io/github/license/RayeRen/acad-homepage.github.io)](https://github.com/RayeRen/acad-homepage.github.io/blob/main/LICENSE)  | [中文文档](./docs/README-zh.md) 
-</div>
+## About
 
-<p align="center">A Modern and Responsive Academic Personal Homepage</p>
+Built with [Jekyll](https://jekyllrb.com/) and deployed via GitHub Pages, based on the [AcadHomepage](https://github.com/RayeRen/acad-homepage.github.io) template with extensive customizations. Features automatic Google Scholar citation updates via GitHub Actions.
 
-<p align="center">
-    <br>
-    <img src="docs/screenshot.png" width="100%"/>
-    <br>
-</p>
+## Project Structure
 
-Some examples:
-- [Demo Page](https://rayeren.github.io/acad-homepage.github.io/)
-- [Personal Homepage of the author](https://rayeren.github.io/)
+```
+_config.yml                  # Site configuration (author info, SEO, analytics)
+_data/navigation.yml         # Navigation bar links and anchors
+_includes/                   # Reusable HTML components (head, sidebar, SEO, etc.)
+_pages/
+  about.md                   # Main page entry point (includes all sections)
+  includes/
+    intro.md                 # Biography
+    news.md                  # News items
+    publications.md          # Publication list with paper thumbnails
+    competitions.md          # Competition results
+    projects.md              # Industry projects
+    honors.md                # Awards and honors
+    educations.md            # Education history
+_sass/                       # SCSS stylesheets
+images/
+  papers/                    # Publication teaser images (PNG + WebP)
+  competitions/              # Competition teaser images
+  eric-hao.jpg/.webp         # Profile avatar
+```
 
-## Key Features
-- **Automatically update google scholar citations**: using the google scholar crawler and github action, this REPO can update the author citations and publication citations automatically.
-- **Support Google analytics**: you can trace the traffics of your homepage by easy configuration.
-- **Responsive**: this homepage automatically adjust for different screen sizes and viewports.
-- **Beautiful and Simple Design**: this homepage is beautiful and simple, which is very suitable for academic personal homepage.
-- **SEO**: search Engine Optimization (SEO) helps search engines find the information you publish on your homepage easily, then rank it against similar websites.
+## Local Development
 
-## Quick Start
+### Prerequisites
 
-1. Fork this REPO and rename to `USERNAME.github.io`, where `USERNAME` is your github USERNAME.
-1. Configure the google scholar citation crawler:
-    1. Find your google scholar ID in the url of your google scholar page (e.g., https://scholar.google.com/citations?user=SCHOLAR_ID), where `SCHOLAR_ID` is your google scholar ID.
-    1. Set GOOGLE_SCHOLAR_ID variable to your google scholar ID in `Settings -> Secrets -> Actions -> New repository secret` of the REPO website with `name=GOOGLE_SCHOLAR_ID` and `value=SCHOLAR_ID`.
-    1. Click the `Action` of the REPO website and enable the workflows by clicking *"I understand my workflows, go ahead and enable them"*. This github action will generate google scholar citation stats data `gs_data.json` in `google-scholar-stats` branch of your REPO. When you update your main branch, this action will be triggered. This action will also be trigger 08:00 UTC everyday.
-1. Generate favicon using [favicon-generator](https://redketchup.io/favicon-generator) and download all generated files to `REPO/images`.
-1. Modify the configuration of your homepage `_config.yml`:
-    1. `title`: the title of your homepage
-    1. `description`: the description of your homepage
-    1. `repository`: USER_NAME/REPO_NAME  
-    1. `google_analytics_id` (optional): google analytics ID
-    1. SEO Related keys (optional): get these keys from search engine consoles (e.g. Google, Bing and Baidu) and paste here.
-    1. `author`: the author information of this homepage, including some other websites, emails, city and univeristy.
-    1. More configuration details are described in the comments.
-1. Add your homepage content in `_pages/about.md`.
-    1. You can use html+markdown syntax just same as jekyll.
-    1. You can use a `<span>` tag with class `show_paper_citations` and attribute `data` to display the citations of your paper. Set the data to the google scholar paper ID. For
-        ```html
-        <span class='show_paper_citations' data='DhtAFkwAAAAJ:ALROH1vI_8AC'></span>
-        ``` 
-        > Q: How to get the google scholar paper ID?   
-        > A: Enter your google scholar homepage and click the paper name. Then you can see the paper ID from `citation_for_view=XXXX`, where `XXXX` is the required paper ID.
-1. Your page will be published at `https://USERNAME.github.io`.
+- **Podman** (or Docker) — runs Jekyll in a container, no local Ruby install needed
+- **Python 3** — serves the built static site for preview
 
-## Debug Locally
+```bash
+podman --version   # should show 5.x+
+```
 
-1. Clone your REPO to local using `git clone`.
-1. Install Jekyll building environment, including `Ruby`, `RubyGems`, `GCC` and `Make` following [the installation guide](https://jekyllrb.com/docs/installation/#requirements).
-1. Run `bash run_server.sh` to start Jekyll livereload server.
-1. Open http://127.0.0.1:4000 in your browser.
-1. If you change the source code of the website, the livereload server will automatically refresh.
-1. When you finish the modification of your homepage, `commit` your changings and `push` to your remote REPO using `git` command.
+Replace `podman` with `docker` in all commands if using Docker instead.
 
-# Acknowledges
+### Build
 
-- AcadHomepage incorporates Font Awesome, which is distributed under the terms of the SIL OFL 1.1 and MIT License.
-- AcadHomepage is influenced by the github repo [mmistakes/minimal-mistakes](https://github.com/mmistakes/minimal-mistakes), which is distributed under the MIT License.
-- AcadHomepage is influenced by the github repo [academicpages/academicpages.github.io](https://github.com/academicpages/academicpages.github.io), which is distributed under the MIT License.
+```bash
+# Ensure _site directory exists
+mkdir -p _site && chmod 777 _site
+
+# Start Podman machine if not running (macOS only)
+podman machine start
+
+# Build the site
+podman run --rm \
+  --volume="$PWD:/srv/jekyll:Z" \
+  jekyll/jekyll:4.2.2 \
+  sh -c "bundle install 2>&1 | tail -1 && bundle exec jekyll build"
+```
+
+Output is generated into `_site/`.
+
+### Preview
+
+```bash
+cd _site
+python3 -m http.server 4000
+```
+
+Open **http://localhost:4000** in your browser. Press `Ctrl+C` to stop.
+
+### One-liner (Build + Preview)
+
+```bash
+podman run --rm --volume="$PWD:/srv/jekyll:Z" jekyll/jekyll:4.2.2 \
+  sh -c "bundle install 2>&1 | tail -1 && bundle exec jekyll build" \
+  && cd _site && python3 -m http.server 4000
+```
+
+### Notes
+
+- **Apple Silicon (arm64):** `jekyll/jekyll:4.2.2` is a linux/amd64 image; Podman emulates it via QEMU. The `image platform does not match` warning is harmless.
+- **`jekyll serve` not supported** in this container (Ruby 3.x removed `webrick`). Use `jekyll build` + Python server instead.
+- **Port conflict:** Change the port if 4000 is in use: `python3 -m http.server 4001`
+
+### Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| `Permission denied @ dir_s_mkdir - _site` | `mkdir -p _site && chmod 777 _site` |
+| `podman machine not running` | `podman machine start` |
+| Port 4000 already in use | `python3 -m http.server 4001` |
+| `no implicit conversion of Hash into Integer` | Use `jekyll build`, not `jekyll serve` |
+
+## Adding Content
+
+### New publication
+
+1. Add a teaser image to `images/papers/` (PNG + WebP pair)
+2. Add an entry to `_pages/includes/publications.md` following the existing `paper-box` pattern
+3. Always include `loading="lazy"` on the `<img>` tag
+
+### Image optimization
+
+Teaser images render at max 400px width. Keep source images at max 800px wide (2× retina):
+
+```bash
+# Resize a single image (built-in macOS tool, no install needed)
+sips --resampleWidth 800 --setProperty formatOptions best images/papers/example.png
+
+# Batch resize all PNGs over 500KB
+for f in images/papers/*.png; do
+  kb=$(wc -c < "$f" | awk '{printf "%d", $1/1024}')
+  if [ $kb -gt 500 ]; then
+    sips --resampleWidth 800 --setProperty formatOptions best "$f" --out "$f"
+  fi
+done
+```
+
+For further compression (requires Homebrew):
+
+```bash
+brew install optipng pngquant
+optipng -o7 images/papers/*.png                              # lossless
+pngquant --quality=80-95 --force --ext .png images/papers/*.png  # lossy
+```
+
+## Deployment
+
+Push to `main` branch — GitHub Pages builds and deploys automatically.
+
+Google Scholar citation stats are updated daily at 08:00 UTC via the `google_scholar_crawler` GitHub Action. Requires `GOOGLE_SCHOLAR_ID` set in repository secrets.
