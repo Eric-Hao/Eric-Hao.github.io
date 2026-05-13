@@ -5,6 +5,9 @@
 <link rel="dns-prefetch" href="//raw.githubusercontent.com">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 
+<!-- Preload avatar for faster LCP -->
+<link rel="preload" as="image" href="{{ site.author.avatar | prepend: site.baseurl }}" type="image/jpeg">
+
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | prepend: site.baseurl }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | prepend: site.baseurl }}">
 <link rel="icon" type="image/png" sizes="16x16" href="{{ '/images/favicon-16x16.png' | prepend: site.baseurl }}">
@@ -28,6 +31,15 @@
     }
   };
 </script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.min.js" async></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (/\$|\\\(/.test(document.body.innerHTML)) {
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.min.js';
+      s.async = true;
+      document.head.appendChild(s);
+    }
+  });
+</script>
 
 <!-- end custom head snippets -->

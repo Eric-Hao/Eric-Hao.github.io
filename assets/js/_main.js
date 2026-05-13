@@ -45,6 +45,12 @@ $(document).ready(function(){
     $(".author__urls-wrapper button").toggleClass("open");
   });
 
+  // Open external links in new tab (replaces removed <base target="_blank">)
+  $("a[href^='http']").not("a[href*='" + window.location.hostname + "']").attr({
+    target: "_blank",
+    rel: "noopener noreferrer"
+  });
+
   // init smooth scroll
   $("a").smoothScroll({offset: -20});
 

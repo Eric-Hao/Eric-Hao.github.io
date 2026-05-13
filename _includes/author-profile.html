@@ -5,9 +5,10 @@
 <div itemscope itemtype="http://schema.org/Person" class="profile_box">
 
   <div class="author__avatar">
+    {% assign avatar_webp = author.avatar | replace: '.jpg', '.webp' | replace: '.png', '.webp' %}
     <picture>
-      <source srcset="{{ '/images/eric-hao.webp' | prepend: site.baseurl }}" type="image/webp">
-      <img src="{{ author.avatar | prepend: site.baseurl }}" class="author__avatar" alt="Profile photo of {{ author.name }}">
+      <source srcset="{{ avatar_webp | prepend: site.baseurl }}" type="image/webp">
+      <img src="{{ author.avatar | prepend: site.baseurl }}" class="author__avatar" alt="Profile photo of {{ author.name }}" width="175" height="175">
     </picture>
   </div>
 

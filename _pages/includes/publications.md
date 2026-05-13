@@ -6,7 +6,7 @@
 
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">arXiv 2026</div>
-<picture><source srcset="images/papers/webcompass.webp" type="image/webp"><img loading="lazy" src="images/papers/webcompass.png" alt="WebCompass teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/webcompass.webp" type="image/webp"><img loading="lazy" src="/images/papers/webcompass.png" alt="WebCompass teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -21,7 +21,7 @@ Xinping Lei, Xinyu Che, Junqi Xiong, Chenchen Zhang, Yukai Huang, Chenyu Zhou, H
 <!-- ② KAT-Coder-V2 -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">arXiv 2026</div>
-<picture><source srcset="images/papers/katcoder.webp" type="image/webp"><img loading="lazy" src="images/papers/katcoder.png" alt="KAT-Coder-V2 teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/katcoder.webp" type="image/webp"><img loading="lazy" src="/images/papers/katcoder.png" alt="KAT-Coder-V2 teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -37,7 +37,7 @@ Fengxiang Li, Han Zhang, Haoyang Huang, Jinghui Wang, **<u>Jinhua Hao</u>**, Kun
 <!-- ③ Coloring the Noise -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">ICML 2026</div>
-<picture><source srcset="images/papers/color.webp" type="image/webp"><img loading="lazy" src="images/papers/color.png" alt="Test-Time Scaling teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/color.webp" type="image/webp"><img loading="lazy" src="/images/papers/color.png" alt="Test-Time Scaling teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -53,7 +53,7 @@ Hongbo Wang, Huaibo Huang, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Chao Z
 <!-- ④ Test-Time Scaling (Flow Matching) -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">arXiv 2026</div>
-<picture><source srcset="images/papers/tta_flow.webp" type="image/webp"><img loading="lazy" src="images/papers/tta_flow.png" alt="Test-Time Scaling teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/tta_flow.webp" type="image/webp"><img loading="lazy" src="/images/papers/tta_flow.png" alt="Test-Time Scaling teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -68,7 +68,7 @@ Purui Bai, Junxian Duan, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Ming Sun
 <!-- ⑤ ShiftLUT -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">CVPR 2026</div>
-<picture><source srcset="images/papers/shiftlut.webp" type="image/webp"><img loading="lazy" src="images/papers/shiftlut.png" alt="ShiftLUT teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/shiftlut.webp" type="image/webp"><img loading="lazy" src="/images/papers/shiftlut.png" alt="ShiftLUT teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -83,7 +83,7 @@ Xiaolong Zeng, Yitong Yu, Shiyao Xiong, **<u>Jinhua Hao</u>**, Ming Sun, Chao Zh
 <!-- ⑥ InstantViR -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">CVPR 2026</div>
-<picture><source srcset="images/papers/instantvir.webp" type="image/webp"><img loading="lazy" src="images/papers/instantvir.png" alt="InstantViR teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/instantvir.webp" type="image/webp"><img loading="lazy" src="/images/papers/instantvir.png" alt="InstantViR teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -98,7 +98,7 @@ Weimin Bai, Suzhe Xu, Yiwei Ren, **<u>Jinhua Hao</u>**, Ming Sun, Wenzheng Chen,
 <!-- ⑦ VARSR -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">ICML 2025</div>
-<picture><source srcset="images/papers/varsr.webp" type="image/webp"><img loading="lazy" src="images/papers/varsr.png" alt="VARSR teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/varsr.webp" type="image/webp"><img loading="lazy" src="/images/papers/varsr.png" alt="VARSR teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -113,7 +113,7 @@ Yunpeng Qu, Kun Yuan, **<u>Jinhua Hao</u>**, Kai Zhao, Qizhi Xie, Ming Sun, Chao
 <!-- ⑧ T-InvBlocks -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">AAAI 2025</div>
-<picture><source srcset="images/papers/tinvblocks.webp" type="image/webp"><img loading="lazy" src="images/papers/tinvblocks.png" alt="T-InvBlocks teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/tinvblocks.webp" type="image/webp"><img loading="lazy" src="/images/papers/tinvblocks.png" alt="T-InvBlocks teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -128,7 +128,7 @@ Jingwei Bao, **<u>Jinhua Hao</u><sup>*†</sup>**, Pengcheng Xu, Ming Sun, Chao 
 <!-- ⑨ OAPT -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">ECCV 2024</div>
-<picture><source srcset="images/papers/oapt.webp" type="image/webp"><img loading="lazy" src="images/papers/oapt.png" alt="OAPT teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/oapt.webp" type="image/webp"><img loading="lazy" src="/images/papers/oapt.png" alt="OAPT teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -143,7 +143,7 @@ Qiao Mo, Yukang Ding, **<u>Jinhua Hao</u><sup>*†</sup>**, Qiang Zhu, Ming Sun,
 <!-- ⑩ CPGA -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">CVPR 2024</div>
-<picture><source srcset="images/papers/cpga.webp" type="image/webp"><img loading="lazy" src="images/papers/cpga.png" alt="CPGA teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/cpga.webp" type="image/webp"><img loading="lazy" src="/images/papers/cpga.png" alt="CPGA teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -158,7 +158,7 @@ Qiang Zhu, **<u>Jinhua Hao</u><sup>†</sup>**, Yukang Ding, Yu Liu, Qiao Mo, Mi
 <!-- ⑪ XPSR -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">ECCV 2024</div>
-<picture><source srcset="images/papers/xpsr.webp" type="image/webp"><img loading="lazy" src="images/papers/xpsr.png" alt="XPSR teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/xpsr.webp" type="image/webp"><img loading="lazy" src="/images/papers/xpsr.png" alt="XPSR teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -173,7 +173,7 @@ Yunpeng Qu, Kun Yuan, Kai Zhao, Qizhi Xie, **<u>Jinhua Hao</u>**, Ming Sun, Chao
 <!-- ⑫ PTM-VQA -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">CVPR 2024</div>
-<picture><source srcset="images/papers/ptmvqa.webp" type="image/webp"><img loading="lazy" src="images/papers/ptmvqa.png" alt="PTM-VQA teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/ptmvqa.webp" type="image/webp"><img loading="lazy" src="/images/papers/ptmvqa.png" alt="PTM-VQA teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -188,7 +188,7 @@ Kun Yuan, Hongbo Liu, Mading Li, Muyi Sun, Ming Sun, Jiachao Gong, **<u>Jinhua H
 <!-- ⑬ CasSR -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">arXiv 2024</div>
-<picture><source srcset="images/papers/cassr.webp" type="image/webp"><img loading="lazy" src="images/papers/cassr.png" alt="CasSR teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/cassr.webp" type="image/webp"><img loading="lazy" src="/images/papers/cassr.png" alt="CasSR teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -203,7 +203,7 @@ Haolan Chen, **<u>Jinhua Hao</u><sup>†</sup>**, Kai Zhao, Kun Yuan, Ming Sun, 
 <!-- ⑭ Magnetic–vortical interactions -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">J. Fluid Mech. 2025</div>
-<picture><source srcset="images/papers/magvortex.webp" type="image/webp"><img loading="lazy" src="images/papers/magvortex.png" alt="Magnetic-vortical interactions teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/magvortex.webp" type="image/webp"><img loading="lazy" src="/images/papers/magvortex.png" alt="Magnetic-vortical interactions teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -218,7 +218,7 @@ Linlin Kang, Yanru Wang, Zhongzheng Jiang, **<u>Jinhua Hao</u>**, Shiying Xiong,
 <!-- ⑮ Magnetic knot cascade -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">J. Fluid Mech. 2021</div>
-<picture><source srcset="images/papers/magknot.webp" type="image/webp"><img loading="lazy" src="images/papers/magknot.png" alt="Magnetic knot cascade teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/magknot.webp" type="image/webp"><img loading="lazy" src="/images/papers/magknot.png" alt="Magnetic knot cascade teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
@@ -233,7 +233,7 @@ Linlin Kang, Yanru Wang, Zhongzheng Jiang, **<u>Jinhua Hao</u>**, Shiying Xiong,
 <!-- ⑯ Tracking vortex surfaces -->
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">J. Fluid Mech. 2019</div>
-<picture><source srcset="images/papers/vortex.webp" type="image/webp"><img loading="lazy" src="images/papers/vortex.png" alt="Tracking vortex surfaces teaser" width="100%"></picture>
+<picture><source srcset="/images/papers/vortex.webp" type="image/webp"><img loading="lazy" src="/images/papers/vortex.png" alt="Tracking vortex surfaces teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
 
