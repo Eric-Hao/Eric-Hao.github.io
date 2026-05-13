@@ -118,9 +118,13 @@ blockquote {
 /* links */
 
 a {
-  
-  &:focus {
+
+  &:focus-visible {
     @extend %tab-focus;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
   }
 
   &:hover,
