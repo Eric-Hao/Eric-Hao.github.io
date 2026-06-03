@@ -6,6 +6,20 @@
 
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">arXiv 2026</div>
+<picture><source srcset="/images/papers/mmg2skill.webp" type="image/webp"><img loading="lazy" src="/images/papers/mmg2skill.png" alt="MMG2Skill teaser" width="100%"></picture>
+</div></div>
+<div class='paper-box-text' markdown="1">
+
+**MMG2Skill: Can Agents Distill In-the-Wild Guides into Self-Evolving Skills?**
+
+Xinyu Che, Junqi Xiong, Yunfei Ge, Xinping Lei, Shihao Li, Hang Yan, Han Li, Yuanxing Zhang, Zhiqi Bai, **<u>Jinhua Hao</u>**, Ming Sun, Han Li, Jiaheng Liu
+
+*arXiv 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2606.01993)
+</div>
+</div>
+
+<div class='paper-box'><div class='paper-box-image'><div>
+<div class="badge">arXiv 2026</div>
 <picture><source srcset="/images/papers/webcompass.webp" type="image/webp"><img loading="lazy" src="/images/papers/webcompass.png" alt="WebCompass teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
@@ -45,7 +59,7 @@ Fengxiang Li, Han Zhang, Haoyang Huang, Jinghui Wang, **<u>Jinhua Hao</u>**, Kun
 
 Hongbo Wang, Huaibo Huang, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Chao Zhou, Ran He
 
-*ICML 2026*
+*ICML 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2605.23264) [![Code](https://img.shields.io/badge/Code-blue?logo=github&logoColor=black&style=social&labelColor=505050)](https://github.com/wafer-bob/ASASR)
 
 </div>
 </div>
