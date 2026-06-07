@@ -1,5 +1,5 @@
 I am a Research Engineer at [Kuaishou Technology](https://ir.kuaishou.com/). I received my Ph.D. in Fluid Mechanics from [Peking University](https://en.pku.edu.cn/) in 2020, advised by Prof. [Yue Yang](http://www2.coe.pku.edu.cn/subpaget.asp?id=489), and my B.S. in [Mechanics](https://en.coe.pku.edu.cn/) and [Economics](https://en.nsd.pku.edu.cn/) from Peking University in 2015.
 
-My current research focuses on large language models (LLMs), particularly agentic coding. Since joining Kuaishou in 2020, my work has mainly focused on three directions: agentic coding LLMs, AIGC generative video processing large models, and server-side pre-processing and on-device post-processing AI algorithms. I have published 10+ papers at top-tier venues including CVPR, ICML, and ACL.
+My current research focuses on large language models (LLMs), particularly agentic coding. Since joining Kuaishou in 2020, my work has mainly focused on three directions: agentic coding LLMs, AIGC generative video processing large models, and server-side pre-processing and on-device post-processing AI algorithms. I have published 10+ papers at top-tier venues including CVPR and ICML.
 
 See more on [my homepage](https://eric-hao.github.io). ![](https://komarev.com/ghpvc/?username=Eric-Hao)
