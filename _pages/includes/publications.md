@@ -66,7 +66,7 @@ Hongbo Wang, Huaibo Huang, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Chao Z
 
 <!-- ④ Test-Time Scaling (Flow Matching) -->
 <div class='paper-box'><div class='paper-box-image'><div>
-<div class="badge">arXiv 2026</div>
+<div class="badge">ECCV 2026</div>
 <picture><source srcset="/images/papers/tta_flow.webp" type="image/webp"><img loading="lazy" src="/images/papers/tta_flow.png" alt="Test-Time Scaling teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
@@ -75,7 +75,7 @@ Hongbo Wang, Huaibo Huang, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Chao Z
 
 Purui Bai, Junxian Duan, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Ming Sun, Chao Zhou, Huaibo Huang
 
-*arXiv 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.22027)
+*ECCV 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.22027)
 </div>
 </div>
 
@@ -96,7 +96,7 @@ Xiaolong Zeng, Yitong Yu, Shiyao Xiong, **<u>Jinhua Hao</u>**, Ming Sun, Chao Zh
 
 <!-- ⑥ InstantViR -->
 <div class='paper-box'><div class='paper-box-image'><div>
-<div class="badge">CVPR 2026</div>
+<div class="badge">CVPR 2026 Highlight</div>
 <picture><source srcset="/images/papers/instantvir.webp" type="image/webp"><img loading="lazy" src="/images/papers/instantvir.png" alt="InstantViR teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
@@ -105,7 +105,7 @@ Xiaolong Zeng, Yitong Yu, Shiyao Xiong, **<u>Jinhua Hao</u>**, Ming Sun, Chao Zh
 
 Weimin Bai, Suzhe Xu, Yiwei Ren, **<u>Jinhua Hao</u>**, Ming Sun, Wenzheng Chen, He Sun
 
-*CVPR 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2511.14208) [![Project](https://img.shields.io/badge/Project-blue?logo=googlechrome&logoColor=black&style=social&labelColor=505050)](https://ai4scientificimaging.org/instantvir/)
+*CVPR 2026 Highlight* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2511.14208) [![Project](https://img.shields.io/badge/Project-blue?logo=googlechrome&logoColor=black&style=social&labelColor=505050)](https://ai4scientificimaging.org/instantvir/)
 </div>
 </div>
 
