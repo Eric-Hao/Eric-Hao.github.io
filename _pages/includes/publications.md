@@ -6,6 +6,44 @@
 
 <div class='paper-box'><div class='paper-box-image'><div>
 <div class="badge">arXiv 2026</div>
+<picture><source srcset="/images/papers/agentic_ttt.webp" type="image/webp"><img loading="lazy" src="/images/papers/agentic_ttt.png" alt="Agentic TTT teaser" width="100%"></picture>
+</div></div>
+<div class='paper-box-text' markdown="1">
+
+**No Time Like the Present: Agentic Test-Time Training for LLM Agents**
+
+Yanbo Wang, **<u>Jinhua Hao</u><sup>*</sup>**, Yuze Shi, Kun Yuan, Ming Sun
+
+*arXiv 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2607.03441)
+</div>
+</div>
+
+<!-- ② KAT-Coder-V2 -->
+<div class='paper-box'><div class='paper-box-image'><div>
+<div class="badge">arXiv 2026</div>
+<picture><source srcset="/images/papers/katcoder.webp" type="image/webp"><img loading="lazy" src="/images/papers/katcoder.png" alt="KAT-Coder-V2 teaser" width="100%"></picture>
+</div></div>
+<div class='paper-box-text' markdown="1">
+
+**KAT-Coder-V2 Technical Report**
+
+Fengxiang Li, Han Zhang, Haoyang Huang, Jinghui Wang, **<u>Jinhua Hao</u>**, Kun Yuan, Mengtong Li, Minglei Zhang, Pengcheng Xu, Wenhao Zhuang, Yizhen Shao, Zongxian Feng, et al.
+
+*arXiv 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.27703)
+[![WX](https://img.shields.io/badge/Post-blue?logo=wechat&logoColor=black&style=social&labelColor=505050)](https://mp.weixin.qq.com/s/PGWZfZFGp19QdAGuRE-APg)
+</div>
+</div>
+
+<!-- ③ Coloring the Noise -->
+<div class='paper-box'><div class='paper-box-image'><div>
+<div class="badge">ICML 2026</div>
+<picture><source srcset="/images/papers/color.webp" type="image/webp"><img loading="lazy" src="/images/papers/color.png" alt="Test-Time Scaling teaser" width="100%"></picture>
+</div></div>
+<div class='paper-box-text' markdown="1">
+
+
+<div class='paper-box'><div class='paper-box-image'><div>
+<div class="badge">arXiv 2026</div>
 <picture><source srcset="/images/papers/mmg2skill.webp" type="image/webp"><img loading="lazy" src="/images/papers/mmg2skill.png" alt="MMG2Skill teaser" width="100%"></picture>
 </div></div>
 <div class='paper-box-text' markdown="1">
@@ -32,28 +70,6 @@ Xinping Lei, Xinyu Che, Junqi Xiong, Chenchen Zhang, Yukai Huang, Chenyu Zhou, H
 </div>
 </div>
 
-<!-- ② KAT-Coder-V2 -->
-<div class='paper-box'><div class='paper-box-image'><div>
-<div class="badge">arXiv 2026</div>
-<picture><source srcset="/images/papers/katcoder.webp" type="image/webp"><img loading="lazy" src="/images/papers/katcoder.png" alt="KAT-Coder-V2 teaser" width="100%"></picture>
-</div></div>
-<div class='paper-box-text' markdown="1">
-
-**KAT-Coder-V2 Technical Report**
-
-Fengxiang Li, Han Zhang, Haoyang Huang, Jinghui Wang, **<u>Jinhua Hao</u>**, Kun Yuan, Mengtong Li, Minglei Zhang, Pengcheng Xu, Wenhao Zhuang, Yizhen Shao, Zongxian Feng, et al.
-
-*arXiv 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.27703)
-[![WX](https://img.shields.io/badge/Post-blue?logo=wechat&logoColor=black&style=social&labelColor=505050)](https://mp.weixin.qq.com/s/PGWZfZFGp19QdAGuRE-APg)
-</div>
-</div>
-
-<!-- ③ Coloring the Noise -->
-<div class='paper-box'><div class='paper-box-image'><div>
-<div class="badge">ICML 2026</div>
-<picture><source srcset="/images/papers/color.webp" type="image/webp"><img loading="lazy" src="/images/papers/color.png" alt="Test-Time Scaling teaser" width="100%"></picture>
-</div></div>
-<div class='paper-box-text' markdown="1">
 
 **Coloring the Noise: Adversarial Sobolev Alignment for Faithful Image Super Resolution**
 
