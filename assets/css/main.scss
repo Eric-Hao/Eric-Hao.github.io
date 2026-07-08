@@ -86,8 +86,39 @@
 
 }
 
+/* Technical Reports — text-only list with inline logo, no image box */
+.tr-item {
+    padding: 0.8em 0;
+
+    & + .tr-item {
+        border-top: 1px solid transparent;
+    }
+
+    p:first-of-type {
+        margin-top: 0;
+    }
+}
+
+.tr-logo {
+    height: 1.15em;
+    width: auto;
+    vertical-align: -0.18em;
+    margin-right: 0.45em;
+}
+
+.tr-title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+
+    .tr-logo {
+        flex: 0 0 auto;
+        vertical-align: baseline;
+    }
+}
+
 $scroll_offset : 2em;
-h1:before, .anchor:before { 
+h1:before, .anchor:before {
     content: ''; 
     display: block; 
     position: relative; 
@@ -105,4 +136,14 @@ h1:before, .anchor:before {
     color: white;
     background-color: #00369f;
     font-size: .8em;
+}
+
+/* Title preceded by an inline logo (e.g. Models section) */
+.title-with-logo {
+    display: flex;
+    align-items: center;
+
+    .tr-logo {
+        flex: 0 0 auto;
+    }
 }

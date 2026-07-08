@@ -125,13 +125,20 @@ mkdir -p _site && chmod 777 _site
 podman machine start
 
 # 构建站点
-podman run --rm \
+podman run --rm --platform linux/amd64 \
   --volume="$PWD:/srv/jekyll:Z" \
-  jekyll/jekyll:4.2.2 \
-  sh -c "bundle install 2>&1 | tail -1 && bundle exec jekyll build"
+  -w /srv/jekyll \
+  ruby:3.3 \
+  sh -c "gem install bundler -v 2.2.19 --silent && bundle install && bundle exec jekyll build"
 ```
 
 构建产物输出到 `_site/` 目录。
+
+> **为什么用 `ruby:3.3` 而不是 `jekyll/jekyll:4.2.2`？** `jekyll/jekyll:4.2.2` 镜像
+> 自带 **Ruby 3.1.1**，但当前锁定的 `Gemfile.lock` 已要求 **Ruby ≥ 3.2**
+> （`nokogiri`、`base64`），旧镜像会报错 `Could not find base64-x.x.x`。
+> 官方 `ruby:3.3` 镜像可正常构建。此问题**仅影响本地构建** —— GitHub Pages
+> 使用自带的 Ruby 工具链，不受影响。
 
 ### 预览
 
@@ -145,8 +152,8 @@ python3 -m http.server 4000
 ### 一行命令（构建 + 预览）
 
 ```bash
-podman run --rm --volume="$PWD:/srv/jekyll:Z" jekyll/jekyll:4.2.2 \
-  sh -c "bundle install 2>&1 | tail -1 && bundle exec jekyll build" \
+podman run --rm --platform linux/amd64 --volume="$PWD:/srv/jekyll:Z" -w /srv/jekyll ruby:3.3 \
+  sh -c "gem install bundler -v 2.2.19 --silent && bundle install && bundle exec jekyll build" \
   && cd _site && python3 -m http.server 4000
 ```
 
@@ -161,14 +168,16 @@ podman run --rm --volume="$PWD:/srv/jekyll:Z" jekyll/jekyll:4.2.2 \
 
 ### 平台说明
 
-- **Apple Silicon（arm64）：** `jekyll/jekyll:4.2.2` 是 linux/amd64 镜像，Podman 通过 QEMU 模拟运行，`image platform does not match` 警告无害
-- **不支持 `jekyll serve`：** 该容器中的 Ruby 3.x 已移除 `webrick`，需使用 `jekyll build` + Python 服务器替代
+- **Apple Silicon（arm64）：** `ruby:3.3` 是多架构镜像，但 `Gemfile.lock` 锁定了预编译的 `nokogiri-x86_64-linux` gem，因此需要加 `--platform linux/amd64`（Podman 通过 QEMU 模拟运行），`image platform does not match` 警告无害
+- **不支持 `jekyll serve`：** Ruby 3.x 已移除 `webrick`，需使用 `jekyll build` + Python 服务器替代
 - **端口冲突：** 若 4000 端口被占用，可更换端口：`python3 -m http.server 4001`
+- **GitHub Metadata 403 警告：** 构建时出现的 `API rate limit exceeded` 无害 —— 仅影响 `site.github.*` 元数据，不影响页面内容
 
 ### 常见问题排查
 
 | 问题 | 解决方案 |
 |------|----------|
+| `Could not find base64-x.x.x` / `requires ruby version >= 3.2` | 使用 `ruby:3.3` 镜像，不要用 `jekyll/jekyll:4.2.2`（详见上方构建说明） |
 | `Permission denied @ dir_s_mkdir - _site` | `mkdir -p _site && chmod 777 _site` |
 | `podman machine not running` | `podman machine start` |
 | 端口 4000 被占用 | `python3 -m http.server 4001` |

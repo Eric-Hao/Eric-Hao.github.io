@@ -24,27 +24,7 @@ Yanbo Wang, **<u>Jinhua Hao</u><sup>*</sup>**, Yuze Shi, Kun Yuan, Ming Sun
 </div>
 
 <!-- ============================================================
-  02 · KAT-Coder-V2 · arXiv 2026
-============================================================ -->
-<div class='paper-box'>
-  <div class='paper-box-image'><div>
-    <div class="badge">arXiv 2026</div>
-    <picture><source srcset="/images/papers/katcoder.webp" type="image/webp"><img loading="lazy" src="/images/papers/katcoder.png" alt="KAT-Coder-V2 teaser" width="100%"></picture>
-  </div></div>
-  <div class='paper-box-text' markdown="1">
-
-**KAT-Coder-V2 Technical Report**
-
-Fengxiang Li, Han Zhang, Haoyang Huang, Jinghui Wang, **<u>Jinhua Hao</u>**, Kun Yuan, Mengtong Li, Minglei Zhang, Pengcheng Xu, Wenhao Zhuang, Yizhen Shao, Zongxian Feng, et al.
-
-*arXiv 2026* [![paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.27703)
-[![WX](https://img.shields.io/badge/Post-blue?logo=wechat&logoColor=black&style=social&labelColor=505050)](https://mp.weixin.qq.com/s/PGWZfZFGp19QdAGuRE-APg)
-
-  </div>
-</div>
-
-<!-- ============================================================
-  03 · MMG2Skill · arXiv 2026
+  02 · MMG2Skill · arXiv 2026
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -63,7 +43,7 @@ Xinyu Che, Junqi Xiong, Yunfei Ge, Xinping Lei, Shihao Li, Hang Yan, Han Li, Yua
 </div>
 
 <!-- ============================================================
-  04 · WebCompass · arXiv 2026
+  03 · WebCompass · arXiv 2026
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -82,7 +62,7 @@ Xinping Lei, Xinyu Che, Junqi Xiong, Chenchen Zhang, Yukai Huang, Chenyu Zhou, H
 </div>
 
 <!-- ============================================================
-  05 · Coloring the Noise · ICML 2026
+  04 · Coloring the Noise · ICML 2026
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -101,7 +81,7 @@ Hongbo Wang, Huaibo Huang, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Chao Z
 </div>
 
 <!-- ============================================================
-  06 · Test-Time Scaling for Flow Matching · ECCV 2026
+  05 · Test-Time Scaling for Flow Matching · ECCV 2026
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -120,7 +100,7 @@ Purui Bai, Junxian Duan, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Ming Sun
 </div>
 
 <!-- ============================================================
-  07 · ShiftLUT · CVPR 2026
+  06 · ShiftLUT · CVPR 2026
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -139,7 +119,7 @@ Xiaolong Zeng, Yitong Yu, Shiyao Xiong, **<u>Jinhua Hao</u>**, Ming Sun, Chao Zh
 </div>
 
 <!-- ============================================================
-  08 · InstantViR · CVPR 2026 Highlight
+  07 · InstantViR · CVPR 2026 Highlight
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -158,7 +138,7 @@ Weimin Bai, Suzhe Xu, Yiwei Ren, **<u>Jinhua Hao</u>**, Ming Sun, Wenzheng Chen,
 </div>
 
 <!-- ============================================================
-  09 · VARSR · ICML 2025
+  08 · VARSR · ICML 2025
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -177,7 +157,7 @@ Yunpeng Qu, Kun Yuan, **<u>Jinhua Hao</u>**, Kai Zhao, Qizhi Xie, Ming Sun, Chao
 </div>
 
 <!-- ============================================================
-  10 · T-InvBlocks · AAAI 2025
+  09 · T-InvBlocks · AAAI 2025
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -196,7 +176,7 @@ Jingwei Bao, **<u>Jinhua Hao</u><sup>*†</sup>**, Pengcheng Xu, Ming Sun, Chao 
 </div>
 
 <!-- ============================================================
-  11 · OAPT · ECCV 2024
+  10 · OAPT · ECCV 2024
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -215,7 +195,7 @@ Qiao Mo, Yukang Ding, **<u>Jinhua Hao</u><sup>*†</sup>**, Qiang Zhu, Ming Sun,
 </div>
 
 <!-- ============================================================
-  12 · CPGA · CVPR 2024
+  11 · CPGA · CVPR 2024
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -234,7 +214,7 @@ Qiang Zhu, **<u>Jinhua Hao</u><sup>†</sup>**, Yukang Ding, Yu Liu, Qiao Mo, Mi
 </div>
 
 <!-- ============================================================
-  13 · XPSR · ECCV 2024
+  12 · XPSR · ECCV 2024
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -253,7 +233,7 @@ Yunpeng Qu, Kun Yuan, Kai Zhao, Qizhi Xie, **<u>Jinhua Hao</u>**, Ming Sun, Chao
 </div>
 
 <!-- ============================================================
-  14 · PTM-VQA · CVPR 2024
+  13 · PTM-VQA · CVPR 2024
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -272,7 +252,7 @@ Kun Yuan, Hongbo Liu, Mading Li, Muyi Sun, Ming Sun, Jiachao Gong, **<u>Jinhua H
 </div>
 
 <!-- ============================================================
-  15 · CasSR · arXiv 2024
+  14 · CasSR · arXiv 2024
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -291,7 +271,7 @@ Haolan Chen, **<u>Jinhua Hao</u><sup>†</sup>**, Kai Zhao, Kun Yuan, Ming Sun, 
 </div>
 
 <!-- ============================================================
-  16 · Magnetic–vortical interactions · J. Fluid Mech. 2025
+  15 · Magnetic–vortical interactions · J. Fluid Mech. 2025
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -310,7 +290,7 @@ Linlin Kang, Yanru Wang, Zhongzheng Jiang, **<u>Jinhua Hao</u>**, Shiying Xiong,
 </div>
 
 <!-- ============================================================
-  17 · Magnetic knot cascade · J. Fluid Mech. 2021
+  16 · Magnetic knot cascade · J. Fluid Mech. 2021
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -329,7 +309,7 @@ Linlin Kang, Yanru Wang, Zhongzheng Jiang, **<u>Jinhua Hao</u>**, Shiying Xiong,
 </div>
 
 <!-- ============================================================
-  18 · Tracking vortex surfaces · J. Fluid Mech. 2019
+  17 · Tracking vortex surfaces · J. Fluid Mech. 2019
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>

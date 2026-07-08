@@ -118,13 +118,20 @@ mkdir -p _site && chmod 777 _site
 podman machine start
 
 # Build the site
-podman run --rm \
+podman run --rm --platform linux/amd64 \
   --volume="$PWD:/srv/jekyll:Z" \
-  jekyll/jekyll:4.2.2 \
-  sh -c "bundle install 2>&1 | tail -1 && bundle exec jekyll build"
+  -w /srv/jekyll \
+  ruby:3.3 \
+  sh -c "gem install bundler -v 2.2.19 --silent && bundle install && bundle exec jekyll build"
 ```
 
 Output is generated into `_site/`.
+
+> **Why `ruby:3.3` and not `jekyll/jekyll:4.2.2`?** The `jekyll/jekyll:4.2.2` image
+> ships **Ruby 3.1.1**, but the pinned `Gemfile.lock` now requires **Ruby ≥ 3.2**
+> (`nokogiri`, `base64`). The old image fails with `Could not find base64-x.x.x`.
+> The official `ruby:3.3` image builds cleanly. This only affects **local** builds —
+> GitHub Pages uses its own Ruby toolchain and is unaffected.
 
 ### Preview
 
@@ -138,8 +145,8 @@ Open **http://localhost:4000** in your browser. Press `Ctrl+C` to stop.
 ### One-liner (Build + Preview)
 
 ```bash
-podman run --rm --volume="$PWD:/srv/jekyll:Z" jekyll/jekyll:4.2.2 \
-  sh -c "bundle install 2>&1 | tail -1 && bundle exec jekyll build" \
+podman run --rm --platform linux/amd64 --volume="$PWD:/srv/jekyll:Z" -w /srv/jekyll ruby:3.3 \
+  sh -c "gem install bundler -v 2.2.19 --silent && bundle install && bundle exec jekyll build" \
   && cd _site && python3 -m http.server 4000
 ```
 
@@ -154,14 +161,16 @@ A convenience script `run_server.sh` is available for native Ruby (rbenv) or Doc
 
 ### Platform Notes
 
-- **Apple Silicon (arm64):** `jekyll/jekyll:4.2.2` is a linux/amd64 image; Podman emulates it via QEMU. The `image platform does not match` warning is harmless.
-- **`jekyll serve` not supported** in this container (Ruby 3.x removed `webrick`). Use `jekyll build` + Python server instead.
+- **Apple Silicon (arm64):** `ruby:3.3` is multi-arch, but the `Gemfile.lock` pins a precompiled `nokogiri-x86_64-linux` gem, so `--platform linux/amd64` is required (Podman emulates it via QEMU). The `image platform does not match` warning is harmless.
+- **`jekyll serve` not supported** in this setup (Ruby 3.x removed `webrick`). Use `jekyll build` + Python server instead.
 - **Port conflict:** Change the port if 4000 is in use: `python3 -m http.server 4001`
+- **GitHub Metadata 403 warning:** `API rate limit exceeded` during build is harmless — it only affects `site.github.*` metadata, not your content.
 
 ### Troubleshooting
 
 | Problem | Solution |
 |---------|----------|
+| `Could not find base64-x.x.x` / `requires ruby version >= 3.2` | Use the `ruby:3.3` image, not `jekyll/jekyll:4.2.2` (see build note above) |
 | `Permission denied @ dir_s_mkdir - _site` | `mkdir -p _site && chmod 777 _site` |
 | `podman machine not running` | `podman machine start` |
 | Port 4000 already in use | `python3 -m http.server 4001` |
