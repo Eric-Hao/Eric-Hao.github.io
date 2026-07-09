@@ -7,7 +7,7 @@
 
 # Site Settings
 title                    : "Jinhua Hao (郝进华)"
-description              : "LLM, AIGC, Image/Video Generation and Restoration."
+description              : "LLM, VLM, AIGC"
 
 repository               : "Eric-Hao/Eric-Hao.github.io"
 google_scholar_stats_use_cdn : true
