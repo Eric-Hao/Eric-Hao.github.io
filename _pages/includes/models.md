@@ -16,7 +16,7 @@
 
 KwaiKAT Team, Kuaishou Technology
 
-[![Paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2607.05471)
+[![Paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2607.05471) [![News](https://img.shields.io/badge/News-blue?logo=wechat&logoColor=black&style=social&labelColor=505050)](https://mp.weixin.qq.com/s/Ylz2hAbKs9gm5CXMfavIxw)
 
   </div>
 </div>
