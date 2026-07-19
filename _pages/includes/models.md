@@ -20,8 +20,7 @@ KwaiKAT Team, Kuaishou Technology
 
 - KAT-Coder-V2.5 achieves 65.2% on SWE-bench Pro (vs. Claude Opus 4.8 at 69.2%), 94.2% on PinchBench (vs. Claude Opus 4.8 at 93.5%)
 - KAT-Coder-V2.5 surpassing GLM-5.1, approaching GLM-5.2
-
-  </div>
+</div>
 </div>
 
 <!-- ============================================================
@@ -42,8 +41,7 @@ KwaiKAT Team, Kuaishou Technology
 
 - KAT-Coder-V2 ranks 6th on Artificial Analysis Coding Index
 - KAT-Coder-V2 achieves 79.6% on SWE-bench Verified (vs. Claude Opus 4.6 at 80.8%); 88.7% on PinchBench (surpassing GLM-5 and MiniMax M2.7)
-
-  </div>
+</div>
 </div>
 
 
@@ -63,9 +61,8 @@ LPM Team, Kuaishou Technology
 
 [![Paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2607.13460)
 
-- Large Processing Model (LPM) is a diffusion-based generative framework for photorealistic video restoration under complex, in-the-wild degradations
-- To our knowledge, the first generative video restoration model deployed at industrial scale
-
-  </div>
+- Large Processing Model (LPM) is a diffusion-based generative framework for photorealistic video restoration
+- To our knowledge, LPM is the first generative video restoration model deployed at industrial scale
+</div>
 </div>
 
