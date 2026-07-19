@@ -39,3 +39,24 @@ KwaiKAT Team, Kuaishou Technology
 
   </div>
 </div>
+
+
+<!-- ============================================================
+  03 · LPM
+============================================================ -->
+<div class='paper-box'>
+  <div class='paper-box-image'><div>
+    <div class="badge">LPM</div>
+    <picture><source srcset="/images/papers/lpm.webp" type="image/webp"><img loading="lazy" src="/images/papers/lpm.png" alt="LPM teaser" width="100%"></picture>
+  </div></div>
+  <div class='paper-box-text' markdown="1">
+
+<span class="title-with-logo"><strong>LPM Technical Report</strong></span>
+
+LPM Team, Kuaishou Technology
+
+[![Paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2607.13460)
+
+  </div>
+</div>
+
