@@ -55,7 +55,7 @@ KwaiKAT Team, Kuaishou Technology
   </div></div>
   <div class='paper-box-text' markdown="1">
 
-<span class="title-with-logo"><strong>LPM Technical Report</strong></span>
+<span class="title-with-logo"><strong>LPM: Industrial-Scale Generative Video Restoration</strong></span>
 
 LPM Team, Kuaishou Technology
 
