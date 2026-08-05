@@ -1,24 +1,31 @@
 <script type="application/ld+json">
 {
-  "@context": "http://schema.org",
+  "@context": "https://schema.org",
   "@type": "Person",
-  "name": "{{ site.author.name }}",
-  "url": "{{ site.url }}",
+  "name": {{ site.author.name | jsonify }},
+  "url": {{ site.url | jsonify }},
   "jobTitle": "Research Engineer",
   "worksFor": {
     "@type": "Organization",
-    "name": "Kuaishou Technology"
+    "name": "Kuaishou Technology",
+    "url": "https://ir.kuaishou.com/",
+    "department": {
+      "@type": "Organization",
+      "name": "Kling AI",
+      "url": "https://kling.ai/"
+    }
   },
   "alumniOf": {
     "@type": "CollegeOrUniversity",
-    "name": "Peking University"
+    "name": "Peking University",
+    "url": "https://en.pku.edu.cn/"
   },
-  "description": "{{ site.description }}",
-  "image": "{{ site.url }}/{{ site.author.avatar }}",
+  "description": {{ site.description | jsonify }},
+  "image": {{ "/images/eric-hao.jpg" | absolute_url | jsonify }},
   "sameAs": [
-    "{{ site.author.googlescholar }}",
-    "{{ site.author.dblp }}",
-    "https://github.com/{{ site.author.github }}"
+    {{ site.author.googlescholar | jsonify }},
+    {{ site.author.dblp | jsonify }},
+    {{ "https://github.com/" | append: site.author.github | jsonify }}
   ]
 }
 </script>

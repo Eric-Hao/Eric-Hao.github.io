@@ -3,7 +3,44 @@
 # Models
 
 <!-- ============================================================
-  01 · KAT-Coder-V2.5
+  01 · KAT-Coder-V2.5-Dev · Open-weight release
+============================================================ -->
+<section class="open-model-card" data-hf-model="Kwaipilot/KAT-Coder-V2.5-Dev" aria-labelledby="kat-coder-v25-dev-title">
+  <div class="open-model-card__header">
+    <div>
+      <h2 id="kat-coder-v25-dev-title">KAT-Coder-V2.5-Dev</h2>
+    </div>
+    <div class="open-model-card__header-tools">
+      <div class="hf-model-stats" aria-live="polite" aria-label="Hugging Face model statistics">
+        <div class="hf-model-stat" title="Downloads last month">
+          <i class="fas fa-download hf-model-stat__icon" aria-hidden="true"></i>
+          <span class="hf-model-stat__value" data-hf-stat="downloads">15,381</span>
+          <span class="visually-hidden"> downloads last month</span>
+        </div>
+        <div class="hf-model-stat" title="Likes">
+          <i class="fas fa-heart hf-model-stat__icon" aria-hidden="true"></i>
+          <span class="hf-model-stat__value" data-hf-stat="likes">456</span>
+          <span class="visually-hidden"> likes</span>
+        </div>
+        <a class="hf-model-stat hf-model-stat--link" href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev" target="_blank" rel="noopener noreferrer">
+          Hugging Face <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <p class="open-model-card__summary">A lightweight 35B-A3B MoE variant of KAT-Coder-V2.5, built for long-horizon agentic coding.</p>
+
+  <ul class="open-model-card__highlights">
+    <li><strong>Agentic coding:</strong> 69.4% on SWE-bench Verified and 93.43% on PinchBench.</li>
+    <li><strong>Long-context:</strong> native support for up to 262K tokens for longer-context serving.</li>
+    <li><strong>Reliable tool use:</strong> fewer malformed tool labels and repetitive single-turn behaviors.</li>
+  </ul>
+
+</section>
+
+<!-- ============================================================
+  02 · KAT-Coder-V2.5
 ============================================================ -->
 <div class='paper-box'>
   <div class='paper-box-image'><div>
@@ -16,7 +53,7 @@
 
 KwaiKAT Team, Kuaishou Technology
 
-[![Paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2607.05471) [![News](https://img.shields.io/badge/News-blue?logo=wechat&logoColor=black&style=social&labelColor=505050)](https://mp.weixin.qq.com/s/Ylz2hAbKs9gm5CXMfavIxw)
+<a class="resource-link" href="https://arxiv.org/abs/2607.05471"><i class="fas fa-file-alt resource-link__icon" aria-hidden="true"></i>Paper</a> <a class="resource-link" href="https://mp.weixin.qq.com/s/Ylz2hAbKs9gm5CXMfavIxw"><i class="fab fa-weixin resource-link__icon" aria-hidden="true"></i>News</a>
 
 - KAT-Coder-V2.5 achieves 65.2% on SWE-bench Pro (vs. Claude Opus 4.8 at 69.2%), 94.2% on PinchBench (vs. Claude Opus 4.8 at 93.5%)
 - KAT-Coder-V2.5 surpassing GLM-5.1, approaching GLM-5.2
@@ -37,7 +74,7 @@ KwaiKAT Team, Kuaishou Technology
 
 KwaiKAT Team, Kuaishou Technology
 
-[![Paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2603.27703) [![News](https://img.shields.io/badge/News-blue?logo=wechat&logoColor=black&style=social&labelColor=505050)](https://mp.weixin.qq.com/s/PGWZfZFGp19QdAGuRE-APg)
+<a class="resource-link" href="https://arxiv.org/abs/2603.27703"><i class="fas fa-file-alt resource-link__icon" aria-hidden="true"></i>Paper</a> <a class="resource-link" href="https://mp.weixin.qq.com/s/PGWZfZFGp19QdAGuRE-APg"><i class="fab fa-weixin resource-link__icon" aria-hidden="true"></i>News</a>
 
 - KAT-Coder-V2 ranks 6th on Artificial Analysis Coding Index
 - KAT-Coder-V2 achieves 79.6% on SWE-bench Verified (vs. Claude Opus 4.6 at 80.8%); 88.7% on PinchBench (surpassing GLM-5 and MiniMax M2.7)
@@ -59,10 +96,9 @@ KwaiKAT Team, Kuaishou Technology
 
 LPM Team, Kuaishou Technology
 
-[![Paper](https://img.shields.io/badge/Paper-blue?logo=arxiv&logoColor=black&style=social&labelColor=505050)](https://arxiv.org/abs/2607.13460)
+<a class="resource-link" href="https://arxiv.org/abs/2607.13460"><i class="fas fa-file-alt resource-link__icon" aria-hidden="true"></i>Paper</a>
 
 - Large Processing Model (LPM) is a diffusion-based generative framework for photorealistic video restoration
 - To our knowledge, LPM is the first generative video restoration model deployed at industrial scale
 </div>
 </div>
-

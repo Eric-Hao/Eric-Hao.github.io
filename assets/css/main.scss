@@ -56,7 +56,9 @@
         order: 2;
         img {
             max-width: 400px;
-            box-shadow: 3px 3px 6px #888;
+            border: 1px solid #e4e9ee;
+            border-radius: 0.2em;
+            box-shadow: 0 2px 8px rgba(35, 48, 62, 0.12);
             object-fit: cover;
         }
     }
@@ -106,6 +108,54 @@
     margin-right: 0.45em;
 }
 
+/* Compact company mark used inline with affiliation text */
+.inline-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.22em;
+    vertical-align: -0.12em;
+    white-space: nowrap;
+
+    &__logo {
+        width: 1.05em;
+        height: 1.05em;
+        object-fit: contain;
+    }
+
+    &:hover &__logo {
+        box-shadow: none;
+    }
+}
+
+/* Locally rendered resource links replace externally hosted badge images. */
+.page__content a.resource-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3em;
+    margin: 0.1em 0.12em;
+    padding: 0.2em 0.52em;
+    border: 1px solid #cbd7e3;
+    border-radius: 0.28em;
+    background: #f8fafc;
+    color: #224b8d;
+    font-size: 0.8em;
+    font-weight: 600;
+    line-height: 1.35;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover {
+        border-color: #9db3c9;
+        background: #edf3f9;
+        color: #183d73;
+        text-decoration: none;
+    }
+
+    .resource-link__icon {
+        font-size: 0.9em;
+    }
+}
+
 .tr-title {
     display: flex;
     align-items: center;
@@ -136,6 +186,119 @@ h1:before, .anchor:before {
     color: white;
     background-color: #00369f;
     font-size: .8em;
+}
+
+/* Open-weight model highlight card */
+.open-model-card {
+    margin: 1.25em 0 1.5em;
+    padding: 1.45em;
+    border: 1px solid mix(#489034, #ffffff, 35%);
+    border-radius: 0.45em;
+    background: linear-gradient(135deg, #f7fbf5 0%, #ffffff 72%);
+    box-shadow: 0 6px 18px rgba(27, 73, 19, 0.08);
+
+    &__header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1.25em;
+    }
+
+    &__header-tools {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-wrap: wrap;
+        gap: 0.65em;
+    }
+
+    h2 {
+        margin: 0;
+        color: #1d4721;
+        font-size: 1.45em;
+    }
+
+    &__meta {
+        margin: 0.35em 0 0;
+        color: #5b665a;
+        font-size: 0.86em;
+    }
+
+    &__summary {
+        margin: 1.05em 0 0.8em;
+    }
+
+    &__highlights {
+        margin: 0.7em 0 1.1em;
+        padding-left: 1.2em;
+
+        li {
+            margin-bottom: 0.36em;
+        }
+    }
+
+}
+
+.hf-model-stats {
+    display: flex;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border: 1px solid #d4e3cf;
+    border-radius: 0.35em;
+    background: #ffffff;
+}
+
+.hf-model-stat {
+    display: flex;
+    align-items: center;
+    gap: 0.38em;
+    padding: 0.5em 0.7em;
+    background: #ffffff;
+    color: #24561c;
+
+    & + & {
+        border-left: 1px solid #d4e3cf;
+    }
+
+    &__icon {
+        color: #5c8751;
+        font-size: 0.82em;
+    }
+
+    &__value {
+        color: #24561c;
+        font-size: 1.08em;
+        font-weight: bold;
+        line-height: 1.2;
+    }
+}
+
+.page__content a.hf-model-stat--link {
+    color: #285c1d;
+    font-size: 0.86em;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+        background: #edf6e9;
+        color: #1d4721;
+        text-decoration: none;
+    }
+}
+
+@media (max-width: 37.5em) {
+    .open-model-card {
+        padding: 1.1em;
+
+        &__header {
+            flex-direction: column;
+            gap: 0.8em;
+        }
+
+        &__header-tools {
+            justify-content: flex-start;
+        }
+    }
 }
 
 /* Title preceded by an inline logo (e.g. Models section) */

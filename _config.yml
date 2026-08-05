@@ -7,7 +7,9 @@
 
 # Site Settings
 title                    : "Jinhua Hao (郝进华)"
-description              : "LLM, VLM, AIGC"
+seo_title                : "Jinhua Hao (郝进华) | Agentic Coding & Generative Video"
+description              : "Agentic Coding LLMs and Generative Video Models"
+url                      : "https://eric-hao.github.io"
 
 repository               : "Eric-Hao/Eric-Hao.github.io"
 google_scholar_stats_use_cdn : true
@@ -24,7 +26,7 @@ baidu_site_verification  :  # get baidu_site_verification from https://ziyuan.ba
 author:
   name             : "Jinhua Hao (郝进华)"
   avatar           : "/images/eric-hao.jpg"
-  bio              : "Kuaishou Technology"
+  bio              : "Kling AI · Kuaishou Technology"
   location         : "Beijing, China"
   pubmed           : 
   googlescholar    : "https://scholar.google.com/citations?user=hVMNCSQAAAAJ"
