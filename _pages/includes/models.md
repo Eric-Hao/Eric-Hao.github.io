@@ -1,5 +1,3 @@
-<span class='anchor' id='models'></span>
-
 # Models
 
 <!-- ============================================================
@@ -12,18 +10,24 @@
     </div>
     <div class="open-model-card__header-tools">
       <div class="hf-model-stats" aria-live="polite" aria-label="Hugging Face model statistics">
-        <div class="hf-model-stat" title="Downloads last month">
+        <div class="hf-model-stat" title="KAT-Coder-V2.5-Dev all-time downloads">
           <i class="fas fa-download hf-model-stat__icon" aria-hidden="true"></i>
-          <span class="hf-model-stat__value" data-hf-stat="downloads">15,381</span>
-          <span class="visually-hidden"> downloads last month</span>
+          <span class="hf-model-stat__value" data-hf-stat="downloads-all-time">16,961</span>
+          <span class="visually-hidden"> model all-time downloads</span>
+        </div>
+        <div class="hf-model-stat" title="Total all-time downloads including derived models">
+          <i class="fas fa-layer-group hf-model-stat__icon" aria-hidden="true"></i>
+          <span class="hf-model-stat__value" data-hf-stat="ecosystem-downloads-all-time">393,919</span>
+          <span class="visually-hidden"> total all-time downloads including derived models</span>
         </div>
         <div class="hf-model-stat" title="Likes">
           <i class="fas fa-heart hf-model-stat__icon" aria-hidden="true"></i>
-          <span class="hf-model-stat__value" data-hf-stat="likes">456</span>
+          <span class="hf-model-stat__value" data-hf-stat="likes">522</span>
           <span class="visually-hidden"> likes</span>
         </div>
         <a class="hf-model-stat hf-model-stat--link" href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev" target="_blank" rel="noopener noreferrer">
-          Hugging Face <span aria-hidden="true">↗</span>
+          <img class="hf-model-stat__brand-icon" src="/images/huggingface.svg" alt="" aria-hidden="true">
+          <span>Hugging Face</span>
         </a>
       </div>
     </div>
@@ -32,8 +36,8 @@
   <p class="open-model-card__summary">A lightweight 35B-A3B MoE variant of KAT-Coder-V2.5, built for long-horizon agentic coding.</p>
 
   <ul class="open-model-card__highlights">
-    <li><strong>Agentic coding:</strong> 69.4% on SWE-bench Verified and 93.43% on PinchBench.</li>
-    <li><strong>Long-context:</strong> native support for up to 262K tokens for longer-context serving.</li>
+    <li><strong>Agentic coding:</strong> 69.4% on SWE-bench Verified and 93.4% on PinchBench.</li>
+    <li><strong>Long-context:</strong> native support for up to 1M tokens for longer-context serving.</li>
     <li><strong>Reliable tool use:</strong> fewer malformed tool labels and repetitive single-turn behaviors.</li>
   </ul>
 

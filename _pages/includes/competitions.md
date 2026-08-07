@@ -1,5 +1,3 @@
-<span class='anchor' id='competitions'></span>
-
 # Competitions
 
 - `CVPR Workshop 2024` 🏆 2nd Place — [**NTIRE 2024 Challenge on Image Super-Resolution (×4): Methods and Results**](https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Chen_NTIRE_2024_Challenge_on_Image_Super-Resolution_x4_Methods_and_Results_CVPRW_2024_paper.pdf), **<u>Jinhua Hao</u><sup>*</sup>**, Kai Zhao, Kun Yuan, Ming Sun, Chao Zhou <a class="resource-link" href="https://cvlai.net/ntire/2024/NTIRE2024awards_certificates.pdf"><i class="fas fa-trophy resource-link__icon" aria-hidden="true"></i>Award</a>

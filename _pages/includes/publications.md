@@ -1,5 +1,3 @@
-<span class='anchor' id='publications'></span>
-
 # Publications
 
 <span style="font-size: 0.9em; color: #666;">* denotes corresponding author; † denotes project leader.</span>

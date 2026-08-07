@@ -1,7 +1,6 @@
-<span class='anchor' id='news'></span>
 # News
-- *2026.07*: [KAT-Coder-Pro V2.5](https://mp.weixin.qq.com/s/Ylz2hAbKs9gm5CXMfavIxw) released with improved long-horizon coding and general agentic capabilities.
-- *2026.07*: Open-sourced [KAT-Coder-V2.5-Dev](https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev), an open-weight 35B-A3B MoE model for long-horizon software engineering and agentic coding.
+- *2026.07*: [KAT-Coder-Pro V2.5](https://mp.weixin.qq.com/s/Ylz2hAbKs9gm5CXMfavIxw) (a trillion-parameter-scale model) was released with improved long-horizon coding and general agentic capabilities.
+- *2026.07*: Open-sourced [KAT-Coder-V2.5-Dev](https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev), a lightweight 35B-A3B MoE variant of KAT-Coder-V2.5, built for long-horizon agentic coding.
 - *2026.06*: One paper accepted to ECCV 2026.
 - *2026.05*: One paper accepted to ICML 2026.
 - *2026.03*: [KAT-Coder-Pro V2](https://mp.weixin.qq.com/s/5JpX2UxW-SKpyPR4yWOVEw) released, ranked Top 10 on the [Artificial Analysis Coding Index](https://artificialanalysis.ai/?intelligence=coding-index&models=gpt-oss-120b%2Cgpt-oss-20b%2Cgpt-5-4-mini%2Cgpt-5-4-pro%2Cgpt-5-4%2Cllama-4-maverick%2Cgemini-3-1-pro-preview%2Cgemini-3-1-flash-lite-preview%2Cgemini-3-flash-reasoning%2Cclaude-sonnet-4-6-adaptive%2Cclaude-opus-4-6-adaptive%2Cclaude-4-5-haiku-reasoning%2Cmistral-large-3%2Cdeepseek-v3-2-reasoning%2Cgrok-4-20%2Cnova-2-0-pro-reasoning-medium%2Cminimax-m2-7%2Cnvidia-nemotron-3-nano-30b-a3b-reasoning%2Cnvidia-nemotron-3-super-120b-a12b%2Ckimi-k2-5%2Ck-exaone%2Cmimo-v2-0206%2Cmimo-v2-pro%2Ckat-coder-pro-v2%2Ck2-think-v2%2Cmi-dm-k-2-5-pro-dec28%2Cglm-5%2Cqwen3-5-397b-a17b).

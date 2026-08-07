@@ -1,6 +1,4 @@
 
-<span class='anchor' id='projects'></span>
-
 # Projects
 - *2026.03*: 研发上线大语言模型 KAT-Coder V2，在 Artificial Analysis Coding Index 中位列全球第六、国产第一（截至 2026.03.31）。Researched, developed, and launched agentic coding LLM, KAT-Coder V2, which ranked 6th globally and 1st among Chinese models on the Artificial Analysis Coding Index (as of March 31, 2026). <a class="resource-link" href="https://mp.weixin.qq.com/s/mT0GqqLjzWH7sBXavXsFXg"><i class="fab fa-weixin resource-link__icon" aria-hidden="true"></i>Post</a>
 - *2025.08*: 研发上线生成式视频处理大模型 LPM，提升视频清晰度并生成纹理细节，取得了带宽收益与用户时长的双重收益。Researched, developed, and launched a diffusion-based generative large video processing model, which significantly improves video clarity and texture details while preserving fidelity and delivers substantial gains in QoE. <a class="resource-link" href="https://mp.weixin.qq.com/s/zRUoL2eJaOS2wIcB_xiQkg"><i class="fab fa-weixin resource-link__icon" aria-hidden="true"></i>Post</a>

@@ -1,4 +1,3 @@
-<span class='anchor' id='honors'></span>
 # Honors
 - *2024, 2026*, 快手优秀项目奖 (2次), Kuaishou Outstanding Project Award (twice)
 - *2023, 2024, 2025*, 快手音视频个人荣誉奖 (3次), Kuaishou Audio & Video Outstanding Individual Award (three times)
