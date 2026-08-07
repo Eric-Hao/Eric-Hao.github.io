@@ -12,17 +12,17 @@
       <div class="hf-model-stats" aria-live="polite" aria-label="Hugging Face model statistics">
         <div class="hf-model-stat" title="KAT-Coder-V2.5-Dev all-time downloads">
           <i class="fas fa-download hf-model-stat__icon" aria-hidden="true"></i>
-          <span class="hf-model-stat__value" data-hf-stat="downloads-all-time">16,961</span>
+          <span class="hf-model-stat__value" data-hf-stat="downloads-all-time">17,399</span>
           <span class="visually-hidden"> model all-time downloads</span>
         </div>
         <div class="hf-model-stat" title="Total all-time downloads including derived models">
           <i class="fas fa-layer-group hf-model-stat__icon" aria-hidden="true"></i>
-          <span class="hf-model-stat__value" data-hf-stat="ecosystem-downloads-all-time">393,919</span>
+          <span class="hf-model-stat__value" data-hf-stat="ecosystem-downloads-all-time">420,630</span>
           <span class="visually-hidden"> total all-time downloads including derived models</span>
         </div>
         <div class="hf-model-stat" title="Likes">
           <i class="fas fa-heart hf-model-stat__icon" aria-hidden="true"></i>
-          <span class="hf-model-stat__value" data-hf-stat="likes">522</span>
+          <span class="hf-model-stat__value" data-hf-stat="likes">523</span>
           <span class="visually-hidden"> likes</span>
         </div>
         <a class="hf-model-stat hf-model-stat--link" href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev" target="_blank" rel="noopener noreferrer">

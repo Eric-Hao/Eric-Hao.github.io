@@ -3,8 +3,8 @@
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
 <link rel="dns-prefetch" href="//www.google-analytics.com">
 
-<!-- Preload the format selected by the profile picture element -->
-<link rel="preload" as="image" href="{{ '/images/eric-hao.webp' | prepend: site.baseurl }}" type="image/webp">
+<!-- Preload the above-the-fold profile photo used by the author sidebar -->
+<link rel="preload" as="image" href="{{ site.author.avatar | prepend: site.baseurl }}" type="image/jpeg" fetchpriority="high">
 
 <link rel="apple-touch-icon" sizes="180x180" href="{{ '/images/apple-touch-icon.png' | prepend: site.baseurl }}">
 <link rel="icon" type="image/png" sizes="32x32" href="{{ '/images/favicon-32x32.png' | prepend: site.baseurl }}">

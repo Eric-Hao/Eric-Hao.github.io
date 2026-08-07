@@ -2,9 +2,7 @@ I am a Research Engineer working on foundation models at <a class="inline-brand"
 
 I joined Kuaishou through its KuaiStar Top Talent Program in 2020 and have received top performance ratings for five consecutive years. I have end-to-end experience training hundred-billion-parameter foundation models and have published 15+ papers at leading venues, including ICML, CVPR, ECCV, and AAAI. My research interests include agentic coding LLMs, video generation models, and Physical AI and embodied intelligence, building on my earlier work in image/video processing, restoration, and enhancement.
 
-<div class="intro-zh" lang="zh-CN">
-  <p>现任快手可灵 AI 大模型算法工程师。本科（CPhO 物理竞赛保送）和博士（优秀毕业生）毕业于北京大学，2020 年通过快Star顶尖人才计划加入快手，连续五年取得 Top 绩效。具备千亿参数大模型全链路训练经验，在 ICML、CVPR、ECCV、AAAI 等顶级会议发表论文 15+ 篇。目前主要关注 Agentic Coding 大语言模型、视频生成模型，以及 Physical AI 与具身智能，此前研究涵盖图像/视频处理与增强。</p>
-</div>
+现任快手可灵 AI 大模型算法工程师。本科（CPhO 物理竞赛保送）和博士（优秀毕业生）毕业于北京大学，2020 年通过快Star顶尖人才计划加入快手，连续五年取得 Top 绩效。具备千亿参数大模型全链路训练经验，在 ICML、CVPR、ECCV、AAAI 等顶级会议发表论文 15+ 篇。目前主要关注 Agentic Coding 大语言模型、视频生成模型，以及 Physical AI 与具身智能，此前研究涵盖图像/视频处理与增强。
 
 <!-- 
 - **Agentic coding LLMs**: I led post-training optimization for Kuaishou’s **KAT-Coder** series. KAT-Coder-Pro V2 ranked 6th globally and 1st among Chinese models on the Artificial Analysis Coding Index, while demonstrating strong robustness across multilingual agentic coding, web coding, and diverse scaffolding/framework scenarios.

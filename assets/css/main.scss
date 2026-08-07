@@ -154,6 +154,18 @@
     .resource-link__icon {
         font-size: 0.9em;
     }
+
+    .resource-link__brand-icon {
+        width: 1.05em;
+        height: 1.05em;
+        flex: 0 0 auto;
+        object-fit: contain;
+        box-shadow: none;
+    }
+
+    &:hover .resource-link__brand-icon {
+        box-shadow: none;
+    }
 }
 
 .tr-title {
@@ -253,6 +265,15 @@ h1:before, .anchor:before {
     p:first-child {
         margin-top: 0;
     }
+}
+
+.honor-entry__en,
+.project-entry__en {
+    display: block;
+    margin: 0.08em 0 0.48em;
+    color: #68727d;
+    font-size: 0.9em;
+    line-height: 1.45;
 }
 
 .hf-model-stats {
