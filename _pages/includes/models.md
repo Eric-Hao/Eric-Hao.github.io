@@ -96,7 +96,7 @@ KwaiKAT Team, Kuaishou Technology
   </div></div>
   <div class='paper-box-text' markdown="1">
 
-<span class="title-with-logo"><strong>LPM: Industrial-Scale Generative Video Restoration</strong></span>
+<span class="title-with-logo"><img class="tr-logo" src="/images/kwai-video-mark.svg" alt="KwaiVideo"><strong>LPM: Industrial-Scale Generative Video Restoration</strong></span>
 
 LPM Team, Kuaishou Technology
 
