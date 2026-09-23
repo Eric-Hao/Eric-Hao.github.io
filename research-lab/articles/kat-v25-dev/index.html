@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Agentic coding in an open-weight 35B-A3B mixture-of-experts model."><title>KAT-Coder V2.5-Dev — Jinhua Hao</title><link rel="icon" href="../../../images/favicon.ico"><link rel="stylesheet" href="../../style.css"><link rel="stylesheet" href="../../article.css"><link rel="stylesheet" href="../../bilingual.css"><script src="../../reader.js" defer></script><script src="../../brief-layout.js" defer></script><script src="../../physics-particles.js" defer></script></head>
+<body class="article-page"><a class="skip" href="#article">Skip to article</a><header><a class="wordmark" href="../../">Jinhua Hao</a><nav aria-label="Main navigation"><a href="../../#directions">Explore topics</a><a href="https://eric-hao.github.io/">Academic homepage ↗</a></nav></header>
+<main id="article"><div class="article-heading"><a class="back-link" href="../../#directions">← Explore topics</a><p class="article-meta">Model release 2026 · Large Language Models</p><h1>KAT-Coder V2.5-Dev</h1><p class="article-title-zh" lang="zh-CN">开放权重的智能体编程模型</p><p class="article-dek">Agentic coding in an open-weight 35B-A3B mixture-of-experts model.<span class="zh" lang="zh-CN">35B-A3B 混合专家架构下的开放权重智能体编程模型。</span></p><div class="article-actions"><a class="primary-link" href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev">Model card</a></div></div>
+<section class="research-brief brief-alpine" aria-label="Research at a glance">
+ <div class="brief-scene" style="background-image:url('../../images/brief-backgrounds/alpine.webp')">
+ <div class="brief-sheet"><p class="brief-kicker">THE CHALLENGE</p><h2>How can an open-weight model sustain reliable, long-horizon tool use?<span lang="zh-CN">开放权重模型如何支持可靠的长程工具调用？</span></h2></div></div>
+ <div class="brief-question"><p class="brief-kicker">THE IDEA</p><p class="brief-prompt">Make agentic coding accessible.<span lang="zh-CN">开放长程智能体编程能力。</span></p><p class="brief-answer">Release a text-only 35B-A3B sparse model refined through supervised learning and RL.<span lang="zh-CN">开放经监督学习与强化学习优化的纯文本 35B-A3B 稀疏模型。</span></p><div class="brief-bottom"><span>Model release 2026</span><a href="#section-0">Explore the approach <span aria-hidden="true">↑</span></a></div></div></section><div class="article-layout"><article class="prose"><section id="section-0" class="article-opening"><p>Long coding tasks demand more than generating a plausible function. The model must use tools correctly, retain context and avoid repetitive behavior across many actions, while remaining practical to deploy.</p><p class="zh" lang="zh-CN">长程编程任务不仅需要生成合理的函数，还要求模型正确调用工具、保持上下文并避免重复行为，同时兼顾部署成本。</p><p>This release brings that deployment question into focus: an open-weight coding model needs useful task performance as well as reliable behavior at the tool interface.</p><p class="zh" lang="zh-CN">这一版本关注实际部署：开放权重编程模型既需要有效的任务表现，也需要在工具接口上保持可靠行为。</p></section><section id="section-1" class="article-chapter"><h2>An open-weight model for extended coding tasks<span class="zh" lang="zh-CN">面向长程编程的开放权重模型</span></h2><p>The release provides language-model weights with 35 billion total and 3 billion active parameters. Supervised fine-tuning and reinforcement learning target agentic coding and behavioral reliability. The model card reports reductions in malformed tool tags and repeated single-turn output.</p><p class="zh" lang="zh-CN">该版本开放语言模型权重，总参数 35B、激活参数 3B。监督微调和强化学习针对智能体编程与行为可靠性进行优化，模型卡报告了异常工具标签和单轮重复输出的减少。</p><p>Sparse activation separates the number of stored parameters from the computation used for each token. The release’s 35B total and 3B active parameters describe that architecture, not a guarantee of identical cost across serving systems. The open-weight artifact also has a narrower scope than its underlying multimodal family: the model card releases the language-model weights for text-only use. That boundary matters when reproducing a coding workflow or selecting a compatible deployment stack.</p><p class="zh" lang="zh-CN">稀疏激活把存储参数规模与每个 token 的计算量分开。35B 总参数、3B 激活参数描述架构，并不保证不同服务系统成本相同。该开放版本还限定为用于纯文本的语言模型权重，不能直接等同于其基础模型家族的多模态能力；复现编程工作流和选择部署栈时需要明确这一边界。</p></section><figure class="article-figure"><a href="../../images/kat-v25-dev-benchmark.svg" data-original="../../images/kat-v25-dev-benchmark.svg" data-zoom data-caption="Benchmark comparison redrawn from published results"><img src="../../images/kat-v25-dev-benchmark.svg" alt="Benchmark comparison redrawn from published results" width="440" height="440" loading="lazy"></a><figcaption>Benchmark comparison redrawn from published results · <a href="../../images/kat-v25-dev-benchmark.svg" target="_blank" rel="noopener">Original figure</a> · <a href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev">Paper source</a></figcaption></figure><section id="section-2" class="article-chapter"><h2>Reading the release evaluations<span class="zh" lang="zh-CN">理解版本评测</span></h2><p>The model card downloads public peer weights and evaluates them through a common in-house pipeline, rather than copying each model’s published headline score. The comparison spans repository coding, multilingual tasks, tool use and scientific coding. Most tests run once unless an obvious error is detected. This makes the harness, context budget and serving configuration part of the result, and limits how confidently small score differences can be ranked.</p><p class="zh" lang="zh-CN">模型卡下载公开对比模型权重，在统一内部流程中评测，而不是汇总各家公布的最高分。比较覆盖仓库编程、多语言、工具使用和科学编程。多数测试只运行一次，除非发现明显错误，因此框架、上下文预算和服务配置都属于结果的一部分，小分差的排名也需要谨慎理解。</p></section><section id="section-3" class="article-chapter"><h2>Where the model is competitive<span class="zh" lang="zh-CN">模型在哪些方面具有竞争力</span></h2><p>In the KAT team’s in-house evaluation, the model scores 69.4 on SWE-bench Verified, 63.0 on Multilingual and 45.96 on Pro. The SWE tests use Claude Code 2.1.195, pass@1 and a 256k context. These are single-run reproductions under the stated harness; peer scores can differ from their official reports.</p><p class="zh" lang="zh-CN">在 KAT 团队内部复测中，SWE-bench Verified、Multilingual、Pro 分别为 69.4、63.0、45.96。SWE 评测使用 Claude Code 2.1.195、pass@1 和 256k 上下文。这些是特定框架下的单次复测结果，可能与对比模型的官方分数不同。</p></section><section id="section-4" class="article-chapter"><h2>Deployment is more than parameter count<span class="zh" lang="zh-CN">部署不只取决于参数量</span></h2><p>Open weights make the model useful as an inspectable deployment and research artifact. The release provides a starting point for studying long-horizon behavior under a chosen harness, but the card’s ranking is not independent evidence of universal superiority. Reproducing the evaluation protocol and checking behavior on the intended workload are the natural next steps before selecting a model.</p><p class="zh" lang="zh-CN">开放权重使模型成为可检查、可部署的研究产物，也为特定框架下的长程行为研究提供起点。但模型卡排名并不是普遍领先的独立证据。在选择模型前，复现评测协议并检查目标工作负载上的行为，仍是必要的验证。</p></section><details class="benchmark-data"><summary>Data &amp; evaluation setup / 数据与评测条件</summary><table><caption>SWE-bench Verified (%)</caption><thead><tr><th scope="col">Model</th><th scope="col">Score</th></tr></thead><tbody><tr><th scope="row">KAT-Coder V2.5-Dev</th><td>69.4</td></tr><tr><th scope="row">Qwen3.5-27B</th><td>68.6</td></tr><tr><th scope="row">Qwen3.6-35BA3B</th><td>64.4</td></tr><tr><th scope="row">Gemma4-31B</th><td>60.6</td></tr></tbody></table><p>Four selected models from the model card. All scores were re-evaluated by the KAT team using Claude Code 2.1.195, pass@1 and a 256k context. Harness differences affect results; these are not the peers’ official scores.<span class="zh" lang="zh-CN">选取模型卡中的四个模型。数据为 KAT 团队在 Claude Code 2.1.195、pass@1、256k 上下文条件下的复测结果，并非各模型官方分数；评测框架会影响结果。</span></p><a href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev#benchmark-performance">Model card ↗</a></details><section class="paper-details" id="paper-details"><h2>Paper &amp; authors<span class="zh" lang="zh-CN">论文与作者</span></h2><p class="original-title"><a href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev">KAT-Coder V2.5-Dev ↗</a></p><p class="article-authors">Kwaipilot</p></section><section id="cite" class="citation"><h2>Cite this work</h2><div class="citation-actions"><button type="button" data-copy-bib aria-controls="bibtex">Copy BibTeX </button></div><pre><code id="bibtex">@misc{kwaipilot2026katcoderdev,
+  title = {KAT-Coder-V2.5-Dev},
+  author = {{Kwaipilot}},
+  year = {2026},
+  howpublished = {Hugging Face model card},
+  url = {https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev},
+  note = {Accessed 2026-09-21}
+}
+
+@misc{huang2026katcoderv25technicalreport,
+  title = {KAT-Coder-V2.5 Technical Report},
+  author = {Bo Huang
+    and Fengxiang Li
+    and Hao Xu
+    and Haoyang Huang
+    and Hongyi Fu
+    and Jinhua Hao
+    and Kun Yuan
+    and Minglei Zhang
+    and Pengcheng Xu
+    and Shiyang Liu
+    and Wenhao Zhuang
+    and Yuze Shi
+    and Zongxian Feng
+    and Chao Wang
+    and Cheng He
+    and Chongling Rao
+    and Deyu Cao
+    and Fan Yang
+    and Gang Xiong
+    and Haochen Liu
+    and Jiabao Li
+    and Jian Liang
+    and Jinghui Jia
+    and Jingwen Chang
+    and Jun Du
+    and Junyu Shi
+    and Min Li
+    and Mingqi Wu
+    and Qiang Gao
+    and Shangpeng Yan
+    and Shaotong Qi
+    and Shu Xu
+    and Shuo Zhou
+    and Tiankuo Xu
+    and Tong Zheng
+    and Weilun Zhao
+    and Xiancheng Meng
+    and Xianda Sun
+    and Xiaoyu Jiang
+    and Xunhao Jia
+    and Yao Xia
+    and Yimeng Xu
+    and Yinghan Cui
+    and Yingpeng Chen
+    and Yiwen Ning
+    and Yong Wang
+    and Yuxuan Sun
+    and Zhongsheng Liu
+    and Ming Sun
+    and Cheng Luo
+    and Chen Yang
+    and Han Li
+    and Kun Gai},
+  year = {2026},
+  eprint = {2607.05471},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.SE},
+  url = {https://arxiv.org/abs/2607.05471}
+}
+</code></pre><p class="copy-status" role="status" aria-live="polite"></p></section></article></div>
+<section class="related"><h2>Continue reading</h2><div><a href="../../articles/agentic-ttt/"><span>arXiv 2026</span><h3>RSI: Learning during the task, without losing the way<span class="zh" lang="zh-CN">RSI：在任务中学习，而不迷失方向</span></h3><span aria-hidden="true">↗</span></a><a href="../../articles/mmg2skill/"><span>arXiv 2026</span><h3>RSI: From human guides to self-evolving skills<span class="zh" lang="zh-CN">RSI：从人类指南到自我演化的技能</span></h3><span aria-hidden="true">↗</span></a></div></section></main></body></html>

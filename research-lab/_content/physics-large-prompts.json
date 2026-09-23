@@ -1,0 +1,26 @@
+{
+  "mode": "Codex built-in image_gen",
+  "covers": [
+    {
+      "key": "magvortex",
+      "referenced_image_paths": [
+        "/Users/haojinhua/Desktop/github/Eric-Hao.github.io/research-lab/images/figures/magvortex.webp"
+      ],
+      "prompt": "Style-transfer of the attached scientific paper figure into a high-resolution luminous particle illustration. Preserve the source figure composition, ALL panels, exact curve paths, continuous surfaces, crossings and connectivity. Dark near-black navy background, densely clustered small cyan/white points and occasional warm orange points, restrained soft star-like bloom, scientific elegance. Do not replace geometry with generic rings or decorative astronomy. Preserve useful directional arrows as subtle luminous paths; omit text labels, axes and colorbars rather than inventing labels. Landscape 1800x1100. Preserve braided fine magnetic lines in the large orthogonal loop arrangement and its single magnified vertical braid inset on the right, connected by callout."
+    },
+    {
+      "key": "magknot",
+      "referenced_image_paths": [
+        "/Users/haojinhua/Desktop/github/Eric-Hao.github.io/research-lab/../images/papers/magknot.webp"
+      ],
+      "prompt": "Style-transfer of the attached scientific paper figure into a high-resolution luminous particle illustration. Preserve the source figure composition, ALL panels, exact curve paths, continuous surfaces, crossings and connectivity. Dark near-black navy background, densely clustered small cyan/white points and occasional warm orange points, restrained soft star-like bloom, scientific elegance. Do not replace geometry with generic rings or decorative astronomy. Preserve useful directional arrows as subtle luminous paths; omit text labels, axes and colorbars rather than inventing labels. Landscape 1800x1100. Keep the source SIX panels in two rows, including its three stepwise reconnection states in the upper row and closed 3/5/7-crossing knot examples in lower row. No extra crossings or disconnected strands."
+    },
+    {
+      "key": "vortex",
+      "referenced_image_paths": [
+        "/Users/haojinhua/Desktop/github/Eric-Hao.github.io/research-lab/images/figures/vortex.webp"
+      ],
+      "prompt": "Style-transfer of the attached scientific paper figure into a high-resolution luminous particle illustration. Preserve the source figure composition, ALL panels, exact curve paths, continuous surfaces, crossings and connectivity. Dark near-black navy background, densely clustered small cyan/white points and occasional warm orange points, restrained soft star-like bloom, scientific elegance. Do not replace geometry with generic rings or decorative astronomy. Preserve useful directional arrows as subtle luminous paths; omit text labels, axes and colorbars rather than inventing labels. Landscape 1800x1100. CRITICAL: right side is an overlapping pair of coherent curved surfaces as in source: continuous warm-red physical tube behind a wider translucent blue virtual surface, both following same bent axis. The red tube is visible above and below the blue surface; NEVER three detached pieces. Preserve left tangent vortex lines, four mapping paths, and distinction between physical and virtual transport."
+    }
+  ]
+}

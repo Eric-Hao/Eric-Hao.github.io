@@ -1,0 +1,21 @@
+{
+  "mode": "Codex built-in image_gen",
+  "backgrounds": [
+    {
+      "key": "forest",
+      "prompt": "Use case: illustration-story. Create a landscape 1800x1100 background painting for an academic editorial card. An impressionist forest with mossy rocks, fern leaves and a quiet stream; deep sage and forest greens, light filtering through leaves. Elegant museum-quality oil paint texture, visible fine brushwork, refined muted colors. The middle will be covered by a large paper sheet; concentrate recognizable details toward the edges, keep center quieter. Edge-to-edge painting, no text, no UI, no card, no logos, no border."
+    },
+    {
+      "key": "alpine",
+      "prompt": "Use case: illustration-story. Create a landscape 1800x1100 background painting for an academic editorial card. A romantic painted alpine landscape, broad powder blue sky, pale turquoise atmosphere and distant rugged snow-covered mountains at the edges. Elegant museum-quality oil paint texture, visible fine brushwork, refined muted colors. The middle will be covered by a large paper sheet; concentrate recognizable details toward the edges, keep center quieter. Edge-to-edge painting, no text, no UI, no card, no logos, no border."
+    },
+    {
+      "key": "gold",
+      "prompt": "Use case: illustration-story. Create a landscape 1800x1100 background painting for an academic editorial card. A close-up oil painting of sunlit golden grasses and wheat, flowing ochre brushstrokes, muted olive shadows, rich tactile canvas. Elegant museum-quality oil paint texture, visible fine brushwork, refined muted colors. The middle will be covered by a large paper sheet; concentrate recognizable details toward the edges, keep center quieter. Edge-to-edge painting, no text, no UI, no card, no logos, no border."
+    },
+    {
+      "key": "orchard",
+      "prompt": "Use case: illustration-story. Create a landscape 1800x1100 background painting for an academic editorial card. A classical painterly still life of peaches, apricots and dark grapes, warm coral, amber and muted olive leaves, soft natural light. Elegant museum-quality oil paint texture, visible fine brushwork, refined muted colors. The middle will be covered by a large paper sheet; concentrate recognizable details toward the edges, keep center quieter. Edge-to-edge painting, no text, no UI, no card, no logos, no border."
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Specialist training, scalable environments and distillation for coding across agent frameworks."><title>KAT-Coder V2 — Jinhua Hao</title><link rel="icon" href="../../../images/favicon.ico"><link rel="stylesheet" href="../../style.css"><link rel="stylesheet" href="../../article.css"><link rel="stylesheet" href="../../bilingual.css"><script src="../../reader.js" defer></script><script src="../../brief-layout.js" defer></script><script src="../../physics-particles.js" defer></script></head>
+<body class="article-page"><a class="skip" href="#article">Skip to article</a><header><a class="wordmark" href="../../">Jinhua Hao</a><nav aria-label="Main navigation"><a href="../../#directions">Explore topics</a><a href="https://eric-hao.github.io/">Academic homepage ↗</a></nav></header>
+<main id="article"><div class="article-heading"><a class="back-link" href="../../#directions">← Explore topics</a><p class="article-meta">Technical report 2026 · Large Language Models</p><h1>KAT-Coder V2</h1><p class="article-title-zh" lang="zh-CN">从领域专家到统一编程智能体</p><p class="article-dek">Specialist training, scalable environments and distillation for coding across agent frameworks.<span class="zh" lang="zh-CN">以专家训练、可扩展环境和蒸馏支持跨框架编程。</span></p><div class="article-actions"><a class="primary-link" href="https://arxiv.org/abs/2603.27703">Read the paper</a></div></div>
+<section class="research-brief brief-orchard" aria-label="Research at a glance">
+ <div class="brief-scene" style="background-image:url('../../images/brief-backgrounds/orchard.webp')">
+ <div class="brief-sheet"><p class="brief-kicker">THE CHALLENGE</p><h2>How can one agent retain strengths across different tools and domains?<span lang="zh-CN">一个智能体如何兼顾不同工具与领域的优势？</span></h2></div></div>
+ <div class="brief-question"><p class="brief-kicker">THE IDEA</p><p class="brief-prompt">Specialize first. Then unify.<span lang="zh-CN">先专精，再统一。</span></p><p class="brief-answer">Train five domain experts and distill their capabilities into a single coding model.<span lang="zh-CN">训练五类领域专家，再将其能力蒸馏到统一编程模型。</span></p><div class="brief-bottom"><span>Technical report 2026</span><a href="#section-0">Explore the approach <span aria-hidden="true">↑</span></a></div></div></section><div class="article-layout"><article class="prose"><section id="section-0" class="article-opening"><p>A coding agent needs software engineering, web coding, terminal operation, web search and general reasoning. Improving these together can cause interference, and success in one agent framework may not transfer to another.</p><p class="zh" lang="zh-CN">编程智能体需要软件工程、网页编程、终端操作、网页搜索和通用推理等能力。共同优化可能引发能力干扰，在某个框架中有效的行为也不一定能迁移到其他框架。</p><p>KAT-Coder V2 approaches this as a training-sequence problem: allow specialized behavior to develop first, then bring it together in a model that must operate across different execution frameworks.</p><p class="zh" lang="zh-CN">KAT-Coder V2 从训练顺序切入：先让专门能力充分发展，再将其整合到需要适应不同执行框架的模型中。</p></section><section id="section-1" class="article-chapter"><h2>Specializing before unifying<span class="zh" lang="zh-CN">先专精，再统一</span></h2><p>The Specialize-then-Unify recipe first trains five domain experts, then merges their capabilities through on-policy distillation. KwaiEnv provides scalable execution environments; MCLA and Tree Training address reinforcement-learning stability and redundant trajectory computation.</p><p class="zh" lang="zh-CN">Specialize-then-Unify 先分别训练五个领域专家，再通过在线策略蒸馏整合能力。KwaiEnv 提供可扩展执行环境；MCLA 与 Tree Training 分别改善强化学习稳定性和轨迹计算冗余。</p><p>The five experts encounter different tool interfaces and reward signals, which is precisely why specialization can help. The unification stage must preserve useful behaviors without averaging away their distinctions. On-policy distillation trains the student using trajectories relevant to its own behavior, while scalable sandbox infrastructure makes long interactions feasible. The resulting recipe joins a learning problem with an execution problem: neither a reward function nor a model checkpoint alone defines the agent.</p><p class="zh" lang="zh-CN">五个专家面对不同工具接口与奖励信号，这正是专门训练可能有效的原因。统一阶段需要保留各自有效行为，而不是抹平差异；在线策略蒸馏利用与学生自身行为相关的轨迹训练，可扩展沙箱则支撑长交互。由此，学习问题与执行问题被联系起来，单独的奖励函数或模型权重都不能完整定义智能体。</p></section><figure class="article-figure"><a href="../../images/source/kat-v2-1-preview.png" data-original="../../images/source/kat-v2-1.pdf" data-zoom data-caption="KwaiEnv workflow for software engineering"><img src="../../images/source/kat-v2-1.webp" alt="KwaiEnv workflow for software engineering" width="4201" height="2049" loading="lazy"></a><figcaption>KwaiEnv workflow for software engineering · <a href="../../images/source/kat-v2-1.pdf" target="_blank" rel="noopener">Original figure</a> · <a href="https://arxiv.org/abs/2603.27703">Paper source</a></figcaption></figure><section id="section-2" class="article-chapter"><h2>Testing across agent frameworks<span class="zh" lang="zh-CN">跨智能体框架进行评测</span></h2><p>Cross-scaffold evaluation runs comparable software-engineering tasks through Claude Code, OpenCode and OpenClaw. Separate agent benchmarks test execution beyond repository repair. The report also examines frontend aesthetics and general tasks. Together these checks ask whether distilled experts form one usable agent across interfaces, rather than a collection of isolated benchmark specialists with incompatible interaction habits.</p><p class="zh" lang="zh-CN">跨框架评测通过 Claude Code、OpenCode、OpenClaw 运行软件工程任务，独立的智能体基准检验仓库修复之外的执行能力，并进一步考察前端美观和通用任务。组合评测关注的是专家蒸馏后能否形成跨接口可用的统一智能体，而非交互习惯不兼容的单项基准专家集合。</p></section><section id="section-3" class="article-chapter"><h2>What survives a change of scaffold<span class="zh" lang="zh-CN">更换执行框架后哪些能力仍然有效</span></h2><p>On SWE-bench Verified, KAT V2 scores 79.6 in Claude Code, 74.8 in OpenCode and 72.8 in OpenClaw. Table 2 compares Opus 4.6 at 80.8, 75.0 and 75.7 respectively. The 80.8 value comes from Anthropic; other values use KwaiEnv. The comparison shows capability across scaffolds, with results sensitive to the evaluation setup.</p><p class="zh" lang="zh-CN">在 SWE-bench Verified 上，KAT V2 在 Claude Code、OpenCode、OpenClaw 中分别取得 79.6、74.8、72.8；表 2 中 Opus 4.6 对应为 80.8、75.0、75.7。80.8 引自 Anthropic，其余数值在 KwaiEnv 上评测，说明模型具备跨框架能力，同时分数依赖具体评测设置。</p></section><figure class="article-figure"><a href="../../images/source/kat-v2-2-preview.png" data-original="../../images/source/kat-v2-2.pdf" data-zoom data-caption="Cross-scaffold software-engineering results"><img src="../../images/source/kat-v2-2.webp" alt="Cross-scaffold software-engineering results" width="3807" height="2152" loading="lazy"></a><figcaption>Cross-scaffold software-engineering results · <a href="../../images/source/kat-v2-2.pdf" target="_blank" rel="noopener">Original figure</a> · <a href="https://arxiv.org/abs/2603.27703">Paper source</a></figcaption></figure><section id="section-4" class="article-chapter"><h2>Capability fusion is only part of the problem<span class="zh" lang="zh-CN">能力融合只是问题的一部分</span></h2><p>Specialization provides a way to make progress on heterogeneous tasks without forcing every training signal into one objective immediately. Distillation then becomes the test of whether those gains coexist. The report’s cross-framework results support that direction, but each deployment still needs to account for its own tools, permissions and failure recovery, which benchmark success alone does not fully specify.</p><p class="zh" lang="zh-CN">先专门化，使异质任务不必立即挤进同一训练目标；随后通过蒸馏检验各项收益能否共存。跨框架结果支持了这一路线，但具体部署仍需考虑自身的工具、权限与失败恢复机制，这些内容不能仅由基准成功率完全确定。</p></section><details class="benchmark-data"><summary>Data &amp; evaluation setup / 数据与评测条件</summary><table><caption>SWE-bench Verified (%)</caption><thead><tr><th scope="col">Scaffold</th><th scope="col">KAT V2</th><th scope="col">Opus 4.6</th></tr></thead><tbody><tr><th scope="row">Claude Code</th><td>79.6</td><td>80.8*</td></tr><tr><th scope="row">OpenCode</th><td>74.8</td><td>75.0</td></tr><tr><th scope="row">OpenClaw</th><td>72.8</td><td>75.7</td></tr></tbody></table><p>KAT-Coder V2 versus Claude Opus 4.6. The starred 80.8 score is quoted from Anthropic; all other points were evaluated on KwaiEnv. Source: V2 technical report (v1), Table 2. Settings differ from the Dev card.<span class="zh" lang="zh-CN">对比 KAT-Coder V2 与 Claude Opus 4.6。带星号的 80.8 引自 Anthropic，其余数据在 KwaiEnv 上评测。来源为 V2 技术报告 v1 表 2；评测设置与 Dev 卡片不同。</span></p><a href="https://arxiv.org/html/2603.27703v1#S4.T2">Technical report · Table 2 ↗</a></details><section class="paper-details" id="paper-details"><h2>Paper &amp; authors<span class="zh" lang="zh-CN">论文与作者</span></h2><p class="original-title"><a href="https://arxiv.org/abs/2603.27703">KAT-Coder-V2 Technical Report ↗</a></p><p class="article-authors">Fengxiang Li, Han Zhang, Haoyang Huang, Jinghui Wang, <strong>Jinhua Hao</strong>, Kun Yuan, Mengtong Li, Minglei Zhang, Pengcheng Xu, Wenhao Zhuang, Yizhen Shao, Zongxian Feng, Can Tang, Chao Wang, Chengxiao Tong, Fan Yang, Gang Xiong, Haixuan Gao, Han Gao, Hao Wang, Haochen Liu, Hongliang Sun, Jiabao Li, Jingwen Chang, Jun Du, Junyi Peng, Leizhen Cui, Meimei Jing, Mingqi Wu, Shangpeng Yan, Shaotong Qi, Suzhe Xu, Wenxuan Zhao, Xianda Sun, Xuan Xie, Yanbo Wang, Yao Xia, Yinghan Cui, Yingpeng Chen, Yong Wang, Yuze Shi, Zhiwei Shen, Ziyu Wang, Ming Sun, Lin Ye, Bin Chen</p></section><section id="cite" class="citation"><h2>Cite this work</h2><div class="citation-actions"><button type="button" data-copy-bib aria-controls="bibtex">Copy BibTeX </button></div><pre><code id="bibtex">@misc{li2026katcoderv2technicalreport,
+  title = {KAT-Coder-V2 Technical Report},
+  author = {Fengxiang Li
+    and Han Zhang
+    and Haoyang Huang
+    and Jinghui Wang
+    and Jinhua Hao
+    and Kun Yuan
+    and Mengtong Li
+    and Minglei Zhang
+    and Pengcheng Xu
+    and Wenhao Zhuang
+    and Yizhen Shao
+    and Zongxian Feng
+    and Can Tang
+    and Chao Wang
+    and Chengxiao Tong
+    and Fan Yang
+    and Gang Xiong
+    and Haixuan Gao
+    and Han Gao
+    and Hao Wang
+    and Haochen Liu
+    and Hongliang Sun
+    and Jiabao Li
+    and Jingwen Chang
+    and Jun Du
+    and Junyi Peng
+    and Leizhen Cui
+    and Meimei Jing
+    and Mingqi Wu
+    and Shangpeng Yan
+    and Shaotong Qi
+    and Suzhe Xu
+    and Wenxuan Zhao
+    and Xianda Sun
+    and Xuan Xie
+    and Yanbo Wang
+    and Yao Xia
+    and Yinghan Cui
+    and Yingpeng Chen
+    and Yong Wang
+    and Yuze Shi
+    and Zhiwei Shen
+    and Ziyu Wang
+    and Ming Sun
+    and Lin Ye
+    and Bin Chen},
+  year = {2026},
+  eprint = {2603.27703},
+  archivePrefix = {arXiv},
+  primaryClass = {cs.CL},
+  url = {https://arxiv.org/abs/2603.27703}
+}
+</code></pre><p class="copy-status" role="status" aria-live="polite"></p></section></article></div>
+<section class="related"><h2>Continue reading</h2><div><a href="../../articles/agentic-ttt/"><span>arXiv 2026</span><h3>RSI: Learning during the task, without losing the way<span class="zh" lang="zh-CN">RSI：在任务中学习，而不迷失方向</span></h3><span aria-hidden="true">↗</span></a><a href="../../articles/mmg2skill/"><span>arXiv 2026</span><h3>RSI: From human guides to self-evolving skills<span class="zh" lang="zh-CN">RSI：从人类指南到自我演化的技能</span></h3><span aria-hidden="true">↗</span></a></div></section></main></body></html>

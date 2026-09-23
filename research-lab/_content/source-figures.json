@@ -1,0 +1,450 @@
+{
+  "cassr": [
+    {
+      "original": "images/source/cassr-1.pdf",
+      "full": "images/source/cassr-1-preview.png",
+      "thumbnail": "images/source/cassr-1.webp",
+      "label": "Cascaded super-resolution architecture",
+      "width": 4200,
+      "height": 2026,
+      "source": "https://arxiv.org/abs/2403.11451",
+      "sourceArchive": "https://arxiv.org/src/2403.11451",
+      "sourceAsset": "images/architecture_final.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 489.3203883495146
+    },
+    {
+      "original": "images/source/cassr-2.pdf",
+      "full": "images/source/cassr-2-preview.png",
+      "thumbnail": "images/source/cassr-2.webp",
+      "label": "Real-world restoration comparisons",
+      "width": 4200,
+      "height": 2382,
+      "source": "https://arxiv.org/abs/2403.11451",
+      "sourceArchive": "https://arxiv.org/src/2403.11451",
+      "sourceAsset": "images/quali_final.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 79.62085308056872
+    }
+  ],
+  "agentic_ttt": [
+    {
+      "original": "images/source/agentic_ttt-1.pdf",
+      "full": "images/source/agentic_ttt-1-preview.png",
+      "thumbnail": "images/source/agentic_ttt-1.webp",
+      "label": "The in-episode adaptation loop",
+      "width": 4061,
+      "height": 2156,
+      "source": "https://arxiv.org/abs/2607.03441",
+      "sourceArchive": "https://arxiv.org/src/2607.03441",
+      "sourceAsset": "figs/fig_method_overview.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 600
+    },
+    {
+      "original": "images/source/agentic_ttt-2.pdf",
+      "full": "images/source/agentic_ttt-2-preview.png",
+      "thumbnail": "images/source/agentic_ttt-2.webp",
+      "label": "Repetition and adapter drift diagnostics",
+      "width": 4025,
+      "height": 1559,
+      "source": "https://arxiv.org/abs/2607.03441",
+      "sourceArchive": "https://arxiv.org/src/2607.03441",
+      "sourceAsset": "figs/fig_diagnostic_2panel.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 600
+    }
+  ],
+  "mmg2skill": [
+    {
+      "original": "images/source/mmg2skill-1.pdf",
+      "full": "images/source/mmg2skill-1-preview.png",
+      "thumbnail": "images/source/mmg2skill-1.webp",
+      "label": "From guide construction to execution and revision",
+      "width": 4201,
+      "height": 1697,
+      "source": "https://arxiv.org/abs/2606.01993",
+      "sourceArchive": "https://arxiv.org/src/2606.01993",
+      "sourceAsset": "figures/mmg2skill_method.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 330.53153931073683
+    },
+    {
+      "original": "images/source/mmg2skill-2.pdf",
+      "full": "images/source/mmg2skill-2-preview.png",
+      "thumbnail": "images/source/mmg2skill-2.webp",
+      "label": "Performance over successive revision attempts",
+      "width": 4201,
+      "height": 1281,
+      "source": "https://arxiv.org/abs/2606.01993",
+      "sourceArchive": "https://arxiv.org/src/2606.01993",
+      "sourceAsset": "figures/revision_dynamics/revision_dynamics.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 424.101860178918
+    }
+  ],
+  "webcompass": [
+    {
+      "original": "images/source/webcompass-1.pdf",
+      "full": "images/source/webcompass-1-preview.png",
+      "thumbnail": "images/source/webcompass-1.webp",
+      "label": "The WebCompass task landscape",
+      "width": 4200,
+      "height": 2679,
+      "source": "https://arxiv.org/abs/2604.18224",
+      "sourceArchive": "https://arxiv.org/src/2604.18224",
+      "sourceAsset": "figures/overview.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 360.4118993135012
+    },
+    {
+      "original": "images/source/webcompass-2.pdf",
+      "full": "images/source/webcompass-2-preview.png",
+      "thumbnail": "images/source/webcompass-2.webp",
+      "label": "Browser-based agent evaluation",
+      "width": 3423,
+      "height": 2350,
+      "source": "https://arxiv.org/abs/2604.18224",
+      "sourceArchive": "https://arxiv.org/src/2604.18224",
+      "sourceAsset": "figures/agent_as_a_judge.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 315.0
+    }
+  ],
+  "color": [
+    {
+      "original": "images/source/color-1.pdf",
+      "full": "images/source/color-1-preview.png",
+      "thumbnail": "images/source/color-1.webp",
+      "label": "Spectral misalignment and the ASASR formulation",
+      "width": 3395,
+      "height": 959,
+      "source": "https://arxiv.org/abs/2605.23264",
+      "sourceArchive": "https://arxiv.org/src/2605.23264",
+      "sourceAsset": "figure/pipeline.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 209.70873786407768
+    },
+    {
+      "original": "images/source/color-2.pdf",
+      "full": "images/source/color-2-preview.png",
+      "thumbnail": "images/source/color-2.webp",
+      "label": "Visual and spectral fidelity comparisons",
+      "width": 2488,
+      "height": 669,
+      "source": "https://arxiv.org/abs/2605.23264",
+      "sourceArchive": "https://arxiv.org/src/2605.23264",
+      "sourceAsset": "figure/Expr_spectrum.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 273.1707317073171
+    }
+  ],
+  "tta_flow": [
+    {
+      "original": "images/source/tta_flow-1.pdf",
+      "full": "images/source/tta_flow-1-preview.png",
+      "thumbnail": "images/source/tta_flow-1.webp",
+      "label": "ResFlow-Tuner architecture",
+      "width": 4200,
+      "height": 3041,
+      "source": "https://arxiv.org/abs/2603.22027",
+      "sourceArchive": "https://arxiv.org/src/2603.22027",
+      "sourceAsset": "Figure_2.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 183.94160583941607
+    },
+    {
+      "original": "images/source/tta_flow-2.pdf",
+      "full": "images/source/tta_flow-2-preview.png",
+      "thumbnail": "images/source/tta_flow-2.webp",
+      "label": "Synthetic and real-world visual examples",
+      "width": 4200,
+      "height": 2846,
+      "source": "https://arxiv.org/abs/2603.22027",
+      "sourceArchive": "https://arxiv.org/src/2603.22027",
+      "sourceAsset": "Figure_1.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 344.0273037542662
+    }
+  ],
+  "shiftlut": [
+    {
+      "original": "images/source/shiftlut-1.pdf",
+      "full": "images/source/shiftlut-1-preview.png",
+      "thumbnail": "images/source/shiftlut-1.webp",
+      "label": "ShiftLUT architecture and spatial shifts",
+      "width": 4154,
+      "height": 2255,
+      "source": "https://arxiv.org/abs/2603.00906",
+      "sourceArchive": "https://arxiv.org/src/2603.00906",
+      "sourceAsset": "Figures/Overview-11-12.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 331.57894736842104
+    },
+    {
+      "original": "images/source/shiftlut-2.pdf",
+      "full": "images/source/shiftlut-2-preview.png",
+      "thumbnail": "images/source/shiftlut-2.webp",
+      "label": "Super-resolution visual comparisons",
+      "width": 2865,
+      "height": 1401,
+      "source": "https://arxiv.org/abs/2603.00906",
+      "sourceArchive": "https://arxiv.org/src/2603.00906",
+      "sourceAsset": "Figures/sr_qualitative_results.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 600
+    }
+  ],
+  "instantvir": [
+    {
+      "original": "images/source/instantvir-1.pdf",
+      "full": "images/source/instantvir-1-preview.png",
+      "thumbnail": "images/source/instantvir-1.webp",
+      "label": "Single-step training and causal inference",
+      "width": 2591,
+      "height": 1769,
+      "source": "https://arxiv.org/abs/2511.14208",
+      "sourceArchive": "https://arxiv.org/src/2511.14208",
+      "sourceAsset": "figs/instantvir-overview4.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 315.0
+    },
+    {
+      "original": "images/source/instantvir-2.pdf",
+      "full": "images/source/instantvir-2-preview.png",
+      "thumbnail": "images/source/instantvir-2.webp",
+      "label": "Video inpainting comparisons",
+      "width": 2895,
+      "height": 1252,
+      "source": "https://arxiv.org/abs/2511.14208",
+      "sourceArchive": "https://arxiv.org/src/2511.14208",
+      "sourceAsset": "figs/instantvir-randominp.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 315.0
+    }
+  ],
+  "varsr": [
+    {
+      "original": "images/source/varsr-1.pdf",
+      "full": "images/source/varsr-1-preview.png",
+      "thumbnail": "images/source/varsr-1.webp",
+      "label": "The VARSR restoration pipeline",
+      "width": 2432,
+      "height": 826,
+      "source": "https://arxiv.org/abs/2501.18993",
+      "sourceArchive": "https://arxiv.org/src/2501.18993",
+      "sourceAsset": "figure/framework.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 359.14489311163896
+    },
+    {
+      "original": "images/source/varsr-2.pdf",
+      "full": "images/source/varsr-2-preview.png",
+      "thumbnail": "images/source/varsr-2.webp",
+      "label": "Qualitative comparisons with restoration baselines",
+      "width": 1769,
+      "height": 1124,
+      "source": "https://arxiv.org/abs/2501.18993",
+      "sourceArchive": "https://arxiv.org/src/2501.18993",
+      "sourceAsset": "figure/sota5.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 133.34744417398664
+    }
+  ],
+  "tinvblocks": [
+    {
+      "original": "images/source/tinvblocks-1.pdf",
+      "full": "images/source/tinvblocks-1-preview.png",
+      "thumbnail": "images/source/tinvblocks-1.webp",
+      "label": "The tri-branch invertible block",
+      "width": 4200,
+      "height": 999,
+      "source": "https://arxiv.org/abs/2412.13508",
+      "sourceArchive": "https://arxiv.org/src/2412.13508",
+      "sourceAsset": "pics/T-InvBlock.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 62.76463262764633
+    },
+    {
+      "original": "images/source/tinvblocks-2.pdf",
+      "full": "images/source/tinvblocks-2-preview.png",
+      "thumbnail": "images/source/tinvblocks-2.webp",
+      "label": "Reconstruction after JPEG compression",
+      "width": 4200,
+      "height": 1298,
+      "source": "https://arxiv.org/abs/2412.13508",
+      "sourceArchive": "https://arxiv.org/src/2412.13508",
+      "sourceAsset": "pics/TSAIN_vis.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 128.68085106382978
+    }
+  ],
+  "oapt": [
+    {
+      "original": "images/source/oapt-1.pdf",
+      "full": "images/source/oapt-1-preview.png",
+      "thumbnail": "images/source/oapt-1.webp",
+      "label": "Offset-aware partition transformer",
+      "width": 3873,
+      "height": 1337,
+      "source": "https://arxiv.org/abs/2408.11480",
+      "sourceArchive": "https://arxiv.org/src/2408.11480",
+      "sourceAsset": "pics/pipeline.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 424.5998315080033
+    },
+    {
+      "original": "images/source/oapt-2.pdf",
+      "full": "images/source/oapt-2-preview.png",
+      "thumbnail": "images/source/oapt-2.webp",
+      "label": "Double-JPEG restoration comparisons",
+      "width": 3157,
+      "height": 3059,
+      "source": "https://arxiv.org/abs/2408.11480",
+      "sourceArchive": "https://arxiv.org/src/2408.11480",
+      "sourceAsset": "pics/gray_visuals.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 76.94656488549619
+    }
+  ],
+  "xpsr": [
+    {
+      "original": "images/source/xpsr-1.pdf",
+      "full": "images/source/xpsr-1-preview.png",
+      "thumbnail": "images/source/xpsr-1.webp",
+      "label": "Cross-modal semantic guidance and restoration",
+      "width": 1690,
+      "height": 1447,
+      "source": "https://arxiv.org/abs/2403.05049",
+      "sourceArchive": "https://arxiv.org/src/2403.05049",
+      "sourceAsset": "figure/model.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 359.14489311163896
+    },
+    {
+      "original": "images/source/xpsr-2.pdf",
+      "full": "images/source/xpsr-2-preview.png",
+      "thumbnail": "images/source/xpsr-2.webp",
+      "label": "Qualitative restoration comparisons",
+      "width": 2360,
+      "height": 1830,
+      "source": "https://arxiv.org/abs/2403.05049",
+      "sourceArchive": "https://arxiv.org/src/2403.05049",
+      "sourceAsset": "figure/baseline.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 177.80286460170748
+    }
+  ],
+  "ptmvqa": [
+    {
+      "original": "images/source/ptmvqa-1.png",
+      "full": "images/source/ptmvqa-1-preview.png",
+      "thumbnail": "images/source/ptmvqa-1.webp",
+      "label": "Combining pretrained representations",
+      "width": 1770,
+      "height": 814,
+      "source": "https://arxiv.org/abs/2405.17765",
+      "sourceArchive": "https://arxiv.org/src/2405.17765",
+      "sourceAsset": "images/framework_0928.png",
+      "kind": "original source image",
+      "previewDpi": null
+    },
+    {
+      "original": "images/source/ptmvqa-2.png",
+      "full": "images/source/ptmvqa-2-preview.png",
+      "thumbnail": "images/source/ptmvqa-2.webp",
+      "label": "Consistency and separation in quality-aware features",
+      "width": 2012,
+      "height": 545,
+      "source": "https://arxiv.org/abs/2405.17765",
+      "sourceArchive": "https://arxiv.org/src/2405.17765",
+      "sourceAsset": "images/constraint.png",
+      "kind": "original source image",
+      "previewDpi": null
+    }
+  ],
+  "lpm": [
+    {
+      "original": "images/source/lpm-1.pdf",
+      "full": "images/source/lpm-1-preview.png",
+      "thumbnail": "images/source/lpm-1.webp",
+      "label": "LPM-Video and its temporal block",
+      "width": 3122,
+      "height": 1222,
+      "source": "https://arxiv.org/abs/2607.13460",
+      "sourceArchive": "https://arxiv.org/src/2607.13460",
+      "sourceAsset": "figures/arch.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 315.0
+    },
+    {
+      "original": "images/source/lpm-2.png",
+      "full": "images/source/lpm-2-preview.png",
+      "thumbnail": "images/source/lpm-2.webp",
+      "label": "Temporal-pyramid inference for long videos",
+      "width": 2102,
+      "height": 1222,
+      "source": "https://arxiv.org/abs/2607.13460",
+      "sourceArchive": "https://arxiv.org/src/2607.13460",
+      "sourceAsset": "figures/lpm-pyramid_infer.png",
+      "kind": "original source image",
+      "previewDpi": null
+    }
+  ],
+  "kat-v25": [
+    {
+      "original": "images/source/kat-v25-1.pdf",
+      "full": "images/source/kat-v25-1-preview.png",
+      "thumbnail": "images/source/kat-v25-1.webp",
+      "label": "Agentic software-engineering data pipelines",
+      "width": 4200,
+      "height": 2106,
+      "source": "https://arxiv.org/abs/2607.05471",
+      "sourceArchive": "https://arxiv.org/src/2607.05471",
+      "sourceAsset": "figures/swe_pipeline.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 262.5
+    },
+    {
+      "original": "images/source/kat-v25-2.pdf",
+      "full": "images/source/kat-v25-2-preview.png",
+      "thumbnail": "images/source/kat-v25-2.webp",
+      "label": "Reported SWE and agent benchmark results",
+      "width": 4200,
+      "height": 2823,
+      "source": "https://arxiv.org/abs/2607.05471",
+      "sourceArchive": "https://arxiv.org/src/2607.05471",
+      "sourceAsset": "figures/benchmark.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 403.2
+    }
+  ],
+  "kat-v2": [
+    {
+      "original": "images/source/kat-v2-1.pdf",
+      "full": "images/source/kat-v2-1-preview.png",
+      "thumbnail": "images/source/kat-v2-1.webp",
+      "label": "KwaiEnv workflow for software engineering",
+      "width": 4201,
+      "height": 2049,
+      "source": "https://arxiv.org/abs/2603.27703",
+      "sourceArchive": "https://arxiv.org/src/2603.27703",
+      "sourceAsset": "figures/kwaienv.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 315.0787696924231
+    },
+    {
+      "original": "images/source/kat-v2-2.pdf",
+      "full": "images/source/kat-v2-2-preview.png",
+      "thumbnail": "images/source/kat-v2-2.webp",
+      "label": "Cross-scaffold software-engineering results",
+      "width": 3807,
+      "height": 2152,
+      "source": "https://arxiv.org/abs/2603.27703",
+      "sourceArchive": "https://arxiv.org/src/2603.27703",
+      "sourceAsset": "figures/kat_benchmark.pdf",
+      "kind": "vector source PDF",
+      "previewDpi": 359.14489311163896
+    }
+  ]
+}

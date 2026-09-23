@@ -1,0 +1,10 @@
+# Local historical artwork; current v5/v6 assets are published.
+images/covers/
+images/covers-v2/
+images/covers-v3/
+images/covers-v4/
+images/particle-previews/
+images/kat-v2.png
+images/kat-v25.png
+images/kat-v25-dev.png
+__pycache__/

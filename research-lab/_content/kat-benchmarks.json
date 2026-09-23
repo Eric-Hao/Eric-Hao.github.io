@@ -1,0 +1,86 @@
+[
+  {
+    "id": "kat-v25-dev",
+    "title": "SWE-bench Verified",
+    "subtitle": "Selected open-weight models",
+    "rows": [
+      [
+        "KAT-Coder V2.5-Dev",
+        69.4
+      ],
+      [
+        "Qwen3.5-27B",
+        68.6
+      ],
+      [
+        "Qwen3.6-35BA3B",
+        64.4
+      ],
+      [
+        "Gemma4-31B",
+        60.6
+      ]
+    ],
+    "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev#benchmark-performance",
+    "sourceLabel": "Model card",
+    "note": "Four selected models from the model card. All scores were re-evaluated by the KAT team using Claude Code 2.1.195, pass@1 and a 256k context. Harness differences affect results; these are not the peers’ official scores.",
+    "noteZh": "选取模型卡中的四个模型。数据为 KAT 团队在 Claude Code 2.1.195、pass@1、256k 上下文条件下的复测结果，并非各模型官方分数；评测框架会影响结果。"
+  },
+  {
+    "id": "kat-v25",
+    "title": "SWE-bench Pro",
+    "subtitle": "Models in the V2.5 report",
+    "rows": [
+      [
+        "Opus 4.8",
+        69.2
+      ],
+      [
+        "KAT-Coder V2.5",
+        65.2
+      ],
+      [
+        "GLM 5.2",
+        62.1
+      ],
+      [
+        "Kimi K2.6",
+        58.6
+      ],
+      [
+        "GLM 5.1",
+        58.4
+      ]
+    ],
+    "source": "https://arxiv.org/html/2607.05471v1#S6",
+    "sourceLabel": "Technical report · Table 4",
+    "note": "SWE-bench Pro scores from Table 4 of the V2.5 technical report (v1), shown for every model in that table. Evaluation settings differ from the other cards; scores should not be compared across cards.",
+    "noteZh": "来自 V2.5 技术报告 v1 表 4，展示表中全部模型的 SWE-bench Pro 分数。各卡片评测设置不同，分数不宜跨卡片直接比较。"
+  },
+  {
+    "id": "kat-v2",
+    "title": "SWE-bench Verified",
+    "subtitle": "Performance across agent scaffolds",
+    "rows": [
+      [
+        "Claude Code",
+        79.6,
+        80.8
+      ],
+      [
+        "OpenCode",
+        74.8,
+        75.0
+      ],
+      [
+        "OpenClaw",
+        72.8,
+        75.7
+      ]
+    ],
+    "source": "https://arxiv.org/html/2603.27703v1#S4.T2",
+    "sourceLabel": "Technical report · Table 2",
+    "note": "KAT-Coder V2 versus Claude Opus 4.6. The starred 80.8 score is quoted from Anthropic; all other points were evaluated on KwaiEnv. Source: V2 technical report (v1), Table 2. Settings differ from the Dev card.",
+    "noteZh": "对比 KAT-Coder V2 与 Claude Opus 4.6。带星号的 80.8 引自 Anthropic，其余数据在 KwaiEnv 上评测。来源为 V2 技术报告 v1 表 2；评测设置与 Dev 卡片不同。"
+  }
+]

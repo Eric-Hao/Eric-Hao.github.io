@@ -1,0 +1,191 @@
+{
+  "agentic_ttt": {
+    "title": "Learn from what is new.",
+    "titleZh": "从新信息中学习。",
+    "solution": "Downweight repeated token patterns and update a lightweight adapter during interaction.",
+    "solutionZh": "对重复词元模式降权，在交互中更新轻量适配器。",
+    "challenge": "How can an agent learn during a task without reinforcing its own mistakes?",
+    "challengeZh": "如何在任务中持续学习，又不反复强化自身错误？",
+    "theme": "forest"
+  },
+  "mmg2skill": {
+    "title": "Turn guides into evolving skills.",
+    "titleZh": "让指南成为可进化的技能。",
+    "solution": "Compile human guides into executable skills, then revise them through trajectory analysis.",
+    "solutionZh": "将人类指南编译为可执行技能，再依据执行轨迹进行修订。",
+    "challenge": "How can an agent turn informal advice into reliable action?",
+    "challengeZh": "智能体如何把非结构化经验转化为可靠行动？",
+    "theme": "alpine"
+  },
+  "webcompass": {
+    "title": "Test the website by using it.",
+    "titleZh": "通过实际使用评测网站。",
+    "solution": "Evaluate generation, editing and repair through browser interaction and targeted checklists.",
+    "solutionZh": "结合浏览器交互与针对性检查，评测生成、编辑与修复。",
+    "challenge": "Does the website actually work beyond its screenshot?",
+    "challengeZh": "网站除了截图好看，是否真的可以正常使用？",
+    "theme": "gold"
+  },
+  "color": {
+    "title": "Align detail with structure.",
+    "titleZh": "让细节与结构保持一致。",
+    "solution": "Combine spectrally colored noise, Sobolev geometry and adversarial structural negatives.",
+    "solutionZh": "结合频谱有色噪声、Sobolev 几何与针对结构错误的对抗负样本。",
+    "challenge": "How can generated detail remain faithful to the input?",
+    "challengeZh": "如何让生成的细节忠于输入结构？",
+    "theme": "orchard"
+  },
+  "tta_flow": {
+    "title": "Refine restoration at inference.",
+    "titleZh": "在推理过程中细化恢复。",
+    "solution": "Fuse multimodal conditions and use reward feedback to guide training-free test-time refinement.",
+    "solutionZh": "融合多模态条件，以奖励反馈引导无需额外训练的测试时细化。",
+    "challenge": "Can extra inference compute improve a difficult restoration?",
+    "challengeZh": "增加推理计算，能否改善困难样本的恢复效果？",
+    "theme": "forest"
+  },
+  "shiftlut": {
+    "title": "Give lookup tables a wider view.",
+    "titleZh": "让查找表看得更远。",
+    "solution": "Learn spatial shifts, allocate asymmetric branches and compress tables with bounded error.",
+    "solutionZh": "学习空间偏移，采用非对称分支，并在误差约束下压缩查找表。",
+    "challenge": "How can lightweight lookup tables capture more spatial context?",
+    "challengeZh": "轻量查找表如何获取更丰富的空间上下文？",
+    "theme": "alpine"
+  },
+  "instantvir": {
+    "title": "Distill a prior into one pass.",
+    "titleZh": "将生成先验蒸馏为一次前向。",
+    "solution": "Transfer a bidirectional diffusion teacher into a causal student with efficient latent processing.",
+    "solutionZh": "将双向扩散教师蒸馏为因果学生，并提高潜空间处理效率。",
+    "challenge": "How can diffusion-based video restoration run in real time?",
+    "challengeZh": "如何让基于扩散的视频恢复达到实时速度？",
+    "theme": "gold"
+  },
+  "varsr": {
+    "title": "Build detail scale by scale.",
+    "titleZh": "逐尺度构建细节。",
+    "solution": "Condition autoregressive scales on low-resolution tokens and refine quantization residuals.",
+    "solutionZh": "以低分辨率词元约束逐尺度自回归生成，再细化量化残差。",
+    "challenge": "How can autoregressive generation preserve the observed image?",
+    "challengeZh": "自回归生成如何保持与观测图像的一致性？",
+    "theme": "orchard"
+  },
+  "tinvblocks": {
+    "title": "Keep what reconstruction needs.",
+    "titleZh": "保留重建真正需要的信息。",
+    "solution": "Separate luminance, chrominance and high frequencies in a tri-branch invertible block.",
+    "solutionZh": "用三分支可逆模块分别处理亮度、色度与高频信息。",
+    "challenge": "What should a smaller image retain for faithful recovery?",
+    "challengeZh": "小图应保留什么信息，才能支持忠实重建？",
+    "theme": "forest"
+  },
+  "oapt": {
+    "title": "Recover the compression history.",
+    "titleZh": "识别压缩留下的规律。",
+    "solution": "Predict JPEG-grid offsets and group matching artifact patterns for attention.",
+    "solutionZh": "预测 JPEG 网格偏移，并按伪影模式组织注意力。",
+    "challenge": "How do we remove artifacts from misaligned double JPEG compression?",
+    "challengeZh": "如何去除网格错位的双重 JPEG 压缩伪影？",
+    "theme": "alpine"
+  },
+  "cpga": {
+    "title": "Use the codec's own clues.",
+    "titleZh": "利用编码器自身的线索。",
+    "solution": "Guide temporal and spatial aggregation with motion, prediction and residual information.",
+    "solutionZh": "利用运动、预测与残差信息，引导时空特征聚合。",
+    "challenge": "How can compressed video reveal the detail it has lost?",
+    "challengeZh": "如何利用压缩视频已有的信息恢复丢失的细节？",
+    "theme": "gold"
+  },
+  "xpsr": {
+    "title": "Let semantics guide detail.",
+    "titleZh": "用语义引导细节恢复。",
+    "solution": "Fuse cross-modal semantic priors while suppressing degradation in conditioning features.",
+    "solutionZh": "融合跨模态语义先验，同时抑制条件特征携带的退化。",
+    "challenge": "How can language help restoration without copying input degradation?",
+    "challengeZh": "语言如何辅助恢复，同时避免输入退化继续传播？",
+    "theme": "orchard"
+  },
+  "ptmvqa": {
+    "title": "Bring diverse knowledge to quality.",
+    "titleZh": "汇聚多样知识，感知视频质量。",
+    "solution": "Align frozen pretrained representations in a shared quality-aware feature space.",
+    "solutionZh": "将冻结的预训练表示对齐到统一的质量感知特征空间。",
+    "challenge": "Can existing visual models help when quality labels are scarce?",
+    "challengeZh": "质量标注不足时，能否借助已有视觉模型？",
+    "theme": "forest"
+  },
+  "cassr": {
+    "title": "Restore with a clearer reference.",
+    "titleZh": "以更清晰的参考引导恢复。",
+    "solution": "Build a preliminary reference, then guide cascaded diffusion with both reference and input.",
+    "solutionZh": "先构建初步参考，再结合参考与原始输入引导级联扩散。",
+    "challenge": "How can a generative prior stay connected to degraded image evidence?",
+    "challengeZh": "生成先验如何始终受到退化图像证据的约束？",
+    "theme": "alpine"
+  },
+  "magvortex": {
+    "title": "Resolve the forces behind splitting.",
+    "titleZh": "解析磁通管分裂背后的作用力。",
+    "solution": "Use field-line geometry and direct simulations to examine magnetic–vortical interactions.",
+    "solutionZh": "结合磁力线几何与直接数值模拟，研究磁场与涡旋的相互作用。",
+    "challenge": "When does an accompanying vortex suppress magnetic-tube splitting?",
+    "challengeZh": "伴随涡旋何时会抑制磁通管的分裂？",
+    "theme": "gold"
+  },
+  "magknot": {
+    "title": "Follow reconnection into knots.",
+    "titleZh": "沿重联过程追踪磁结形成。",
+    "solution": "Track magnetic surfaces through successive reconnections, rotation and stretching.",
+    "solutionZh": "追踪磁曲面在多次重联、旋转与拉伸过程中的演化。",
+    "challenge": "How can initially unknotted magnetic lines form increasingly complex knots?",
+    "challengeZh": "初始无结的磁力线如何形成越来越复杂的结？",
+    "theme": "orchard"
+  },
+  "vortex": {
+    "title": "Track surfaces with a virtual flow.",
+    "titleZh": "用虚拟速度追踪涡面。",
+    "solution": "Construct circulation-preserving virtual transport for eligible non-ideal flows.",
+    "solutionZh": "为满足条件的非理想流动构造保持环量的虚拟输运。",
+    "challenge": "How can vortex surfaces be tracked when physical motion no longer preserves them?",
+    "challengeZh": "物理运动不再保持涡面时，应如何追踪它们？",
+    "theme": "forest"
+  },
+  "kat-v25-dev": {
+    "title": "Make agentic coding accessible.",
+    "titleZh": "开放长程智能体编程能力。",
+    "solution": "Release a text-only 35B-A3B sparse model refined through supervised learning and RL.",
+    "solutionZh": "开放经监督学习与强化学习优化的纯文本 35B-A3B 稀疏模型。",
+    "challenge": "How can an open-weight model sustain reliable, long-horizon tool use?",
+    "challengeZh": "开放权重模型如何支持可靠的长程工具调用？",
+    "theme": "alpine"
+  },
+  "kat-v25": {
+    "title": "Build the environments that teach.",
+    "titleZh": "构建能够支持学习的环境。",
+    "solution": "Combine verified task construction, diverse workflows and specialist distillation.",
+    "solutionZh": "结合可验证任务构建、多样工具工作流与专家蒸馏。",
+    "challenge": "How do we train coding agents across realistic, verifiable tasks?",
+    "challengeZh": "如何在真实且可验证的多样任务上训练编程智能体？",
+    "theme": "gold"
+  },
+  "kat-v2": {
+    "title": "Specialize first. Then unify.",
+    "titleZh": "先专精，再统一。",
+    "solution": "Train five domain experts and distill their capabilities into a single coding model.",
+    "solutionZh": "训练五类领域专家，再将其能力蒸馏到统一编程模型。",
+    "challenge": "How can one agent retain strengths across different tools and domains?",
+    "challengeZh": "一个智能体如何兼顾不同工具与领域的优势？",
+    "theme": "orchard"
+  },
+  "lpm": {
+    "title": "Restore detail across long videos.",
+    "titleZh": "在长视频中稳定恢复细节。",
+    "solution": "Combine a spatial generative prior with temporal fusion and pyramid-guided inference.",
+    "solutionZh": "结合空间生成先验、时间融合与时间金字塔引导推理。",
+    "challenge": "How can restored videos stay coherent as their duration grows?",
+    "challengeZh": "随着视频时长增加，如何保持恢复结果的时间一致性？",
+    "theme": "forest"
+  }
+}

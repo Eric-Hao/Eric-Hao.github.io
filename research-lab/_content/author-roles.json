@@ -1,0 +1,29 @@
+{
+  "source": "../_pages/includes/publications.md",
+  "legend": "* corresponding author; \u2020 project leader",
+  "roles": {
+    "agentic_ttt": [
+      "Corresponding author"
+    ],
+    "color": [
+      "Project leader"
+    ],
+    "tta_flow": [
+      "Project leader"
+    ],
+    "tinvblocks": [
+      "Corresponding author",
+      "Project leader"
+    ],
+    "oapt": [
+      "Corresponding author",
+      "Project leader"
+    ],
+    "cpga": [
+      "Project leader"
+    ],
+    "cassr": [
+      "Project leader"
+    ]
+  }
+}
