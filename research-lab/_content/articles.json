@@ -450,8 +450,8 @@
         "Long coding tasks demand more than generating a plausible function. The model must use tools correctly, retain context and avoid repetitive behavior across many actions, while remaining practical to deploy.\n\nThis release brings that deployment question into focus: an open-weight coding model needs useful task performance as well as reliable behavior at the tool interface."
       ],
       [
-        "An open-weight model for extended coding tasks",
-        "The release provides language-model weights with 35 billion total and 3 billion active parameters. Supervised fine-tuning and reinforcement learning target agentic coding and behavioral reliability. The model card reports reductions in malformed tool tags and repeated single-turn output.\n\nSparse activation separates the number of stored parameters from the computation used for each token. The release’s 35B total and 3B active parameters describe that architecture, not a guarantee of identical cost across serving systems. The open-weight artifact also has a narrower scope than its underlying multimodal family: the model card releases the language-model weights for text-only use. That boundary matters when reproducing a coding workflow or selecting a compatible deployment stack."
+        "Post-training for reliable tool use",
+        "The release starts from Qwen3.6-35B-A3B, with 127K supervised examples followed by reinforcement learning. It retains the V2.5 infrastructure: token-consistent rollout and training, truncated importance weights, checked execution environments and rewards that recognize useful intermediate progress.\n\nAdapting rewards to the base model was essential. The model card describes collapse under a binary reward, with some turns producing more than 70 parallel tool calls. Penalties for excessive calls, failures, empty tool blocks and repetition enabled ten stable epochs. Reported malformed tool tags fell from 9.34% to 0.28%, while continuous single-turn repetition fell from 0.34% to zero. These are release-reported behavioral measurements, distinct from task benchmark scores."
       ],
       [
         "Reading the release evaluations",
@@ -484,8 +484,8 @@
         "The report evaluates several distinct capabilities rather than presenting coding as a single score. Repository tasks, long-horizon tool use, terminal tasks and scientific programming expose different strengths. Training also randomizes harness behavior to reduce overfitting to one execution interface. The comparison table should therefore be read as a capability profile, with each benchmark’s environment and scoring protocol kept separate."
       ],
       [
-        "Strong results, with an uneven profile",
-        "Table 4 reports 65.2 on SWE-bench Pro versus 69.2 for Opus 4.8 and 62.1 for GLM 5.2. KAT scores 94.9 on PinchBench average, but trails several peers on Terminal-Bench 2.1. The results indicate a strong repository-coding and tool-use profile, rather than a lead on every benchmark."
+        "Reading strengths and trade-offs",
+        "The full comparison below separates repository coding, tool workflows and scientific programming. KAT-Coder V2.5 reports 65.2 on SWE-bench Pro and 53.1 on KAT Code Bench. Opus 4.8 remains ahead on both, at 69.2 and 57.3.\n\nThe profile shifts on tool tasks: KAT reaches 94.9 on PinchBench average, while its 85.5 on KAT Claw Bench is below Opus at 90.7. Terminal-Bench 2.1 is a clearer gap, with KAT at 60.7 against Opus at 84.6. SciCode reaches 50.3, compared with the table’s joint high of 53.5. These differences make a workload-specific choice more informative than one aggregate rank."
       ],
       [
         "What the training system makes possible",
@@ -510,8 +510,8 @@
         "Cross-scaffold evaluation runs comparable software-engineering tasks through Claude Code, OpenCode and OpenClaw. Separate agent benchmarks test execution beyond repository repair. The report also examines frontend aesthetics and general tasks. Together these checks ask whether distilled experts form one usable agent across interfaces, rather than a collection of isolated benchmark specialists with incompatible interaction habits."
       ],
       [
-        "What survives a change of scaffold",
-        "On SWE-bench Verified, KAT V2 scores 79.6 in Claude Code, 74.8 in OpenCode and 72.8 in OpenClaw. Table 2 compares Opus 4.6 at 80.8, 75.0 and 75.7 respectively. The 80.8 value comes from Anthropic; other values use KwaiEnv. The comparison shows capability across scaffolds, with results sensitive to the evaluation setup."
+        "Capabilities across frameworks and tasks",
+        "Changing the agent scaffold changes the measured result. KAT-Coder V2 reaches 79.6 on SWE-bench Verified with Claude Code, 74.8 with OpenCode and 72.8 with OpenClaw. The corresponding Opus 4.6 values are 80.8, 75.0 and 75.7; the first is quoted from Anthropic, while the others are KwaiEnv evaluations.\n\nThe broader tables show what this coding result does not capture. On PinchBench, KAT’s best score is 88.7 and its average is 81.9. Claw-Eval reports 55.6 for Pass^3 and 73.4 for average score, so reliability and average performance should remain separate. General-task results span terminal reasoning, telecom tool use, long-context reasoning and instruction following. The original comparison mixes KAT measurements with published peer results, which the notes preserve."
       ],
       [
         "Capability fusion is only part of the problem",

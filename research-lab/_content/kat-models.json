@@ -1,0 +1,478 @@
+{
+  "kat-v25-dev": {
+    "name": "KAT-Coder V2.5-Dev",
+    "date": "July 2026",
+    "kind": "Open weights",
+    "summary": "Agentic coding with 35B total parameters and 3B active parameters.",
+    "summaryZh": "以 35B 总参数、3B 激活参数实现智能体编程。",
+    "focus": "35B-A3B · Text-only",
+    "tables": [
+      {
+        "title": "Open-weight coding models",
+        "models": [
+          "KAT-Coder V2.5-Dev",
+          "Qwen3.5-27B",
+          "Qwen3.6-35BA3B",
+          "Gemma4-31B",
+          "Qwen3.5-35BA3B",
+          "Ornith-1.0-35B",
+          "Gemma4-26BA4B",
+          "Qwen3-Coder-30B"
+        ],
+        "rows": [
+          {
+            "benchmark": "SWE-bench Verified",
+            "detail": "Repository issue resolution",
+            "values": [
+              69.4,
+              68.6,
+              64.4,
+              60.6,
+              58.6,
+              55.8,
+              35.8,
+              31.8
+            ]
+          },
+          {
+            "benchmark": "SWE-bench Multilingual",
+            "detail": "Multilingual repository tasks",
+            "values": [
+              63,
+              57.67,
+              57,
+              49.33,
+              47.67,
+              51.67,
+              27.33,
+              20.67
+            ]
+          },
+          {
+            "benchmark": "SWE-bench Pro",
+            "detail": "Software engineering",
+            "values": [
+              45.96,
+              42.13,
+              40.63,
+              32.97,
+              38.03,
+              34.47,
+              9.58,
+              19.84
+            ]
+          },
+          {
+            "benchmark": "Terminal-Bench 2.1",
+            "detail": "Average of Terminus-2 and Claude Code",
+            "values": [
+              41.02,
+              34.84,
+              32.02,
+              32.59,
+              26.12,
+              35.98,
+              20.94,
+              13.5
+            ],
+            "subvalues": [
+              "32.60 / 49.44",
+              "41.57 / 28.10",
+              "34.83 / 29.20",
+              "30.34 / 34.83",
+              "26.44 / 25.80",
+              "35.96 / 36.00",
+              "27.27 / 14.60",
+              "10.11 / 16.90"
+            ]
+          },
+          {
+            "benchmark": "PinchBench",
+            "detail": "OpenClaw agent tasks",
+            "values": [
+              93.43,
+              90.71,
+              92.21,
+              85.53,
+              88.75,
+              91.62,
+              82.01,
+              72.3
+            ]
+          },
+          {
+            "benchmark": "SciCode",
+            "detail": "Scientific programming",
+            "values": [
+              44.2,
+              25.58,
+              37.53,
+              33.19,
+              27.73,
+              30.34,
+              30.84,
+              18.27
+            ]
+          },
+          {
+            "benchmark": "KAT-Code-Bench",
+            "detail": "Coding evaluation",
+            "values": [
+              46.21,
+              44.83,
+              42.76,
+              37.93,
+              35.86,
+              33.1,
+              22.06,
+              15.17
+            ]
+          }
+        ],
+        "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev#benchmark-performance",
+        "note": "All results are in-house re-evaluations, generally one run per benchmark; they are not the peers’ official scores. All use pass@1 and 256k context. SWE and KAT-Code use Claude Code 2.1.195 (temperature 1.0, top_p 0.95); terminal tests use Terminus-2 / Claude Code (0.7, 1.0); PinchBench uses OpenClaw 2026.3.13 (0.7, 1.0); SciCode uses 0.6, 1.0. The model card reports harness/tool mismatches affecting several peers. Small gaps should not be read as statistically established rankings."
+      }
+    ]
+  },
+  "kat-v25": {
+    "name": "KAT-Coder V2.5",
+    "date": "July 2026",
+    "kind": "Technical report",
+    "summary": "Reproducible environments and specialist distillation for long-horizon coding.",
+    "summaryZh": "通过可复现环境与专家蒸馏提升长程编程能力。",
+    "focus": "Coding · Tool use",
+    "tables": [
+      {
+        "title": "Coding, tool use, and scientific programming",
+        "models": [
+          "KAT-Coder V2.5",
+          "GLM 5.1",
+          "GLM 5.2",
+          "Kimi K2.6",
+          "Opus 4.8"
+        ],
+        "rows": [
+          {
+            "benchmark": "SWE-bench Pro",
+            "detail": "Repository coding",
+            "values": [
+              65.2,
+              58.4,
+              62.1,
+              58.6,
+              69.2
+            ]
+          },
+          {
+            "benchmark": "KAT Code Bench",
+            "detail": "Coding",
+            "values": [
+              53.1,
+              49.6,
+              50.3,
+              48.9,
+              57.3
+            ]
+          },
+          {
+            "benchmark": "PinchBench",
+            "detail": "Average score",
+            "values": [
+              94.9,
+              null,
+              87,
+              80.7,
+              93.5
+            ],
+            "markers": {
+              "3": "*"
+            }
+          },
+          {
+            "benchmark": "KAT Claw Bench",
+            "detail": "Tool-use workflows",
+            "values": [
+              85.5,
+              84.4,
+              86.8,
+              85.2,
+              90.7
+            ]
+          },
+          {
+            "benchmark": "Terminal-Bench 2.1",
+            "detail": "Agentic terminal tasks",
+            "values": [
+              60.7,
+              61.8,
+              77.9,
+              73,
+              84.6
+            ]
+          },
+          {
+            "benchmark": "SciCode",
+            "detail": "Scientific programming",
+            "values": [
+              50.3,
+              43.8,
+              50.5,
+              53.5,
+              53.5
+            ]
+          }
+        ],
+        "source": "https://arxiv.org/html/2607.05471v1#S6.T4",
+        "note": "Technical report v1, Table 4. PinchBench averages were retrieved from pinchbench.com on July 2, 2026. The Kimi PinchBench entry (80.7*) is Kimi-K2.7-Code, not Kimi K2.6. — means not reported. Benchmark protocols differ from the Dev release; do not compare scores across model pages as a controlled experiment."
+      }
+    ]
+  },
+  "kat-v2": {
+    "name": "KAT-Coder V2",
+    "date": "March 2026",
+    "kind": "Technical report",
+    "summary": "Specialize first. Unify capabilities across coding, tools, and agent frameworks.",
+    "summaryZh": "先专精、再统一，融合编程、工具使用与跨框架能力。",
+    "focus": "Specialize → Unify",
+    "tables": [
+      {
+        "title": "Software engineering across scaffolds",
+        "models": [
+          "KAT-Coder V2",
+          "Claude Opus 4.6"
+        ],
+        "rows": [
+          {
+            "benchmark": "SWE-bench Verified",
+            "detail": "Claude Code",
+            "values": [
+              79.6,
+              80.8
+            ],
+            "markers": {
+              "1": "*"
+            }
+          },
+          {
+            "benchmark": "SWE-bench Verified",
+            "detail": "OpenCode",
+            "values": [
+              74.8,
+              75
+            ]
+          },
+          {
+            "benchmark": "SWE-bench Verified",
+            "detail": "OpenClaw",
+            "values": [
+              72.8,
+              75.7
+            ]
+          },
+          {
+            "benchmark": "SWE-bench Multilingual",
+            "detail": "Claude Code",
+            "values": [
+              75.4,
+              77.8
+            ],
+            "markers": {
+              "1": "*"
+            }
+          },
+          {
+            "benchmark": "SWE-bench Multilingual",
+            "detail": "OpenCode",
+            "values": [
+              71.2,
+              70.2
+            ]
+          },
+          {
+            "benchmark": "SWE-rebench-V2",
+            "detail": "Subset · Claude Code",
+            "values": [
+              43.3,
+              43.7
+            ]
+          },
+          {
+            "benchmark": "SWE-rebench-V2",
+            "detail": "Subset · OpenCode",
+            "values": [
+              38.7,
+              37.3
+            ]
+          }
+        ],
+        "source": "https://arxiv.org/html/2603.27703v1#S4.T2",
+        "note": "Technical report v1, Table 2. Starred Opus scores (80.8*, 77.8*) are quoted from Anthropic; other results were evaluated on KwaiEnv. Each row retains its scaffold, because the harness changes the measured outcome."
+      },
+      {
+        "title": "Real-world agent tasks",
+        "models": [
+          "KAT-Coder V2",
+          "GLM-5",
+          "MiniMax M2.7",
+          "Claude Opus 4.6",
+          "GPT-5.4",
+          "Gemini 3.1 Pro"
+        ],
+        "rows": [
+          {
+            "benchmark": "PinchBench",
+            "detail": "Best score",
+            "values": [
+              88.7,
+              86.4,
+              87.1,
+              87.4,
+              90.5,
+              86.7
+            ]
+          },
+          {
+            "benchmark": "PinchBench",
+            "detail": "Average score",
+            "values": [
+              81.9,
+              80.3,
+              81.8,
+              82.3,
+              81.6,
+              75.9
+            ]
+          },
+          {
+            "benchmark": "Claw-Eval",
+            "detail": "Pass^3",
+            "values": [
+              55.6,
+              57.7,
+              51.9,
+              66.3,
+              66.3,
+              50
+            ]
+          },
+          {
+            "benchmark": "Claw-Eval",
+            "detail": "Average score",
+            "values": [
+              73.4,
+              73,
+              70.7,
+              79.3,
+              80.6,
+              74.2
+            ]
+          }
+        ],
+        "source": "https://arxiv.org/html/2603.27703v1#S4.T3",
+        "note": "Technical report v1, Table 3. OpenClaw evaluations; peer results were retrieved from PinchBench and Claw-Eval on March 25, 2026. Best and average scores are distinct metrics."
+      },
+      {
+        "title": "General agent capabilities",
+        "models": [
+          "KAT-Coder V2",
+          "GLM-5",
+          "MiniMax M2.7",
+          "Claude Opus 4.6",
+          "GPT-5.4",
+          "Gemini 3.1 Pro"
+        ],
+        "rows": [
+          {
+            "benchmark": "Terminal-Bench Hard",
+            "detail": "Terminal reasoning",
+            "values": [
+              46.8,
+              43.2,
+              39.4,
+              46.2,
+              57.6,
+              53.8
+            ]
+          },
+          {
+            "benchmark": "τ²-Bench Telecom",
+            "detail": "Tool use",
+            "values": [
+              93.9,
+              98.2,
+              84.8,
+              92.1,
+              91.5,
+              95.6
+            ]
+          },
+          {
+            "benchmark": "AA-LCR",
+            "detail": "Long-context reasoning",
+            "values": [
+              68,
+              63.3,
+              68.7,
+              70.7,
+              74,
+              72.7
+            ]
+          },
+          {
+            "benchmark": "IFBench",
+            "detail": "Instruction following",
+            "values": [
+              67,
+              72.3,
+              75.7,
+              53.1,
+              73.9,
+              77.1
+            ]
+          }
+        ],
+        "source": "https://arxiv.org/html/2603.27703v1#S4.T5",
+        "note": "Technical report v1, Table 5. KAT results use KwaiEnv; peer results come from Artificial Analysis, retrieved March 25, 2026. These are reported comparisons, not a uniform re-run of all models."
+      },
+      {
+        "title": "Frontend generation",
+        "models": [
+          "KAT-Coder V2",
+          "GLM-5",
+          "Kimi K2.5"
+        ],
+        "rows": [
+          {
+            "benchmark": "Landing Page",
+            "detail": "Report evaluation score",
+            "values": [
+              59.8,
+              57.6,
+              54.6
+            ]
+          },
+          {
+            "benchmark": "Slides",
+            "detail": "Report evaluation score",
+            "values": [
+              57.6,
+              42.8,
+              34.8
+            ]
+          },
+          {
+            "benchmark": "Data Visualization",
+            "detail": "Report evaluation score",
+            "values": [
+              67.6,
+              42.4,
+              46.0
+            ]
+          }
+        ],
+        "source": "https://arxiv.org/html/2603.27703v1#S4.T4",
+        "note": "Technical report v1, Table 4. Frontend generation evaluation; these scores are separate from repository issue-resolution benchmarks."
+      }
+    ]
+  }
+}

@@ -1,5 +1,6 @@
 from pathlib import Path
 import json,html
+from model_components import release_card
 r=Path(__file__).resolve().parents[1];e=html.escape
 papers=json.loads((r/'data.js').read_text().removeprefix('const papers = ').rstrip(';\n'))
 figures=json.loads((r/'_content/covers.json').read_text())
@@ -10,12 +11,18 @@ prefix=(r/'_content/home-prefix.html').read_text().replace('</head>','<script sr
 parts=[prefix,'<nav id="directions" class="topic-nav" aria-label="Research topics / 研究方向">']
 for en,cn,slug in categories:parts.append(f'<a href="#{slug}">{en}<span class="zh" lang="zh-CN">{cn}</span></a>')
 parts.append('</nav>')
+models=json.loads((r/'_content/kat-models.json').read_text())
+parts.append('<section id="kat-models" class="topic-section model-releases" aria-labelledby="kat-models-title"><div class="section-heading"><h2 id="kat-models-title">KAT Models<span class="zh" lang="zh-CN">模型系列</span></h2></div><div class="release-grid">')
+for key,model in models.items():
+ p=next(p for p in papers if p['image']==key)
+ parts.append(release_card(key,model,p['article']))
+parts.append('</div></section>')
 priority={'kat-v25-dev':-4,'kat-v25':-3,'kat-v2':-2,'lpm':-1}
 for en,cn,slug in categories:
  layout="research-list" if slug=="super-resolution" else "research-grid"
  parts.append(f'<section id="{slug}" class="topic-section" aria-labelledby="heading-{slug}"><div class="section-heading"><h2 id="heading-{slug}">{en}<span class="zh" lang="zh-CN">{cn}</span></h2></div><div class="{layout}">')
  for p in sorted(papers,key=lambda p:priority.get(p['image'],0)):
-  if p['homeCategory']!=en:continue
+  if p['homeCategory']!=en or p['image'] in models:continue
   if layout=='research-list':
    parts.append(f'<article class="research-row"><p class="paper-meta">{e(p["venue"])}</p><h3><a href="{e(p["article"])}">{e(p["title"])}<span class="zh" lang="zh-CN">{e(p["headlineZh"])}</span></a></h3></article>')
    continue

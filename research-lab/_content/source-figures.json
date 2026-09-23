@@ -417,6 +417,24 @@
       "sourceAsset": "figures/benchmark.pdf",
       "kind": "vector source PDF",
       "previewDpi": 403.2
+    },
+    {
+      "full": "images/source/kat-rl-infra.png",
+      "thumbnail": "images/source/kat-rl-infra.webp",
+      "original": "images/source/kat-rl-infra.png",
+      "width": 1506,
+      "height": 756,
+      "label": "Agentic RL infrastructure — V2.5 report, Figure 4",
+      "source": "https://arxiv.org/html/2607.05471v1"
+    },
+    {
+      "full": "images/source/kat-claw.png",
+      "thumbnail": "images/source/kat-claw.webp",
+      "original": "images/source/kat-claw.png",
+      "width": 1281,
+      "height": 725,
+      "label": "KwaiClawEnv pipeline — V2.5 report, Figure 3",
+      "source": "https://arxiv.org/html/2607.05471v1"
     }
   ],
   "kat-v2": [
@@ -445,6 +463,17 @@
       "sourceAsset": "figures/kat_benchmark.pdf",
       "kind": "vector source PDF",
       "previewDpi": 359.14489311163896
+    }
+  ],
+  "kat-v25-dev": [
+    {
+      "full": "images/source/kat-rl-infra.png",
+      "thumbnail": "images/source/kat-rl-infra.webp",
+      "original": "images/source/kat-rl-infra.png",
+      "width": 1506,
+      "height": 756,
+      "label": "V2.5 training infrastructure adopted by the Dev recipe; this is the V2.5 report figure, not a Dev training curve",
+      "source": "https://arxiv.org/html/2607.05471v1"
     }
   ]
 }

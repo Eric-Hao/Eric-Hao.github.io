@@ -6,8 +6,8 @@ The original academic homepage links here through its September 2026 News entry.
 ## Content and presentation
 
 21 bilingual paper stories in four topics: Large Language Models, Generative AI,
-Super-Resolution & Restoration, and Physics & Fluid Dynamics. Fifteen homepage
-image cards accompany six compact restoration entries. Titles open articles;
+Super-Resolution & Restoration, and Physics & Fluid Dynamics. Three independent KAT model-release cards precede twelve paper image cards
+and six compact restoration entries. Titles open articles;
 images open a keyboard-accessible viewer. Every article includes source links,
 original paper figures, author information and formatted BibTeX.
 
@@ -48,7 +48,7 @@ is authoring material and is excluded automatically by Jekyll's underscore rule.
 
 ## Review
 
-Local validation covers all 21 articles, 15 cards, six list entries, local links,
+Local validation covers all 21 articles, three model releases, 12 image cards, six list entries, local links,
 anchors, citation structure and JavaScript syntax. Native Canvas rendering checks
 all three physics covers. Browser visual verification is unavailable because the
 Tabbit runtime is not connected. The original academic-site files are preserved
@@ -61,3 +61,12 @@ cover prompts were removed in September 2026. Current cover metadata and paper
 figure provenance remain alongside the content and build scripts. Rebuilding
 produces the identical published HTML. A local archive outside the repository
 preserves the removed experiments. Git history is unchanged.
+
+## KAT model pages
+
+`_content/kat-models.json` stores the three release cards and source-attributed
+benchmark matrices. `model_components.py` renders shared components. Dev scores
+come from the Hugging Face model card; V2.5 and V2 retain the report tables,
+missing values, scaffold labels and starred external-source exceptions. Original
+report figures remain available at native resolution; Dev explicitly identifies
+the shared V2.5 infrastructure figure. No generated benchmark images are used.

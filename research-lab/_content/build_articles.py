@@ -1,9 +1,11 @@
 from pathlib import Path
 import json,html
+from model_components import benchmark_tables
 r=Path(__file__).resolve().parents[1];e=html.escape
 papers=json.loads((r/'data.js').read_text().removeprefix('const papers = ').rstrip(';\n'))
 briefs=json.loads((r/'_content/research-briefs.json').read_text())
 content=json.loads((r/'_content/articles.json').read_text());translations=json.loads((r/'_content/zh.json').read_text());figures=json.loads((r/'_content/figures.json').read_text());benchmarks={d['id']:d for d in json.loads((r/'_content/kat-benchmarks.json').read_text())}
+models=json.loads((r/'_content/kat-models.json').read_text())
 author_roles=json.loads((r/'_content/author-roles.json').read_text())['roles']
 def zh(t):return '<span class="zh" lang="zh-CN">'+e(t)+'</span>'
 category_zh={'Large Language Models':'大语言模型','Generative AI':'生成式人工智能','Super-Resolution & Restoration':'超分辨率与复原','Physics & Fluid Dynamics':'物理与流体动力学'}
@@ -30,6 +32,8 @@ for p in papers:
   sections+=f'<section id="section-{i}" class="{"article-opening" if i==0 else "article-chapter"}">{heading}{paragraphs}</section>'
   if i==1:sections+=render_figure(native[0] if native else f)
   if i==3 and len(native)>1:sections+=render_figure(native[1])
+  if i==2 and key in models:sections+=benchmark_tables(models[key])
+  if i==4 and len(native)>2:sections+=''.join(render_figure(fig) for fig in native[2:])
  resources=''.join(f'<a href="{e(l["url"])}">{e(l["label"])}</a>' for l in p['links'])
  related=[x for x in papers if x!=p and any(cat in x['cats'] for cat in p['cats'])][:2]
  related_html=''.join(f'<a href="../../{e(x["article"])}"><span>{e(x["venue"])}</span><h3>{e(x["headline"])}{zh(x["headlineZh"])}</h3><span aria-hidden="true">↗</span></a>' for x in related)
@@ -37,11 +41,6 @@ for p in papers:
  caption=f'{f["label"]}{page_note}.'
  if key=='magknot':caption+=' Original homepage image (800 px).'
  chart_note=''
- if key in benchmarks:
-  b=benchmarks[key];headers=['Scaffold','KAT V2','Opus 4.6'] if key=='kat-v2' else ['Model','Score']
-  table='<table><caption>'+e(b['title'])+' (%)</caption><thead><tr>'+''.join('<th scope="col">'+e(h)+'</th>' for h in headers)+'</tr></thead><tbody>'
-  for row in b['rows']:table+='<tr><th scope="row">'+e(row[0])+'</th>'+''.join('<td>'+str(v)+('*' if key=='kat-v2' and row[0]=='Claude Code' and j==1 else '')+'</td>' for j,v in enumerate(row[1:]))+'</tr>'
-  chart_note='<details class="benchmark-data"><summary>Data &amp; evaluation setup / 数据与评测条件</summary>'+table+'</tbody></table><p>'+e(b['note'])+zh(b['noteZh'])+'</p><a href="'+e(b['source'])+'">'+e(b['sourceLabel'])+' ↗</a></details>'
  (folder/'index.html').write_text(f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{e(c['dek'])}"><title>{e(c['headline'])} — Jinhua Hao</title><link rel="icon" href="../../../images/favicon.ico"><link rel="stylesheet" href="../../style.css"><link rel="stylesheet" href="../../article.css"><link rel="stylesheet" href="../../bilingual.css"><script src="../../reader.js" defer></script><script src="../../brief-layout.js" defer></script><script src="../../physics-particles.js" defer></script></head>
 <body class="article-page"><a class="skip" href="#article">Skip to article</a><header><a class="wordmark" href="../../">Jinhua Hao</a><nav aria-label="Main navigation"><a href="../../#directions">Explore topics</a><a href="https://eric-hao.github.io/">Academic homepage ↗</a></nav></header>

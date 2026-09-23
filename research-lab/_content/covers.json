@@ -32,39 +32,6 @@
     "background": "Equal cream/navy vertical halves",
     "paperReference": "images/source/instantvir-1.webp"
   },
-  "kat-v2": {
-    "full": "images/covers-v5/kat-v2.png",
-    "thumbnail": "images/covers-v5/kat-v2.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
-    "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/kat-v2-1.webp"
-  },
-  "kat-v25-dev": {
-    "full": "images/covers-v5/kat-v25-dev.png",
-    "thumbnail": "images/covers-v5/kat-v25-dev.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
-    "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/kat-v25-1.webp"
-  },
-  "kat-v25": {
-    "full": "images/covers-v5/kat-v25.png",
-    "thumbnail": "images/covers-v5/kat-v25.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
-    "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/kat-v25-1.webp"
-  },
   "lpm": {
     "full": "images/covers-v5/lpm.png",
     "thumbnail": "images/covers-v5/lpm.webp",
