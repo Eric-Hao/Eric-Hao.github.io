@@ -1,27 +1,21 @@
 source "https://rubygems.org"
 
-# Hello! This is where you manage which Jekyll version is used to run.
-# When you want to use a different version, change it below, save the
-# file and run `bundle install`. Run Jekyll with `bundle exec`, like so:
-#
-#     bundle exec jekyll serve
-#
-# This will help ensure the proper Jekyll version is running.
-# Happy Jekylling!
+# Keep the Pages-compatible renderer without the github-pages umbrella gem.
+# Its unused remote-theme dependency pins vulnerable rubyzip < 3.0.
+gem "jekyll", "= 3.10.0"
+gem "kramdown", "= 2.4.0"
+gem "kramdown-parser-gfm", "= 1.1.0"
+gem "rouge", "= 3.30.0"
 
-gem "github-pages", "~> 232", group: :jekyll_plugins
-
-# If you want to use Jekyll native, uncomment the line below.
-# To upgrade, run `bundle update`.
-
-# gem "jekyll"
-
+# GHSA-9hj4-r449-hfvc: fixed in JSON 2.21.2.
+gem "json", ">= 2.21.2", "< 3"
 gem "wdm", "~> 0.1.0" if Gem.win_platform?
 
-# If you have any plugins, put them here!
 group :jekyll_plugins do
-  # gem "jekyll-archives"
-  gem "jekyll-feed"
-  gem 'jekyll-sitemap'
-  gem 'hawkins'
+  gem "jekyll-paginate", "= 1.1.0"
+  gem "jekyll-sitemap", "= 1.4.0"
+  gem "jekyll-gist", "= 1.5.0"
+  gem "jekyll-feed", "= 0.17.0"
+  gem "jekyll-redirect-from", "= 0.16.0"
+  gem "hawkins", "= 2.0.5"
 end

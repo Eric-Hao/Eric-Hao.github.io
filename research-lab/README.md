@@ -73,6 +73,9 @@ requires the repository's Jekyll/Bundler environment to build. Podman can provid
 Ruby 3.2.2 and Bundler 2.2.19 without changing the host Ruby installation. Build
 with `JEKYLL_ENV=production bundle _2.2.19_ exec jekyll build --safe`; the explicit
 empty `baseurl` in `_config.yml` keeps domain-root asset URLs consistent locally.
+The Gemfile lists the site's renderer and plugins explicitly; avoid restoring the
+`github-pages` umbrella dependency while it pins a vulnerable, unused remote-theme
+ZIP library. JSON must remain at version 2.21.2 or newer.
 On macOS, a Git archive in `/private/tmp` can avoid Desktop bind-mount issues.
 
 Unused generated covers, candidate prompts and particle previews are stored
