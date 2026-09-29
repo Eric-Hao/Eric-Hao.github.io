@@ -297,7 +297,13 @@
   [data-tooltip]:hover::after, [data-tooltip]:focus-visible::after {
     opacity: 1; visibility: visible;
   }
-  @include breakpoint($large) { display: none; }
+  @include breakpoint($large) {
+    display: grid;
+    grid-template-columns: repeat(3, 44px);
+    justify-content: start;
+    [data-tooltip]::after { left: 0; transform: none; }
+    .wechat-popover { left: 0; right: auto; }
+  }
 }
 
 .author__wechat-sm {
@@ -318,6 +324,7 @@
   .wechat-label { color: #777; font-size: 12px; }
   .wechat-id { margin: 4px 0 12px; user-select: text; }
   .wechat-copy {
+    display: block;
     border: 0; border-radius: 6px; background: #191917; color: #fff;
     width: 100%; min-height: 36px; padding: 6px 10px; font: inherit;
     cursor: pointer;
