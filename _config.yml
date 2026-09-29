@@ -10,6 +10,7 @@ title                    : "Jinhua Hao (郝进华)"
 seo_title                : "Jinhua Hao (郝进华) | Agentic Coding & Generative Video"
 description              : "Agentic Coding LLMs and Generative Video Models"
 url                      : "https://eric-hao.github.io"
+baseurl                  : "" # User site is served from the domain root.
 
 repository               : "Eric-Hao/Eric-Hao.github.io"
 google_scholar_stats_use_cdn : true
@@ -69,6 +70,7 @@ include:
   - _pages
   - files
 exclude:
+  - research-lab/papers/vortex-bursting.pdf
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache

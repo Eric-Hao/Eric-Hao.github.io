@@ -1,0 +1,28 @@
+{
+  "checked": "2026-09-28",
+  "metric": "downloadsAllTime",
+  "scope": "Conservative lower bound: original model plus two verified direct community quantizations; download events, not unique users.",
+  "total": 3034840,
+  "models": [
+    {
+      "id": "Kwaipilot/KAT-Coder-V2.5-Dev",
+      "downloadsAllTime": 66673,
+      "base_model": [
+        "Qwen3.6-35B-A3B"
+      ],
+      "source": "https://huggingface.co/api/models/Kwaipilot/KAT-Coder-V2.5-Dev?expand[]=downloadsAllTime&expand[]=cardData"
+    },
+    {
+      "id": "mudler/KAT-Coder-V2.5-Dev-APEX-GGUF",
+      "downloadsAllTime": 2208216,
+      "base_model": "Kwaipilot/KAT-Coder-V2.5-Dev",
+      "source": "https://huggingface.co/api/models/mudler/KAT-Coder-V2.5-Dev-APEX-GGUF?expand[]=downloadsAllTime&expand[]=cardData"
+    },
+    {
+      "id": "bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF",
+      "downloadsAllTime": 759951,
+      "base_model": "Kwaipilot/KAT-Coder-V2.5-Dev",
+      "source": "https://huggingface.co/api/models/bartowski/Kwaipilot_KAT-Coder-V2.5-Dev-GGUF?expand[]=downloadsAllTime&expand[]=cardData"
+    }
+  ]
+}

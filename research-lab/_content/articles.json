@@ -544,5 +544,31 @@
         "The industrial result depends on a complete system: curated data, staged training, temporal inference and integration with encoding. A sharper single frame is only one part of that objective. The reported platform-scale gains show why visual research and serving engineering must be considered together, while the exact savings should remain tied to the codec, content mix and quality criteria used in deployment."
       ]
     ]
+  },
+  "vortex-bursting": {
+    "headline": "How opposite magnetic twists trigger vortex bursting",
+    "dek": "Opposite twists launch interacting Alfvén waves, linking magnetic geometry to a three-stage vortex-bursting process.",
+    "sections": [
+      [
+        "From magnetic geometry to motion",
+        "Can a twisted magnetic tube trigger vortex bursting without an imposed flow or initial vorticity? This study starts with an initially quiescent, incompressible magnetohydrodynamic fluid and a magnetic ring whose two halves have opposite chiralities.\n\nThe resulting dynamics connect the geometry of the magnetic field to localized vorticity generation, magnetic-to-kinetic energy conversion, and the eventual breakdown of coherent structures."
+      ],
+      [
+        "A magnetic ring with opposite chiralities",
+        "The simulations use a smooth, closed magnetic ring with a sinusoidally varying twist. Its two halves twist in opposite directions, meeting at two chirality-inversion regions. The initial velocity is zero.\n\nThe incompressible MHD equations are solved with a pseudo-spectral method in a three-dimensional periodic domain, using a 1024³ grid and unit magnetic Prandtl number. Three Lundquist numbers, approximately 800, 1600 and 2670, probe the balance between Alfvénic evolution and resistive diffusion."
+      ],
+      [
+        "How the bursting starts",
+        "The curl of the Lorentz force provides a localized source of vorticity, strongest near the chirality-inversion regions. Meanwhile, the pressure gradient generates an antisymmetric cross-helicity distribution in regions of maximum twist, indicating counter-propagating Alfvén waves.\n\nAs these waves reach the chirality-inversion regions, they interact with the vorticity and amplify field-line deformation. Bursting therefore emerges from the initial magnetic configuration itself, without external strain or a prescribed vortex."
+      ],
+      [
+        "Formation, expansion, and breakdown",
+        "The evolution separates into three stages. First, a disk-like vortex structure forms as magnetic energy is rapidly converted into kinetic energy. Next, the structure expands radially and stretches, with enhanced magnetic and kinetic dissipation and increasing cross- and kinetic-helicity components. Finally, coherent vortex and magnetic structures break down, with reconnection and fragmentation followed by declining helicity components and dissipation rates.\n\nHigher Lundquist numbers produce greater radial spreading and stronger peaks in the helicity components. Although total helicities remain zero by symmetry, their positive and negative components reveal substantial localized helical dynamics."
+      ],
+      [
+        "What the mechanism can explain",
+        "The study identifies a self-contained magnetic route to eruptive dynamics that may help interpret twisted flux tubes in solar and laboratory plasmas. It does not directly reproduce a solar eruption: the simulations are incompressible, use a unit magnetic Prandtl number, and operate at Lundquist numbers below those of the solar corona.\n\nThis paper has been accepted for publication in the Journal of Fluid Mechanics."
+      ]
+    ]
   }
 }

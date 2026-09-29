@@ -24,7 +24,7 @@ $(document).ready(function(){
   $("#main").fitVids();
 
   var stickySideBar = function(){
-    var show = $(".author__urls-wrapper button").length === 0 ? $(window).width() > 925 : !$(".author__urls-wrapper button").is(":visible");
+    var show = $(".author__urls-wrapper > button").length === 0 ? $(window).width() > 925 : !$(".author__urls-wrapper > button").is(":visible");
     if (show) {
       $(".author__urls").show();
     } else {
@@ -40,9 +40,9 @@ $(document).ready(function(){
 
   // Follow menu drop down
 
-  $(".author__urls-wrapper button").on("click", function() {
+  $(".author__urls-wrapper > button").on("click", function() {
     $(".author__urls").fadeToggle("fast", function() {});
-    $(".author__urls-wrapper button").toggleClass("open");
+    $(".author__urls-wrapper > button").toggleClass("open");
   });
 
   // Open external links in new tab (replaces removed <base target="_blank">)

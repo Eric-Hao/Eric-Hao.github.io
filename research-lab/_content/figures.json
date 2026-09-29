@@ -185,35 +185,35 @@
     "previewDpi": 489.3203883495146
   },
   "magvortex": {
-    "full": "images/figures/magvortex.png",
-    "thumbnail": "images/figures/magvortex.webp",
-    "label": "Figure 3",
+    "full": "images/figures/magvortex-hd.png",
+    "thumbnail": "images/figures/magvortex-hd.webp",
+    "label": "Magnetic splitting and the local field-line braid (Figure 3)",
     "page": 8,
     "crop": [
       88,
-      51,
+      59,
       424,
       203
     ],
-    "dpi": 300,
-    "width": 1400,
-    "height": 633,
+    "dpi": 600,
+    "width": 2800,
+    "height": 1200,
     "source": "https://shiyingxiong.github.io/proj/MHDTube/MHDTube.pdf"
   },
   "vortex": {
-    "full": "images/figures/vortex.png",
-    "thumbnail": "images/figures/vortex.webp",
-    "label": "Figure 2",
+    "full": "images/figures/vortex-hd.png",
+    "thumbnail": "images/figures/vortex-hd.webp",
+    "label": "Vortex surfaces transported by virtual and physical velocities (Figure 2)",
     "page": 11,
     "crop": [
       100,
-      54,
+      59,
       395,
-      214
+      209
     ],
-    "dpi": 300,
-    "width": 1229,
-    "height": 666,
+    "dpi": 600,
+    "width": 2458,
+    "height": 1250,
     "source": "https://shiyingxiong.github.io/proj/VirtualVSF/VirtualVSF.pdf"
   },
   "lpm": {
@@ -230,13 +230,20 @@
     "previewDpi": 315.0
   },
   "magknot": {
-    "full": "../images/papers/magknot.png",
-    "thumbnail": "../images/papers/magknot.webp",
-    "label": "Research figure from the original academic homepage",
-    "width": 800,
-    "height": 431,
-    "source": "https://doi.org/10.1017/jfm.2020.1145",
-    "note": "Original 800-pixel asset retained; no higher-resolution PDF available."
+    "full": "images/figures/magknot-hd.png",
+    "thumbnail": "images/figures/magknot-hd.webp",
+    "label": "Stepwise reconnection from trefoil to cinquefoil and septafoil knots (Figure 15)",
+    "page": 17,
+    "crop": [
+      48,
+      59,
+      436,
+      273
+    ],
+    "dpi": 600,
+    "width": 3233,
+    "height": 1783,
+    "source": "https://doi.org/10.1017/jfm.2020.1145"
   },
   "kat-v25-dev": {
     "full": "images/kat-v25-dev-benchmark.svg",
@@ -271,5 +278,21 @@
     "sourceAsset": "figures/kwaienv.pdf",
     "kind": "vector source PDF",
     "previewDpi": 315.0787696924231
+  },
+  "vortex-bursting": {
+    "full": "images/figures/vortex-bursting-1.png",
+    "thumbnail": "images/figures/vortex-bursting-1.webp",
+    "width": 1029,
+    "height": 550,
+    "label": "Opposite chiralities and the initial magnetic flux ring (Figure 2)",
+    "page": 5,
+    "crop": [
+      128,
+      56,
+      375,
+      188
+    ],
+    "dpi": 300,
+    "source": "papers/vortex-bursting.pdf"
   }
 }

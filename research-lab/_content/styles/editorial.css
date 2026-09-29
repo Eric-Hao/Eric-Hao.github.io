@@ -1,0 +1,283 @@
+/* Research essays: serif headings and neutral sans reading / interface text. */
+body.article-page {
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+}
+.article-page header {
+  padding-top:12px;
+  padding-bottom:12px;
+  justify-content:flex-start;
+}
+.article-page header nav {
+  font-size:14px;
+}
+.article-page .article-heading {
+  max-width:940px;
+  margin:44px auto 32px;
+  padding-bottom:28px;
+  text-align:center;
+  border-bottom:1px solid var(--line);
+}
+.article-page .article-heading h1 {
+  font:400 clamp(32px,4.5vw,52px)/1.12 var(--serif);
+  letter-spacing:-1.5px;
+  max-width:900px;
+  margin:0 auto 12px;
+  text-wrap:balance;
+}
+.article-page .article-title-zh {
+  font-size:20px;
+  line-height:1.5;
+  color:var(--muted);
+  margin:0 auto 18px;
+}
+.article-page .article-dek {
+  font:400 21px/1.5 var(--sans);
+  max-width:730px;
+  margin:0 auto 22px;
+  color:#42413c;
+}
+.article-page .article-dek .zh {
+  font-size:15px;
+  line-height:1.75;
+  margin-top:10px;
+}
+.article-page .article-actions {
+  justify-content:center;
+  font:14px/1.5 var(--sans);
+  gap:24px;
+}
+.article-page .primary-link {
+  border:1px solid var(--ink);
+  border-radius:8px;
+  padding:12px 20px;
+  background:var(--ink);
+  color:var(--paper);
+}
+.article-page .primary-link:hover {
+  background:#34332f;
+  color:var(--paper);
+  text-decoration:none;
+}
+.article-page .article-layout {
+  display:block;
+  max-width:720px;
+  margin:auto;
+}
+.article-page .prose {
+  width:100%;
+  max-width:720px;
+}
+.article-page .prose p {
+  font:400 17px/1.65 var(--sans);
+  letter-spacing:0;
+  margin:0 0 23px;
+  color:var(--ink);
+}
+.article-page .prose .article-opening>p:first-child {
+  font:400 19px/1.6 var(--sans);
+}
+.article-page .prose p.zh {
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.85;
+  color:var(--muted);
+  margin:-8px 0 28px;
+}
+.article-page .prose section {
+  margin-bottom:52px;
+}
+.article-page .prose h2 {
+  font:400 28px/1.25 var(--serif);
+  letter-spacing:-.5px;
+  margin:46px 0 23px;
+}
+.article-page .prose h2 .zh {
+  font-size:15px;
+  line-height:1.6;
+  margin-top:7px;
+  color:var(--muted);
+}
+.article-page .prose a:not(.primary-link) {
+  text-decoration:underline;
+  text-underline-offset:3px;
+  text-decoration-thickness:1px;
+}
+.article-page a:hover {
+  color:#a34f35;
+}
+.article-page .prose .article-figure {
+  margin-top:40px;
+  margin-bottom:48px;
+}
+.article-page .article-figure>a {
+  background:#f0eee6;
+  border-radius:var(--radius-card);
+  padding:24px;
+}
+.article-page .article-figure img {
+  mix-blend-mode:normal;
+  max-height:none;
+}
+.article-page .article-figure figcaption {
+  font:400 13px/1.6 var(--sans);
+  color:#6b6a63;
+  padding-top:14px;
+  text-align:center;
+}
+.article-page .article-figure figcaption a {
+  font-style:italic;
+}
+.article-page .paper-details {
+  border-top:1px solid var(--line);
+  padding-top:12px;
+}
+.article-page .paper-details .original-title {
+  font:500 20px/1.5 var(--sans);
+}
+.article-page .paper-details .article-authors {
+  font:400 15px/1.7 var(--sans);
+  color:var(--muted);
+}
+.article-page .citation {
+  border-top:1px solid var(--line);
+  padding-top:12px;
+}
+.article-page .article-navigation { display:flex; gap:6px; align-items:center; }
+.article-page .icon-button {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; flex-shrink:0; padding:0;
+  border:0; border-radius:8px; background:transparent; color:var(--muted);
+  cursor:pointer; text-decoration:none;
+}
+.article-page .icon-button svg { width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+.article-page .icon-button:hover { color:var(--ink); background:var(--surface); }
+.article-page .icon-button:focus-visible,.article-page .author-marker:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+.article-page .author-marker { font:11px/1 var(--sans); margin-left:2px; vertical-align:super; cursor:help; }
+.article-page .paper-details .publication-venue { font:14px/1.6 var(--sans); color:var(--muted); }
+.article-page .citation-box { position:relative; }
+.article-page .citation-copy { position:absolute; top:8px; right:8px; background:#efede5; }
+.article-page .related a { padding-right:0; }
+.article-page .citation pre {
+  background:#efede5;
+  border:1px solid #e1ddd1;
+  border-radius:8px;
+  padding:20px 60px 20px 24px;
+  margin:0;
+  font:13px/1.75 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  color:#36352f;
+}
+.article-page .citation .copy-status {
+  font:12px/1.5 var(--sans);
+}
+.article-page .related {
+  border-top:1px solid var(--line);
+  padding-top:38px;
+}
+.article-page .related h2 {
+  font:400 28px/1.25 var(--serif);
+}
+.article-page .related h3 {
+  font:400 23px/1.3 var(--serif);
+}
+/* Keep evidence tables and editorial cards distinct from long-form prose. */
+.article-page .prose .model-evaluations .evaluation-intro {
+  font:16px/1.65 var(--sans);
+}
+.article-page .prose .model-evaluations .benchmark-note {
+  font:12px/1.7 var(--sans);
+  color:var(--muted);
+  margin:0 0 38px;
+}
+.article-page .model-evaluations .evaluation-intro .zh {
+  font-size:13px;
+}
+.article-page .benchmark-scroll,.article-page .model-benchmark caption,.article-page .model-benchmark th:first-child {
+  background:#f0eee7;
+}
+.article-page .model-benchmark .kat-column {
+  background:#e6e2d7;
+}
+.article-page .model-benchmark th,.article-page .model-benchmark td {
+  border-color:#d9d5ca;
+}
+@media(min-width:1100px) {
+  .article-page .prose .article-figure {
+    width:calc(100% + 192px);
+    margin-left:-96px;
+  }
+}
+@media(max-width:720px) {
+  .article-page header {
+    padding:10px 22px;
+  }
+  .article-page .article-heading {
+    margin:28px auto 24px;
+    padding-bottom:22px;
+  }
+  .article-page .article-heading h1 {
+    font-size:32px;
+    letter-spacing:-.9px;
+  }
+  .article-page .article-title-zh {
+    font-size:17px;
+    margin-bottom:16px;
+  }
+  .article-page .article-dek {
+    font-size:19px;
+    line-height:1.6;
+  }
+  .article-page .prose p,.article-page .prose .article-opening>p:first-child {
+    font-size:17px;
+    line-height:1.65;
+  }
+  .article-page .prose p.zh {
+    font-size:14px;
+    line-height:1.85;
+  }
+  .article-page .prose h2 {
+    font-size:25px;
+    margin-top:35px;
+  }
+  .article-page .article-figure>a {
+    padding:12px;
+  }
+  .article-page .article-figure figcaption {
+    font-size:12px;
+  }
+  .article-page .citation pre {
+    padding:16px 52px 16px 16px;
+    font-size:12px;
+  }
+  .article-page .prose section {
+    margin-bottom:38px;
+  }
+}
+
+.article-page .prose .article-figure img,.article-page .citation pre { border-radius:var(--radius-card); }
+
+/* Compact KAT model summaries and center comparable benchmark entries. */
+.model-article .brief-sheet { padding:20px 26px; }
+.model-article .brief-sheet h2 { font-size:clamp(22px,2.3vw,29px); line-height:1.25; }
+.model-article .brief-sheet h2 > span { font-size:13px; line-height:1.55; margin-top:6px; }
+.model-article .brief-question { padding:18px 24px; }
+.model-article .brief-prompt { font-size:21px; line-height:1.3; margin:0; }
+.model-article .brief-prompt > span { font-size:13px; line-height:1.55; margin-top:5px; }
+.model-article .brief-answer { font-size:14px; line-height:1.6; margin-top:12px; padding-top:12px; }
+.model-article .brief-answer > span { font-size:12px; line-height:1.65; margin-top:5px; }
+.article-page .model-benchmark th,
+.article-page .model-benchmark td { text-align:center; vertical-align:middle; font-size:15px; line-height:1.45; padding:14px 18px; }
+.article-page .model-benchmark thead th { font-size:14px; }
+.article-page .model-benchmark th > span,
+.article-page .model-benchmark td small { font-size:11px; margin-top:4px; }
+@media(max-width:720px) {
+  .model-article .brief-sheet { padding:18px; }
+  .model-article .brief-question { padding:16px 18px; }
+  .model-article .brief-prompt { font-size:19px; }
+  .article-page .model-benchmark th,
+  .article-page .model-benchmark td { font-size:14px; padding:12px 14px; }
+  .article-page .model-benchmark thead th { font-size:13px; }
+}

@@ -3,8 +3,8 @@
     "name": "KAT-Coder V2.5-Dev",
     "date": "July 2026",
     "kind": "Open weights",
-    "summary": "Agentic coding with 35B total parameters and 3B active parameters.",
-    "summaryZh": "以 35B 总参数、3B 激活参数实现智能体编程。",
+    "summary": "A lightweight 35B-A3B coding MoE, with 3M+ downloads across the model and community quantizations.",
+    "summaryZh": "轻量级 35B-A3B 编程 MoE，原模型与社区量化版本累计下载超 300 万。",
     "focus": "35B-A3B · Text-only",
     "tables": [
       {
@@ -132,14 +132,32 @@
         "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev#benchmark-performance",
         "note": "All results are in-house re-evaluations, generally one run per benchmark; they are not the peers’ official scores. All use pass@1 and 256k context. SWE and KAT-Code use Claude Code 2.1.195 (temperature 1.0, top_p 0.95); terminal tests use Terminus-2 / Claude Code (0.7, 1.0); PinchBench uses OpenClaw 2026.3.13 (0.7, 1.0); SciCode uses 0.6, 1.0. The model card reports harness/tool mismatches affecting several peers. Small gaps should not be read as statistically established rankings."
       }
-    ]
+    ],
+    "summaryNote": "Hugging Face cumulative download events, verified September 28, 2026; includes the original model and two direct community quantizations.",
+    "cardIntro": "Lightweight agentic coding.",
+    "cardIntroZh": "轻量级智能体编程。",
+    "features": [
+      {
+        "en": "35B total · 3B active parameters",
+        "zh": "35B 总参数 · 3B 激活参数"
+      },
+      {
+        "en": "Open model weights",
+        "zh": "开放模型权重"
+      },
+      {
+        "en": "3M+ model & community downloads",
+        "zh": "原模型与社区量化版累计下载超 300 万"
+      }
+    ],
+    "kindUrl": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev"
   },
   "kat-v25": {
     "name": "KAT-Coder V2.5",
     "date": "July 2026",
     "kind": "Technical report",
-    "summary": "Reproducible environments and specialist distillation for long-horizon coding.",
-    "summaryZh": "通过可复现环境与专家蒸馏提升长程编程能力。",
+    "summary": "A trillion-parameter coding LLM, competitive with GLM-5.2 and Claude Opus 4.8 on reported coding benchmarks.",
+    "summaryZh": "万亿参数编程模型，在论文编程评测中与 GLM-5.2、Claude Opus 4.8 表现接近。",
     "focus": "Coding · Tool use",
     "tables": [
       {
@@ -225,7 +243,24 @@
         "source": "https://arxiv.org/html/2607.05471v1#S6.T4",
         "note": "Technical report v1, Table 4. PinchBench averages were retrieved from pinchbench.com on July 2, 2026. The Kimi PinchBench entry (80.7*) is Kimi-K2.7-Code, not Kimi K2.6. — means not reported. Benchmark protocols differ from the Dev release; do not compare scores across model pages as a controlled experiment."
       }
-    ]
+    ],
+    "cardIntro": "Coding at trillion-parameter scale.",
+    "cardIntroZh": "万亿参数规模的编程模型。",
+    "features": [
+      {
+        "en": "Reproducible coding environments",
+        "zh": "可复现的编程环境"
+      },
+      {
+        "en": "Specialist distillation for long tasks",
+        "zh": "专家蒸馏，面向长程任务"
+      },
+      {
+        "en": "Competitive reported coding results",
+        "zh": "论文报告编程表现接近 GLM-5.2 与 Claude Opus 4.8"
+      }
+    ],
+    "kindUrl": "https://arxiv.org/abs/2607.05471"
   },
   "kat-v2": {
     "name": "KAT-Coder V2",
@@ -473,6 +508,23 @@
         "source": "https://arxiv.org/html/2603.27703v1#S4.T4",
         "note": "Technical report v1, Table 4. Frontend generation evaluation; these scores are separate from repository issue-resolution benchmarks."
       }
-    ]
+    ],
+    "cardIntro": "Specialize first. Then unify.",
+    "cardIntroZh": "先专精，再统一。",
+    "features": [
+      {
+        "en": "Five domain specialists",
+        "zh": "五类领域专家"
+      },
+      {
+        "en": "Coding and tool-use capabilities",
+        "zh": "编程与工具使用能力"
+      },
+      {
+        "en": "Unified across agent frameworks",
+        "zh": "统一跨智能体框架能力"
+      }
+    ],
+    "kindUrl": "https://arxiv.org/abs/2603.27703"
   }
 }

@@ -3,6 +3,9 @@ main:
   - title: "About Me"
     url: "#about-me"
 
+  - title: "Research Notes"
+    url: "/research-lab/"
+
   - title: "News"
     url: "#news"
 

@@ -2,7 +2,8 @@
 from html import escape as e
 
 def release_card(key, model, article):
- return f'''<article class="model-release"><h3><a href="{e(article)}">{e(model['name'])}</a></h3><p class="release-summary">{e(model['summary'])}<span class="zh" lang="zh-CN">{e(model['summaryZh'])}</span></p><dl><div><dt>Release</dt><dd>{e(model['date'])}</dd></div><div><dt>Type</dt><dd>{e(model['kind'])}</dd></div><div><dt>Focus</dt><dd>{e(model['focus'])}</dd></div></dl><a class="release-button" href="{e(article)}">Explore model <span aria-hidden="true">→</span></a></article>'''
+ features=''.join(f'<li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg><span>{e(f["en"])}<span class="zh" lang="zh-CN">{e(f["zh"])}</span></span></li>' for f in model['features'])
+ return f'''<article class="model-release"><h3><a href="{e(article)}">{e(model['name'])}</a></h3><p class="release-summary">{e(model['cardIntro'])}<span class="zh" lang="zh-CN">{e(model['cardIntroZh'])}</span></p><p class="release-meta"><span>{e(model["date"])}</span><a href="{e(model["kindUrl"])}">{e(model["kind"])}</a></p><ul class="release-features">{features}</ul><a class="release-button" href="{e(article)}">Explore model <span aria-hidden="true">→</span></a></article>'''
 
 def benchmark_tables(model):
  out=['<section class="model-evaluations" id="evaluations"><h2>Model evaluations<span class="zh" lang="zh-CN">模型评测</span></h2><p class="evaluation-intro">Published results, with the evaluation setting kept alongside each comparison. Scores are percentages; higher is better. Bold marks the highest reported value in each row, including ties.<span class="zh" lang="zh-CN">保留原始评测条件；分数单位为百分比，越高越好。粗体表示每行已报告数值中的最高值（含并列）。</span></p>']
@@ -15,10 +16,12 @@ def benchmark_tables(model):
    best=max(x for x in row['values'] if x is not None)
    out.append(f'<tr><th scope="row">{e(row["benchmark"])}<span>{e(row["detail"])}</span></th>')
    for j,v in enumerate(row['values']):
-    value='—' if v is None else f'{v:g}%'
+    value='—' if v is None else f'{v:.1f}%'
     value+=e(row.get('markers',{}).get(str(j),''))
     if v==best:value=f'<strong>{value}</strong>'
-    if 'subvalues' in row:value+=f'<small>{e(row["subvalues"][j])}</small>'
+    if 'subvalues' in row:
+     subvalues=' / '.join(f'{float(x.strip()):.1f}' for x in row['subvalues'][j].split('/'))
+     value+='<small>'+e(subvalues)+'</small>'
     out.append(f'<td class="{"kat-column" if j==0 else ""}">{value}</td>')
    out.append('</tr>')
   out.append(f'</tbody></table></div><p class="benchmark-note" id="{note}">{e(t["note"])} <a href="{e(t["source"])}">Source data</a></p>')

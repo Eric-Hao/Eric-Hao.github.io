@@ -1,18 +1,21 @@
 from pathlib import Path
+from asset_versions import write_page
+from build_styles import build_styles
+build_styles()
 import json,html
 from model_components import release_card
 r=Path(__file__).resolve().parents[1];e=html.escape
 papers=json.loads((r/'data.js').read_text().removeprefix('const papers = ').rstrip(';\n'))
 figures=json.loads((r/'_content/covers.json').read_text())
 originals=json.loads((r/'_content/figures.json').read_text())
-categories=[('Large Language Models','大语言模型','models'),('Generative AI','生成式人工智能','generative-models'),('Super-Resolution & Restoration','超分辨率与复原','super-resolution'),('Physics & Fluid Dynamics','物理与流体动力学','physics')]
+categories=[('Large Language Models','大语言模型','models'),('Generative AI','生成式人工智能','generative-models'),('Restoration & Super-Resolution','复原与超分辨率','super-resolution'),('Physics & Fluid Dynamics','物理与流体动力学','physics')]
 for p in papers:p['homeCategory']=p['cats'][0]
 prefix=(r/'_content/home-prefix.html').read_text().replace('</head>','<script src="reader.js" defer></script><script src="physics-particles.js" defer></script></head>')
 parts=[prefix,'<nav id="directions" class="topic-nav" aria-label="Research topics / 研究方向">']
 for en,cn,slug in categories:parts.append(f'<a href="#{slug}">{en}<span class="zh" lang="zh-CN">{cn}</span></a>')
 parts.append('</nav>')
 models=json.loads((r/'_content/kat-models.json').read_text())
-parts.append('<section id="kat-models" class="topic-section model-releases" aria-labelledby="kat-models-title"><div class="section-heading"><h2 id="kat-models-title">KAT Models<span class="zh" lang="zh-CN">模型系列</span></h2></div><div class="release-grid">')
+parts.append('<section id="kat-models" class="topic-section model-releases" aria-labelledby="kat-models-title"><div class="section-heading"><h2 id="kat-models-title">Latest LLM Releases<span class="zh" lang="zh-CN">大语言模型最新发布</span></h2></div><div class="release-grid">')
 for key,model in models.items():
  p=next(p for p in papers if p['image']==key)
  parts.append(release_card(key,model,p['article']))
@@ -24,14 +27,14 @@ for en,cn,slug in categories:
  for p in sorted(papers,key=lambda p:priority.get(p['image'],0)):
   if p['homeCategory']!=en or p['image'] in models:continue
   if layout=='research-list':
-   parts.append(f'<article class="research-row"><p class="paper-meta">{e(p["venue"])}</p><h3><a href="{e(p["article"])}">{e(p["title"])}<span class="zh" lang="zh-CN">{e(p["headlineZh"])}</span></a></h3></article>')
+   parts.append(f'''<article class="research-row"><a class="restoration-card" href="{e(p['article'])}"><span class="paper-meta">{e(p['venue'])}</span><h3>{e(p['title'])}<span class="zh" lang="zh-CN">{e(p['headlineZh'])}</span></h3></a></article>''')
    continue
   f=figures[p['image']];is_chart=False
-  key=p['image'];physics=key in ('magvortex','magknot','vortex')
+  key=p['image'];physics=key in ('magvortex','magknot','vortex','vortex-bursting') and f.get('visualStyle') != 'Scientific editorial still life'
   target=originals[key]['full'] if physics else f['full']
   attrs=(f'data-physics="{key}" data-paper-original="{e(target)}" data-particle-large="images/physics-large/{key}.png"') if physics else ''
-  parts.append(f'''<article class="research-card"><a class="research-cover{' chart-cover' if is_chart else ''}" href="{e(target)}" {attrs} data-zoom data-caption="{e(p['headline'])} — {e(f['label'])}" aria-label="Enlarge figure: {e(p['headline'])}"><img src="{e(f['thumbnail'])}" alt="{e(f['label'])}: {e(p['title'])}" loading="lazy" width="{f['width']}" height="{f['height']}"></a><div class="card-copy"><p class="paper-meta">{e(p['venue'])}</p><h3><a href="{e(p['article'])}"><span class="card-title-en">{e(p['headline'])}</span><span class="zh" lang="zh-CN">{e(p['headlineZh'])}</span></a></h3></div></article>''')
+  parts.append(f'''<article class="research-card"><a class="research-cover{' chart-cover' if is_chart else ''}" href="{e(target)}" {attrs} data-zoom data-caption="{e(p['headline'])} — {e(f['label'])}" aria-label="Enlarge figure: {e(p['headline'])}"><img src="{e(f['thumbnail'])}" alt="{e(f['label'])}: {e(p['title'])}" loading="lazy" width="{f['width']}" height="{f['height']}"></a><div class="card-copy"><p class="paper-meta">{e(p['venue'])}</p><h3><a href="{e(p['article'])}"><span class="card-title-en">{e(p['title'] if en in ('Generative AI','Physics & Fluid Dynamics') else p['headline'])}</span><span class="zh" lang="zh-CN">{e(p['headlineZh'])}</span></a></h3></div></article>''')
  parts.append('</div></section>')
 parts.append('</main></body></html>')
-(r/'index.html').write_text(''.join(parts))
+write_page(r/'index.html', ''.join(parts))
 print('Built',len(papers),'research entries across four topics (2024 restoration uses lists).')

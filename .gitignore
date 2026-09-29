@@ -1,3 +1,6 @@
 _site/
 push.sh
 .DS_Store
+
+# Local unpublished manuscript; keep out of Git and the published site.
+/research-lab/papers/vortex-bursting.pdf

@@ -1,80 +1,62 @@
 {
   "agentic_ttt": {
-    "full": "images/covers-v5/agentic_ttt.png",
-    "thumbnail": "images/covers-v5/agentic_ttt.webp",
+    "full": "images/llm-editorial/agentic_ttt.png",
+    "thumbnail": "images/llm-editorial/agentic_ttt.webp",
     "width": 1254,
     "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
-    "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/agentic_ttt-1.webp"
+    "label": "Conceptual illustration of the research method",
+    "generationMode": "Codex built-in image_gen"
   },
   "color": {
-    "full": "images/covers-v5/color.png",
-    "thumbnail": "images/covers-v5/color.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
+    "full": "images/scientific-editorial/color-rsi-palette.png",
+    "thumbnail": "images/scientific-editorial/color-rsi-palette.webp",
+    "width": 960,
+    "height": 960,
+    "label": "Conceptual illustration of noise shaping and structural fidelity",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/color-1.webp"
+    "visualStyle": "Scientific editorial still life"
   },
   "instantvir": {
-    "full": "images/covers-v5/instantvir.png",
-    "thumbnail": "images/covers-v5/instantvir.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
+    "full": "images/scientific-editorial/instantvir-rsi-crystal.png",
+    "thumbnail": "images/scientific-editorial/instantvir-rsi-crystal.webp",
+    "width": 960,
+    "height": 960,
+    "label": "Conceptual illustration of single-pass real-time video restoration; not an experimental comparison",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/instantvir-1.webp"
+    "visualStyle": "Scientific editorial still life"
   },
   "lpm": {
-    "full": "images/covers-v5/lpm.png",
-    "thumbnail": "images/covers-v5/lpm.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
+    "full": "images/scientific-editorial/lpm-rich-refined-v15.png",
+    "thumbnail": "images/scientific-editorial/lpm-rich-refined-v15.webp",
+    "width": 960,
+    "height": 960,
+    "label": "Conceptual illustration of diverse short-video restoration at scale; not an experimental comparison",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/lpm-1.webp"
+    "visualStyle": "Scientific editorial still life"
   },
   "magknot": {
     "full": "images/covers-v6/magknot.webp",
     "thumbnail": "images/covers-v6/magknot.webp",
     "width": 1254,
     "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
-    "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "../images/papers/magknot.webp"
+    "label": "Paper-inspired particle illustration",
+    "visualStyle": "Animated particles"
   },
   "magvortex": {
     "full": "images/covers-v6/magvortex.webp",
     "thumbnail": "images/covers-v6/magvortex.webp",
     "width": 1254,
     "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
-    "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/figures/magvortex.webp"
+    "label": "Paper-inspired particle illustration",
+    "visualStyle": "Animated particles"
   },
   "mmg2skill": {
-    "full": "images/covers-v5/mmg2skill.png",
-    "thumbnail": "images/covers-v5/mmg2skill.webp",
+    "full": "images/llm-editorial/mmg2skill.png",
+    "thumbnail": "images/llm-editorial/mmg2skill.webp",
     "width": 1254,
     "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
-    "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/mmg2skill-1.webp"
+    "label": "Conceptual illustration of the research method",
+    "generationMode": "Codex built-in image_gen"
   },
   "shiftlut": {
     "full": "images/covers-v5/shiftlut.png",
@@ -88,47 +70,46 @@
     "paperReference": "images/source/shiftlut-1.webp"
   },
   "tta_flow": {
-    "full": "images/covers-v5/tta_flow.png",
-    "thumbnail": "images/covers-v5/tta_flow.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
+    "full": "images/scientific-editorial/tta-feedback-v2.png",
+    "thumbnail": "images/scientific-editorial/tta-feedback-v2.webp",
+    "width": 960,
+    "height": 960,
+    "label": "Conceptual illustration of feedback-guided inference refinement; not an experimental comparison",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/tta_flow-1.webp"
+    "visualStyle": "Scientific editorial still life"
   },
   "varsr": {
-    "full": "images/covers-v5/varsr.png",
-    "thumbnail": "images/covers-v5/varsr.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
+    "full": "images/scientific-editorial/varsr-rsi-palette.png",
+    "thumbnail": "images/scientific-editorial/varsr-rsi-palette.webp",
+    "width": 960,
+    "height": 960,
+    "label": "Conceptual research illustration",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/varsr-1.webp"
+    "visualStyle": "Scientific editorial still life"
   },
   "vortex": {
     "full": "images/covers-v6/vortex.webp",
     "thumbnail": "images/covers-v6/vortex.webp",
     "width": 1254,
     "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
-    "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/figures/vortex.webp"
+    "label": "Paper-inspired particle illustration",
+    "visualStyle": "Animated particles"
   },
   "webcompass": {
-    "full": "images/covers-v5/webcompass.png",
-    "thumbnail": "images/covers-v5/webcompass.webp",
-    "width": 1254,
-    "height": 1254,
-    "label": "Conceptual illustration based on the paper method",
+    "full": "images/scientific-editorial/webcompass-editorial.png",
+    "thumbnail": "images/scientific-editorial/webcompass-editorial.webp",
+    "width": 960,
+    "height": 960,
+    "label": "Conceptual research illustration",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Pixel collage",
-    "background": "Equal cream/navy vertical halves",
-    "paperReference": "images/source/webcompass-1.webp"
+    "visualStyle": "Scientific editorial still life"
+  },
+  "vortex-bursting": {
+    "full": "images/physics-large/vortex-bursting.png",
+    "thumbnail": "images/physics-large/vortex-bursting.png",
+    "width": 279,
+    "height": 279,
+    "label": "Conceptual particle illustration of an oppositely twisted magnetic ring; not simulation output",
+    "visualStyle": "Animated particles"
   }
 }

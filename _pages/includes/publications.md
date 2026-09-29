@@ -2,63 +2,12 @@
 
 <span style="font-size: 0.9em; color: #666;">* denotes corresponding author; † denotes project leader.</span>
 
-<!-- ============================================================
-  01 · No Time Like the Present · Agentic TTT · arXiv 2026
-============================================================ -->
-<div class='paper-box'>
-  <div class='paper-box-image'><div>
-    <div class="badge">arXiv 2026</div>
-    <picture><source srcset="/images/papers/agentic_ttt.webp" type="image/webp"><img loading="lazy" src="/images/papers/agentic_ttt.png" alt="Agentic TTT teaser" width="100%"></picture>
-  </div></div>
-  <div class='paper-box-text' markdown="1">
-
-**No Time Like the Present: Agentic Test-Time Training for LLM Agents**
-
-Yanbo Wang, **<u>Jinhua Hao</u><sup>*</sup>**, Yuze Shi, Kun Yuan, Ming Sun
-
-*arXiv 2026* <a class="resource-link" href="https://arxiv.org/abs/2607.03441"><i class="fas fa-file-alt resource-link__icon" aria-hidden="true"></i>Paper</a>
-
-  </div>
-</div>
-
-<!-- ============================================================
-  02 · MMG2Skill · arXiv 2026
-============================================================ -->
-<div class='paper-box'>
-  <div class='paper-box-image'><div>
-    <div class="badge">arXiv 2026</div>
-    <picture><source srcset="/images/papers/mmg2skill.webp" type="image/webp"><img loading="lazy" src="/images/papers/mmg2skill.png" alt="MMG2Skill teaser" width="100%"></picture>
-  </div></div>
-  <div class='paper-box-text' markdown="1">
-
-**MMG2Skill: Can Agents Distill In-the-Wild Guides into Self-Evolving Skills?**
-
-Xinyu Che, Junqi Xiong, Yunfei Ge, Xinping Lei, Shihao Li, Hang Yan, Han Li, Yuanxing Zhang, Zhiqi Bai, **<u>Jinhua Hao</u>**, Ming Sun, Han Li, Jiaheng Liu
-
-*arXiv 2026* <a class="resource-link" href="https://arxiv.org/abs/2606.01993"><i class="fas fa-file-alt resource-link__icon" aria-hidden="true"></i>Paper</a>
-
-  </div>
-</div>
-
-<!-- ============================================================
-  03 · WebCompass · arXiv 2026
-============================================================ -->
-<div class='paper-box'>
-  <div class='paper-box-image'><div>
-    <div class="badge">arXiv 2026</div>
-    <picture><source srcset="/images/papers/webcompass.webp" type="image/webp"><img loading="lazy" src="/images/papers/webcompass.png" alt="WebCompass teaser" width="100%"></picture>
-  </div></div>
-  <div class='paper-box-text' markdown="1">
-
-**WebCompass: Towards Multimodal Web Coding Evaluation for Code Language Models**
-
-Xinping Lei, Xinyu Che, Junqi Xiong, Chenchen Zhang, Yukai Huang, Chenyu Zhou, Haoyang Huang, Minghao Liu, Letian Zhu, Hongyi Ye, **<u>Jinhua Hao</u>**, et al.
-
-*arXiv 2026* <a class="resource-link" href="https://arxiv.org/abs/2604.18224"><i class="fas fa-file-alt resource-link__icon" aria-hidden="true"></i>Paper</a> <a class="resource-link" href="https://github.com/NJU-LINK/WebCompass"><i class="fab fa-github resource-link__icon" aria-hidden="true"></i>Code</a>
-
-  </div>
-</div>
-
+- `arXiv 2026` [**LPM: Industrial-Scale Generative Video Restoration**](https://arxiv.org/abs/2607.13460), LPM Team, Kuaishou Technology
+- `arXiv 2026` [**KAT-Coder-V2.5 Technical Report**](https://arxiv.org/abs/2607.05471), KAT Team, Kuaishou Technology
+- `arXiv 2026` [**No Time Like the Present: Agentic Test-Time Training for LLM Agents**](https://arxiv.org/abs/2607.03441), Yanbo Wang, **<u>Jinhua Hao</u><sup>*</sup>**, Yuze Shi, Kun Yuan, Ming Sun
+- `arXiv 2026` [**MMG2Skill: Can Agents Distill In-the-Wild Guides into Self-Evolving Skills?**](https://arxiv.org/abs/2606.01993), Xinyu Che, Junqi Xiong, Yunfei Ge, Xinping Lei, Shihao Li, Hang Yan, Han Li, Yuanxing Zhang, Zhiqi Bai, **<u>Jinhua Hao</u>**, Ming Sun, Han Li, Jiaheng Liu
+- `arXiv 2026` [**WebCompass: Towards Multimodal Web Coding Evaluation for Code Language Models**](https://arxiv.org/abs/2604.18224), Xinping Lei, Xinyu Che, Junqi Xiong, Chenchen Zhang, Yukai Huang, Chenyu Zhou, Haoyang Huang, Minghao Liu, Letian Zhu, Hongyi Ye, **<u>Jinhua Hao</u>**, et al. <a class="resource-link" href="https://github.com/NJU-LINK/WebCompass"><i class="fab fa-github resource-link__icon" aria-hidden="true"></i>Code</a>
+- `arXiv 2026` [**KAT-Coder-V2 Technical Report**](https://arxiv.org/abs/2603.27703), KAT Team, Kuaishou Technology
 - `ICML 2026` [**Coloring the Noise: Adversarial Sobolev Alignment for Faithful Image Super Resolution**](https://arxiv.org/abs/2605.23264), Hongbo Wang, Huaibo Huang, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Chao Zhou, Ran He <a class="resource-link" href="https://github.com/wafer-bob/ASASR"><i class="fab fa-github resource-link__icon" aria-hidden="true"></i>Code</a>
 - `ECCV 2026` [**Tuning Real-World Image Restoration at Inference: A Test-Time Scaling Paradigm for Flow Matching Models**](https://arxiv.org/abs/2603.22027), Purui Bai, Junxian Duan, Pin Wang, **<u>Jinhua Hao</u><sup>†</sup>**, Ming Sun, Chao Zhou, Huaibo Huang
 - `CVPR 2026` [**ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration**](https://arxiv.org/abs/2603.00906), Xiaolong Zeng, Yitong Yu, Shiyao Xiong, **<u>Jinhua Hao</u>**, Ming Sun, Chao Zhou, Bin Wang <a class="resource-link" href="https://github.com/Sailor-t/ShiftLUT"><i class="fab fa-github resource-link__icon" aria-hidden="true"></i>Code</a>

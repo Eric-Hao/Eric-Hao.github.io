@@ -97,7 +97,7 @@ const papers = [
       }
     ],
     "cats": [
-      "Generative AI"
+      "Restoration & Super-Resolution"
     ],
     "image": "shiftlut",
     "headline": "A wider view for efficient image restoration",
@@ -165,7 +165,7 @@ const papers = [
       }
     ],
     "cats": [
-      "Super-Resolution & Restoration"
+      "Restoration & Super-Resolution"
     ],
     "image": "tinvblocks",
     "headline": "Rethinking the information kept in a smaller image",
@@ -185,7 +185,7 @@ const papers = [
       }
     ],
     "cats": [
-      "Super-Resolution & Restoration"
+      "Restoration & Super-Resolution"
     ],
     "image": "oapt",
     "headline": "Restoring images after a second JPEG compression",
@@ -209,7 +209,7 @@ const papers = [
       }
     ],
     "cats": [
-      "Super-Resolution & Restoration"
+      "Restoration & Super-Resolution"
     ],
     "image": "cpga",
     "headline": "Recovering video detail from the codec’s own clues",
@@ -233,7 +233,7 @@ const papers = [
       }
     ],
     "cats": [
-      "Super-Resolution & Restoration"
+      "Restoration & Super-Resolution"
     ],
     "image": "xpsr",
     "headline": "Using language to guide faithful super-resolution",
@@ -248,7 +248,7 @@ const papers = [
     "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf",
     "links": [],
     "cats": [
-      "Super-Resolution & Restoration"
+      "Restoration & Super-Resolution"
     ],
     "image": "ptmvqa",
     "headline": "Learning video quality from diverse pretrained models",
@@ -263,12 +263,27 @@ const papers = [
     "url": "https://arxiv.org/abs/2403.11451",
     "links": [],
     "cats": [
-      "Super-Resolution & Restoration"
+      "Restoration & Super-Resolution"
     ],
     "image": "cassr",
     "headline": "A clearer reference for generative super-resolution",
     "article": "articles/cassr/",
     "headlineZh": "为生成式超分辨率提供更清晰的参考"
+  },
+  {
+    "title": "Vortex bursting in twisted magnetic flux tubes with opposite chiralities",
+    "venue": "J. Fluid Mech.",
+    "year": null,
+    "authors": "Yanru Wang, Anda Xiong, Jinhua Hao, Shiying Xiong",
+    "url": null,
+    "links": [],
+    "cats": [
+      "Physics & Fluid Dynamics"
+    ],
+    "image": "vortex-bursting",
+    "headline": "How opposite magnetic twists trigger vortex bursting",
+    "article": "articles/vortex-bursting/",
+    "headlineZh": "相反的磁扭转如何触发涡爆裂"
   },
   {
     "title": "Effects of magnetic–vortical interactions on magnetic splitting",

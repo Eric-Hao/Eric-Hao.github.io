@@ -1,4 +1,15 @@
 import os
+import re
+
+
+SITE_URL = 'https://eric-hao.github.io'
+
+
+def website_links_for_github(content):
+    """Resolve website-root links before exporting shared content to GitHub."""
+    content = re.sub(r'(\]\()/(?!/)', lambda m: m[1] + SITE_URL + '/', content)
+    return re.sub(r'((?:href|src)=[\"\'])/(?!/)',
+                  lambda m: m[1] + SITE_URL + '/', content)
 
 if __name__ == '__main__':
     _header = '## Hi there 👋'
@@ -17,8 +28,7 @@ if __name__ == '__main__':
     with open(readme_path, 'w') as f:
         f.write(_header)
         f.write('\n\n')
-        f.write(_intro_short)
+        f.write(website_links_for_github(_intro_short))
         f.write('\n\n## News\n\n')
-        f.write(_news)
+        f.write(website_links_for_github(_news))
         f.write('\n')
-

@@ -8,7 +8,26 @@
   function geometry(kind, time) {
     const points = [];
     const add = (x,y,z,c,i) => points.push({x,y,z,c,i,uid:points.length});
-    if (kind === 'magknot') {
+    if (kind === 'vortex-bursting') {
+      // Front view of the full ring. Local expansion remains attached to the tube.
+      // Paper-inspired geometry, not numerical simulation trajectories.
+      const phase=(time%14)/14;
+      const smooth=(a,b,x)=>{const v=Math.max(0,Math.min(1,(x-a)/(b-a)));return v*v*(3-2*v);};
+      const expansion=smooth(.08,.52,phase)*(1-smooth(.86,1,phase));
+      const breakup=smooth(.60,.84,phase)*(1-smooth(.86,1,phase));
+      for(let strand=0;strand<30;strand++) for(let j=0;j<300;j++) {
+        const t=j/300*TAU, angle=strand/30*TAU+8*Math.sin(t);
+        const junction=Math.exp(-Math.pow(Math.cos(t)/.20,2));
+        const outer=strand%6===0;
+        const tube=outer?.033:.024+.080*expansion*junction;
+        const neck=Math.exp(-Math.pow((Math.abs(Math.cos(t))-.14)/.035,2));
+        const thin=1-.55*breakup*neck;
+        const radius=.285+tube*Math.cos(angle)*thin;
+        add(radius*Math.cos(t),radius*Math.sin(t),tube*Math.sin(angle),
+          outer?2:(Math.cos(t)>0?0:1),j);
+        points[points.length-1].opacity=outer?.50:1-.55*breakup*neck;
+      }
+    } else if (kind === 'magknot') {
       [3,5,7].forEach((q,k) => {
         // A single closed T(2,q) torus-knot centerline, thickened by particles.
         for (let j=0;j<900;j++) {
@@ -103,7 +122,7 @@
     }
     const angle=s.kind==='magknot'?.12*Math.sin(time*.10)+s.mouse*.17:0;
     const pitch=s.kind==='magknot'?.10:0;
-    const points=geometry(s.kind,time).map(p=>{
+    const points=geometry(s.kind,s.kind==='vortex-bursting'&&reduced.matches?7:time).map(p=>{
       const y=p.y*Math.cos(pitch)-p.z*Math.sin(pitch), z=p.y*Math.sin(pitch)+p.z*Math.cos(pitch);
       return {...p,x:p.x*Math.cos(angle)+z*Math.sin(angle),y,z:z*Math.cos(angle)-p.x*Math.sin(angle)};
     }).sort((a,b)=>a.z-b.z);
@@ -146,16 +165,29 @@
       const size=host.getBoundingClientRect();const dpr=Math.min(devicePixelRatio||1,2);
       canvas.width=Math.round(size.width*dpr);canvas.height=Math.round(size.height*dpr);s.w=canvas.width;s.h=canvas.height;draw(s,s.time);
     }).observe(host);
-    new IntersectionObserver(entries=>{s.visible=entries[0].isIntersecting;},{rootMargin:'80px'}).observe(host);
+    new IntersectionObserver(entries=>{s.visible=entries[0].isIntersecting;sync();},{rootMargin:'80px'}).observe(host);
     host.addEventListener('pointermove',e=>{const r=host.getBoundingClientRect();s.mouse=(e.clientX-r.left)/r.width-.5;});
     host.addEventListener('pointerleave',()=>{s.mouse=0;});
   });
-  let previous=0;
+  let previous=null, frame=null;
+  function active(){return !document.hidden&&!reduced.matches&&states.some(s=>s.visible&&!s.paused);}
   function tick(now){
-    if(now-previous<32){requestAnimationFrame(tick);return;}
-    const dt=Math.min((now-previous)/1000,.05);previous=now;
-    if(!document.hidden&&!reduced.matches) for(const s of states)if(s.visible&&!s.paused){s.time+=dt;draw(s,s.time);}
-    requestAnimationFrame(tick);
+    frame=null;
+    if(!active()){previous=null;return;}
+    if(previous===null)previous=now;
+    if(now-previous>=32){
+      const dt=Math.min((now-previous)/1000,.05);previous=now;
+      for(const s of states)if(s.visible&&!s.paused){s.time+=dt;draw(s,s.time);}
+    }
+    frame=requestAnimationFrame(tick);
   }
-  if(states.length)requestAnimationFrame(tick);
+  function sync(){
+    if(frame!==null)cancelAnimationFrame(frame);
+    frame=null;previous=null;
+    if(reduced.matches)for(const s of states){s.mouse=0;draw(s,s.time);}
+    if(active())frame=requestAnimationFrame(tick);
+  }
+  document.addEventListener('visibilitychange',sync);
+  reduced.addEventListener('change',sync);
+  sync();
 })();

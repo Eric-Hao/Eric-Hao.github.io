@@ -475,5 +475,39 @@
       "label": "V2.5 training infrastructure adopted by the Dev recipe; this is the V2.5 report figure, not a Dev training curve",
       "source": "https://arxiv.org/html/2607.05471v1"
     }
+  ],
+  "vortex-bursting": [
+    {
+      "full": "images/figures/vortex-bursting-1.png",
+      "thumbnail": "images/figures/vortex-bursting-1.webp",
+      "width": 1029,
+      "height": 550,
+      "label": "Opposite chiralities and the initial magnetic flux ring (Figure 2)",
+      "page": 5,
+      "crop": [
+        128,
+        56,
+        375,
+        188
+      ],
+      "dpi": 300,
+      "source": "papers/vortex-bursting.pdf"
+    },
+    {
+      "full": "images/figures/vortex-bursting-2.png",
+      "thumbnail": "images/figures/vortex-bursting-2.webp",
+      "width": 1592,
+      "height": 842,
+      "label": "Vorticity evolution across the three bursting stages (Figure 8)",
+      "page": 12,
+      "crop": [
+        60,
+        55,
+        442,
+        257
+      ],
+      "dpi": 300,
+      "source": "papers/vortex-bursting.pdf"
+    }
   ]
 }

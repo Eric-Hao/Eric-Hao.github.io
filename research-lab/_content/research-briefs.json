@@ -187,5 +187,14 @@
     "challenge": "How can restored videos stay coherent as their duration grows?",
     "challengeZh": "随着视频时长增加，如何保持恢复结果的时间一致性？",
     "theme": "forest"
+  },
+  "vortex-bursting": {
+    "title": "Let magnetic geometry drive the flow.",
+    "titleZh": "让磁场几何驱动流体运动。",
+    "solution": "Follow oppositely twisted flux tubes from Alfvén-wave interaction to vortex expansion and breakdown.",
+    "solutionZh": "追踪相反扭转的磁通管，从阿尔芬波相互作用到涡结构扩张与破碎。",
+    "challenge": "Can opposite magnetic twists trigger bursting in a fluid initially at rest?",
+    "challengeZh": "相反的磁扭转能否在静止流体中触发涡爆裂？",
+    "theme": "gold"
   }
 }

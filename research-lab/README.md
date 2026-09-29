@@ -1,39 +1,41 @@
 # Research Notes
 
-A standalone static research site at https://eric-hao.github.io/research-lab/.
-The original academic homepage links here through its September 2026 News entry.
+Standalone research site at https://eric-hao.github.io/research-lab/, linked from
+the academic homepage's navigation, profile and News section.
 
-## Content and presentation
+## Content and design
 
-21 bilingual paper stories in four topics: Large Language Models, Generative AI,
-Super-Resolution & Restoration, and Physics & Fluid Dynamics. Three independent KAT model-release cards precede twelve paper image cards
-and six compact restoration entries. Titles open articles;
-images open a keyboard-accessible viewer. Every article includes source links,
-original paper figures, author information and formatted BibTeX.
+22 bilingual articles across Large Language Models, Generative AI,
+Restoration & Super-Resolution, and Physics & Fluid Dynamics. The homepage has
+three KAT release cards, twelve paper image cards and seven restoration rows.
+Titles open articles; images open a keyboard-accessible viewer (Escape or click
+the image to close). Physics covers open the original paper figure.
 
-Article introductions use accessible HTML challenge/idea cards over four generated
-painted backgrounds. Homepage covers use paper-inspired pixel collages. The three
-physics covers use procedural Canvas particles; they are conceptual illustrations,
-not simulation results. Clicking them opens the paper figure, with a separate
-particle-interpretation option. Animation stops offscreen, when the document is
-hidden, and for reduced-motion preferences. There are no visible pause controls.
+The page uses a near-white background, Lora serif headings and system sans-serif
+supporting text. Covers, release cards and restoration hover surfaces share 12px
+corners. Article captions are centered; citations retain compact monospace text.
+KAT evaluation tables preserve source settings and use centered cells.
 
-Current assets are resolved by `_content/covers.json` (v5/v6). Old generated artwork
-and native Canvas test previews are ignored by Git and retained locally only.
-Original paper assets are retained in `images/source/` and `images/figures/`.
-Fonts are bundled Lora and Poppins with their SIL Open Font licenses.
+The hero cycles through reasoning, creating and understanding in Lora particle
+lettering. Physics covers use procedural Canvas particles. These are conceptual
+illustrations, not simulation results. Animations stop offscreen or when the tab
+is hidden; reduced-motion preferences show static particles.
 
 ## Editing
 
-- `data.js`: metadata, categories and article routes.
-- `_content/articles.json`, `_content/zh.json`: English and Chinese text.
+- `data.js`: paper metadata, categories and article routes.
+- `_content/articles.json`, `_content/zh.json`: article text.
 - `_content/research-briefs.json`: article opening challenges and ideas.
-- `_content/author-roles.json`: roles explicitly documented on the academic homepage.
-- `_content/source-figures.json`, `_content/figures.json`: figure sources and extraction metadata.
+- `_content/author-roles.json`: documented author roles.
+- `_content/covers.json`: current homepage cover selections.
+- `_content/source-figures.json`, `_content/figures.json`: paper figure provenance.
+- `_content/kat-models.json`: release cards and source-attributed evaluation data.
+- `_content/kat-downloads.json`: dated download-count evidence and scope.
 - `citations/`: BibTeX entries.
-- `physics-particles.js`: live physics cover geometry.
-- `reader.js`: image viewer and citation copying.
-- `brief-layout.js`: responsive half-height dialogue overlap.
+- `app.js`: hero particles and restoration entry animation.
+- `physics-particles.js`: physics cover geometry and animation lifecycle.
+- `reader.js`: image viewer, article back navigation and citation copying.
+- `brief-layout.js`: responsive article opening-card overlap.
 
 Rebuild from the repository root with Python 3.9+:
 
@@ -42,31 +44,44 @@ python3 research-lab/_content/build_home.py
 python3 research-lab/_content/build_articles.py
 ```
 
-The generated HTML, CSS, JavaScript, fonts and images are served directly by the
-existing GitHub Pages site; no additional frontend build is required. `_content`
-is authoring material and is excluded automatically by Jekyll's underscore rule.
+Both builders regenerate `site.css` and fingerprint CSS/JavaScript URLs. Do not
+edit generated HTML or CSS. Author styles in `_content/styles/`:
 
-## Review
+- `design.css`: shared tokens, covers, cards, interactions and responsive layout.
+- `editorial.css`: article typography, citations and evaluation tables.
+- `legacy-*.css`: compatibility rules; migrate components to the design layer
+  when changing them rather than adding overrides here.
 
-Local validation covers all 21 articles, three model releases, 12 image cards, six list entries, local links,
-anchors, citation structure and JavaScript syntax. Native Canvas rendering checks
-all three physics covers. Browser visual verification is unavailable because the
-Tabbit runtime is not connected. The original academic-site files are preserved
-except for the requested News link.
-
-## Asset cleanup
-
-Unreferenced generated PNGs, obsolete crops, contact sheets and intermediate
-cover prompts were removed in September 2026. Current cover metadata and paper
-figure provenance remain alongside the content and build scripts. Rebuilding
-produces the identical published HTML. A local archive outside the repository
-preserves the removed experiments. Git history is unchanged.
+Cascade order is `legacy`, `design`, `editorial`, with no runtime CSS imports.
+Fonts and images resolve relative to `research-lab/`. Bundled Lora and Poppins
+retain their SIL Open Font licenses. Original scientific figures preserve their
+aspect ratios and remain in `images/source/` and `images/figures/`.
 
 ## KAT model pages
 
-`_content/kat-models.json` stores the three release cards and source-attributed
-benchmark matrices. `model_components.py` renders shared components. Dev scores
-come from the Hugging Face model card; V2.5 and V2 retain the report tables,
-missing values, scaffold labels and starred external-source exceptions. Original
-report figures remain available at native resolution; Dev explicitly identifies
-the shared V2.5 infrastructure figure. No generated benchmark images are used.
+`model_components.py` renders release cards and benchmark matrices. Dev scores
+come from its Hugging Face model card; V2.5 and V2 retain report tables, missing
+values, scaffold labels and starred external-source exceptions. Display values
+use one decimal while JSON retains source precision. Original report figures
+remain available; Dev identifies its shared V2.5 infrastructure figure.
+
+## Review and local archive
+
+Review generated pages for local links, anchors, assets, citation structure,
+responsive overflow and JavaScript errors. The main academic homepage additionally
+requires the repository's Jekyll/Bundler environment to build. Podman can provide
+Ruby 3.2.2 and Bundler 2.2.19 without changing the host Ruby installation. Build
+with `JEKYLL_ENV=production bundle _2.2.19_ exec jekyll build --safe`; the explicit
+empty `baseurl` in `_config.yml` keeps domain-root asset URLs consistent locally.
+On macOS, a Git archive in `/private/tmp` can avoid Desktop bind-mount issues.
+
+Unused generated covers, candidate prompts and particle previews are stored
+outside this repository in the local `../arxiv/research-lab-20260929/` directory.
+Its manifest records original paths and SHA-256 checksums for recovery. These
+experiments must not be committed or published. Only selected artwork remains
+in the website. Earlier experiments also exist in the separate local
+`../research-lab-local-archive-20260923/` directory.
+
+The generated site is served directly by GitHub Pages. `_content` is authoring
+material, excluded by Jekyll's underscore rule. Keep changes local until the
+owner explicitly requests pushing or publishing.

@@ -46,6 +46,7 @@
 
         if (typeof model.downloadsAllTime === "number" && downloads) {
           downloads.textContent = formatNumber(model.downloadsAllTime);
+          downloads.closest("a").title = "All-time model downloads · live Hugging Face data";
         }
         if (
           typeof model.downloadsAllTime === "number" &&
@@ -57,6 +58,7 @@
           }, model.downloadsAllTime);
 
           ecosystemDownloads.textContent = formatNumber(totalDownloads);
+          ecosystemDownloads.closest("a").title = "All-time downloads including derived models · live Hugging Face data";
         }
         if (typeof model.likes === "number" && likes) {
           likes.textContent = formatNumber(model.likes);
