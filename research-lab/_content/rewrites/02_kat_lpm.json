@@ -1,0 +1,370 @@
+{
+  "kat-v2": {
+    "headline": "KAT-Coder V2",
+    "headlineZh": "从领域专家到统一编程智能体",
+    "dek": "Train five specialists, distill them into one model, then measure it under more than one harness.",
+    "dekZh": "先训练五个专家，再蒸馏成统一模型，并在不止一套框架下测量它。",
+    "keypoints": [
+      {
+        "en": "Specialize-then-Unify: five experts — SWE, WebCoding, Terminal, WebSearch, General — each with independent SFT and RL, then consolidated into one model by on-policy distillation.",
+        "zh": "先专精再统一：SWE、WebCoding、Terminal、WebSearch、General 五个专家各自独立完成 SFT 与 RL，再通过在线策略蒸馏整合为单一模型。"
+      },
+      {
+        "en": "The infrastructure is part of the contribution: KwaiEnv sustains tens of thousands of concurrent sandboxes, MCLA stabilises MoE RL, and Tree Training removes redundant computation over tree-structured trajectories with up to 6.2× speedup.",
+        "zh": "基础设施本身也是贡献：KwaiEnv 支撑数万个并发沙箱，MCLA 稳定 MoE 的 RL 训练，Tree Training 消除树状轨迹上的冗余计算，加速最高 6.2 倍。"
+      },
+      {
+        "en": "Cross-scaffold numbers move a lot: 79.6 / 74.8 / 72.8 on SWE-bench Verified under Claude Code, OpenCode and OpenClaw. A coding score without its harness is not a complete measurement.",
+        "zh": "跨框架分数波动很大：Claude Code、OpenCode、OpenClaw 下的 SWE-bench Verified 分别为 79.6 / 74.8 / 72.8。脱离框架的编程分数不是一个完整的测量。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "A coding agent has to be several things at once: read a repository, build a frontend, drive a terminal, search the web, and hold a general conversation in between. Training all of that under one objective is the default, and it is not obviously right — capabilities with different reward shapes compete for the same gradients.",
+          "A second problem appears only once the model works. Coding agents are not called directly; they are called through a scaffold that owns the tools, the context budget and the retry logic. Behaviour tuned inside one harness can fall apart in another, and a benchmark score rarely says which harness produced it.",
+          "KAT-Coder V2 treats both problems as one training-sequence question. Train five domain experts separately, then unify them by on-policy distillation into a model that has to work across scaffolds. The result is 79.6% on SWE-bench Verified under Claude Code, against Opus 4.6 at 80.8%."
+        ],
+        "pz": [
+          "一个编程智能体必须同时胜任好几件事：读懂仓库、搭出前端、操作终端、检索网页，并在其间维持正常的通用对话。把所有能力塞进同一个训练目标是默认做法，但这未必正确——奖励形态不同的能力会争夺同一批梯度。",
+          "第二个问题只在模型能跑之后才浮现。编程智能体不是被直接调用的，而是通过一套框架被调用，而框架掌握着工具、上下文预算与重试逻辑。在某一套框架里调出来的行为，换一套可能失效，而基准分数很少说明它是在哪套框架下测得的。",
+          "KAT-Coder V2 把这两个问题当作同一个训练顺序问题处理：先分别训练五个领域专家，再用在线策略蒸馏把它们统一成一个必须跨框架工作的模型。结果是 Claude Code 下 SWE-bench Verified 79.6%，对应 Opus 4.6 的 80.8%。"
+        ]
+      },
+      {
+        "h": "Specialize, then unify",
+        "hz": "先专精，再统一",
+        "p": [
+          "The five experts are not five slices of one dataset. They face different tool interfaces, different feedback latencies and different reward signals: repository work is verified by tests minutes later, terminal work by immediate exit codes, and web coding by something closer to aesthetic judgement.",
+          "That heterogeneity is the argument for specialising. Forcing every signal into one objective from the start asks a single policy to trade off things that are not commensurable, and the usual outcome is a model that is adequate everywhere and good nowhere.",
+          "Distillation is then the real test. On-policy distillation trains the student on trajectories relevant to its own current behaviour rather than on a fixed dataset, which matters because the student’s behaviour is not any expert’s behaviour. Unification has to keep each expert’s useful habit without averaging the distinctions away."
+        ],
+        "pz": [
+          "五个专家不是同一份数据的五份切片。它们面对不同的工具接口、不同的反馈延迟和不同的奖励信号：仓库任务在几分钟后由测试判定，终端任务由即时的退出码判定，网页编程则更接近一种审美判断。",
+          "这种异质性正是支持专精的理由。从一开始就要求单一策略在不可通约的目标之间做取舍，通常的结果是一个哪儿都还行、哪儿都不精的模型。",
+          "蒸馏才是真正的考验。在线策略蒸馏用与学生当前行为相关的轨迹来训练，而不是用一份固定数据集——这一点很关键，因为学生的行为并不等于任何一个专家的行为。统一阶段必须保留每个专家的有效习惯，而不是把差异抹平。"
+        ]
+      },
+      {
+        "h": "Environments are part of the model",
+        "hz": "环境也是模型的一部分",
+        "p": [
+          "Reinforcement learning for coding needs somewhere to run. KwaiEnv is that layer: a modular infrastructure sustaining tens of thousands of concurrent sandbox instances, which is the difference between running RL on repository tasks and running it on toy ones.",
+          "Two training-side techniques address problems that only appear at that scale. MoE RL is unstable in ways dense RL is not, and MCLA is the stabiliser. Agent rollouts share long prefixes because actions branch into a tree, and Tree Training removes the redundant recomputation, with up to 6.2× speedup reported.",
+          "The third axis is scaffold generalisation: deliberately varying the harness during training so the policy does not overfit one execution interface. That choice is what makes the cross-scaffold evaluation meaningful rather than ceremonial."
+        ],
+        "pz": [
+          "面向编程的强化学习需要有地方真正跑起来。KwaiEnv 就是这一层：一套模块化的基础设施，可支撑数万个并发沙箱实例——这正是“在仓库任务上做 RL”与“在玩具任务上做 RL”的区别。",
+          "两项训练侧技术针对只在这个规模上才会暴露的问题。MoE 的 RL 存在稠密模型没有的不稳定性，MCLA 负责稳定它；智能体 rollout 由于动作分叉成树而共享大量前缀，Tree Training 则消除这部分冗余重算，报告加速最高 6.2 倍。",
+          "第三个维度是框架泛化：在训练中有意改变执行框架，使策略不会过拟合到某一种接口。正是这个选择，让跨框架评测变得有实质意义，而不只是走个过场。"
+        ]
+      },
+      {
+        "h": "What changes when the scaffold changes",
+        "hz": "换一套框架，结果就变了",
+        "p": [
+          "The headline number is harness-dependent. SWE-bench Verified gives 79.6 with Claude Code, 74.8 with OpenCode and 72.8 with OpenClaw, against Opus 4.6 at 80.8, 75.0 and 75.7. The first Opus figure is quoted from Anthropic while the other two are measured in KwaiEnv, so the comparison is not uniform and should be read that way.",
+          "The rest of the table covers what a repository-repair score cannot. PinchBench best is 88.7 with an 81.9 average, and Claw-Eval reports 55.6 for Pass^3 against a 73.4 average score — reliability and average performance are different claims and should not be collapsed into one.",
+          "Two further results are worth noting. The model ranks first across all three frontend aesthetics scenarios, and it holds generalist scores on Terminal-Bench Hard (46.8) and tau^2-Bench (93.9). Generalisation beyond coding is what a specialist recipe is most likely to lose."
+        ],
+        "pz": [
+          "头条数字依赖于框架。SWE-bench Verified 在 Claude Code、OpenCode、OpenClaw 下分别为 79.6、74.8、72.8；Opus 4.6 对应为 80.8、75.0、75.7。其中第一个 Opus 数字引自 Anthropic，另两个由 KwaiEnv 实测，因此对比并不完全对等，应当按这个前提阅读。",
+          "表格的其余部分覆盖了仓库修复分数无法覆盖的内容。PinchBench 最佳分为 88.7、平均分 81.9；Claw-Eval 的 Pass^3 为 55.6、平均分为 73.4——可靠性与平均表现是两个不同的论断，不应合并成一个。",
+          "另有两项结果值得一提。该模型在三个前端美观场景中均排名第一，并在 Terminal-Bench Hard（46.8）与 tau^2-Bench（93.9）上保持了通用能力。编程之外的泛化能力，恰恰是专精式训练方案最容易丢掉的部分。"
+        ]
+      },
+      {
+        "h": "Capability fusion is only half the problem",
+        "hz": "能力融合只是问题的一半",
+        "p": [
+          "Specialisation is a way to make progress on heterogeneous tasks without forcing every signal into one objective at once. Distillation is then the honest test of whether those gains coexist — and the measured cross-scaffold drop shows they do not transfer for free.",
+          "The 6.8-point spread between Claude Code and OpenClaw on the same benchmark is the number to remember. It is larger than most gaps between competing models, which makes harness choice a first-order variable in any coding-agent evaluation rather than a footnote.",
+          "For deployment this argues for measuring on your own stack. Benchmark scores specify tools, permissions and failure recovery only implicitly; a model that ranks well under one scaffold still needs its own retry behaviour, context budget and error handling checked before it is trusted with a real repository."
+        ],
+        "pz": [
+          "专精提供了一条路径：不必一开始就所有信号挤进同一个目标，也能在异质任务上取得进展。蒸馏则是检验这些收益能否共存的诚实测试——而实测到的跨框架掉分说明，它们并不能免费迁移。",
+          "同一基准上 Claude Code 与 OpenClaw 之间 6.8 个点的差距，是值得记住的数字。它比多数竞品模型之间的差距还大，这意味着在任何编程智能体评测中，框架选择都是一阶变量，而不是脚注。",
+          "对部署而言，结论是要在自己的技术栈上测。基准分数只是隐含地规定了工具、权限与失败恢复机制；一个在某套框架下排名不错的模型，在被交到真实仓库上之前，仍需检查它自己的重试行为、上下文预算与错误处理。"
+        ]
+      }
+    ]
+  },
+  "kat-v25": {
+    "headline": "KAT-Coder V2.5",
+    "headlineZh": "面向真实软件工程的智能体训练",
+    "dek": "The scarce resource is not parameters but reproducible environments, verifiable rewards and high-value trajectories.",
+    "dekZh": "稀缺的不是参数，而是可复现的环境、可验证的奖励与高价值的轨迹。",
+    "keypoints": [
+      {
+        "en": "AutoBuilder reconstructs multilingual repositories into sandboxes with fail-to-pass and pass-to-pass verification at scale, then regenerates self-contained task specs and recovers near-miss trajectories — the environment, not model size, is treated as the scarce resource.",
+        "zh": "AutoBuilder 把多语言仓库重建为带 fail-to-pass 与 pass-to-pass 验证的沙箱，并重新生成自包含的任务描述、回收接近成功的轨迹——被当作稀缺资源的是环境，而不是模型规模。"
+      },
+      {
+        "en": "RL is scaled with harness randomisation, a reliability-hardened sandbox, an asymmetric actor–critic PPO with hindsight-augmented value estimation, and a harness-oriented reward framework.",
+        "zh": "RL 通过框架随机化、可靠性加固的沙箱、带事后增强价值估计的非对称 actor–critic PPO，以及面向框架的奖励体系实现规模化。"
+      },
+      {
+        "en": "The outcome is a profile, not a rank: 65.2 on SWE-bench Pro and 94.9 on PinchBench average, but 60.7 on Terminal-Bench 2.1 against Opus 4.8 at 84.6.",
+        "zh": "结果是一份能力剖面，而非一个排名：SWE-bench Pro 65.2、PinchBench 平均 94.9，但 Terminal-Bench 2.1 仅 60.7，而 Opus 4.8 为 84.6。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "The bottleneck for agentic coding is not obviously parameters. A model can be large and still have nothing to learn from: repository tasks that cannot be reconstructed, rewards that cannot be verified, and trajectories too cheap to be worth training on.",
+          "That framing drives this report. KAT-Coder V2.5 is trained to act inside real, executable repositories rather than to emit a single-turn completion, and most of the engineering goes into making that training possible — environments, rewards and trajectory selection, not scale.",
+          "The outcome is deliberately uneven: the best agentic tool-use result on PinchBench, second only to the frontier Opus 4.8 on repository-level software engineering, and a clear deficit on terminal tasks. Reading that profile is more useful than reading a rank."
+        ],
+        "pz": [
+          "智能体编程的瓶颈未必在参数。一个模型可以很大，却依然没有东西可学：仓库任务无法重建，奖励无法验证，轨迹又廉价到不值得训练。",
+          "这份报告正是以这一点为前提展开的。KAT-Coder V2.5 被训练成在真实可执行的仓库中行动，而不是输出一个单轮补全；绝大部分工程投入用于让这种训练成为可能——环境、奖励与轨迹筛选，而不是规模。",
+          "因此结果刻意是不均衡的：在 PinchBench 上取得最佳的智能体工具使用结果，在仓库级软件工程上仅次于前沿的 Opus 4.8，而在终端任务上存在明显短板。读这份剖面比读一个排名更有用。"
+        ]
+      },
+      {
+        "h": "Environments that can teach",
+        "hz": "能够教东西的环境",
+        "p": [
+          "A repository task is only useful for RL if it can be rebuilt and its success can be checked. AutoBuilder does both: it reconstructs multilingual repositories into sandboxed environments with fail-to-pass and pass-to-pass verification, so a candidate patch is judged against tests that failed before and tests that must keep passing.",
+          "From those environments the pipeline does three more things that determine data quality. It regenerates self-contained task specifications, so the agent is not trained on underspecified prompts; it recovers near-miss trajectories, which are the most informative failures; and it filters supervision by process rather than by outcome alone.",
+          "KwaiClawEnv covers the other half of the distribution — tool use — by synthesising trajectories from executable services and real task seeds. The split is deliberate: repository work rewards long-horizon planning, tool work rewards correct interface use, and mixing them without structure produces a policy mediocre at both."
+        ],
+        "pz": [
+          "一个仓库任务只有在可被重建、且成功可被判定时，才对 RL 有用。AutoBuilder 同时做到了这两点：它把多语言仓库重建为带 fail-to-pass 与 pass-to-pass 验证的沙箱环境，于是候选补丁既要看此前失败的测试是否通过，也要看原本通过的测试是否仍然通过。",
+          "在这些环境之上，流水线还做了三件决定数据质量的事：重新生成自包含的任务描述，避免智能体在描述不充分的提示上训练；回收接近成功的轨迹，因为它们是最有信息量的失败；并按过程而非仅按结果筛选监督信号。",
+          "KwaiClawEnv 覆盖分布的另一半——工具使用——通过可执行服务与真实任务种子合成轨迹。这个切分是有意为之：仓库任务奖励长程规划，工具任务奖励正确的接口使用，不加结构地把两者混在一起，只会得到一个两样都平庸的策略。"
+        ]
+      },
+      {
+        "h": "Rewards that survive long trajectories",
+        "hz": "能撑过长轨迹的奖励",
+        "p": [
+          "Long-horizon RL fails in specific ways. Sparse terminal rewards give almost no signal across a hundred actions; a flaky sandbox turns an environment bug into a negative gradient; and a policy that has only seen one harness learns the harness instead of the task.",
+          "The report addresses each one. Harness randomisation stops the policy overfitting a single interface, a reliability-hardened sandbox keeps execution failures from being misread as policy failures, and a harness-oriented reward framework credits useful intermediate progress instead of only a final pass.",
+          "The optimiser is an asymmetric actor–critic PPO with hindsight-augmented value estimation. Asymmetry gives the critic more information than the actor at training time, and hindsight augmentation lets a failed rollout still yield value estimates for the states it reached. Both exist to make long credit-assignment chains tractable."
+        ],
+        "pz": [
+          "长程 RL 的失败方式有几种具体的形态。稀疏的终局奖励在上百个动作之间几乎不提供信号；不稳定的沙箱会把环境缺陷变成负梯度；而只见过一种框架的策略，学到的会是框架而不是任务。",
+          "报告对三者逐一应对：框架随机化阻止策略过拟合单一接口；可靠性加固的沙箱避免把执行失败误读为策略失败；面向框架的奖励体系则对有用的中间进展给分，而不只看最终是否通过。",
+          "优化器是带事后增强价值估计的非对称 actor–critic PPO。非对称让 critic 在训练时掌握比 actor 更多的信息，事后增强则让失败的 rollout 仍能为它到达过的状态提供价值估计。两者的存在都是为了让很长的信用分配链变得可处理。"
+        ]
+      },
+      {
+        "h": "A profile, not a rank",
+        "hz": "一份剖面，而不是一个排名",
+        "p": [
+          "Reported scores separate cleanly by capability. On repository coding, KAT-Coder V2.5 reaches 65.2 on SWE-bench Pro and 53.1 on KAT Code Bench, with Opus 4.8 ahead at 69.2 and 57.3. On tool workflows the ordering shifts: 94.9 on PinchBench average, while KAT Claw Bench gives 85.5 against Opus at 90.7.",
+          "Terminal-Bench 2.1 is where the gap is unmistakable — 60.7 against 84.6. That is not noise around an average; it is a missing capability, and it is the honest cost of a recipe that concentrates on repository and tool work.",
+          "SciCode at 50.3, against the table’s joint high of 53.5, is the other informative line. Scientific programming is close, which suggests the deficit is specific to terminal-style interaction rather than to reasoning about code in general."
+        ],
+        "pz": [
+          "各项分数按能力清晰地分开。在仓库编程上，KAT-Coder V2.5 于 SWE-bench Pro 取得 65.2、KAT Code Bench 取得 53.1，Opus 4.8 以 69.2 与 57.3 领先；在工具工作流上排序发生变化：PinchBench 平均分 94.9，而 KAT Claw Bench 为 85.5，Opus 为 90.7。",
+          "Terminal-Bench 2.1 是差距最明确的地方——60.7 对 84.6。这不是围绕均值的噪声，而是一项缺失的能力，也是把训练重心压在仓库与工具任务上时付出的诚实代价。",
+          "另一条有信息量的数字是 SciCode 的 50.3，对照表中并列最高的 53.5。科学编程上的差距很小，这提示短板特定于终端式交互，而不是通用意义上的代码推理能力。"
+        ]
+      },
+      {
+        "h": "What the training system makes possible",
+        "hz": "这套训练系统带来了什么",
+        "p": [
+          "The transferable idea is that environments and feedback quality are first-class levers. Reconstructing a reproducible task, verifying it from both directions, and selecting trajectories by process rather than outcome all change what RL can extract from the same model.",
+          "It is worth being precise about what the report does not show. These are the team’s own evaluations under their own harness, peer numbers come from published results rather than a shared re-run, and most tests are run once. Differences of a point or two are not resolvable at that resolution.",
+          "The practical reading is workload-specific. If the work is repository-scale engineering with heavy tool use, the profile supports this model. If it is terminal-heavy, the same profile says so plainly — and that is exactly what a benchmark average would have hidden."
+        ],
+        "pz": [
+          "可迁移的核心认识是：环境与反馈质量是与模型并列的一级杠杆。重建可复现的任务、从两个方向验证它、按过程而非结果筛选轨迹，都会改变 RL 能从同一个模型里榨出什么。",
+          "也需要说清这份报告没有展示什么。这些是团队在自己框架下的自评测，同行数字来自公开结果而非统一重跑，多数测试也只跑一次。一分两分的差距在这个分辨率上是无法判定的。",
+          "因此实用的读法是按工作负载来读。如果任务是仓库规模的工程、且重度使用工具，这份剖面支持该模型；如果任务以终端为主，同一份剖面也直白地说了不支持——而这恰恰是基准平均分本来会掩盖掉的信息。"
+        ]
+      }
+    ]
+  },
+  "kat-v25-dev": {
+    "headline": "KAT-Coder V2.5-Dev",
+    "headlineZh": "开放权重的智能体编程模型",
+    "dek": "A 35B-A3B coding model whose model card reports the failure modes as carefully as the scores.",
+    "dekZh": "一个 35B-A3B 编程模型，其模型卡对失败模式的记录与对分数的记录同样细致。",
+    "keypoints": [
+      {
+        "en": "35B total / 3B active MoE built on Qwen3.6-35B-A3B, post-trained with 127K supervised examples then RL, keeping the V2.5 infrastructure: token-consistent rollout and training, truncated importance weights, checked environments.",
+        "zh": "基于 Qwen3.6-35B-A3B 的 35B 总参数 / 3B 激活 MoE，经 127K 监督样本后接 RL 训练，沿用 V2.5 的基础设施：token 一致的 rollout 与训练、截断重要性权重、经过校验的执行环境。"
+      },
+      {
+        "en": "A binary reward caused collapse — some turns exceeded 70 parallel tool calls. Penalties on excessive calls, failures, empty tool blocks and repetition produced ten stable epochs; malformed tool tags fell from 9.34% to 0.28%.",
+        "zh": "二元奖励导致训练崩溃——部分回合的并行工具调用超过 70 次。对过量调用、失败、空工具块与重复的惩罚换来了十个稳定 epoch；畸形工具标签率从 9.34% 降到 0.28%。"
+      },
+      {
+        "en": "69.4 on SWE-bench Verified, 63.0 Multilingual, 45.96 Pro, all measured through one in-house pipeline (Claude Code 2.1.195, pass@1, 256k context) rather than copied from each model’s published card.",
+        "zh": "SWE-bench Verified 69.4、Multilingual 63.0、Pro 45.96，全部由同一套内部流水线实测（Claude Code 2.1.195、pass@1、256k 上下文），而非照抄各模型已发布的卡片。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "An open-weight coding model is judged twice: once on benchmarks, and once on whether it behaves sensibly at the tool interface. The second is where deployed agents actually fail — not by writing wrong code, but by issuing seventy tool calls in one turn and emitting tags the parser cannot read.",
+          "This release is a 35B-A3B mixture of experts built on Qwen3.6-35B-A3B, post-trained with 127K supervised examples followed by reinforcement learning. The model card is unusually useful because it reports the failures alongside the scores.",
+          "The number that sets the tone is 9.34% to 0.28%: the rate of malformed tool tags before and after the reward shaping described below. Under a binary success reward the model did not merely fail to improve — it collapsed, with some turns issuing more than seventy parallel tool calls."
+        ],
+        "pz": [
+          "一个开放权重的编程模型会被评判两次：一次看基准，一次看它在工具接口处的行为是否得体。真正让已部署智能体失败的往往是后者——不是写错代码，而是在一个回合里发出七十次工具调用，并输出解析器读不懂的标签。",
+          "本次发布是一个基于 Qwen3.6-35B-A3B 的 35B-A3B 混合专家模型，先用 127K 监督样本后训练，再进行强化学习。这份模型卡格外有用，因为它把失败和分数一起报了出来。",
+          "定调的那个数字是 9.34% → 0.28%：畸形工具标签率在下文所述的奖励整形前后的变化。在纯二元成功奖励下，模型不只是没能提升——它直接崩溃了，部分回合发出超过七十次并行工具调用。"
+        ]
+      },
+      {
+        "h": "What a binary reward teaches",
+        "hz": "二元奖励教会了模型什么",
+        "p": [
+          "Give RL a pure success/failure reward and the shortest path to a pass is often to try everything. The card describes exactly that: tool-call volume exploding until single turns contained more than seventy parallel calls, a rational response to a reward that only asks whether something eventually worked.",
+          "Format degraded alongside it. Malformed tool tags rose to 9.34% and continuous repetition within a single turn appeared in 0.34% of cases — small in absolute terms, but fatal for an agent whose next action depends on parsing its previous one.",
+          "The remedy was to make the reward describe behaviour rather than only outcome: penalties for excessive calls, for failed calls, for empty tool blocks and for repetition. With those in place the run held for ten stable epochs, malformed tags fell to 0.28% and the repetition rate to zero."
+        ],
+        "pz": [
+          "给 RL 一个纯粹的成功／失败奖励，通往通过的最短路径往往是全都试一遍。模型卡描述的正是这一点：工具调用量不断膨胀，直到单个回合内出现超过七十次并行调用——对于一个只关心最后有没有成的奖励来说，这是理性的反应。",
+          "格式也随之退化。畸形工具标签率升至 9.34%，单回合内的连续重复出现在 0.34% 的样本中——绝对值不大，但对一个下一步动作依赖解析上一步输出的智能体而言是致命的。",
+          "补救办法是让奖励描述行为而不只是结果：对过量调用、失败调用、空工具块和重复施加惩罚。加上这些之后，训练稳定地维持了十个 epoch，畸形标签率降到 0.28%，重复率降到零。"
+        ]
+      },
+      {
+        "h": "Measuring peers on the same rig",
+        "hz": "用同一套装置测量同行",
+        "p": [
+          "Model comparison in this space is usually a table of numbers copied from other people’s cards, each produced under a different harness, context budget and serving configuration. This card instead downloads public peer weights and re-runs them through one in-house pipeline.",
+          "That choice trades coverage for comparability. Every model gets Claude Code 2.1.195, pass@1 and a 256k context, so a gap between two rows is at least attributable to the model rather than to the scaffold — at the cost of the results describing one particular deployment.",
+          "The further cost is that most tests run once unless an obvious error shows up. Single-run results cannot resolve small gaps, and the card does not claim they do. Differences of a point or two should be treated as unresolved."
+        ],
+        "pz": [
+          "这个领域的模型对比，通常是一张从别人卡片上抄来的数字表，而每个数字都产生于不同的框架、上下文预算与服务配置。这份卡片改为下载公开的同行权重，用同一套内部流水线重跑。",
+          "这个选择是以覆盖度换可比性。每个模型都使用 Claude Code 2.1.195、pass@1 与 256k 上下文，因此两行之间的差距至少可以归因于模型而非框架——代价是这些结果只描述某一种特定部署。",
+          "另一个代价是多数测试只跑一次，除非出现明显错误。单次运行无法分辨微小差距，卡片也没有声称可以。一两分的差异应当被视为未定。"
+        ]
+      },
+      {
+        "h": "Where it lands",
+        "hz": "落在什么位置",
+        "p": [
+          "Under that pipeline the model scores 69.4 on SWE-bench Verified, 63.0 on Multilingual and 45.96 on Pro. Each measures something different: repository repair against tests, the same across languages, and harder repository tasks under a stricter protocol.",
+          "What makes the release interesting is the pairing of those scores with behavioural measurements. A model can post a respectable SWE-bench number while emitting unparseable tool calls at a rate that makes it unusable inside a real agent loop; reporting both should be the convention.",
+          "It is also worth noting what is not claimed. These are single-run reproductions under a stated harness, and peer scores here can differ from the same models’ official reports — a reminder that an agent’s score is a property of a system, not of a checkpoint."
+        ],
+        "pz": [
+          "在这套流水线下，模型在 SWE-bench Verified 上得 69.4，Multilingual 得 63.0，Pro 得 45.96。三者测的是不同的东西：对照测试的仓库修复、跨语言的同类任务，以及协议更严格的困难仓库任务。",
+          "让这次发布有意思的，是这些分数与行为指标的成对呈现。一个模型完全可以在 SWE-bench 上拿出体面的数字，同时以某一频率输出无法解析的工具调用，高到在真实智能体循环里根本没法用；两者同时报告才应该成为惯例。",
+          "还需要说明哪些是没有被声称的。这些是在既定框架下的单次复现，同行分数也可能与同一模型官方报告中的数字不同——这提醒我们：智能体的分数是系统的属性，而不是某个 checkpoint 的属性。"
+        ]
+      },
+      {
+        "h": "Open weights as an inspectable artifact",
+        "hz": "把开放权重当作可检验的对象",
+        "p": [
+          "The value of open weights is not only cost. A 3B-active MoE can be served cheaply, but more importantly it can be instrumented: you can reproduce the harness, watch the tool-call distribution yourself, and check whether the reported failure modes appear in your workload.",
+          "That is the right use of this card. It is a starting point for studying long-horizon behaviour under a chosen harness, not independent evidence of universal superiority — the rankings come from the same team that built the model.",
+          "For anyone selecting a model the sequence is straightforward: reproduce the evaluation protocol, then check behaviour on the actual workload. Benchmark scores tell you where to look; tool-call statistics and format-error rates tell you whether the model will survive contact with your tool interface."
+        ],
+        "pz": [
+          "开放权重的价值不只是成本。3B 激活的 MoE 可以低成本部署，但更重要的是它可以被插桩：你可以复现那套框架，自己观察工具调用分布，并检查报告里的失败模式是否出现在你的工作负载中。",
+          "这才是这张卡片的正确用法。它是研究特定框架下长程行为的起点，而不是“普遍更优”的独立证据——毕竟排名来自构建该模型的同一团队。",
+          "对任何需要选型的人来说，步骤很直接：先复现评测协议，再在真实工作负载上检查行为。基准分数告诉你该往哪儿看，而工具调用统计与格式错误率告诉你这个模型能否扛住与你的工具接口的接触。"
+        ]
+      }
+    ]
+  },
+  "lpm": {
+    "headline": "LPM: Generative video restoration at scale",
+    "headlineZh": "走向工业规模的生成式视频恢复",
+    "dek": "A diffusion restoration model deployed on roughly 45% of a platform’s viewing time — and paid for by bandwidth.",
+    "dekZh": "一个部署在平台约 45% 观看时长上的扩散恢复模型——而且由带宽节省为它买单。",
+    "keypoints": [
+      {
+        "en": "Training is staged: LPM-Image learns a spatial restoration prior, then LPM-Video adds temporal alignment and fusion — separating what detail should look like from how it should move.",
+        "zh": "训练是分阶段的：LPM-Image 先学习空间恢复先验，LPM-Video 再加入时间对齐与融合——把“细节长什么样”与“它该如何运动”分开处理。"
+      },
+      {
+        "en": "Temporal-pyramid inference uses distant keyframes for long-range guidance and nearby anchor frames for local continuity, so quality does not depend on treating every clip window as an independent video.",
+        "zh": "时间金字塔推理用远端关键帧提供长程引导、用邻近锚帧保证局部连续，因此质量不依赖于把每个片段窗口当成独立的视频。"
+      },
+      {
+        "en": "At comparable perceptual quality the production pipeline cuts bitrate by about 20% versus Kuaishou’s in-house codec — generative restoration paying for itself in bandwidth, not only in perceived quality.",
+        "zh": "在感知质量相当的前提下，生产流水线相比快手自研编码器降低约 20% 码率——生成式恢复不只提升观感，还能靠带宽把成本赚回来。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "User-generated video carries every degradation at once — sensor noise, motion blur, compression blocking — and the mix differs from clip to clip. Applying an image restoration model frame by frame fixes each frame and quietly ruins the video: textures shimmer because nothing constrains neighbouring frames to agree.",
+          "Moving to a video model removes the flicker and introduces two harder constraints. Cost scales with the number of frames, and a drift invisible over two seconds becomes obvious over two minutes. Arbitrary length is the requirement that breaks most designs.",
+          "LPM is a diffusion-based generative restoration framework built for exactly that setting and, as far as the authors know, the first generative video restoration model deployed at industrial scale. Restored videos now account for roughly 45% of Kuaishou’s total viewing time."
+        ],
+        "pz": [
+          "用户生成的视频同时带有各种退化——传感器噪声、运动模糊、压缩块效应——而且不同片段的配比各不相同。逐帧套用图像恢复模型能修好每一帧，却会悄悄毁掉整段视频：纹理不停闪烁，因为没有任何东西约束相邻帧保持一致。",
+          "换成视频模型消除了闪烁，却引入两个更难的约束。成本随帧数线性增长，而两秒内看不出的漂移在两分钟后会变得刺眼。任意长度正是让多数设计失效的那条要求。",
+          "LPM 是专为这种场景构建的扩散式生成恢复框架，并且据作者所知，是第一个在工业规模上部署的生成式视频恢复模型。经其处理的视频目前约占快手总观看时长的 45%。"
+        ]
+      },
+      {
+        "h": "Appearance first, then time",
+        "hz": "先学观感，再学时间",
+        "p": [
+          "The training split is the central design decision. LPM-Image learns what a restored frame should look like — texture, edge structure, the statistics of plausible detail under heavy degradation. LPM-Video then learns alignment and fusion across frames, reusing the spatial prior instead of relearning it with a temporal dimension bolted on.",
+          "Staging it this way is cheaper, and more importantly cleaner. Learning appearance and motion jointly entangles two failure modes that look similar in a loss curve — a hallucinated texture and a misaligned one — whereas the staged model can be diagnosed one level at a time.",
+          "The architecture follows the same economy: a 2D VAE with a factorized 2D+1D diffusion transformer, so spatial and temporal attention are not priced identically. Full 3D attention over long clips is the obvious approach and the one that does not fit a serving budget."
+        ],
+        "pz": [
+          "训练如何切分是核心的设计决策。LPM-Image 学习一张恢复后的帧应当长什么样——纹理、边缘结构、重退化下合理细节的统计规律；LPM-Video 随后学习跨帧的对齐与融合，复用空间先验，而不是把时间维度硬接上去重新学一遍。",
+          "分阶段这样做更便宜，更重要的是更干净。联合学习观感与运动会把两种失效模式纠缠在一起——幻觉纹理与错位纹理在损失曲线上看起来差不多——而分阶段模型可以逐层定位问题。",
+          "架构遵循同样的经济性：2D VAE 配合分解式的 2D+1D 扩散 transformer，把空间注意力与时间注意力区别定价。对长片段做全 3D 注意力是最直觉的方案，也正是塞不进服务预算的那一类方案。"
+        ]
+      },
+      {
+        "h": "Keeping long videos coherent",
+        "hz": "让长视频保持连贯",
+        "p": [
+          "Arbitrary length is handled at inference rather than by training on longer clips. Temporal-pyramid inference gives two jobs to two kinds of reference: distant keyframes anchor overall appearance, while nearby restored frames act as local anchors for motion and texture continuity.",
+          "The distinction matters because the failure modes live at different time scales. Without local anchors, consecutive frames disagree and detail flickers; without long-range guidance, a slow drift in colour or contrast accumulates until the end of the clip no longer matches the beginning.",
+          "Crucially, later windows are restored using information already restored, not independently. A pipeline that treats every fixed window as its own clip forces each window to re-invent a consistent appearance, which is both slower and less stable than inheriting one."
+        ],
+        "pz": [
+          "任意长度是在推理阶段解决的，而不是靠训练更长片段。时间金字塔推理把两种工作分给两类参考：远端关键帧锚定整体观感，邻近的已恢复帧则作为运动与纹理连续性的局部锚点。",
+          "这个区分很重要，因为两种失效模式处于不同的时间尺度。没有局部锚点，相邻帧会互相矛盾、细节闪烁；没有长程引导，颜色或对比度的缓慢漂移会不断累积，直到片尾与片头对不上。",
+          "关键在于，后续窗口是借助已经恢复好的信息来恢复的，而不是各自独立处理。一个把每个固定窗口都当作独立片段的流水线，会迫使每个窗口重新发明一套一致的观感，这既更慢，也不如继承一套来得稳定。"
+        ]
+      },
+      {
+        "h": "What deployment measured",
+        "hz": "部署中真正测到了什么",
+        "p": [
+          "Evaluation runs at two levels, and the second is the unusual one. Offline comparisons assess restoration quality and temporal behaviour against other methods; production deployment measures viewing experience and bitrate inside Kuaishou’s own pipeline.",
+          "The offline numbers are the quality claim; the production numbers are the systems claim. At comparable perceptual quality the pipeline reduces bitrate by roughly 20% relative to the in-house codec, which the report translates into annual bandwidth savings on the order of hundreds of millions.",
+          "There is a reason a restoration model reduces bitrate. Cleaner high-frequency content and fewer hard-to-encode artifacts make the encoder’s job easier, so perceived quality and serving cost are not independent objectives here — improving one improved the other."
+        ],
+        "pz": [
+          "评测在两个层面展开，第二个层面并不常见。离线对比衡量恢复质量与时间行为；生产部署则在快手自有流水线内衡量观看体验与码率。",
+          "离线数字是质量论断，生产数字是系统论断。在感知质量相当的前提下，该流水线相对自研编码器降低约 20% 码率，报告将其折算为每年数亿元量级的带宽成本节省。",
+          "恢复模型能降码率是有原因的。更干净的高频内容与更少难以编码的伪影，让编码器的工作变轻松；因此在这里，感知质量与服务成本并非彼此独立的目标——改善其中一个，另一个随之改善。"
+        ]
+      },
+      {
+        "h": "Scale is a system property",
+        "hz": "规模是一种系统属性",
+        "p": [
+          "The result does not come from one architecture. Curated data, staged training, temporal inference and integration with the encoding pipeline are all load-bearing; a sharper single frame would not have produced the bitrate saving on its own.",
+          "The 45% figure is also a statement about tolerance. At that volume the model runs on content distributions nobody curated, which is a stronger robustness claim than any benchmark average — a reminder that the test set that matters is production traffic.",
+          "The numbers should stay tied to their context. Bitrate savings depend on the codec used as the baseline, the content mix and the quality criterion; a different platform with a different encoder would not necessarily reproduce 20%. What transfers is the argument that generative restoration can be cheap enough to be a default."
+        ],
+        "pz": [
+          "这个结果并非来自某一个架构。精心构造的数据、分阶段的训练、时间维度的推理，以及与编码流水线的集成，都是承重的；单独把某一帧变得更锐利，并不能带来码率上的节省。",
+          "45% 这个数字同时也是关于容忍度的论断。在这个体量上，模型跑在没有任何人精心挑选过的内容分布之上，这比任何基准平均分都更有力地说明了鲁棒性——它提醒我们，真正重要的测试集就是线上流量。",
+          "这些数字应当绑定其语境。码率节省取决于作为基线的编码器、内容构成与质量判据；换一个平台、换一个编码器，未必能复现那 20%。可以迁移的是那个论断：生成式恢复可以便宜到成为默认选项。"
+        ]
+      }
+    ]
+  }
+}

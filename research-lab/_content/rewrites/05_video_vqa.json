@@ -1,0 +1,278 @@
+{
+  "instantvir": {
+    "headline": "Bringing diffusion-based video restoration to real time",
+    "headlineZh": "让扩散式视频恢复走向实时",
+    "dek": "Distillation moves iterative sampling out of serving and into training — a causal student learns to hit a bidirectional teacher’s target in one pass.",
+    "dekZh": "蒸馏把迭代采样从服务阶段搬到训练阶段——一个因果学生学会一次前向就命中双向教师的目标。",
+    "keypoints": [
+      {
+        "en": "Distillation rather than approximation: a bidirectional video diffusion teacher is distilled into a causal autoregressive student that restores in one forward pass, inheriting temporal modelling while removing iterative test-time optimisation.",
+        "zh": "是蒸馏而非近似：双向视频扩散教师被蒸馏为一个因果自回归学生，一次前向完成恢复，继承时间建模能力，同时去掉迭代式的测试时优化。"
+      },
+      {
+        "en": "The distillation is prior-driven — it needs only the teacher and known degradation operators, with no externally paired clean/degraded video dataset. A forward model connects a candidate clean clip to the measurement it would have produced.",
+        "zh": "蒸馏由先验驱动：只需要教师模型与已知的退化算子，不需要外部配对的清晰／退化视频数据集。前向模型把候选的清晰片段连接到它本应产生的观测。"
+      },
+      {
+        "en": "35.56 FPS for the LeanVAE variant and 13.91 FPS for the original-VAE model, measured on a single NVIDIA A800 80GB, with up to 100× speedups over iterative video diffusion solvers across inpainting, deblurring and super-resolution.",
+        "zh": "LeanVAE 变体 35.56 FPS、原始 VAE 模型 13.91 FPS，均在单张 NVIDIA A800 80GB 上测量；相对迭代式视频扩散求解器最高加速 100 倍，覆盖修复、去模糊与超分辨率。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "Restoring a video stream is an inverse problem with a deadline. You observe a degraded sequence and want the clean one, but the answer has to arrive before the next frames do — which rules out the methods that currently produce the best reconstructions.",
+          "The two available options fail in specific ways. Adapting an image diffusion model frame by frame and adding a temporal regulariser produces flicker, because consistency is imposed after the fact rather than modelled. Using a native video diffusion model properly needs iterative posterior sampling, which is orders of magnitude too slow for streaming.",
+          "InstantViR removes the iteration by moving it into training. A bidirectional video diffusion teacher is distilled into a causal autoregressive student that maps a degraded clip to a restored one in a single forward pass, reporting 35.56 FPS for the LeanVAE variant and up to 100× speedups over iterative solvers."
+        ],
+        "pz": [
+          "恢复一段视频流是一个带截止时间的逆问题。你观测到一段退化序列，想要其中干净的那一段，但答案必须在下一批帧到来之前给出——这直接排除了当前重建质量最好的那批方法。",
+          "现有两种方案各有其具体的失败方式。逐帧套用图像扩散模型再补一个时间正则项会产生闪烁，因为一致性是在事后被强加的，而不是被建模出来的；而正确使用原生视频扩散模型需要迭代的后验采样，对流式场景来说慢了几个数量级。",
+          "InstantViR 通过把迭代搬进训练阶段来消除它：一个双向视频扩散教师被蒸馏为一个因果自回归学生，单次前向即可把退化片段映射为恢复片段，LeanVAE 变体报告 35.56 FPS，相对迭代式求解器最高加速 100 倍。"
+        ]
+      },
+      {
+        "h": "Distilling iteration into a single pass",
+        "hz": "把迭代蒸馏进一次前向",
+        "p": [
+          "Teacher and student face different constraints. The teacher can look at the whole clip and use future frames when reconstructing the present; the student, running on a stream, cannot. Distillation transfers the teacher’s reconstruction behaviour into a form that respects that causality.",
+          "The student is autoregressive over time, so each frame is produced from what has already arrived, while the training target comes from a model that had the luxury of bidirectional context. This is the standard reason to distill: the expensive model sets the target and the cheap model learns to hit it.",
+          "LeanVAE addresses the cost that remains once iteration is gone. Even a single pass through a video diffusion model spends much of its time encoding and decoding latents, so replacing the backbone VAE with a lighter one — through teacher-space regularised distillation — is where a further roughly 2.5× of throughput comes from."
+        ],
+        "pz": [
+          "教师与学生面对不同的约束。教师可以看完整段片段，在重建当前帧时使用未来帧；而跑在流上的学生不能。蒸馏把教师的重建行为迁移成一种尊重这种因果性的形式。",
+          "学生在时间上是自回归的，每一帧都由已经到达的内容生成，而训练目标则来自一个享有双向上下文特权的模型。这正是蒸馏的标准理由：昂贵的模型负责设定目标，便宜的模型学会命中它。",
+          "LeanVAE 解决的是迭代消除之后仍然剩下的那部分成本。即使只做一次前向，视频扩散模型也有大量时间花在潜变量的编码与解码上；因此用更轻的 VAE 替换骨干 VAE——通过教师空间正则化的蒸馏——才是那额外约 2.5 倍吞吐的来源。"
+        ]
+      },
+      {
+        "h": "Supervision from the forward operator",
+        "hz": "来自前向算子的监督",
+        "p": [
+          "Amortised restoration usually needs pairs: a clean video and its degraded version, collected or synthesised. InstantViR avoids them by using known degradation operators instead — inpainting masks, blur kernels, downsampling — which can be applied to any candidate clean video to produce the measurement it should have yielded.",
+          "That turns training into a consistency requirement. The student proposes a clean clip, the known forward operator predicts what the sensor would have recorded, and the discrepancy is the training signal. No external paired data is needed and the inverse problem stays explicit rather than being folded into a learned prior.",
+          "The trade is scope. Known operators cover degradations you can write down, which is most of what capture and streaming pipelines produce. Degradations that are not modelled — an unknown sensor pipeline, codec artifacts — lie outside what the student was trained to invert."
+        ],
+        "pz": [
+          "摊还式恢复通常需要配对数据：一段清晰视频及其退化版本，或采集或合成。InstantViR 改用已知的退化算子来避开这一点——修复掩膜、模糊核、下采样——它们可以施加到任意候选清晰视频上，产出它本应产生的观测。",
+          "这把训练变成了一致性要求：学生提出一段清晰片段，已知的前向算子预测传感器本会记录下什么，两者之差就是训练信号。既不需要外部配对数据，逆问题也保持显式，而没有被折叠进一个学到的先验里。",
+          "代价是适用范围。已知算子覆盖的是那些你能写下来的退化，而这正是采集与流式流水线所产生的大多数情况。未被建模的退化——未知的传感器流水线、编码伪影——则落在学生被训练去求逆的范围之外。"
+        ]
+      },
+      {
+        "h": "Throughput, and what it depends on",
+        "hz": "吞吐量，以及它依赖什么",
+        "p": [
+          "Training uses 6,000 Open-Sora clips with measurements generated through known forward operators; evaluation uses 500 held-out clips plus REDS30 for zero-shot transfer, covering random inpainting, Gaussian deblurring and 4× super-resolution at 832×480.",
+          "The paper measures per-frame fidelity, perceptual quality, temporal distribution and throughput, and reports the original-VAE model separately from the LeanVAE variant — 13.91 and 35.56 FPS on a single NVIDIA A800 80GB. Reporting both is what makes the number usable.",
+          "Across the three tasks the one-step approach matches or surpasses diffusion baselines on the reported temporal and reconstruction measures. That is the substantive result: the speedup is not bought with a large quality drop, because the student inherits the teacher’s prior rather than approximating it from scratch."
+        ],
+        "pz": [
+          "训练使用 6,000 个 Open-Sora 片段，观测由已知前向算子生成；评测使用 500 个留出片段，并以 REDS30 检验零样本迁移，覆盖随机修复、高斯去模糊与 832×480 的 4× 超分辨率。",
+          "论文测量逐帧保真度、感知质量、时间分布与吞吐量，并把原始 VAE 模型与 LeanVAE 变体分开报告——单张 NVIDIA A800 80GB 上分别为 13.91 与 35.56 FPS。同时报出两者，这个数字才可用。",
+          "在三项任务上，一步式方法在所报的时间与重建指标上达到或超过扩散基线。这才是实质结果：加速并不是用大幅掉质量换来的，因为学生继承的是教师的先验，而不是从零去近似它。"
+        ]
+      },
+      {
+        "h": "Real time is a property of a setup",
+        "hz": "实时是一整套配置的属性",
+        "p": [
+          "Distillation moves iterative work from serving time into training time. That is the right trade when many clips share a known restoration task, and a worse one when the degradation changes often or when inputs fall outside the training distribution.",
+          "The throughput figure also needs its conditions attached. Model variant, resolution and hardware all move it, and 832×480 on one accelerator is a specific operating point — quoting frames per second without those is why real-time claims are so hard to compare across papers.",
+          "The interesting consequence is what becomes possible rather than what gets faster. At tens of frames per second, diffusion-quality restoration fits into interactive and editable streaming pipelines — telepresence, AR/VR, live capture — where an iterative solver was never a candidate regardless of its quality."
+        ],
+        "pz": [
+          "蒸馏把迭代工作从服务阶段搬到了训练阶段。当大量片段共享同一个已知恢复任务时，这是正确的取舍；而当退化频繁变化、或输入落在训练分布之外时，这个取舍就变差了。",
+          "吞吐量数字也必须附带它的条件。模型变体、分辨率与硬件都会改变它，而在一张加速卡上跑 832×480 是一个具体的运行点——脱离这些条件只报帧率，正是各篇论文的“实时”宣称难以相互比较的原因。",
+          "有意思的后果在于什么变得可能，而不只是什么变得更快。在每秒几十帧的水平上，扩散质量的恢复得以进入交互式、可编辑的流式流水线——远程呈现、AR/VR、实时采集——而在这些场景里，迭代式求解器无论质量多高都从来不是候选。"
+        ]
+      }
+    ]
+  },
+  "cassr": {
+    "headline": "A clearer reference for generative super-resolution",
+    "headlineZh": "为生成式超分辨率提供更清晰的参考",
+    "dek": "One diffusion pass has to infer content and generate detail at once. CasSR spends a stage on the condition first.",
+    "dekZh": "一次扩散要同时推断内容与生成细节。CasSR 愿意先花一个阶段把条件修好。",
+    "keypoints": [
+      {
+        "en": "Two jobs, one condition: inferring content and generating detail are forced into a single diffusion pass, and when the condition is badly degraded the prior resolves the ambiguity by inventing.",
+        "zh": "两件事挤在一个条件里：推断内容与生成细节被压进同一次扩散；当条件严重退化时，先验只能靠编造来消解歧义。"
+      },
+      {
+        "en": "A preliminary reference image is generated first to extract content and reduce degradation, then a cascaded controllable diffusion model generates from that reference, with a multi-attention mechanism tying the backbone back to the original image.",
+        "zh": "先生成一张初步参考图以提取内容、减轻退化，随后由级联可控扩散模型以该参考为条件生成；多注意力机制则把骨干重新锚定回原始图像。"
+      },
+      {
+        "en": "Relative improvements of 3.82% in MUSIQ and 7.05% in MANIQA on DIV2K validation over the next-best compared method, with visual comparisons showing retention of small identifying details such as a penguin’s eye and wing boundaries.",
+        "zh": "DIV2K 验证集上相对次优对比方法的提升为 MUSIQ 3.82%、MANIQA 7.05%；视觉对比显示企鹅的眼睛、翅膀轮廓等小型识别性细节得以保留。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "Real-world super-resolution asks a diffusion model to do two jobs at once. It must infer what the degraded image contains, and it must generate a high-resolution version of it — and it does both from one conditioning signal that is itself damaged.",
+          "The failure follows directly. When the condition is uninformative, the prior takes over and produces the most plausible content rather than the correct content. That is where semantic loss and invented detail come from: not from a weak prior, but from a prior asked to resolve an ambiguity it was given no evidence to resolve.",
+          "CasSR separates the two jobs in sequence. A first stage produces a preliminary reference image that is cleaner and more informative than the original observation; a second, cascaded controllable diffusion stage generates the final result from it. On DIV2K validation this improves MUSIQ by 3.82% and MANIQA by 7.05% over the next-best compared method."
+        ],
+        "pz": [
+          "真实场景的超分辨率要求一个扩散模型同时做两件事：推断退化图像里有什么，并生成它的高分辨率版本——而这两件事都只能基于一个本身就已损坏的条件信号。",
+          "失败由此直接而来。当条件缺乏信息量，先验便接管一切，产出最合理的内容而非正确的内容。语义丢失与凭空细节正是来源于此：不是先验太弱，而是先验被要求去消解一个它没有任何证据可依据的歧义。",
+          "CasSR 按顺序把这两件事分开：第一阶段生成一张比原始观测更干净、信息量更足的初步参考图；第二阶段由级联可控扩散模型以它为条件生成最终结果。在 DIV2K 验证集上，这带来相对次优方法 MUSIQ 3.82%、MANIQA 7.05% 的提升。"
+        ]
+      },
+      {
+        "h": "Improving the evidence before generating",
+        "hz": "先改善证据，再生成",
+        "p": [
+          "The first stage exists to change what the second stage receives. Rather than conditioning generation on the raw degraded observation, the cascade produces a preliminary reference — less degraded, with clearer content — and conditions the generative pass on that.",
+          "The reference is not treated as ground truth, and the distinction matters. It is better-conditioned evidence: easier to extract semantics from, closer to the clean image in the ways that guide generation, yet still a reconstruction carrying its own errors.",
+          "This is worth separating from ordinary multi-stage super-resolution. The goal of the first stage is not to produce a good image; it is to produce a condition the generative prior can use well. Those are different objectives, and judging the intermediate output as a final result misreads the design."
+        ],
+        "pz": [
+          "第一阶段的存在是为了改变第二阶段所接收的东西。级联不把生成条件建立在原始退化观测上，而是先产出一张退化更轻、内容更清晰的初步参考图，再以它为条件进行生成。",
+          "这张参考图并不被当作真值，而这个区分很重要。它是一份条件更好的证据：语义更容易提取，在引导生成的那些方面更接近清晰图像，但它仍然是一张带有自身错误的重建结果。",
+          "这一点值得与常见的多阶段超分辨率区分开。第一阶段的目标不是产出一张好图，而是产出一个生成先验能用好的条件。这是两个不同的目标；把中间输出当作最终结果来评判，会误读整个设计。"
+        ]
+      },
+      {
+        "h": "Keeping generation tied to the original",
+        "hz": "让生成始终锚定原图",
+        "p": [
+          "A cleaner reference creates its own risk: the generative stage may drift toward the reference’s interpretation and away from the actual observation. The multi-attention mechanism is the counterweight, strengthening how the text-to-image backbone draws on the original image rather than only on the reference.",
+          "This is why both stages have to be judged together. The first changes the evidence; the second decides how much that evidence is trusted versus how much the pretrained visual prior is allowed to fill in. Improving either one alone is not the same as improving the pair.",
+          "The general pattern — restore the condition, then generate — is the transferable part. Asking a powerful prior to resolve every ambiguity at once wastes its capacity; handing it a partially disambiguated input lets the same prior spend that capacity on detail."
+        ],
+        "pz": [
+          "更干净的参考图也带来它自己的风险：生成阶段可能偏向参考图的解释，而偏离真实观测。多注意力机制就是那个配重——它强化文生图骨干对原始图像的取用，而不只是对参考图的取用。",
+          "这正是两个阶段必须被放在一起评判的原因。第一阶段改变证据，第二阶段决定这份证据被信任到什么程度、以及预训练视觉先验被允许填补多少。单独改善其中任何一级，都不等于改善了这个组合。",
+          "可迁移的是那个通用模式：先修复条件，再生成。要求一个强大的先验一次性消解所有歧义，是在浪费它的容量；把一份已部分消歧的输入交给它，同一个先验才能把容量花在细节上。"
+        ]
+      },
+      {
+        "h": "Where the cascade preserves detail",
+        "hz": "级联在哪些地方保住了细节",
+        "p": [
+          "The comparison covers GAN-based and diffusion-based methods on DIV2K validation, DRealSR and RealSR, reporting reference-based perceptual distances alongside no-reference quality measures and detailed visual comparisons.",
+          "The reported relative improvements on DIV2K validation are 3.82% in MUSIQ and 7.05% in MANIQA over the next-best compared method. Visual examples are the more informative evidence here: cases where the cascade preserves a small identifying detail — a penguin’s eye, the boundary of a wing — are exactly the cases where a single-stage prior would have substituted a plausible one.",
+          "Performance varies across DRealSR and RealSR, and that variation should be read rather than averaged. The mechanism depends on the first stage extracting usable content, so the benefit is largest where degradation is severe but structure survives, and smaller where the input is already near the limit of what the reference stage can recover."
+        ],
+        "pz": [
+          "对比覆盖 DIV2K 验证集、DRealSR 与 RealSR 上的 GAN 类与扩散类方法，同时报告基于参考的感知距离、无参考质量指标与细致的视觉对比。",
+          "所报告的 DIV2K 验证集提升为相对次优方法 MUSIQ 3.82%、MANIQA 7.05%。这里更有信息量的证据是视觉样例：级联保住了小型识别性细节——企鹅的眼睛、翅膀的轮廓——的那些情形，恰恰正是单阶段先验会替换成一个合理猜测的情形。",
+          "在 DRealSR 与 RealSR 上表现存在差异，而这种差异应当被阅读而非被平均掉。该机制依赖第一阶段提取出可用内容，因此在退化严重但结构尚存的情形下收益最大，而在输入已接近参考阶段恢复极限时收益较小。"
+        ]
+      },
+      {
+        "h": "A prior needs an anchor",
+        "hz": "先验需要一个锚点",
+        "p": [
+          "The idea that generalises is making the condition an object of restoration instead of a fixed input. Most work treats conditioning as given and improves the generator; this treats the quality of the evidence as a variable worth spending a stage on.",
+          "The obvious cost is error propagation. If the preliminary stage commits to the wrong content, the second stage renders that commitment convincingly — a harder failure to detect than a one-stage hallucination, because the output looks clean and internally coherent.",
+          "That suggests how to read results of this kind. Judge a final image on attractive detail and on consistency with the original observation, and treat the two as separate checks. A cascade improving both is doing what the design claims; one improving only the first is amplifying its own errors."
+        ],
+        "pz": [
+          "可推广的思路是：把条件本身变成被恢复的对象，而不是一个固定输入。多数工作把条件化视为既定，只去改进生成器；这里则把证据的质量当作一个值得花一个阶段去处理的变量。",
+          "显然的代价是误差传播。如果初步阶段认错了内容，第二阶段会把这个错误渲染得极其可信——这比单阶段幻觉更难察觉，因为输出看起来干净且内部自洽。",
+          "这也提示了应当如何阅读这类结果：对一张最终图像，分别评判它的细节吸引力与它对原始观测的一致性，并把两者当作两次独立的检查。两个都改善的级联，才是在做设计所声称的事；只改善前者的级联，是在放大自己的错误。"
+        ]
+      }
+    ]
+  },
+  "ptmvqa": {
+    "headline": "Learning video quality from diverse pretrained models",
+    "headlineZh": "从多种预训练模型中学习视频质量",
+    "dek": "Quality labels are scarce; pretrained representations are not. The problem is making several frozen feature spaces agree on what quality means.",
+    "dekZh": "质量标注稀缺，预训练表示不稀缺。难的是让几个冻结的特征空间对“质量”达成共识。",
+    "keypoints": [
+      {
+        "en": "Features come from multiple frozen pretrained models chosen by how well their representations cluster quality-annotated data — the bet is complementarity, and adding every available backbone is explicitly not assumed to help.",
+        "zh": "特征来自多个冻结的预训练模型，而这些模型是按其表示对质量标注数据的聚类表现挑选出来的——赌的是互补性，并且明确不假定“把所有骨干都加上”一定更好。"
+      },
+      {
+        "en": "Two constraints shape the space: intra-consistency aligns representations of the same video, and inter-divisibility separates groups formed from the quality annotations, so the space is both coherent and predictive.",
+        "zh": "两个约束塑造这个空间：内部一致性让同一视频的不同表示彼此对齐，组间可分性则把按质量标注划分的组分开——于是该空间既连贯又具有预测力。"
+      },
+      {
+        "en": "PLCC 0.8637 and SRCC 0.8545 on LSVQ-Test, with cross-database tests measuring transfer without fine-tuning on the target set — the output is a quality prediction, not a restoration or a factual claim about content.",
+        "zh": "LSVQ-Test 上 PLCC 0.8637、SRCC 0.8545，并通过跨库测试衡量不做目标集微调时的迁移能力——输出的是质量预测，不是恢复结果，也不是关于内容的真实性判断。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "Predicting how a viewer will rate a video requires knowing about its content, its distortions and its motion, and the ground truth is expensive. Subjective scores have to be collected from people one clip at a time, so quality datasets are small by the standards of modern vision.",
+          "The obvious workaround is transfer, and the usual version of transfer — fine-tuning one large pretrained backbone — borrows from a single source. Different backbones know different things: objects, motion, texture statistics. None of them was trained to judge quality.",
+          "PTM-VQA asks whether those complementary representations can be combined into one quality-aware space without fine-tuning any of them. On LSVQ-Test the reported configuration reaches PLCC 0.8637 and SRCC 0.8545, and the backbones are selected by how well their features cluster quality annotations."
+        ],
+        "pz": [
+          "预测观众会给一段视频打多少分，需要知道它的内容、失真与运动，而其真值很贵：主观分数必须靠人一段一段地采集，因此以现代视觉的标准看，质量数据集都很小。",
+          "直觉的绕行方案是迁移，而通常那种迁移——微调一个大型预训练骨干——只从单一来源借用知识。不同的骨干懂不同的东西：物体、运动、纹理统计。它们中没有一个是为判断质量而训练的。",
+          "PTM-VQA 问的是：这些互补的表示能否在不微调任何一个的前提下，被组合进一个质量感知的空间。在 LSVQ-Test 上，所报配置达到 PLCC 0.8637、SRCC 0.8545；而骨干模型是按其特征对质量标注的聚类表现挑选出来的。"
+        ]
+      },
+      {
+        "h": "Several frozen backbones, one space",
+        "hz": "多个冻结骨干，一个空间",
+        "p": [
+          "Each pretrained model contributes features extracted with its weights frozen — no fine-tuning, no quality labels flowing back into the backbones. That keeps the method cheap and the pretrained knowledge intact, but the representations arrive in incompatible spaces with no shared notion of quality.",
+          "Concatenating them would not fix that. Two backbones can emit feature vectors of the same length that order clips completely differently, and a predictor trained on the concatenation has to learn the correspondence from a small quality dataset — precisely the scarce resource the method was meant to avoid depending on.",
+          "Model selection is therefore part of the method rather than a preliminary step. Candidates are ranked by clustering performance on quality-assessment data, which selects for backbones whose representations already separate quality levels instead of assuming that more sources are always better."
+        ],
+        "pz": [
+          "每个预训练模型都在权重冻结的状态下贡献特征——没有微调，没有质量标签回流进骨干。这让方法保持廉价、也让预训练知识保持完整，但这些表示抵达时处于互不兼容的空间，对质量没有任何共同概念。",
+          "把它们拼接起来并不能解决这个问题。两个骨干完全可以输出长度相同、却把片段排成完全不同顺序的特征向量；而基于拼接结果训练的预测器，还必须从小规模质量数据集中学习这种对应关系——那恰恰是该方法本想避免依赖的稀缺资源。",
+          "因此模型选择本身就是方法的一部分，而不是一个前置步骤。候选模型按其在质量评测数据上的聚类表现排序，从而挑出那些表示本就能区分质量等级的骨干，而不是假定来源越多越好。"
+        ]
+      },
+      {
+        "h": "Consistency and separation",
+        "hz": "一致性与可分性",
+        "p": [
+          "Two objectives shape the shared space, and they pull in different directions on purpose. Intra-consistency brings representations of the same video — however many backbones produced them — into agreement, so the space has a coherent notion of a single clip.",
+          "Inter-divisibility then separates the groups formed from the quality annotations, so similarly rated clips land near each other and differently rated clips do not. Consistency alone would collapse everything toward one point; separation alone would have nothing coherent to arrange.",
+          "The pairing is what makes the space quality-aware rather than merely aligned. Alignment is unsupervised and can be achieved with no label at all; the separation term is where subjective scores actually enter, and it is what turns a fused feature into a usable predictor."
+        ],
+        "pz": [
+          "两个目标塑造这个共享空间，而且是刻意朝不同方向拉扯。内部一致性把同一视频的多种表示——无论由多少个骨干产出——拉到一致，使这个空间对单个片段有一个连贯的概念。",
+          "组间可分性随后把按质量标注划分开的组分开，使评分相近的片段彼此靠近、评分不同的片段彼此远离。只有一致性会把一切塌缩到一个点；只有可分性则没有任何连贯的东西可供排布。",
+          "正是这一对组合，让该空间成为质量感知的，而不只是对齐的。对齐是无监督的，完全可以在没有任何标签的情况下实现；而主观分数真正进入的地方是可分项——也正是它把融合特征变成了可用的预测器。"
+        ]
+      },
+      {
+        "h": "What the constraints produce",
+        "hz": "这两个约束产出了什么",
+        "p": [
+          "Experiments compare pretrained feature combinations on KoNViD-1k, LIVE-VQC and YouTube-UGC, then test larger-scale training on LSVQ, with cross-database evaluation measuring transfer when nothing is fine-tuned on the target set.",
+          "Cross-database testing is the demanding condition. Within-database splits share capture conditions, content pools and distortion types with the training data; transferring between databases shares none of that, so a drop there is the honest measure of whether the space generalises or has memorised one dataset’s statistics.",
+          "PLCC and SRCC measure agreement with human judgement, and ablations examine both constraints and the clustering choices. Runtime changes with the selected backbones, so efficiency is reported for the actual combination used rather than for one default — a necessary caveat when a method’s cost depends on its configuration."
+        ],
+        "pz": [
+          "实验在 KoNViD-1k、LIVE-VQC 与 YouTube-UGC 上比较不同的预训练特征组合，随后在 LSVQ 上测试更大规模的训练，并通过跨库评测衡量在目标集上完全不微调时的迁移能力。",
+          "跨库测试才是苛刻的条件。库内划分与训练数据共享采集条件、内容池与失真类型；跨库迁移则三者皆不共享，因此那里的性能下降才是诚实衡量“这个空间到底泛化了，还是记住了某一个数据集的统计”的指标。",
+          "PLCC 与 SRCC 衡量与人类判断的一致程度，消融则分别考察两个约束与聚类选择。运行时间随所选骨干变化，因此效率是按实际使用的组合报告的，而不是按某个默认配置——当方法的成本取决于其配置时，这是必要的前提说明。"
+        ]
+      },
+      {
+        "h": "Predicting quality is a distinct task",
+        "hz": "预测质量是一项独立的任务",
+        "p": [
+          "The value of the framework is reuse: knowledge acquired for object recognition, action recognition or self-supervised video modelling is repurposed for a task that has almost no labelled data of its own.",
+          "Its output should not be over-read. A quality score is a prediction of perceived quality, not a guarantee about factual content or temporal correctness — a video can be rated highly while containing the wrong content or an impossible motion.",
+          "In a restoration system that makes VQA useful in one specific way and not another. It supports comparison and selection: choosing among candidate reconstructions, monitoring a pipeline. But a high predicted score still needs to be paired with fidelity checks and task-specific measures before it means the video is correct."
+        ],
+        "pz": [
+          "这个框架的价值在于复用：为物体识别、动作识别或自监督视频建模而获得的知识，被重新用于一项自身几乎没有标注数据的任务。",
+          "它的输出不应被过度解读。质量分数是对感知质量的预测，不是对内容真实性或时间正确性的保证——一段视频完全可能在内容错误或运动不可能的情况下仍然拿到高分。",
+          "在一个恢复系统里，这决定了 VQA 以一种特定的方式有用，而不是另一种。它支持比较与选择：在候选重建之间做挑选、对流水线做监控。但在“视频是对的”这个结论成立之前，一个高预测分仍须与保真度检查和任务特定的指标配合使用。"
+        ]
+      }
+    ]
+  }
+}

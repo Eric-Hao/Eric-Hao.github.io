@@ -33,12 +33,18 @@ for p in papers:
  def render_figure(fig):
   original=fig.get('original',fig['full'])
   return f'<figure class="article-figure"><a href="../../{e(fig["full"])}" data-original="../../{e(original)}" data-zoom data-caption="{e(fig["label"])}"><img src="../../{e(fig["thumbnail"])}" alt="{e(fig["label"])}" width="{fig["width"]}" height="{fig["height"]}" loading="lazy"></a><figcaption>{e(fig["label"])}</figcaption></figure>'
+ def render_keypoints():
+  en=c.get('keypoints',[]);cn=z.get('keypoints',[])
+  if not en:return ''
+  items=''.join('<li><p>'+e(en[j])+'</p>'+('<p class="zh" lang="zh-CN">'+e(cn[j])+'</p>' if j<len(cn) else '')+'</li>' for j in range(len(en)))
+  return f'<ul class="key-points" aria-label="Key results / 核心结论">{items}</ul>'
  sections=''
  for i,(h,t) in enumerate(c['sections']):
   english=t.split('\n\n');chinese=z['sections'][i][1].split('\n\n')
   paragraphs=''.join('<p>'+e(en)+'</p>'+('<p class="zh" lang="zh-CN">'+e(chinese[j])+'</p>' if j<len(chinese) else '') for j,en in enumerate(english))
   heading='' if i==0 else f'<h2>{e(h)}{zh(z["sections"][i][0])}</h2>'
   sections+=f'<section id="section-{i}" class="{"article-opening" if i==0 else "article-chapter"}">{heading}{paragraphs}</section>'
+  if i==0:sections+=render_keypoints()
   if i==1:sections+=render_figure(native[0] if native else f)
   if i==3 and len(native)>1:sections+=render_figure(native[1])
   if i==2 and key in models:sections+=benchmark_tables(models[key])

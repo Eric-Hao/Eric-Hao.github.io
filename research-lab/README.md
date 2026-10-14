@@ -11,6 +11,13 @@ three KAT release cards, twelve paper image cards and seven restoration rows.
 Titles open articles; images open a keyboard-accessible viewer (Escape or click
 the image to close). Physics covers open the original paper figure.
 
+Each article opens with the research brief card, then a five-section essay: an
+unnamed lede, the method, the design rationale, the evidence, and the limits.
+A key-results panel follows the lede and carries three bilingual highlights, so
+the contribution and its numbers are readable without the rest of the page.
+Prose is bilingual paragraph by paragraph — English at reading size, Chinese in
+a smaller muted face beneath it.
+
 The page uses a near-white background, Lora serif headings and system sans-serif
 supporting text. Covers, release cards and restoration hover surfaces share 12px
 corners. Article captions are centered; citations retain compact monospace text.
@@ -24,7 +31,13 @@ is hidden; reduced-motion preferences show static particles.
 ## Editing
 
 - `data.js`: paper metadata, categories and article routes.
-- `_content/articles.json`, `_content/zh.json`: article text.
+- `_content/rewrites/*.json`: article prose source of truth. Each entry holds
+  `headline`, `dek`, three `keypoints` and five `sections` with English and
+  Chinese paragraphs side by side, so a rewrite cannot drift out of parity.
+  Edit here, then run `python3 research-lab/_content/merge_articles.py`, which
+  regenerates `articles.json` and `zh.json`, syncs `headlineZh` in `data.js` and
+  validates that every section has an English counterpart for each paragraph.
+- `_content/articles.json`, `_content/zh.json`: generated article text.
 - `_content/research-briefs.json`: article opening challenges and ideas.
 - `_content/author-roles.json`: documented author roles.
 - `_content/covers.json`: current homepage cover selections.

@@ -1,0 +1,370 @@
+{
+  "color": {
+    "headline": "Aligning generative detail with image structure",
+    "headlineZh": "让生成细节与真实图像结构对齐",
+    "dek": "The failure is spectral: isotropic objectives cannot tell an authentic high-frequency detail from a hallucinated one.",
+    "dekZh": "问题出在频谱上：各向同性的目标无法区分真实的高频细节与幻觉出来的细节。",
+    "keypoints": [
+      {
+        "en": "The diagnosis is spectral, not architectural. Isotropic objectives and spectrally flat Gaussian noise weight all frequencies equally, so they cannot distinguish a real high-frequency detail from an invented one.",
+        "zh": "诊断指向频谱而非架构。各向同性目标与频谱平坦的高斯噪声对所有频率一视同仁，因此无法区分真实高频细节与凭空生成的细节。"
+      },
+      {
+        "en": "ASASR colours the noise transition kernel to mirror natural spectral decay, recasting the generative flow in a Sobolev-induced geometry, and adds an adversary whose negatives are worst-case Sobolev gradients rather than random samples.",
+        "zh": "ASASR 对噪声转移核着色以贴合自然频谱衰减，把生成流重置于 Sobolev 诱导的几何中，并加入一个以最坏情形 Sobolev 梯度（而非随机样本）作为负样本的对抗器。"
+      },
+      {
+        "en": "91.1% first-choice rate in a 50-participant study over 64 images, with spectral comparisons and downstream detection, segmentation and OCR as structural checks instead of perceptual scores alone.",
+        "zh": "在 50 名参与者、64 张图像的研究中获得 91.1% 的首选率，并以频谱对比与下游检测、分割、OCR 作为结构性检验，而不只依赖感知分数。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "Generative super-resolution is very good at producing detail and not very good at producing detail that belongs to the input. Given a blurred patch it will invent a plausible window frame, a plausible eyelash, a plausible texture — and a perceptual metric will reward it for doing so.",
+          "The paper’s diagnosis is geometric rather than architectural. Natural images distribute information unevenly across frequency: most of the energy sits in a thin low-frequency band, while high frequencies carry the structure and very little of the energy. An objective built on isotropic Gaussian noise treats every direction in image space as equally important, which is precisely wrong for that distribution.",
+          "ASASR rebuilds the alignment objective in the geometry the image distribution actually has. The noise transition kernel is coloured to follow natural spectral decay, placing the generative flow in a Sobolev-induced Riemannian metric, and a learned adversary supplies the negative examples. In a study with 50 participants over 64 images it is preferred 91.1% of the time on naturalness and fidelity."
+        ],
+        "pz": [
+          "生成式超分辨率非常擅长产出细节，却不擅长产出属于输入的细节。给定一块模糊区域，它会编出看起来合理的窗框、睫毛、纹理——而感知指标会为此给它加分。",
+          "论文的诊断是几何层面的，而非架构层面的。自然图像在频率上的信息分布并不均匀：大部分能量集中在一个很窄的低频带内，而高频承载结构却只携带极少能量。建立在各向同性高斯噪声之上的目标，把图像空间中的每一个方向都视作同等重要——对这个分布而言，这恰好是错的。",
+          "ASASR 按图像分布实际具有的几何重建了对齐目标：对噪声转移核着色以遵循自然频谱衰减，把生成流置于 Sobolev 诱导的黎曼度量中，并由一个可学习的对抗器提供负样本。在 50 名参与者、64 张图像的研究中，其自然度与保真度首选率为 91.1%。"
+        ]
+      },
+      {
+        "h": "Sobolev geometry, and an adversary that finds the worst direction",
+        "hz": "Sobolev 几何与寻找最坏方向的对抗器",
+        "p": [
+          "Preference optimisation needs a negative example — something to prefer the correct reconstruction over. The standard choice is a sample from the same spectrally flat Gaussian noise used to train the model, and ASASR’s first move is to replace it with noise whose spectrum follows the natural decay of real images.",
+          "Concretely, this recasts the generative flow in a Sobolev-induced Riemannian geometry. Distance is no longer measured in flat L2 but with frequency-dependent weights, so a change in a band where natural images carry structure counts for more than an equally large change in a band that carries mostly noise.",
+          "The second piece supplies the negatives. Rather than sampling random failures, a parametric adversary grounded in the Riesz representation theorem synthesises examples equivalent to worst-case Sobolev gradients: it searches for the direction in which the current output most violates structure, and alignment is trained against that instead of against noise."
+        ],
+        "pz": [
+          "偏好优化需要一个负样本——用来让正确重建被优先于它。标准做法是从训练模型所用的同一个频谱平坦高斯噪声中采样，而 ASASR 的第一步就是换掉它，改用频谱遵循真实图像自然衰减的噪声。",
+          "具体地说，这把生成流重置于 Sobolev 诱导的黎曼几何之中。距离不再用平坦的 L2 度量，而是带上与频率相关的权重：于是自然图像承载结构的频带上发生变化，其权重高于在主要承载噪声的频带上同等幅度的变化。",
+          "第二部分负责提供负样本。它不随机采样失败样例，而是由一个以 Riesz 表示定理为依据的参数化对抗器，合成等价于最坏情形 Sobolev 梯度的样本：它搜索当前输出最严重违背结构的方向，并对齐训练针对该方向而非噪声进行。"
+        ]
+      },
+      {
+        "h": "Why geometry rather than a stronger penalty",
+        "hz": "为什么需要换几何，而不是加大惩罚",
+        "p": [
+          "It is fair to ask why this is not simply a reweighted loss. The difference is where the weighting lives. A penalty applied on top of an isotropic objective still compares two images in a space where all directions are equal; changing the geometry changes the space in which the comparison takes place.",
+          "This matters because the failure mode is asymmetric. Adding a high-frequency detail that is not there and failing to reconstruct one that is may cost the same in L2, but they are not equivalent errors — one is invention, the other is loss. A metric aligned with the image spectrum separates them.",
+          "The adversary is what makes the objective adversarial rather than merely weighted. Random negatives mostly produce easy examples, perturbations the model already handles, so training against them spends capacity where it buys nothing. Worst-case gradients concentrate the signal on the structural failures that actually occur."
+        ],
+        "pz": [
+          "一个合理的追问是：这不就是一个重新加权的损失吗？区别在于权重所处的位置。叠加在各向同性目标之上的惩罚，仍然是在一个所有方向等价的空间里比较两张图像；改变几何，则是改变比较所发生的那个空间。",
+          "这一点很关键，因为失效模式是不对称的。添加一个本不存在的高频细节，与没能重建出一个本应存在的细节，在 L2 下代价可能相同，但二者并不是等价的错误——一个是编造，一个是丢失。与图像频谱对齐的度量能把它们分开。",
+          "对抗器的作用在于让目标真正具有对抗性，而不只是加权。随机负样本大多产生简单样例——那些模型本来就能应付的扰动——针对它们训练等于把容量花在没有收益的地方。最坏情形梯度则把信号集中到实际会发生的结构性失效上。"
+        ]
+      },
+      {
+        "h": "Measuring structure, not just preference",
+        "hz": "测量结构，而不只是偏好",
+        "p": [
+          "Perceptual scores alone cannot establish fidelity, because they are exactly the quantity a generative model can optimise without being faithful. The evaluation therefore asks three separate questions: does the image look natural, does its frequency content match the reference, and does useful semantic content survive restoration.",
+          "The second and third questions are the load-bearing ones. Spectral comparison tests the paper’s actual claim about frequency structure, while downstream detection, segmentation and OCR test whether restored detail still carries information a machine can use — a stricter requirement than looking right to a human.",
+          "Ablations isolate the two contributions by replacing Sobolev guidance with Euclidean guidance and by removing adversarial alignment. That design matters because both components could plausibly improve appearance; only the spectral and downstream measurements can say whether they improved fidelity."
+        ],
+        "pz": [
+          "仅靠感知分数无法确立保真度，因为那恰恰是生成模型可以不必忠实就能优化的指标。因此评测分别提出三个问题：图像看起来是否自然、频率内容是否贴合参考、以及有用的语义内容是否在恢复后得以保留。",
+          "第二与第三个问题才是承重的。频谱对比检验的正是论文关于频率结构的核心论断；下游检测、分割与 OCR 则检验恢复出的细节是否仍携带机器可用的信息——这比让人看着舒服要严格得多。",
+          "消融通过用欧氏引导替换 Sobolev 引导、以及移除对抗对齐来分离两项贡献。这个设计很关键，因为两个组件都可能改善观感；只有频谱与下游测量能说明它们是否改善了保真度。"
+        ]
+      },
+      {
+        "h": "Fidelity is not sharpness",
+        "hz": "保真不等于锐利",
+        "p": [
+          "The headline result is a 91.1% first-choice rate for naturalness and fidelity in a study with 50 participants and 64 test images, alongside improved spectral consistency and downstream task performance. Read together they support one specific claim: alignment in a frequency-aware geometry preserves structure that an isotropic objective loses.",
+          "The scope is narrower than a general fidelity guarantee. The results hold under the paper’s degradation model and evaluation settings, and a user study of this size establishes preference rather than correctness — participants judge plausibility, and plausibility is the thing generative models fake best.",
+          "What transfers is the objective-design lesson. If a generative prior is aligned in a metric that ignores the spectrum of the data, it will be rewarded for inventing detail. Making the metric reflect the data distribution is a cheap change with a measurable consequence, and the downstream tasks are the check that keeps it honest."
+        ],
+        "pz": [
+          "核心结果是：在 50 名参与者、64 张测试图像的研究中，自然度与保真度的首选率为 91.1%，同时频谱一致性与下游任务表现均有改善。合在一起，它们支持的是一个具体论断：在频率感知的几何中做对齐，能保住各向同性目标会丢掉的结构。",
+          "适用范围比“通用保真保证”要窄。结果成立于论文设定的退化模型与评测条件之下，而这个规模的用户研究确立的是偏好而非正确性——参与者判断的是合理性，而合理性恰恰是生成模型最擅长伪造的东西。",
+          "可以迁移的是目标设计上的教训：如果一个生成先验是在忽略数据频谱的度量中被对齐的，它就会因为编造细节而获得奖励。让度量反映数据分布是一项改动很小的调整，却有可测量的后果；而下游任务正是让它保持诚实的检验。"
+        ]
+      }
+    ]
+  },
+  "tta_flow": {
+    "headline": "Using inference-time feedback for image restoration",
+    "headlineZh": "利用推理阶段的反馈改善图像恢复",
+    "dek": "ResFlow-Tuner separates conditioning from steering: one is architectural, the other is a compute budget you can dial.",
+    "dekZh": "ResFlow-Tuner 把条件注入与方向引导分开：前者是架构问题，后者是可调节的计算预算。",
+    "keypoints": [
+      {
+        "en": "Conditioning and steering are separated: unified multimodal fusion places the low-quality image and text in one sequence for the MM-DiT, while a training-free test-time scaling step steers denoising with reward-model feedback.",
+        "zh": "条件注入与方向引导被分开处理：统一多模态融合把低质图像与文本放进 MM-DiT 的同一个序列，而免训练的测试时扩展则用奖励模型反馈引导去噪方向。"
+      },
+      {
+        "en": "The budget is a dial, not a setting: with K=4 and N=7 on LSDIR-Val, LPIPS falls from 0.4015 to 0.3721, FID from 22.91 to 19.82 and MUSIQ rises from 71.47 to 74.21.",
+        "zh": "预算是可调的旋钮而非固定设置：在 LSDIR-Val 上取 K=4、N=7，LPIPS 从 0.4015 降到 0.3721，FID 从 22.91 降到 19.82，MUSIQ 从 71.47 升到 74.21。"
+      },
+      {
+        "en": "Because nothing is retrained, the same weights serve a latency-sensitive and a quality-sensitive path — the trade is per-input compute instead of one committed model.",
+        "zh": "由于无需重训，同一份权重既能服务延迟敏感路径也能服务质量敏感路径——代价是按输入计算，而不是锁定某一个模型。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "A text-to-image diffusion model contains an enormous amount of knowledge about what images look like. Using one for restoration means overriding that knowledge with a specific damaged input: the prior must generate, but it must generate this photograph.",
+          "Two problems have to be solved and they are usually conflated. The model has to receive the degraded image and any semantic context in a form it can condition on, and it has to be steered toward a reconstruction rather than toward a generic plausible image. The first is architectural; the second is an inference-time question.",
+          "ResFlow-Tuner, built on FLUX.1-dev, keeps them apart. Unified multimodal fusion handles conditioning, and a training-free test-time scaling procedure uses reward feedback to adjust the denoising direction during inference. On LSDIR-Val the scaling step alone moves LPIPS from 0.4015 to 0.3721 and FID from 22.91 to 19.82."
+        ],
+        "pz": [
+          "文生图扩散模型中包含着海量关于图像应当长什么样的知识。把它用于恢复，意味着要用一张特定的受损图像去覆盖这些知识：先验必须去生成，但必须生成的是这一张照片。",
+          "需要解决两个问题，而它们常被混为一谈。模型必须能以一种可条件化的形式接收退化图像与语义上下文；同时它必须被引导至一次重建，而不是被引导至一张泛泛的合理图像。前者是架构问题，后者是推理阶段的问题。",
+          "基于 FLUX.1-dev 的 ResFlow-Tuner 把两者分开：统一多模态融合负责条件注入，一个免训练的测试时扩展流程则在推理时用奖励反馈调整去噪方向。在 LSDIR-Val 上，仅扩展这一步就把 LPIPS 从 0.4015 降到 0.3721、FID 从 22.91 降到 19.82。"
+        ]
+      },
+      {
+        "h": "Conditioning the prior, then steering it",
+        "hz": "先给先验条件，再引导它的方向",
+        "p": [
+          "FLUX.1-dev is a multi-modal diffusion transformer: text and image tokens already live in one sequence. Unified multimodal fusion exploits that by encoding the degraded image and the semantic condition into the same shared sequence, so the transformer attends across both rather than receiving the image through a side adapter.",
+          "Why it matters: an adapter path forces the condition to compete with the model’s own prior at a fixed strength. Putting the condition inside the sequence lets attention decide, at every layer, how much the degraded observation should constrain generation.",
+          "The second half happens at inference and needs no training. A reward model scores intermediate candidates and that signal adjusts the denoising direction. Nothing about FLUX changes; what changes is how much computation is spent searching among trajectories the model already supports."
+        ],
+        "pz": [
+          "FLUX.1-dev 是一个多模态扩散 transformer：文本与图像 token 本来就在同一个序列里。统一多模态融合利用了这一点，把退化图像与语义条件编码进同一条共享序列，于是 transformer 在两者之间做注意力，而不是通过旁路适配器接收图像。",
+          "为什么重要：适配器路径迫使条件以固定强度与模型自身的先验竞争。把条件放进序列内部，则让注意力在每一层自行决定退化观测应当在多大程度上约束生成。",
+          "第二部分发生在推理阶段，且不需要训练。奖励模型对中间候选打分，该信号用于调整去噪方向。FLUX 本身没有任何改变；改变的是花多少计算量在模型本来就能支持的那些轨迹中搜索。"
+        ]
+      },
+      {
+        "h": "Spending compute where it pays",
+        "hz": "把计算花在有用的地方",
+        "p": [
+          "Test-time scaling reframes restoration as an allocation problem. Each input receives a budget, and the budget buys additional candidate trajectories that are scored and pruned instead of a single uncontrolled sample.",
+          "That is a different trade from training a larger model. Training cost is paid once and applies to every input; test-time compute is paid per input, so it can be spent unevenly — heavily on a difficult photograph, barely on an easy one — which is the right shape for a restoration service with a long tail.",
+          "The ablations therefore separate the design choices rather than reporting only a final configuration: how the low-quality image and text are fused, which reward signals steer the process, and how much compute is spent. Varying the budget is the part that matters most for anyone deciding whether to adopt it."
+        ],
+        "pz": [
+          "测试时扩展把恢复重述为一个分配问题。每个输入获得一份预算，预算换来的是若干被打分与剪枝的候选轨迹，而不是一次不受控的采样。",
+          "这与训练更大的模型是不同性质的取舍。训练成本只付一次且作用于所有输入；测试时计算是按输入付的，因此可以花得不均匀——困难的照片多花，简单的照片几乎不花——这正符合一个长尾分布恢复服务应有的形态。",
+          "因此消融把各项设计选择分开，而不是只报一个最终配置：低质图像与文本如何融合、用哪些奖励信号引导、以及花多少计算。对任何决定是否采用它的人来说，改变预算是最关键的那一项。"
+        ]
+      },
+      {
+        "h": "What the scaling buys",
+        "hz": "扩展换来了什么",
+        "p": [
+          "On LSDIR-Val, going from no test-time scaling to K=4 and N=7 improves LPIPS from 0.4015 to 0.3721 and FID from 22.91 to 19.82, with MUSIQ rising from 71.47 to 74.21. LPIPS and FID moving together is the informative part: the output is closer to the reference and drawn from a distribution closer to real images.",
+          "These gains are not free, and the paper reports the price rather than hiding it. The improvement is bought with additional sampling and reward evaluations per input; the method is tunable, which is the point rather than a caveat.",
+          "OCR evaluation is the check that keeps the numbers honest. Text is where the difference between sharper and more correct is observable: a reconstruction can render crisper glyphs that read as different characters. If OCR accuracy improves alongside LPIPS, the detail being added is real rather than decorative."
+        ],
+        "pz": [
+          "在 LSDIR-Val 上，从不做测试时扩展到取 K=4、N=7，LPIPS 从 0.4015 改善到 0.3721，FID 从 22.91 降到 19.82，MUSIQ 从 71.47 升到 74.21。LPIPS 与 FID 同时改善是最有信息量的部分：输出既更接近参考，也来自一个更接近真实图像的分布。",
+          "这些收益并非免费，论文也报出了代价而非遮掩。改善是用每次输入额外的采样与奖励评估换来的；该方法可调，这是它的要点，而不是它的缺陷。",
+          "OCR 评测是让这些数字保持诚实的检验。文字正是“更锐利”与“更正确”之别可被观测的地方：一次重建可以渲染出更清晰的字形，却读成了别的字符。若 OCR 准确率与 LPIPS 一同改善，说明被加入的细节是真实的，而非装饰性的。"
+        ]
+      },
+      {
+        "h": "A dial, not a promise",
+        "hz": "一个旋钮，而不是一句承诺",
+        "p": [
+          "The useful reading is that inference compute becomes a controllable parameter of a restoration system. A batch pipeline can spend a large budget and an interactive one can spend almost none, using the same weights.",
+          "The limitation sits in the reward model. Steering optimises whatever the reward can measure, so a reward that favours sharpness will trade fidelity for sharpness exactly as a hand-designed loss would. The reward choice is not a neutral implementation detail; it is where the method’s values are set.",
+          "That is why the ablations matter more than the headline. They support a tunable method whose quality depends on the reward and the budget, not an unconditional claim that more inference always yields a better reconstruction. Anyone deploying it should re-measure the reward’s behaviour on their own degradation distribution."
+        ],
+        "pz": [
+          "有益的解读是：推理计算成了恢复系统中一个可控的参数。离线批处理可以花很大预算，交互式场景几乎不花，而用的是同一份权重。",
+          "局限落在奖励模型上。引导只会优化奖励能测到的东西，因此一个偏好锐利度的奖励，会像手工设计的损失一样拿保真度去换锐利度。奖励的选择不是一个中性的实现细节，而是这个方法价值取向被设定的地方。",
+          "正因如此，消融比头条数字更重要。它们支持的是一个质量取决于奖励与预算的可调方法，而不是“更多推理必然带来更好重建”的无条件论断。任何要部署它的人，都应在自己的退化分布上重新测量该奖励的行为。"
+        ]
+      }
+    ]
+  },
+  "shiftlut": {
+    "headline": "A wider view for efficient image restoration",
+    "headlineZh": "让高效图像恢复看得更远",
+    "dek": "Expanding a look-up table’s receptive field usually costs storage and latency. Moving the context instead of the table costs almost nothing.",
+    "dekZh": "扩大查找表的感受野通常要以存储和延迟为代价。改为移动上下文而非放大表，成本几乎为零。",
+    "keypoints": [
+      {
+        "en": "Context without a bigger table: a learnable spatial shift applies channel-wise offsets to the feature map, so information from other positions reaches each channel before the lookup instead of being indexed by a larger neighbourhood.",
+        "zh": "不放大表也能获得上下文：可学习的空间移位对特征图施加逐通道偏移，让来自其他位置的信息在查表之前就进入各通道，而不是靠更大的邻域去索引。"
+      },
+      {
+        "en": "An asymmetric two-branch architecture gives more computation to the information-dense branch, and error-bounded adaptive sampling compresses feature-level tables with a bound on interpolation error — storage, not just FLOPs, is treated as a budget.",
+        "zh": "非对称双分支把更多计算分配给信息密集的分支；误差有界自适应采样则在给出插值误差上界的前提下压缩特征级表——存储与 FLOPs 一样被视为预算。"
+      },
+      {
+        "en": "On Manga109, ShiftLUT-L reaches 29.16 dB against TinyLUT-F at 28.83 dB, with reported storage falling from 171 KB to 104 KB and runtime from 146 ms to 84 ms on a Snapdragon 888 at 320×180.",
+        "zh": "在 Manga109 上，ShiftLUT-L 达到 29.16 dB，TinyLUT-F 为 28.83 dB；报告的存储从 171 KB 降至 104 KB，骁龙 888 上 320×180 输入的运行时间从 146 ms 降至 84 ms。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "A look-up table is one of the cheapest ways to do image restoration: precompute the mapping from a local patch to an output value, then index it at inference. The reason it is cheap is also its limitation — a pointwise table sees almost no spatial context.",
+          "The obvious remedy is a bigger table indexed by a bigger neighbourhood, and that is where the cost explodes. Entries grow combinatorially with the number of input pixels used, so storage and latency climb together, and the last few years of LUT work have largely been trading efficiency for receptive field.",
+          "ShiftLUT goes at all three costs at once and reports the largest receptive field among LUT methods — 3.8× that of TinyLUT — while improving average PSNR by more than 0.21 dB and reducing both storage and runtime in the reported configuration."
+        ],
+        "pz": [
+          "查找表是最省的图像恢复实现方式之一：预先算好从局部图像块到输出值的映射，推理时直接查表。它便宜的原因也正是它的局限——逐点的表几乎看不到任何空间上下文。",
+          "直觉的补救是用更大的邻域去索引更大的表，而成本正是在这里爆炸的。表项数量随所用输入像素数呈组合式增长，存储与延迟同步上升；过去几年 LUT 方向的工作，很大程度上就是在拿效率换感受野。",
+          "ShiftLUT 同时向三项成本下手，并报告了 LUT 类方法中最大的感受野——TinyLUT 的 3.8 倍——同时在所报配置下把平均 PSNR 提升 0.21 dB 以上，并同时降低存储与运行时间。"
+        ]
+      },
+      {
+        "h": "Moving context instead of enlarging tables",
+        "hz": "移动上下文，而不是放大查找表",
+        "p": [
+          "The first component is a learnable spatial shift. Rather than index a table with a larger patch, the network shifts feature channels by learnable offsets before the lookup, so different channels carry information from different positions and the effective receptive field grows without the table growing.",
+          "This is a reallocation rather than an addition. A shift costs almost nothing — it is an index manipulation, not a convolution — so the context is paid for in memory layout rather than in multiply-accumulates. Per-channel offsets let the network decide how far each channel should look.",
+          "The second component accepts that the two branches do not carry equal information. An asymmetric dual-branch architecture gives more computation to the information-dense branch instead of splitting capacity evenly, which lowers latency without the quality drop a symmetric cut would cause."
+        ],
+        "pz": [
+          "第一个组件是可学习的空间移位。它不是用更大的图像块去索引表，而是在查表之前让网络按可学习的偏移移动特征通道，于是不同通道携带来自不同位置的信息——有效感受野变大了，而表并没有变大。",
+          "这是重新分配，而非额外增加。移位的成本几乎为零——它是索引操作，不是卷积——因此上下文是用内存布局而不是乘加运算换来的。逐通道的偏移让网络自行决定每个通道应当看多远。",
+          "第二个组件承认了两个分支承载的信息并不等量。非对称双分支把更多计算分配给信息密集的那个分支，而不是平均切分容量，从而在不引发对称裁剪必然带来的质量下降的前提下降低延迟。"
+        ]
+      },
+      {
+        "h": "Storage is a budget too",
+        "hz": "存储同样是一份预算",
+        "p": [
+          "The third component addresses a cost that FLOP counts hide. On an edge device the table itself has to live in memory, and error-bounded adaptive sampling compresses it by sampling the table non-uniformly with a bound on the resulting interpolation error.",
+          "The bound is the point. Downsampling a LUT uniformly is easy but degrades outputs unpredictably; sampling adaptively under an error bound turns compression into a controlled trade between storage and maximum error rather than a guess.",
+          "Treating storage, latency and quality as one budget is what separates this from a PSNR paper. The small, medium and large variants exist so that a deployment can choose a point on that surface instead of inheriting the researcher’s."
+        ],
+        "pz": [
+          "第三个组件处理的是 FLOPs 统计会掩盖的一项成本。在端侧设备上，表本身必须占用内存；误差有界自适应采样通过对表做非均匀采样、并给出由此产生的插值误差上界来实现压缩。",
+          "关键在于这个上界。对 LUT 做均匀下采样很省事，但会以不可预测的方式劣化输出；在误差上界约束下做自适应采样，则把压缩变成一项在存储与最大误差之间的可控交易，而不是一次碰运气。",
+          "把存储、延迟与质量当作同一份预算来处理，正是这项工作区别于一篇 PSNR 论文的地方。小、中、大三个变体的存在，是为了让部署方能在这张曲面上自行选点，而不是被动接受研究者选定的那一点。"
+        ]
+      },
+      {
+        "h": "Reading the measurements",
+        "hz": "如何读这些测量",
+        "p": [
+          "Evaluation covers 4× super-resolution, denoising and JPEG deblocking, with PSNR and SSIM on the luminance channel across standard SR datasets, plus a runtime measurement from an Android implementation on a Snapdragon 888 at 320×180 input.",
+          "The three tasks matter because receptive field is not equally valuable in each. Deblocking is largely a local operation, while super-resolution benefits most from wider context. Removing the final spatial enlargement stage and still seeing gains is the evidence that the mechanism is not specific to upscaling.",
+          "The comparison worth keeping in view is Manga109: 29.16 dB against TinyLUT-F’s 28.83 dB, with storage down from 171 KB to 104 KB and runtime down from 146 ms to 84 ms. Better quality with less memory and less time at once is the unusual part — normally you buy one with another."
+        ],
+        "pz": [
+          "评测覆盖 4× 超分辨率、去噪与 JPEG 去块效应，在标准超分数据集上统计亮度通道的 PSNR 与 SSIM，并给出一份 Android 实现的运行时间——骁龙 888、320×180 输入。",
+          "三个任务都很重要，因为感受野在其中的价值并不相同。去块效应大体是个局部操作，而超分辨率最能从更宽的上下文中获益。去掉最后的空间放大阶段仍能观察到增益，正是该机制并非专为上采样而设计的证据。",
+          "最值得记住的对比是 Manga109：29.16 dB 对 TinyLUT-F 的 28.83 dB，存储从 171 KB 降到 104 KB，运行时间从 146 ms 降到 84 ms。质量更好同时内存更少、耗时更短，这才是不寻常的部分——通常你得拿其中一个去换另一个。"
+        ]
+      },
+      {
+        "h": "Deployment defines the claim",
+        "hz": "部署条件定义了结论的边界",
+        "p": [
+          "The model family is the contribution. A single best score would tell a deployer nothing, whereas a storage–quality–latency surface with three variants lets one pick a configuration for a specific device and input size.",
+          "The efficiency claim is scoped by how it was measured. Phone model, input resolution and degradation model all move runtime, and 320×180 is a small frame — the same ratios need not hold at 1080p, where memory traffic behaves differently.",
+          "What transfers is the design argument. When a cheap operator is cheap because it sees too little, adding context can be cheaper than enlarging the operator. That reframing is worth more than the 0.21 dB and applies wherever a pointwise module is being stretched to do a spatial job."
+        ],
+        "pz": [
+          "模型族本身就是贡献。一个单独的最佳分数对部署方毫无用处，而一张带三个变体的存储—质量—延迟曲面，能让人针对具体设备与输入尺寸挑一个配置。",
+          "效率结论的边界由它的测量方式决定。手机型号、输入分辨率与退化模型都会改变运行时间，而 320×180 是一个很小的画幅——在 1080p 上，内存访问的行为不同，同样的比例未必成立。",
+          "可以迁移的是那个设计论证：当一个便宜算子之所以便宜是因为它看得太少时，补充上下文可能比放大算子更便宜。这个重构比那 0.21 dB 更有价值，并且适用于任何把逐点模块硬拉去做空间任务的场合。"
+        ]
+      }
+    ]
+  },
+  "varsr": {
+    "headline": "Restoring images one scale at a time",
+    "headlineZh": "逐尺度恢复图像细节",
+    "dek": "Super-resolution has a correct coarse answer already: the input. Next-scale prediction builds on it instead of inventing one.",
+    "dekZh": "超分辨率本已拥有一个正确的粗粒度答案：输入本身。逐尺度预测是在它之上构建，而不是凭空生成一个。",
+    "keypoints": [
+      {
+        "en": "Super-resolution is cast as next-scale prediction: a coarse representation is established first and successive scales are predicted from it, with the low-resolution image entering as prefix tokens rather than as a one-shot condition.",
+        "zh": "超分辨率被表述为下一尺度预测：先确立粗粒度表示，再据此逐层预测更细的尺度；低分辨率图像以 prefix token 的形式进入，而不是一次性注入的条件。"
+      },
+      {
+        "en": "Scale-aligned rotary positional encodings keep locations comparable across resolutions, and a diffusion refiner models the quantization residual — separating semantic structure from what a discrete tokenizer cannot represent.",
+        "zh": "尺度对齐的旋转位置编码让不同分辨率下的位置保持可比；扩散精修器则建模量化残差——把语义结构与离散分词器无法表示的部分分开处理。"
+      },
+      {
+        "en": "55.2% of selections in a 50-image user study on DRealSR and RealSR across six methods, at 0.59 s per image — about 10.1% of DiffBIR’s reported runtime in the same setup.",
+        "zh": "在 DRealSR 与 RealSR 上、六种方法之间的 50 张图像用户研究中获得 55.2% 的选择率，单图耗时 0.59 秒——约为同一设置下 DiffBIR 运行时间的 10.1%。"
+      }
+    ],
+    "sections": [
+      {
+        "h": "Introduction",
+        "hz": "引言",
+        "p": [
+          "Autoregression is how language models work: predict the next token conditional on everything before it. Images have no obvious token order, which is one reason diffusion dominated generation — until next-scale prediction reframed the sequence as coarse-to-fine rather than left-to-right.",
+          "Super-resolution fits that framing better than text-to-image does. There is already a correct low-resolution answer, namely the input, so the problem is not inventing an image but deciding what detail to add on top of one that is given.",
+          "VARSR builds on this with next-scale prediction, conditioning every scale on prefix tokens derived from the low-resolution image, and adds scale-aligned rotary positional encodings plus a diffusion refiner for quantization residuals. In a 50-image study it is selected 55.2% of the time among six methods, at roughly a tenth of DiffBIR’s reported runtime."
+        ],
+        "pz": [
+          "自回归是语言模型的工作方式：在已有内容条件下预测下一个 token。图像没有显然的 token 顺序，这也是扩散模型长期主导生成的原因之一——直到下一尺度预测把序列重述为由粗到细，而不是从左到右。",
+          "超分辨率比文生图更契合这个框架。它本来就有一个正确的低分辨率答案，即输入本身；因此问题不在于凭空造出一张图，而在于决定在既定内容之上补什么细节。",
+          "VARSR 在此基础上采用下一尺度预测，让每一层尺度都以源自低分辨率图像的 prefix token 为条件，并加入尺度对齐的旋转位置编码与处理量化残差的扩散精修器。在一项 50 张图像的研究中，它在六种方法间获得 55.2% 的选择率，耗时约为 DiffBIR 报告值的十分之一。"
+        ]
+      },
+      {
+        "h": "Coarse first, then detail",
+        "hz": "先立 coarse，再补细节",
+        "p": [
+          "Next-scale prediction does not order pixels spatially. The model predicts a coarse token map, then a finer one conditioned on it, then a finer one still, so each level is generated knowing what the level above has already committed to.",
+          "The ordering is a strong structural prior. A spatially autoregressive model can produce a plausible left half and a plausible right half that disagree at the seam; a coarse-to-fine model cannot, because global layout is decided at the scale where it is cheapest to decide.",
+          "The low-resolution input enters as prefix tokens — a sequence the autoregressive model attends to at every scale rather than a conditioning vector injected once. That targets a specific failure mode: generative super-resolution drifting from the input because the condition was applied only at the first step."
+        ],
+        "pz": [
+          "下一尺度预测并不按空间顺序排列像素。模型先预测一张粗粒度 token 图，再以它为条件预测更细的一张，然后再细一层——于是每一层在生成时，都已知道上一层已经确定了什么。",
+          "这个顺序是一项很强的结构先验。按空间顺序自回归的模型可能生成合理的左半与合理的右半，却在接缝处互相矛盾；由粗到细的模型不会，因为全局布局是在决策成本最低的那个尺度上被决定的。",
+          "低分辨率输入以 prefix token 的形式进入——这是一条自回归模型在每个尺度都会去注意的序列，而不是一次性注入的条件向量。它针对的是一个具体的失效模式：生成式超分辨率由于条件只在第一步施加，而逐渐偏离输入。"
+        ]
+      },
+      {
+        "h": "Making scales comparable",
+        "hz": "让不同尺度可比",
+        "p": [
+          "Two problems follow from predicting at several resolutions. Positions at different scales do not correspond under a naive positional encoding, and a discrete tokenizer cannot represent the continuous residual between its quantization and the true pixel values.",
+          "Scale-aligned rotary positional encoding fixes the first by rescaling positions so that the same image location keeps a consistent relative position across scales. Without it the model has to relearn the correspondence at every level, which wastes capacity on something that could be built in.",
+          "The diffusion refiner fixes the second by modelling the quantization residual so that the final output reaches pixel-level fidelity. The split matters for credit assignment: the autoregressive model owns semantic structure, and the refiner owns only what discretization threw away."
+        ],
+        "pz": [
+          "在多个分辨率上做预测会引出两个问题。不同尺度下的位置在朴素位置编码下并不对应；而离散分词器无法表示它的量化结果与真实像素值之间的连续残差。",
+          "尺度对齐的旋转位置编码解决第一个问题：它重新缩放位置，使同一图像位置在不同尺度下保持一致的相对位置。没有它，模型不得不在每一层重新学习这套对应关系，把容量浪费在本可以内建的东西上。",
+          "扩散精修器解决第二个问题：它建模量化残差，使最终输出达到像素级保真。这个切分对归因很重要——自回归模型负责语义结构，精修器只负责离散化丢掉的那部分。"
+        ]
+      },
+      {
+        "h": "What next-scale prediction delivers",
+        "hz": "下一尺度预测带来了什么",
+        "p": [
+          "The evaluation combines reference-based metrics, no-reference quality scores, visual comparison and human preference. That combination is the right one here, because a method can win on perceptual scores while losing on fidelity and any single one of those numbers would hide it.",
+          "The 55.2% selection rate in a 50-image study across six methods is the preference result, and 0.59 s per image is the efficiency one. The ablations that carry the argument are the ones comparing prefix-token conditioning against alternative ways of injecting the low-resolution image.",
+          "Those ablations exist to answer a fair objection. A diffusion refiner can produce impressive detail on its own, so a strong result might come from the refiner rather than from autoregressive restoration. Separating the positional encoding and the refiner is what makes this a claim about next-scale prediction instead of about the pipeline."
+        ],
+        "pz": [
+          "评测组合了有参考指标、无参考质量分数、视觉对比与人类偏好。在这里这种组合是恰当的，因为一个方法完全可能在感知分数上取胜却在保真度上失利，而其中任何一个单独的数字都会掩盖这一点。",
+          "50 张图像、六种方法研究中 55.2% 的选择率是偏好层面的结果，单图 0.59 秒是效率层面的结果。真正支撑论证的消融，是那些把 prefix token 条件化与其他低分辨率注入方式做对比的实验。",
+          "这些消融是为了回应一个合理的质疑。扩散精修器本身就能产出令人印象深刻的细节，因此一个亮眼的结果可能来自精修器，而非自回归恢复机制。把位置编码与精修器的贡献剥离开，才使这成为一项关于下一尺度预测的论断，而非关于整条流水线的论断。"
+        ]
+      },
+      {
+        "h": "Representation, not just architecture",
+        "hz": "是表示问题，不只是架构问题",
+        "p": [
+          "The transferable idea is to choose the representation before choosing the network. Coarse structure is decided where it is cheap, fine detail is conditioned on it, and the input remains an explicit condition throughout — a principle that does not depend on this particular tokenizer.",
+          "The caveat is the one that applies to every generative restoration method. Realism and fidelity are in tension, and a model that wins a preference study may still add texture that was not in the scene. Prefix-token conditioning reduces drift; it does not certify the absence of hallucination.",
+          "The efficiency comparison should also be read with its assumptions intact — hardware, image size and implementation all move it, so 10.1% of DiffBIR’s runtime is a statement about one measurement setup. The interesting claim is that autoregression can be cheaper here, because the coarse levels are cheap to predict."
+        ],
+        "pz": [
+          "可迁移的核心思路是：先选表示，再选网络。粗粒度结构在成本最低处被决定，细节以它为条件生成，而输入始终作为一个显式条件存在——这条原则并不依赖于某一个具体的分词器。",
+          "局限则是所有生成式恢复方法共有的那个。真实感与保真度彼此张力，一个在偏好研究中取胜的模型，仍可能添加场景中并不存在的纹理。prefix token 条件化减少了漂移，但并不能证明幻觉不存在。",
+          "效率对比也应当连同其假设一起被阅读——硬件、图像尺寸与实现都会改变它，因此“DiffBIR 运行时间的 10.1%”是关于某一次测量设置的表述。真正有意思的论断是：在这里自回归可以更便宜，因为粗粒度层级本来就很好预测。"
+        ]
+      }
+    ]
+  }
+}

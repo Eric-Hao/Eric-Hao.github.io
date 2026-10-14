@@ -1,574 +1,684 @@
 {
-  "agentic_ttt": {
-    "headline": "RSI: Learning during the task, without losing the way",
-    "dek": "Agentic Test-Time Training adapts to new experience while reducing the influence of repetitive trajectories.",
-    "sections": [
-      [
-        "Introduction",
-        "An agent can know how to solve a task and still lose its way during a long interaction. Failed actions recur, familiar states are revisited, and previously useful strategies disappear. Updating model weights during execution could help, but learning repeatedly from the same unproductive trajectory can reinforce the problem.\n\nThe question is therefore not just whether an agent should learn during a task, but which parts of its experience are worth learning from."
-      ],
-      [
-        "Learning from what is new",
-        "aTTT adjusts the training loss at token level. Tokens belonging to n-grams encountered in earlier updates receive less weight; novel tokens retain their full weight. This makes the adaptation process sensitive to whether the episode is producing new information. A concurrent serving system uses runtime LoRA updates to support learning inside live episodes.\n\nThe update signal can be the agent’s own trajectory, observations from the environment or a summary of the interaction. These signals have different failure modes: self-generated text can repeat a bad decision, while environment feedback may contain genuinely new evidence. aTTT does not simply discard every repeated episode. It reduces the influence of already-seen token patterns within an update, preserving the parts of the experience that still carry information."
-      ],
-      [
-        "Testing adaptation inside an episode",
-        "The experiments contrast two kinds of feedback: immediate household-task feedback in ALFWorld and delayed software verification in SWE-bench Lite. ReAct, static pre-rollout adaptation and unfiltered online training form the baselines. Repetition-aware token weighting is also compared with dropping entire repeated updates. Success rates are averaged over three seeds; episode-specific LoRA adapters are reset between tasks, so improvements do not accumulate across the benchmark."
-      ],
-      [
-        "Preserving capability on longer tasks",
-        "The paper reports success-rate gains of up to 5.0 percentage points on ALFWorld and 4.9 on SWE-bench Lite, with cost limited to 1.9 times the no-TTT baseline. Improvements concentrate on tasks within the model’s existing competence: the evidence points to preserving abilities over long trajectories, rather than acquiring entirely new ones."
-      ],
-      [
-        "The limits of learning on the fly",
-        "The useful lesson is that more experience is not automatically better training data. Adaptation helps when it preserves a capability that repetition would otherwise erode. For RSI, this is a bounded mechanism for improving behavior within an episode, not evidence of open-ended recursive self-improvement. The next question is how reliably novelty measures can distinguish productive exploration from irrelevant variation."
-      ]
-    ]
-  },
-  "mmg2skill": {
-    "headline": "RSI: From human guides to self-evolving skills",
-    "dek": "MMG2Skill studies how agents can turn human-oriented instructions into executable knowledge.",
-    "sections": [
-      [
-        "Introduction",
-        "Web tutorials contain useful procedural knowledge, but they often assume human judgment and mix text with images. Giving an agent the raw material does not ensure it can act on it. MMG2Skill frames this gap as guide-to-skill learning.\n\nThe useful unit of learning in this work is an editable procedure: something the agent can try, diagnose and revise after seeing what actually happened."
-      ],
-      [
-        "Turning guides into editable skills",
-        "The framework compiles guides into editable skills that condition a fixed vision-language model. After execution, trajectory-level analysis identifies causes of failure and revises the skills. The model’s weights remain fixed, and benchmark scores are not used as revision feedback. MMG2Skill-Bench evaluates the process across GUI tasks, gameplay, and strategic card play.\n\nThe intermediate skill is important because it makes a human guide actionable. A tutorial may describe a goal informally and leave prerequisites or recovery steps implicit. Skill construction organizes this material into a procedure that the agent can use. The revision stage then asks what actually went wrong in an execution trajectory and edits the procedure accordingly. This external memory can change while the model that interprets it remains exactly the same."
-      ],
-      [
-        "Following a skill from execution to revision",
-        "The study uses the same backbone for construction, execution, analysis and refinement, avoiding a hidden advantage from a stronger external teacher. Across GUI, game and strategy tasks, it compares no skills, raw guides and the complete loop. Main results allow five attempts and use the analyzer’s early-stop decision. Component ablations separate the value of structured extraction from subsequent revision; private-information tasks are analyzed separately."
-      ],
-      [
-        "What improves when skills can change",
-        "Across six model backbones, the reported macro-average improvements range from 12.8 to 25.3 percentage points. Raw guides can reduce performance; structured construction and subsequent revision both matter. Early stopping can also reduce wasted attempts when success signals are calibrated. These results distinguish improvements to an agent’s skill library from changes to its underlying model."
-      ],
-      [
-        "Self-improvement without updating weights",
-        "The improvement lives in the agent’s editable skill library. Model weights stay fixed, making this an interpretable form of self-improvement: one can inspect what the agent learned and how a failed attempt changed its procedure. A remaining deployment issue is calibration. An analyzer that declares success too early can preserve an incorrect skill, especially when the environment hides decisive information."
-      ]
-    ]
-  },
-  "webcompass": {
-    "headline": "Evaluating the whole web-coding workflow",
-    "dek": "WebCompass looks beyond static code to the appearance, behavior, and evolution of working websites.",
-    "sections": [
-      [
-        "Introduction",
-        "A generated website can contain valid code while failing to look right or respond correctly. Web engineering also includes editing and repair, so one-shot generation tests capture only part of an agent’s work.\n\nWebCompass starts from that practical distinction. It asks whether an agent can produce a working experience, and then change or repair it as the task evolves."
-      ],
-      [
-        "Evaluating the whole development lifecycle",
-        "WebCompass combines text, image, and video inputs with generation, editing, and repair tasks across seven categories. Its generation evaluator operates websites in a real browser, explores interactions, and creates targeted tests. Editing and repair use checklist-guided evaluation. The benchmark is designed around the iterative lifecycle of a website rather than a single static output.\n\nGeneration asks whether a new application works; editing asks whether a requested change preserves the rest of the application; repair asks whether the underlying defect is corrected without breaking interactions. These are different engineering behaviors. Browser execution lets the evaluator inspect states reached by real actions, rather than infer functionality from screenshots alone. Checklists then make the intended change explicit when judging editing and repair."
-      ],
-      [
-        "Looking beyond a screenshot",
-        "Ten multimodal models are evaluated using Claude Code 2.0.67 and browser inspection through Chrome DevTools MCP. Generation, editing and repair each have three dimensions: a website’s ability to run, adherence to requirements and visual quality are not collapsed into a single pass/fail test. The overall score averages nine dimensions, while additional analyses examine difficulty, framework choice and thinking mode."
-      ],
-      [
-        "Where current coding agents struggle",
-        "The evaluation finds stronger and more balanced performance from the tested closed-source models, while aesthetics remains a persistent weakness, especially for open-source models. Editing and repair reveal different difficulty profiles, and framework choice affects results. The practical implication is to assess visual fidelity, interaction, and implementation together; a single correctness score can conceal important failure modes."
-      ],
-      [
-        "A working website is more than valid code",
-        "A web-coding model should be judged on the experience it produces, including what happens after the initial page appears. The benchmark makes that broader target explicit. Its scores still depend on automated judges and the chosen runtime, so dimension-level results are more informative than treating one aggregate ranking as a complete measure of engineering ability."
-      ]
-    ]
-  },
-  "color": {
-    "headline": "Aligning generative detail with image structure",
-    "dek": "ASASR uses frequency-aware geometry to address the gap between convincing texture and faithful restoration.",
-    "sections": [
-      [
-        "Introduction",
-        "Generative super-resolution can produce compelling details that do not belong to the source image. This work studies a spectral mismatch: objectives built around isotropic noise do not reflect the frequency structure of natural images.\n\nThe aim is not simply to make an image sharper. It is to make the optimization distinguish between detail supported by the image and detail that only looks plausible."
-      ],
-      [
-        "Making alignment sensitive to frequency",
-        "ASASR colors the noise transition kernel to follow natural spectral decay, expressing the generative flow in a Sobolev-induced geometry. A learned adversary then creates targeted negative examples corresponding to structural failure directions. Together, these components make alignment sensitive to the kinds of detail that should be preserved or discouraged.\n\nThe frequency perspective explains why a visually small error may still be structurally important. Natural images distribute information unevenly across scales; treating every direction in image space identically can penalize or reward the wrong changes. Sobolev geometry makes this structure part of the optimization. The adversary adds a second ingredient by generating plausible failures, giving the alignment process a sharper distinction between convincing texture and the structure it should actually preserve."
-      ],
-      [
-        "Testing structure as well as appearance",
-        "The evaluation checks three complementary questions: whether images look natural, whether their frequency content matches the reference, and whether useful semantic information survives restoration. The paper combines perceptual comparisons with spectral analysis, a user study and downstream detection, segmentation and OCR. Ablations replace Sobolev guidance with Euclidean guidance and remove adversarial alignment, testing whether the proposed geometry and negative examples each contribute."
-      ],
-      [
-        "What the evidence says about fidelity",
-        "In a study with 50 participants and 64 test images, ASASR receives a 91.1% first-choice rate for naturalness and fidelity. Frequency-domain comparisons and downstream detection, segmentation and OCR experiments support improved structural preservation. These are results under the paper’s degradation and evaluation settings, rather than a guarantee for arbitrary inputs."
-      ],
-      [
-        "Detail is only useful when it belongs",
-        "The distinction between a detailed image and a faithful image is the central takeaway. A generative model can improve appearance while changing structure, so a restoration objective needs more than a preference for sharpness. The evidence supports this frequency-aware formulation in the tested settings; perceptual scores and task performance remain complementary checks rather than interchangeable measures."
-      ]
-    ]
-  },
-  "tta_flow": {
-    "headline": "Using inference-time feedback for image restoration",
-    "dek": "ResFlow-Tuner brings multimodal conditioning and reward-guided inference to flow-matching restoration.",
-    "sections": [
-      [
-        "Introduction",
-        "Large text-to-image models contain powerful visual priors, but using them effectively for restoration requires conditioning them on a particular damaged image. ResFlow-Tuner asks how additional inference-time computation can improve this process.\n\nThis turns restoration into a question about how to use a fixed model: can feedback during inference improve the trajectory toward a reconstruction?"
-      ],
-      [
-        "Adapting a generative prior to restoration",
-        "The framework builds on FLUX.1-dev. Unified multimodal fusion encodes different conditions into a shared sequence for the diffusion transformer. A separate, training-free test-time scaling procedure uses reward-model feedback to steer the denoising direction during inference.\n\nConditioning and test-time refinement solve different parts of the problem. Unified fusion determines how the model receives the degraded image and semantic context. Reward-guided refinement then adjusts the direction of an ongoing reconstruction. This separation makes it possible to retain a strong pretrained generative backbone while controlling how much extra work is spent on a particular input, rather than retraining the entire model for each restoration decision."
-      ],
-      [
-        "Spending inference compute on feedback",
-        "The paper separates three design choices in its ablations: how the low-quality image and text are fused, which reward signals steer restoration, and how much test-time computation is spent. On LSDIR-Val, it varies the refinement budget rather than comparing only one final configuration. OCR evaluation provides an additional structural check: sharper-looking text is useful only if the recognized content is also more accurate."
-      ],
-      [
-        "What changes with test-time scaling",
-        "The LSDIR-Val ablation isolates the effect of test-time scaling: with K=4 and N=7, LPIPS falls from 0.4015 to 0.3721 and FID from 22.91 to 19.82 relative to no TTS. MUSIQ rises from 71.47 to 74.21. These gains require additional inference computation; the method offers a quality–cost trade-off rather than a free improvement."
-      ],
-      [
-        "More computation needs a useful objective",
-        "Test-time scaling turns restoration into a controllable allocation problem. More refinement may be appropriate for a difficult photograph, while a latency-sensitive application may prefer a smaller budget. Reward choice matters because optimization can favor what the reward model recognizes. The paper’s ablations therefore support a tunable method, not an unconditional promise that more inference always yields a better reconstruction."
-      ]
-    ]
-  },
-  "shiftlut": {
-    "headline": "A wider view for efficient image restoration",
-    "dek": "ShiftLUT expands spatial context while keeping look-up-table restoration compact.",
-    "sections": [
-      [
-        "Introduction",
-        "Look-up tables offer an efficient route to image restoration. However, expanding the area each prediction can use often increases computation and storage, making deployment on constrained devices harder.\n\nShiftLUT revisits where that cost comes from. Instead of asking a larger table to encode every spatial combination, it changes how features are brought together before lookup."
-      ],
-      [
-        "Moving context instead of enlarging tables",
-        "ShiftLUT uses learnable, channel-wise spatial shifts to enlarge the receptive field. An asymmetric two-branch architecture directs more computation toward the branch carrying denser information. Error-bounded adaptive sampling then compresses the feature-level tables to reduce storage.\n\nA pointwise lookup table is cheap partly because it sees little spatial context. Learnable shifts let information from different positions reach different channels before the lookup-style processing. The asymmetric branches avoid spending equal computation on representations that contain unequal amounts of useful information. Adaptive sampling addresses a separate bottleneck: it stores the table more economically while bounding the interpolation error, so efficiency is considered at both computation and representation levels."
-      ],
-      [
-        "Accounting for quality, storage and computation",
-        "The evaluation includes 4× super-resolution, denoising and JPEG deblocking. Standard SR datasets measure luminance-channel PSNR and SSIM, while an Android implementation measures runtime on a Snapdragon 888 at a 320×180 input size. Small, medium and large variants expose the storage–quality trade-off. The design is also tested beyond upscaling by removing the final spatial enlargement stage."
-      ],
-      [
-        "A wider view at a practical cost",
-        "Compared with TinyLUT, the paper reports a 3.8-times larger receptive field and an average PSNR improvement exceeding 0.21 dB across multiple standard benchmarks, while retaining low storage and inference costs. The contribution combines spatial coverage, computation allocation, and table compression. The linked implementation provides a starting point for examining this balance under a particular deployment budget."
-      ],
-      [
-        "Designing for the deployment budget",
-        "The model family matters as much as a single best score. On Manga109, ShiftLUT-L improves over TinyLUT-F from 28.83 to 29.16 dB, while reported storage falls from 171 to 104 KB and runtime from 146 to 84 ms. Those measurements make the deployment case concrete, but the phone, input resolution and degradation model define the scope of that efficiency claim."
-      ]
-    ]
-  },
-  "instantvir": {
-    "headline": "Bringing diffusion-based video restoration to real time",
-    "dek": "InstantViR distills a video diffusion prior into a causal, single-pass reconstruction model.",
-    "sections": [
-      [
-        "Introduction",
-        "Interactive video needs both coherent reconstruction and low delay. Iterative diffusion methods can deliver strong visual quality, but repeated sampling makes real-time deployment difficult. Applying image models frame by frame also risks temporal artifacts.\n\nThe design question is how much of the iterative teacher’s behavior can be moved into training, so that deployment can process the next frames without running the full sampling procedure again."
-      ],
-      [
-        "Distilling restoration into a causal pass",
-        "InstantViR distills a bidirectional video diffusion teacher into a causal autoregressive student. Restoration takes a single forward pass rather than iterative test-time optimization. Training uses the teacher and known degradation operators, without requiring an external paired clean/degraded dataset. LeanVAE further reduces the cost of latent-space processing.\n\nThe teacher can use bidirectional temporal context during training, while the student must operate causally when processing a stream. Distillation transfers the teacher’s reconstruction prior into a form compatible with that constraint. Known forward operators connect a candidate clean video to the observed degradation, keeping the inverse problem explicit. LeanVAE addresses the cost of encoding and decoding latent representations, which can remain substantial even after iterative diffusion steps are removed."
-      ],
-      [
-        "Measuring an entire video pipeline",
-        "Training uses 6,000 Open-Sora clips, with degraded measurements produced through known forward operators. Evaluation uses 500 held-out clips and REDS30 for zero-shot transfer, covering random inpainting, Gaussian deblurring and 4× super-resolution at 832×480. The paper measures per-frame fidelity, perceptual quality, temporal distribution and throughput. It reports the original-VAE model separately from the LeanVAE-accelerated variant."
-      ],
-      [
-        "The throughput gain and its conditions",
-        "Table 1 reports 13.91 FPS for the original-VAE model and 35.56 FPS for the LeanVAE variant, with runtime measured on a single NVIDIA A800 80GB in the evaluation protocol. Across inpainting, deblurring and super-resolution, the one-step approach improves or remains competitive on the reported temporal and reconstruction measures. The speed advantage is substantial, but the variant, resolution and hardware are essential context."
-      ],
-      [
-        "Fast restoration still needs temporal consistency",
-        "Distillation moves iterative work from serving time into training. This is attractive when many videos share a known restoration task, but changing the degradation or operating far outside the training distribution can change the trade-off. The method also illustrates why throughput must be reported alongside resolution and model variant: “real time” is a property of a complete setup, not just the architecture."
-      ]
-    ]
-  },
-  "varsr": {
-    "headline": "Restoring images one scale at a time",
-    "dek": "VARSR explores visual autoregression as a foundation for image super-resolution.",
-    "sections": [
-      [
-        "Introduction",
-        "Image restoration must balance fidelity, realism, and computational cost. VARSR approaches this problem through next-scale prediction: an autoregressive model progressively constructs a higher-resolution representation.\n\nRather than predict every fine detail at once, the model first establishes a coarse representation and uses it to condition the next level of detail."
-      ],
-      [
-        "Reconstructing an image one scale at a time",
-        "Low-resolution information enters through prefix tokens. Scale-aligned rotary positional encodings preserve spatial relationships across resolutions, while a diffusion refiner addresses quantization residuals for pixel-level reconstruction. Image-based classifier-free guidance helps control realism.\n\nThe low-resolution image is not merely a starting canvas. Its prefix tokens remain available to the autoregressive model as it predicts successive scales, helping maintain the relationship between input content and generated detail. Scale-aligned positional encoding makes locations at different resolutions correspond. A continuous diffusion refiner then handles information that a discrete tokenizer cannot represent exactly, separating the problem of semantic structure from the correction of quantization residuals."
-      ],
-      [
-        "Comparing fidelity, realism and inference cost",
-        "The experiments combine reference-based metrics, no-reference quality scores, visual comparisons and human preference. Ablations compare prefix-token conditioning with alternative ways of injecting the low-resolution image. Other analyses examine positional encoding and the residual refiner. This decomposition matters because a visually impressive result could otherwise come from the diffusion refiner rather than from the autoregressive restoration mechanism itself."
-      ],
-      [
-        "What next-scale prediction delivers",
-        "In the reported 50-image user study on DRealSR and RealSR, VARSR receives 55.2% of selections among six methods. The efficiency comparison reports 0.59 seconds per image, about 10.1% of DiffBIR’s runtime in that setup. Together with perceptual metrics, these results support next-scale prediction as a practical restoration route; latency remains dependent on hardware and resolution."
-      ],
-      [
-        "Choosing the right representation for restoration",
-        "The paper reframes super-resolution as a sequence of scale-level decisions. Coarse structure is established before finer details, while the input remains an explicit condition throughout. That is a useful design principle beyond a particular benchmark. It does not remove the need to check hallucinated textures, and efficiency comparisons should retain the implementation and image-size assumptions used in the study."
-      ]
-    ]
-  },
-  "tinvblocks": {
-    "headline": "Rethinking the information kept in a smaller image",
-    "dek": "Tri-branch invertible blocks separate brightness and color for more effective image rescaling.",
-    "sections": [
-      [
-        "Introduction",
-        "Image rescaling treats the reduction and recovery of resolution as a joint problem. Invertible networks provide a shared framework, but conventional two-branch designs can leave redundancy in low-frequency RGB information.\n\nThis makes the low-resolution image more than a display output. It is also the representation from which the high-resolution image must later be recovered."
-      ],
-      [
-        "Separating brightness, color and detail",
-        "T-InvBlocks splits the low-frequency representation into luminance and chrominance components, alongside the high-frequency branch. An all-zero high-frequency mapping during upscaling encourages essential recovery information to remain in the low-resolution image. The block is designed to fit into existing rescaling architectures.\n\nThe three branches are not three independent predictions of the same image. They assign different roles to luminance, chrominance and high-frequency information within an invertible mapping. Setting the high-frequency input to zero during reconstruction removes reliance on a sampled detail code and pressures the learned downscaler to retain useful recovery information in the smaller image. The benefit comes from redesigning what is stored, not simply adding more network depth."
-      ],
-      [
-        "Testing a block inside existing systems",
-        "The authors insert the block into both IRN-style rescaling and SAIN-style compression-aware pipelines. Ordinary reconstruction and JPEG-compressed reconstruction are evaluated separately, including multiple quality factors and 2×/4× scaling. The comparison keeps model size in view and includes ablations of the high-frequency mapping. This tests whether the block is a reusable representation change rather than a gain confined to one complete network."
-      ],
-      [
-        "What changes when the branches change",
-        "On DIV2K with JPEG compression, T-SAIN improves PSNR over SAIN by 0.4–0.6 dB at 2× rescaling and 0.2–0.5 dB at 4× across the tested quality factors, with similar parameter counts. The gain shows that separating luminance and chrominance can preserve useful reconstruction information even after lossy encoding."
-      ],
-      [
-        "Rescaling as an information-allocation problem",
-        "Learned rescaling controls both the smaller image and its reconstruction, unlike super-resolution applied to an arbitrary input. That extra control is what makes information placement in the low-resolution representation useful. The result is especially relevant to a coordinated encode/decode pipeline; it should not be read as the same problem as recovering an uncontrolled image downloaded from the web."
-      ]
-    ]
-  },
-  "oapt": {
-    "headline": "Restoring images after a second JPEG compression",
-    "dek": "OAPT uses compression offsets to organize the patterns left by repeated JPEG encoding.",
-    "sections": [
-      [
-        "Introduction",
-        "Images shared and edited repeatedly may undergo two JPEG compressions with different block alignments. A model trained for single compression can struggle with the resulting artifacts. The paper’s analysis identifies up to four patterns within an 8-by-8 block.\n\nThe offset between compression grids is therefore a useful clue. Estimating it changes which image regions the model should treat as having a shared artifact pattern."
-      ],
-      [
-        "Recovering the relationship between JPEG grids",
-        "OAPT first predicts the offset between the two compression grids. These estimates guide the grouping of similar patterns. Its reconstruction network combines window-based self-attention with sparse attention over the grouped features through hybrid partition attention blocks.\n\nWhen an image is cropped between JPEG encodings, the second block grid no longer lines up with the first. Neighboring pixels can therefore belong to different compression histories even within one local window. Predicting the offset allows the network to group pixels according to that history. Window attention captures local relationships, while the pattern-based sparse attention connects positions that share the same artifact structure."
-      ],
-      [
-        "Testing aligned and shifted compression",
-        "Training synthesizes aligned and misaligned double compression by applying JPEG, a pixel shift and JPEG again. Both quality factors are sampled from 5 to 95, with offsets from zero to seven pixels. A single model covers these conditions. Grayscale and color benchmarks, visual examples and partition-module ablations then test whether offset estimation improves grouping and whether the grouping transfers to other restoration transformers."
-      ],
-      [
-        "What offset-aware attention recovers",
-        "The paper reports an improvement of more than 0.16 dB over the compared state-of-the-art method for double-JPEG restoration. The pattern-clustering component can also be inserted into other transformer restoration models without extra computation, according to the reported study. This connects restoration architecture to the structure of the degradation process itself."
-      ],
-      [
-        "Compression history is part of the input",
-        "The important step is to expose the structure of the degradation to the attention mechanism. Pixels that look unrelated spatially can share a compression pattern, and grouping them accordingly changes what the model can learn. The method is tailored to double JPEG; repeated resizing, other codecs or a more complex editing history introduce degradations beyond that specific model."
-      ]
-    ]
-  },
-  "cpga": {
-    "headline": "Recovering video detail from the codec’s own clues",
-    "dek": "CPGA uses motion vectors and residual frames as restoration signals.",
-    "sections": [
-      [
-        "Introduction",
-        "Compressed video contains more than the visible frames. Coding priors such as motion vectors and residuals carry information about temporal changes and spatial detail. Many enhancement approaches leave these signals unused.\n\nCPGA treats compression metadata as evidence about the video rather than information to discard after decoding. The method uses those clues to decide what to aggregate across frames and within an image."
-      ],
-      [
-        "Using information already inside the bitstream",
-        "CPGA introduces an inter-frame temporal aggregation module that combines consecutive frames with coding priors. A multi-scale non-local aggregation module uses residual frames to guide spatial aggregation. The method therefore draws on both the decoded video and information already embedded in its compressed representation.\n\nMotion vectors provide a compact account of where information is expected to move between frames. Residuals identify what the prediction did not explain. These signals are complementary: one helps temporal alignment, while the other highlights spatial detail that needs reconstruction. CPGA uses them inside aggregation rather than attaching them only at the final output, allowing the priors to shape how neighboring evidence is gathered."
-      ],
-      [
-        "Separating temporal and spatial contributions",
-        "The evaluation uses standard compressed-video sequences under both low-delay B and random-access configurations, with several quantization parameters. Average PSNR and SSIM are paired with temporal quality-fluctuation analysis. Ablations test the contribution of coding priors and aggregation modules. This distinguishes gains from additional bitstream information from gains obtained solely by increasing the capacity of a pixel-based enhancement network."
-      ],
-      [
-        "What coding priors add to enhancement",
-        "The work introduces VCP, a dataset of 300 videos with bitstream-derived coding priors. On 18 standard sequences under the LDB configuration at QP=37, CPGA improves average PSNR gain by 0.03 dB over STDR and 0.08 dB over RFDA. The benefit depends on access to motion vectors and residuals, which are not available from decoded RGB frames alone."
-      ],
-      [
-        "Restoration beyond decoded pixels",
-        "A codec has already estimated motion and separated predictable content from residual detail. CPGA treats that work as reusable evidence for reconstruction. The practical question becomes where to connect the enhancer to a decoding pipeline. If only a final RGB video is available, access to the exact priors is lost, and the same architecture cannot simply be assumed to retain its reported advantage."
-      ]
-    ]
-  },
-  "xpsr": {
-    "headline": "Using language to guide faithful super-resolution",
-    "dek": "XPSR connects multimodal semantic understanding with diffusion-based image restoration.",
-    "sections": [
-      [
-        "Introduction",
-        "A damaged low-resolution image may no longer clearly communicate its content. A strong generative prior can then fill gaps with incorrect structures or artifacts. XPSR addresses the quality of the conditioning information supplied to the restoration model.\n\nThe central question is how to supply useful meaning without also carrying the input’s degradations into the representation used for generation."
-      ],
-      [
-        "Giving diffusion a clearer semantic signal",
-        "Multimodal language models provide semantic conditions for the diffusion process. Semantic-Fusion Attention combines these cross-modal priors. A Degradation-Free Constraint encourages representations to preserve useful content without carrying unwanted degradations from the low-resolution input.\n\nA semantic description can supply high-level context that is difficult to infer from a severely degraded patch, while image features retain spatial evidence. Simply combining them would still risk carrying compression or noise into the condition. The degradation-free constraint addresses that leakage, and fusion attention controls how the two modalities interact. The architecture therefore treats semantic assistance and degradation suppression as complementary requirements for useful conditioning."
-      ],
-      [
-        "Checking guidance and degradation separately",
-        "The study evaluates synthetic degradations and real photographs, using semantic captions produced from degraded inputs. Ablations remove cross-modal fusion, the degradation-free constraint and parts of the prompt design. Human preference and visual examples complement quantitative metrics. The paper also examines why pixel-level similarity can disagree with perceptual quality, rather than interpreting every metric as a measurement of the same objective."
-      ],
-      [
-        "What cross-modal priors contribute",
-        "On DIV2K-val, the paper reports relative gains over SeeSR of 10.34% in MANIQA, 8.57% in CLIPIQA and 1.64% in MUSIQ. A real-image user study gives XPSR a 64.3% selection rate among six methods. These results emphasize perceived quality and semantic detail; diffusion methods can still trail GAN-based methods on pixel-level PSNR and SSIM."
-      ],
-      [
-        "Semantic help without semantic invention",
-        "Semantic guidance can help a restoration model decide what a damaged region represents, but a mistaken caption can also guide generation in the wrong direction. The strongest reading of the results is therefore conditional: better conditioning improves the tested pipeline. It does not establish that language can recover information that is absent from an image with certainty."
-      ]
-    ]
-  },
-  "ptmvqa": {
-    "headline": "Learning video quality from diverse pretrained models",
-    "dek": "PTM-VQA combines existing representations to evaluate perceptual video quality.",
-    "sections": [
-      [
-        "Introduction",
-        "Video quality depends on content, distortion, and motion. Human opinion scores are costly to collect, limiting the size of dedicated training datasets. PTM-VQA investigates whether models trained for other tasks can supply complementary knowledge.\n\nThe challenge is not merely to collect more features. Representations trained for different purposes must become comparable in a space that reflects perceived video quality."
-      ],
-      [
-        "Bringing pretrained representations together",
-        "Features are extracted from multiple pretrained models with frozen weights. An intra-consistency constraint aligns their representations in a shared quality-aware space. An inter-divisibility constraint separates groups formed from the quality annotations. The method also selects candidate models according to clustering performance on quality-assessment data.\n\nDifferent pretrained models emphasize different evidence: object content, motion, texture or semantic structure. Their raw features do not automatically agree on a common meaning of quality. The consistency objective brings representations of the same video into a shared space, while separation by quality groups makes that space useful for prediction. Model selection then favors complementary feature sources rather than assuming that adding every available backbone is always beneficial."
-      ],
-      [
-        "Testing complementary sources of knowledge",
-        "The experiments compare pretrained feature combinations on KoNViD-1k, LIVE-VQC and YouTube-UGC, then assess larger-scale training on LSVQ. Cross-database evaluation tests transfer without fine-tuning on the target set. PLCC and SRCC measure agreement with human quality judgments, while ablations examine consistency, separation losses and clustering choices. Runtime changes with the selected backbones, so efficiency is evaluated for the actual combination used."
-      ],
-      [
-        "What transfers to quality assessment",
-        "On LSVQ-Test, the PTM-VQA-VQC configuration reaches PLCC 0.8637 and SRCC 0.8545. Cross-database tests also examine transfer without fine-tuning. The results support reusing frozen pretrained representations for quality prediction, while different backbone combinations have different speed and accuracy. This is a quality assessment method, not a video restoration algorithm."
-      ],
-      [
-        "Predicting quality is a distinct task",
-        "The framework is a way to reuse knowledge acquired for other visual tasks when dedicated quality labels are scarce. Its output is a prediction of perceived quality, not a guarantee about factual content or temporal correctness. In a restoration system it can support comparison and selection, but a high predicted score should still be paired with fidelity and task-specific checks."
-      ]
-    ]
-  },
-  "cassr": {
-    "headline": "A clearer reference for generative super-resolution",
-    "dek": "CasSR uses a cascaded diffusion process to recover more information from degraded images.",
-    "sections": [
-      [
-        "Introduction",
-        "Text-to-image diffusion models provide rich visual priors, yet heavily degraded inputs can lead to lost semantics or invented content. CasSR focuses on strengthening the image information available to the generative process.\n\nThe proposed cascade gives the diffusion model a stronger visual starting point, making the image itself a more useful guide to what should be restored."
-      ],
-      [
-        "Building a better visual reference first",
-        "A preliminary reference image helps extract content and reduce degradation before further restoration. A cascaded controllable diffusion model uses this reference, while a multi-attention mechanism improves how the text-to-image backbone draws on the original image.\n\nThe preliminary image acts as a more informative reference, not as an unquestionable ground truth. It provides the next stage with content that is easier to condition on than the original degraded observation. The controllable diffusion process can then use the pretrained visual prior while staying connected to image evidence through attention. This is why both stages must be judged together: the first changes the evidence, and the second determines how that evidence guides synthesis."
-      ],
-      [
-        "Testing what the reference contributes",
-        "The evaluation compares GAN-based and diffusion-based methods on DIV2K validation, DRealSR and RealSR. Reference-based perceptual distances and no-reference quality measures are reported together, supplemented by detailed visual comparisons. The cascade is designed to supply a cleaner reference before generation, so examples that retain object boundaries and small identifying details are particularly informative for understanding where the mechanism helps."
-      ],
-      [
-        "Where the cascade preserves more detail",
-        "On the DIV2K validation set, the paper reports relative improvements of 3.82% in MUSIQ and 7.05% in MANIQA over the next-best compared method. Visual comparisons show better preservation of details such as a penguin’s eye and wing boundaries. Performance varies across DRealSR and RealSR, so the reported perceptual gains should be read alongside the individual dataset results."
-      ],
-      [
-        "A generative prior needs a reliable anchor",
-        "The cascade makes the condition itself an object of restoration. Instead of asking a powerful prior to solve every ambiguity at once, it first tries to improve the evidence the prior receives. That structure is useful, but errors from the preliminary stage may propagate. Assessing a final image should therefore include both attractive detail and consistency with the original observation."
-      ]
-    ]
-  },
-  "magvortex": {
-    "headline": "How vortices change the splitting of magnetic tubes",
-    "dek": "A geometric analysis connects magnetic-field curvature, vortex interactions, and energy release.",
-    "sections": [
-      [
-        "Introduction",
-        "Magnetic tubes and vortex tubes influence one another in magnetohydrodynamic flows. This study asks how their geometry and relative orientation affect magnetic splitting.\n\nA geometric description helps connect what is visible in the evolving tubes to the forces that produce the motion. The simulations then test how an accompanying vortex changes that mechanism."
-      ],
-      [
-        "Describing tube dynamics through geometry",
-        "A Frenet–Serret frame along magnetic field lines provides a geometric description of forces and tube dynamics. Direct numerical simulations examine linked magnetic and vortex structures, varying their initial angle from zero to 45 degrees.\n\nThe Frenet–Serret frame attaches tangent, normal and binormal directions to each magnetic field line. Curvature and torsion then provide a local language for describing forces that bend or separate a tube. In this description, the Lorentz-force-induced vortex dipole is not just another flow visualization: it is part of the mechanism that drives splitting. An accompanying vortex can change that mechanism by altering the local rotational flow."
-      ],
-      [
-        "Varying the magnetic–vortical configuration",
-        "The study combines an analytical force decomposition with direct numerical simulations of linked magnetic and vortex tubes. Initial relative angles from zero to 45 degrees probe how geometry changes the interaction. Field-line geometry, vorticity generation and magnetic-to-kinetic energy transfer are considered together. Comparing an isolated magnetic structure with one accompanied by a vortex separates self-induced splitting from the influence of an imposed flow structure."
-      ],
-      [
-        "When a vortex suppresses magnetic splitting",
-        "Curved magnetic tubes generate Lorentz forces and dipole vortices that can split the tubes into smaller structures. A sufficiently strong accompanying vortex tube can disrupt dipole formation and inhibit splitting. The simulations also show sensitivity to small changes in angular configuration. These findings connect local geometry with the evolution of larger structures and magnetic energy, within the configurations studied."
-      ],
-      [
-        "From local forces to structural evolution",
-        "The result connects a local geometric description to a visible change in topology and energy release. It also cautions against treating a magnetic tube independently of the surrounding vortical flow. The configurations are idealized numerical systems, so the mechanism offers a basis for interpreting more complex MHD flows rather than a direct prediction for every astrophysical configuration."
-      ]
-    ]
-  },
-  "magknot": {
-    "headline": "Watching magnetic field lines tie themselves into knots",
-    "dek": "Successive reconnections can create an evolving cascade of magnetic knots.",
-    "sections": [
-      [
-        "Introduction",
-        "The study follows two perpendicular helical flux tubes with opposite chirality. Their evolution shows how initially unknotted magnetic structures can develop increasingly complex field-line topology.\n\nThe interest lies in the sequence of events, not just the final knot. Following reconnection step by step reveals how one change in connectivity creates the conditions for the next."
-      ],
-      [
-        "Following reconnection as it happens",
-        "A magnetic-surface field tracks tube evolution and identifies reconnection regions. Initial reconnection creates U-shaped field lines; secondary reconnection ties overhand knots. Rotation and stretching induced through the Lorentz force then drive further reconnections, producing double overhand and more complex knots.\n\nA single reconnection is not enough to explain the final knot distribution. The first event changes how field lines approach one another; subsequent motion rearranges those lines and enables another event. The magnetic-surface representation makes this sequence traceable. Tracking both the knot type and the surrounding motion reveals how the field’s geometry changes the flow that will reshape that geometry in the next stage."
-      ],
-      [
-        "Tracking magnetic surfaces and field lines",
-        "The analysis follows field lines through successive reconnection events instead of relying only on snapshots of magnetic intensity. A magnetic-surface field identifies evolving tube boundaries and reconnection regions. Knot types extracted at different times are compared using crossing number and Alexander–Briggs classification, while energy conversion is tracked alongside the geometric sequence. This links the visual formation of a knot to a quantitative change in topology."
-      ],
-      [
-        "A cascade toward more complex knots",
-        "The analysis quantifies increasing complexity using minimum crossing numbers and distributions of knot types. Knot formation coincides with conversion of magnetic energy into kinetic energy, and the cascade eventually slows and stops under resistive and viscous dissipation. The work makes a sequence of topological changes visible and measurable, linking geometry to the underlying dynamics."
-      ],
-      [
-        "Topology can become more complicated",
-        "The cascade is notable because complexity grows from an initially unknotted configuration. Lorentz-force-driven motion participates in the next reconnection, closing a feedback between geometry and dynamics. Dissipation eventually ends that sequence. This is a specific magnetic-knot mechanism in the studied resistive flow, not a claim that all reconnection events increase knot complexity."
-      ]
-    ]
-  },
-  "vortex": {
-    "headline": "Following vortex surfaces beyond ideal flow",
-    "dek": "A virtual velocity offers a way to track coherent vortex geometry in some non-ideal flows.",
-    "sections": [
-      [
-        "Introduction",
-        "In an ideal fluid, classical circulation and vortex theorems provide a clear relationship between motion and vortex surfaces. Viscosity and other non-ideal effects complicate that relationship, making physical-velocity transport insufficient for tracking the same structures.\n\nThe paper separates two questions that coincide in ideal flow: how fluid particles move, and which velocity can preserve a vortex surface. In a non-ideal flow, they need not have the same answer."
-      ],
-      [
-        "Transporting surfaces with a virtual velocity",
-        "The paper shows that the classical theorems can extend to some non-ideal flows when a globally smooth circulation-preserving virtual velocity exists. A vortex-surface field follows the surfaces using that velocity. An explicit construction is obtained for a modified dissipative flow that prevents vortex-line reconnection.\n\nA material surface follows the physical velocity of fluid particles, but a vortex surface is defined by its relationship to vorticity. Those two notions coincide under the classical ideal assumptions and can separate once non-ideal terms act. The virtual velocity is chosen to preserve the circulation-related structure needed for vortex tracking. It is therefore a mathematical transport field with a specific conservation role, not an additional physical motion of the fluid."
-      ],
-      [
-        "Checking the conditions for preservation",
-        "Two settings establish the role of the virtual velocity. A modified dissipative flow admits an explicit circulation-preserving construction and makes exact tracking testable. A magnetohydrodynamic Taylor–Green flow then examines an approximate construction when a globally smooth one is unavailable. Comparing transport by physical and virtual velocities shows which apparent surface changes arise from the tracking rule rather than the underlying vortex geometry."
-      ],
-      [
-        "What can remain frozen in a non-ideal flow",
-        "When a globally smooth solution is unavailable, an approximate virtual velocity can still improve tracking. In the studied magnetohydrodynamic Taylor–Green flow, it better preserves vorticity flux and removes spurious deformation caused by the Lorentz force. The existence condition remains central: the paper does not claim exact frozen-in tracking for arbitrary non-ideal flows."
-      ],
-      [
-        "Where the construction applies",
-        "The contribution changes the coordinate system used to follow a structure without claiming that non-ideal physics disappears. This distinction is essential: a useful virtual transport can preserve a geometric description even when material transport cannot. The existence and smoothness of the virtual velocity determine when the result is exact, and when it should instead be understood as an approximation."
-      ]
-    ]
-  },
-  "kat-v25-dev": {
-    "headline": "KAT-Coder V2.5-Dev",
-    "dek": "Agentic coding in an open-weight 35B-A3B mixture-of-experts model.",
-    "sections": [
-      [
-        "Introduction",
-        "Long coding tasks demand more than generating a plausible function. The model must use tools correctly, retain context and avoid repetitive behavior across many actions, while remaining practical to deploy.\n\nThis release brings that deployment question into focus: an open-weight coding model needs useful task performance as well as reliable behavior at the tool interface."
-      ],
-      [
-        "Post-training for reliable tool use",
-        "The release starts from Qwen3.6-35B-A3B, with 127K supervised examples followed by reinforcement learning. It retains the V2.5 infrastructure: token-consistent rollout and training, truncated importance weights, checked execution environments and rewards that recognize useful intermediate progress.\n\nAdapting rewards to the base model was essential. The model card describes collapse under a binary reward, with some turns producing more than 70 parallel tool calls. Penalties for excessive calls, failures, empty tool blocks and repetition enabled ten stable epochs. Reported malformed tool tags fell from 9.34% to 0.28%, while continuous single-turn repetition fell from 0.34% to zero. These are release-reported behavioral measurements, distinct from task benchmark scores."
-      ],
-      [
-        "Reading the release evaluations",
-        "The model card downloads public peer weights and evaluates them through a common in-house pipeline, rather than copying each model’s published headline score. The comparison spans repository coding, multilingual tasks, tool use and scientific coding. Most tests run once unless an obvious error is detected. This makes the harness, context budget and serving configuration part of the result, and limits how confidently small score differences can be ranked."
-      ],
-      [
-        "Where the model is competitive",
-        "In the KAT team’s in-house evaluation, the model scores 69.4 on SWE-bench Verified, 63.0 on Multilingual and 45.96 on Pro. The SWE tests use Claude Code 2.1.195, pass@1 and a 256k context. These are single-run reproductions under the stated harness; peer scores can differ from their official reports."
-      ],
-      [
-        "Deployment is more than parameter count",
-        "Open weights make the model useful as an inspectable deployment and research artifact. The release provides a starting point for studying long-horizon behavior under a chosen harness, but the card’s ranking is not independent evidence of universal superiority. Reproducing the evaluation protocol and checking behavior on the intended workload are the natural next steps before selecting a model."
-      ]
-    ]
-  },
-  "kat-v25": {
-    "headline": "KAT-Coder V2.5",
-    "dek": "Building reproducible environments and combining specialist models for long-horizon coding.",
-    "sections": [
-      [
-        "Introduction",
-        "Software engineering agents face incomplete task specifications, unstable execution environments and delayed feedback. Better training requires reproducible tasks and rewards that remain meaningful over long tool-use trajectories.\n\nThe report treats environment construction as part of model development. A training task only becomes useful when an agent can execute it and receive feedback that actually reflects success."
-      ],
-      [
-        "Building environments that can teach",
-        "AutoBuilder reconstructs repository-level tasks, while KwaiClawEnv supplies multi-tool workflows. Harness randomization and an asymmetric actor–critic PPO system improve the training process. Multi-teacher on-policy distillation then combines five specialist models into one student.\n\nA repository task is useful for reinforcement learning only if its environment can be reconstructed and its success can be checked. AutoBuilder and the surrounding data pipeline address that prerequisite. Specialist models can then learn different behaviors from suitable tasks before distillation aligns their outputs within one student. This places data construction, reliable execution and capability fusion in one training system rather than treating them as independent support work."
-      ],
-      [
-        "Evaluating a profile of coding capabilities",
-        "The report evaluates several distinct capabilities rather than presenting coding as a single score. Repository tasks, long-horizon tool use, terminal tasks and scientific programming expose different strengths. Training also randomizes harness behavior to reduce overfitting to one execution interface. The comparison table should therefore be read as a capability profile, with each benchmark’s environment and scoring protocol kept separate."
-      ],
-      [
-        "Reading strengths and trade-offs",
-        "The full comparison below separates repository coding, tool workflows and scientific programming. KAT-Coder V2.5 reports 65.2 on SWE-bench Pro and 53.1 on KAT Code Bench. Opus 4.8 remains ahead on both, at 69.2 and 57.3.\n\nThe profile shifts on tool tasks: KAT reaches 94.9 on PinchBench average, while its 85.5 on KAT Claw Bench is below Opus at 90.7. Terminal-Bench 2.1 is a clearer gap, with KAT at 60.7 against Opus at 84.6. SciCode reaches 50.3, compared with the table’s joint high of 53.5. These differences make a workload-specific choice more informative than one aggregate rank."
-      ],
-      [
-        "What the training system makes possible",
-        "The central engineering idea is that environments and feedback quality can be as important as model size. Reconstructing a reproducible task, preserving useful trajectories and combining specialist behavior all shape what reinforcement learning can learn. Strong tool-use results are encouraging, while the uneven benchmark profile also identifies where a specialized training recipe leaves room for broader capability."
-      ]
-    ]
-  },
-  "kat-v2": {
-    "headline": "KAT-Coder V2",
-    "dek": "Specialist training, scalable environments and distillation for coding across agent frameworks.",
-    "sections": [
-      [
-        "Introduction",
-        "A coding agent needs software engineering, web coding, terminal operation, web search and general reasoning. Improving these together can cause interference, and success in one agent framework may not transfer to another.\n\nKAT-Coder V2 approaches this as a training-sequence problem: allow specialized behavior to develop first, then bring it together in a model that must operate across different execution frameworks."
-      ],
-      [
-        "Specializing before unifying",
-        "The Specialize-then-Unify recipe first trains five domain experts, then merges their capabilities through on-policy distillation. KwaiEnv provides scalable execution environments; MCLA and Tree Training address reinforcement-learning stability and redundant trajectory computation.\n\nThe five experts encounter different tool interfaces and reward signals, which is precisely why specialization can help. The unification stage must preserve useful behaviors without averaging away their distinctions. On-policy distillation trains the student using trajectories relevant to its own behavior, while scalable sandbox infrastructure makes long interactions feasible. The resulting recipe joins a learning problem with an execution problem: neither a reward function nor a model checkpoint alone defines the agent."
-      ],
-      [
-        "Testing across agent frameworks",
-        "Cross-scaffold evaluation runs comparable software-engineering tasks through Claude Code, OpenCode and OpenClaw. Separate agent benchmarks test execution beyond repository repair. The report also examines frontend aesthetics and general tasks. Together these checks ask whether distilled experts form one usable agent across interfaces, rather than a collection of isolated benchmark specialists with incompatible interaction habits."
-      ],
-      [
-        "Capabilities across frameworks and tasks",
-        "Changing the agent scaffold changes the measured result. KAT-Coder V2 reaches 79.6 on SWE-bench Verified with Claude Code, 74.8 with OpenCode and 72.8 with OpenClaw. The corresponding Opus 4.6 values are 80.8, 75.0 and 75.7; the first is quoted from Anthropic, while the others are KwaiEnv evaluations.\n\nThe broader tables show what this coding result does not capture. On PinchBench, KAT’s best score is 88.7 and its average is 81.9. Claw-Eval reports 55.6 for Pass^3 and 73.4 for average score, so reliability and average performance should remain separate. General-task results span terminal reasoning, telecom tool use, long-context reasoning and instruction following. The original comparison mixes KAT measurements with published peer results, which the notes preserve."
-      ],
-      [
-        "Capability fusion is only part of the problem",
-        "Specialization provides a way to make progress on heterogeneous tasks without forcing every training signal into one objective immediately. Distillation then becomes the test of whether those gains coexist. The report’s cross-framework results support that direction, but each deployment still needs to account for its own tools, permissions and failure recovery, which benchmark success alone does not fully specify."
-      ]
-    ]
-  },
-  "lpm": {
-    "headline": "LPM: Generative video restoration at scale",
-    "dek": "Preserving fine detail and temporal consistency in long, real-world videos.",
-    "sections": [
-      [
-        "Introduction",
-        "User-generated videos mix noise, blur and compression artifacts. Image diffusion can recover texture but introduces flicker when applied frame by frame; video models must also control cost and prevent drift across long clips.\n\nThe problem changes when the unit of restoration becomes a video rather than a frame. Useful detail must remain stable as objects move, while computation must remain manageable as the clip gets longer."
-      ],
-      [
-        "Learning appearance, then aligning time",
-        "LPM first learns a spatial restoration prior in LPM-Image, then adds temporal alignment and fusion in LPM-Video. A 2D VAE and factorized 2D+1D diffusion transformer reduce processing cost. Temporal-pyramid inference combines long-range guidance and nearby anchor frames to stabilize arbitrary-length video.\n\nA long video creates dependencies at more than one time scale. Nearby frames constrain local motion and texture continuity, while distant keyframes help prevent appearance from gradually drifting. Temporal-pyramid inference organizes those roles explicitly. It uses already-restored information as guidance rather than asking every clip window to invent its own consistent appearance, connecting the spatial model’s detail-generation ability to a controlled long-range inference process."
-      ],
-      [
-        "Testing quality and temporal behavior",
-        "The system is evaluated at two levels. Offline comparisons examine restoration quality and temporal behavior against other methods, while production deployment measures viewing experience and bitrate in Kuaishou’s own pipeline. Training progresses from spatial restoration to temporal modeling; long-video inference introduces keyframes and local anchors rather than treating every fixed window as an independent clip. These stages address different sources of instability."
-      ],
-      [
-        "What the video model improves",
-        "The report states that restored videos account for about 45% of Kuaishou viewing time. At comparable perceptual quality, its production pipeline reduces bitrate by about 20% relative to the in-house codec. These are platform-specific deployment results; the contribution is the combination of visual quality, temporal stability and serving efficiency."
-      ],
-      [
-        "Keeping long videos coherent at scale",
-        "The industrial result depends on a complete system: curated data, staged training, temporal inference and integration with encoding. A sharper single frame is only one part of that objective. The reported platform-scale gains show why visual research and serving engineering must be considered together, while the exact savings should remain tied to the codec, content mix and quality criteria used in deployment."
-      ]
-    ]
-  },
-  "vortex-bursting": {
-    "headline": "How opposite magnetic twists trigger vortex bursting",
-    "dek": "Opposite twists launch interacting Alfvén waves, linking magnetic geometry to a three-stage vortex-bursting process.",
-    "sections": [
-      [
-        "From magnetic geometry to motion",
-        "Can a twisted magnetic tube trigger vortex bursting without an imposed flow or initial vorticity? This study starts with an initially quiescent, incompressible magnetohydrodynamic fluid and a magnetic ring whose two halves have opposite chiralities.\n\nThe resulting dynamics connect the geometry of the magnetic field to localized vorticity generation, magnetic-to-kinetic energy conversion, and the eventual breakdown of coherent structures."
-      ],
-      [
-        "A magnetic ring with opposite chiralities",
-        "The simulations use a smooth, closed magnetic ring with a sinusoidally varying twist. Its two halves twist in opposite directions, meeting at two chirality-inversion regions. The initial velocity is zero.\n\nThe incompressible MHD equations are solved with a pseudo-spectral method in a three-dimensional periodic domain, using a 1024³ grid and unit magnetic Prandtl number. Three Lundquist numbers, approximately 800, 1600 and 2670, probe the balance between Alfvénic evolution and resistive diffusion."
-      ],
-      [
-        "How the bursting starts",
-        "The curl of the Lorentz force provides a localized source of vorticity, strongest near the chirality-inversion regions. Meanwhile, the pressure gradient generates an antisymmetric cross-helicity distribution in regions of maximum twist, indicating counter-propagating Alfvén waves.\n\nAs these waves reach the chirality-inversion regions, they interact with the vorticity and amplify field-line deformation. Bursting therefore emerges from the initial magnetic configuration itself, without external strain or a prescribed vortex."
-      ],
-      [
-        "Formation, expansion, and breakdown",
-        "The evolution separates into three stages. First, a disk-like vortex structure forms as magnetic energy is rapidly converted into kinetic energy. Next, the structure expands radially and stretches, with enhanced magnetic and kinetic dissipation and increasing cross- and kinetic-helicity components. Finally, coherent vortex and magnetic structures break down, with reconnection and fragmentation followed by declining helicity components and dissipation rates.\n\nHigher Lundquist numbers produce greater radial spreading and stronger peaks in the helicity components. Although total helicities remain zero by symmetry, their positive and negative components reveal substantial localized helical dynamics."
-      ],
-      [
-        "What the mechanism can explain",
-        "The study identifies a self-contained magnetic route to eruptive dynamics that may help interpret twisted flux tubes in solar and laboratory plasmas. It does not directly reproduce a solar eruption: the simulations are incompressible, use a unit magnetic Prandtl number, and operate at Lundquist numbers below those of the solar corona.\n\nThis paper has been accepted for publication in the Journal of Fluid Mechanics."
-      ]
-    ]
-  }
+ "agentic_ttt": {
+  "headline": "RSI: Learning during the task, without losing the way",
+  "dek": "Continuous test-time training inside an agent episode becomes a self-training loop. The useful question is what to learn from.",
+  "sections": [
+   [
+    "Introduction",
+    "An agent can know how to solve a task and still lose it. As an episode lengthens, trajectories revisit states already explored, failed actions reappear verbatim, and strategies that worked twenty turns ago stop being sampled. The failure is not a missing capability; it is drift.\n\nTest-time training looks like the obvious remedy: update the weights on whatever the agent just experienced. But in a multi-turn episode this is not a one-shot adaptation to a fixed prompt. Each gradient step changes the policy that generates the next batch of training text, so the agent becomes its own data source.\n\nThat loop is the object of study here. It helps while the episode keeps producing new information and it hurts once the agent is stuck generating the same text. Agentic Test-Time Training separates the two cases at token level and reports +5.0 points on ALFWorld and +4.9 on SWE-bench Lite for 1.9× the cost of not training at all."
+   ],
+   [
+    "The loop that test-time training creates",
+    "Existing LLM test-time-training methods mostly adapt once, to a fixed input. An agent episode is different: the model acts, the environment responds, the model trains on that text, and the updated model acts again. The training distribution is now a function of the parameters being trained.\n\nThis is fine while the episode is informative. It is corrosive once the agent stalls: a stuck policy emits near-identical trajectories, training on them sharpens the same wrong attractor, and the next rollout repeats it more confidently. Novelty, not volume, is what makes an update worth making.\n\naTTT turns that into a weighting rule. For each token in an update, the method checks whether it occurs inside an n-gram already used by a previous update; if so, its contribution to the loss is reduced, and novel tokens keep full weight. Repetition is measured against the update history of the current episode, so the filter tracks this agent’s degradation rather than a global statistic."
+   ],
+   [
+    "Three ways to decide what to learn from",
+    "What counts as experience is a separate design choice, and the paper treats the update signal as a variable: the agent’s own generated trajectory, the observations returned by the environment, or a summary of the interaction written by the model. Each has a different failure mode.\n\nSelf-generated text is the most available and the most dangerous, because it is exactly the channel through which a bad decision propagates into the weights. Environment feedback is grounded but sparse or delayed. Summaries compress a long history into something trainable but inherit the summarizer’s errors. The weighting applies to all three.\n\nThe evaluation puts that difference under pressure by contrasting immediate with delayed feedback. ALFWorld returns a household-task signal after each action; SWE-bench Lite only verifies once a patch is written and the tests run. A method that learns from repetition should behave differently in the second setting, where the same code can be retried many times before any verdict arrives."
+   ],
+   [
+    "What the gains are, and what they are not",
+    "Baselines cover the obvious alternatives: ReAct with no adaptation at all, static adaptation computed before the rollout, and unfiltered online training that updates on everything. A fourth comparison drops whole repeated updates instead of reweighting tokens inside them — the coarse version of the same idea.\n\nUnfiltered training is the telling baseline because it isolates the cost of ignoring novelty. Dropping entire updates is the other natural remedy and is strictly blunter: an update can be partly repetitive and still contain the one new observation that matters. aTTT keeps that observation and discounts only the repeated part.\n\nThe reported improvements — up to 5.0 points on ALFWorld and 4.9 on SWE-bench Lite, averaged over three seeds — come with a caveat the authors draw themselves. Gains concentrate on tasks within the model’s existing competence. aTTT preserves a capability that long trajectories erode; on this evidence it does not teach a capability the model lacked."
+   ],
+   [
+    "Preserving competence is not recursive self-improvement",
+    "The honest framing is narrower than the RSI reading suggests. This is a bounded mechanism for keeping behaviour intact inside one episode, with per-episode LoRA adapters reset between tasks so that nothing accumulates across the benchmark.\n\nThat design choice determines the interpretation. If improvements carried across tasks, you would be looking at learning; because adapters are reset, what is measured is resistance to drift. The 1.9× overhead is the price of that resistance, and it is a serving cost as much as a training one — the runtime LoRA updates have to happen while the episode is live.\n\nThe open question is whether novelty is the right proxy. Token-level n-gram repetition is cheap and works here, but it cannot distinguish productive exploration from irrelevant variation: a genuinely new wrong turn and a genuinely new useful observation look identical to the filter. A better measure of whether an episode is still producing information would turn this from a safeguard into an adaptation signal."
+   ]
+  ],
+  "keypoints": [
+   "Continuous TTT in an agent episode is a self-training loop: every update changes the policy that produces the next update’s training text, so whether it helps depends on whether that text is new.",
+   "aTTT downweights the loss on tokens that appear in n-grams already used by earlier updates and leaves novel tokens fully weighted — a per-token novelty filter, not an on/off switch on whole updates.",
+   "+5.0 points on ALFWorld and +4.9 on SWE-bench Lite for 1.9× the no-TTT cost, with gains concentrated where the model already had the competence and drifted away from it."
+  ]
+ },
+ "mmg2skill": {
+  "headline": "RSI: From human guides to self-evolving skills",
+  "dek": "Web tutorials are written for people. Turning them into something an agent can execute, diagnose and revise is a separate problem.",
+  "sections": [
+   [
+    "Introduction",
+    "The web is full of instructions for doing things and almost none of them were written for machines. A tutorial says drag it until it snaps, shows a screenshot instead of naming the element, and assumes you will notice when a step has failed. Hand that text to an agent and you have given it reading material, not a procedure.\n\nThe gap is not about retrieval or length, it is about form. A guide describes a goal; a skill has to be a sequence the agent can execute, check, and repair when the environment disagrees. MMG2Skill names this guide-to-skill learning and treats the conversion itself — not the final score — as the thing worth studying.\n\nIts answer is a closed loop over an editable artifact. Guides are compiled into skills, the skills condition a fixed vision-language agent during execution, and a trajectory-level analyzer rewrites them afterwards. Across GUI control, open-ended gameplay and strategic card play with six backbones, the macro-average gain is 12.8 to 25.3 percentage points."
+   ],
+   [
+    "What a skill has to be",
+    "The design constraint is editability. If the learned artifact is a note in natural language, there is no well-defined operation for fixing the step that failed. If it is a structured procedure, a failed attempt can be traced to a specific instruction and that instruction can be changed.\n\nThis is also why the vision-language model stays frozen. Weight updates would make the improvement uninterpretable and would confound two different claims — that the agent got better, and that the procedure got better. With a fixed backbone, whatever changes is the skill text, and you can read it.\n\nConstruction is therefore a translation problem with a target format. Multimodal guides — screenshots, annotated images, surrounding prose — have to be collapsed into a procedure that refers to what the agent can actually perceive and act on. Prerequisites a human reader infers have to be made explicit, because the executor will not infer them."
+   ],
+   [
+    "Closing the loop on the agent’s own trajectories",
+    "After execution, the analyzer reads the trajectory, asks what actually went wrong, and edits the skill accordingly. The feedback is deliberately not the benchmark score: a pass/fail number cannot say which step caused the failure, and using it would tie the skill library to the evaluation set.\n\nThe same backbone is used for construction, execution, analysis and refinement. That is a control as much as a convenience — a stronger external teacher doing the analysis would make it impossible to tell whether the gains come from the loop or from the teacher.\n\nMMG2Skill-Bench supplies the testbed across GUI tasks, gameplay and strategic card play, the last of which adds private information the agent cannot observe. That setting is analysed separately, and for a reason: if the decisive information is hidden, no amount of trajectory analysis can recover the true cause of a failure."
+   ],
+   [
+    "Where the gains come from",
+    "Main results compare three conditions — no skills, raw guides, and the full loop — averaged over six backbones with five attempts allowed and the analyzer’s early-stop decision in force. Every model-domain setting improves, with macro-average gains between 12.8 and 25.3 points.\n\nThe most informative ablation is the one that fails. Prompting with raw guides can reduce performance: unstructured instructions add noise and misleading detail, and the agent has no way to tell which part of a tutorial applies to the state it is in. Structure is doing real work, not re-tokenising the same content.\n\nRemoving revision removes the rest of the gain, which separates the two contributions cleanly. Early stopping is a third and separate effect: when the success signal is calibrated, the analyzer can stop before the attempt budget is spent, saving 25%–53% of attempts and avoiding the late-stage regressions that come from continuing to edit an already-correct skill."
+   ],
+   [
+    "An improvement you can read, and one that can be misled",
+    "Because nothing is written into the weights, this is self-improvement in a form you can audit. Given a failing run you can point to the instruction that changed and to the trajectory that caused the change. For deployment, that traceability is often worth more than the raw score.\n\nThe corresponding weakness is calibration. An analyzer that declares success too early will preserve a skill that happened to work once, and the procedure stops evolving. The paper’s caveat is precise: early stopping helps when the success signal is properly calibrated, which is a property of the environment rather than of the method.\n\nThat is the boundary to carry away. Where the outcome is observable from the trajectory, the loop closes and the skill library compounds. Where decisive information is hidden — a card the agent cannot see, a server state it cannot query — root-cause analysis is guessing, and the honest expectation is no gain rather than a smaller one."
+   ]
+  ],
+  "keypoints": [
+   "A guide is not a skill: tutorials assume a human executor, mix text with images and leave recovery steps implicit. The framework compiles them into an editable procedure instead of prompting with the raw text.",
+   "Revision is driven by trajectory-level root-cause analysis, never by benchmark scores, and the vision-language model is never updated — everything learned lives in the skill library.",
+   "Raw guides can actively hurt. Prompting with the unprocessed guide degrades performance, while structured construction and trajectory-driven revision are each necessary for the +12.8 to +25.3 point macro-average gains."
+  ]
+ },
+ "webcompass": {
+  "headline": "Evaluating the whole web-coding workflow",
+  "dek": "A page can be valid code and still be unusable. WebCompass scores generation, editing and repair by running the result in a browser.",
+  "sections": [
+   [
+    "Introduction",
+    "A generated page can be syntactically valid, pass every static check, and still be unusable: the layout collapses at another viewport, the button does nothing, the form silently discards input. Static correctness metrics were never designed to see any of that.\n\nWeb engineering is also not a single act. A site is generated, then changed, then repaired, and most of the real cost sits in the second and third. Benchmarks that score only one-shot text-to-code generation measure the easiest part of the job and report it as the whole.\n\nWebCompass is built around that gap. It spans three input modalities — text, image, video — and three task types — generation, editing, repair — giving seven categories, and it judges generation by actually driving the site in a browser instead of reading its source."
+   ],
+   [
+    "Generation, editing, repair",
+    "The three task types are not three difficulties of the same skill. Generation asks whether something works at all. Editing asks whether a requested change lands without breaking everything the request did not mention. Repair asks whether a specific defect is fixed without losing interactions that already worked.\n\nThat last clause is where most repairs fail. A fix can remove the bug and take the hover state, the keyboard path and the error message with it. Scoring repair only on whether the defect is gone would reward exactly that trade.\n\nEditing and repair are judged with checklist-guided evaluation, which is the right tool when the intended change is known in advance: the checklist states what must hold, and the judge checks each item instead of forming a global impression. Generation has no such list, which is why it needs a different mechanism."
+   ],
+   [
+    "Executing the page instead of reading it",
+    "For generation, WebCompass uses an agent as the judge. It loads the produced site in a real browser, navigates it, triggers interactions through Chrome DevTools MCP, and iteratively writes test cases against what it finds. The result resembles a QA engineer’s acceptance run more than a code review.\n\nThis matters because a screenshot is a state, not a behaviour. Two screenshots can look identical while one belongs to a page whose filter works and the other to a page whose filter silently does nothing. Only execution separates them.\n\nThe evaluation keeps three dimensions separate — can the site run, does it meet the requirement, does it look right — and averages nine scores overall. Ten multimodal models are tested through Claude Code 2.0.67, with further analyses on difficulty, framework and thinking mode."
+   ],
+   [
+    "What the results actually show",
+    "Closed-source models are stronger and, more tellingly, more balanced. Open-source entries tend to show a sharp profile, with one or two dimensions carrying the score while the others lag — a shape that a single aggregate number would flatten into an average.\n\nAesthetics is the persistent bottleneck and it is not close. Models that produce functioning applications still produce plainly unattractive ones, and the gap is widest for open-source models — a reminder that visual quality is a separate capability from code correctness, not a cosmetic add-on to it.\n\nTwo secondary findings are easy to lose in a ranking. Editing and repair have distinct difficulty profiles: repair tends to preserve interactivity better but remains harder to execute. And framework choice materially moves the score, with Vue consistently challenging and React or Vanilla/HTML stronger depending on the task — so part of a model’s web-coding score is really a fact about its default stack."
+   ],
+   [
+    "Reading a benchmark as a profile",
+    "The practical instruction is to stop treating web coding as one number. Runability, requirement adherence and visual quality fail independently, and a model can be excellent at two and unacceptable at the third.\n\nThe benchmark’s own limits should travel with its scores. Judges are automated, so dimension-level results inherit the judge’s blind spots, and a real browser runtime ties the measurement to one environment. A single aggregate ranking compresses both away.\n\nThe larger point is about what working means for generated software. Correct code is a precondition, not a deliverable. If evaluation only checks the precondition, training will optimise for it, and the thing users actually judge — whether the product works and looks right — stays unmeasured."
+   ]
+  ],
+  "keypoints": [
+   "Seven task categories from three input modalities × three task types, covering 15 generation domains, 16 editing operation types and 11 repair defect types, each graded Easy / Medium / Hard.",
+   "Generation is scored by an Agent-as-a-Judge that launches the site in a real browser, explores interactions through Chrome DevTools MCP and writes targeted test cases — acceptance testing rather than code review.",
+   "Across ten multimodal models, closed-source stays stronger and more balanced; aesthetics is the most persistent bottleneck, especially for open-source; and framework choice materially moves the score, with Vue consistently hard."
+  ]
+ },
+ "color": {
+  "headline": "Aligning generative detail with image structure",
+  "dek": "The failure is spectral: isotropic objectives cannot tell an authentic high-frequency detail from a hallucinated one.",
+  "sections": [
+   [
+    "Introduction",
+    "Generative super-resolution is very good at producing detail and not very good at producing detail that belongs to the input. Given a blurred patch it will invent a plausible window frame, a plausible eyelash, a plausible texture — and a perceptual metric will reward it for doing so.\n\nThe paper’s diagnosis is geometric rather than architectural. Natural images distribute information unevenly across frequency: most of the energy sits in a thin low-frequency band, while high frequencies carry the structure and very little of the energy. An objective built on isotropic Gaussian noise treats every direction in image space as equally important, which is precisely wrong for that distribution.\n\nASASR rebuilds the alignment objective in the geometry the image distribution actually has. The noise transition kernel is coloured to follow natural spectral decay, placing the generative flow in a Sobolev-induced Riemannian metric, and a learned adversary supplies the negative examples. In a study with 50 participants over 64 images it is preferred 91.1% of the time on naturalness and fidelity."
+   ],
+   [
+    "Sobolev geometry, and an adversary that finds the worst direction",
+    "Preference optimisation needs a negative example — something to prefer the correct reconstruction over. The standard choice is a sample from the same spectrally flat Gaussian noise used to train the model, and ASASR’s first move is to replace it with noise whose spectrum follows the natural decay of real images.\n\nConcretely, this recasts the generative flow in a Sobolev-induced Riemannian geometry. Distance is no longer measured in flat L2 but with frequency-dependent weights, so a change in a band where natural images carry structure counts for more than an equally large change in a band that carries mostly noise.\n\nThe second piece supplies the negatives. Rather than sampling random failures, a parametric adversary grounded in the Riesz representation theorem synthesises examples equivalent to worst-case Sobolev gradients: it searches for the direction in which the current output most violates structure, and alignment is trained against that instead of against noise."
+   ],
+   [
+    "Why geometry rather than a stronger penalty",
+    "It is fair to ask why this is not simply a reweighted loss. The difference is where the weighting lives. A penalty applied on top of an isotropic objective still compares two images in a space where all directions are equal; changing the geometry changes the space in which the comparison takes place.\n\nThis matters because the failure mode is asymmetric. Adding a high-frequency detail that is not there and failing to reconstruct one that is may cost the same in L2, but they are not equivalent errors — one is invention, the other is loss. A metric aligned with the image spectrum separates them.\n\nThe adversary is what makes the objective adversarial rather than merely weighted. Random negatives mostly produce easy examples, perturbations the model already handles, so training against them spends capacity where it buys nothing. Worst-case gradients concentrate the signal on the structural failures that actually occur."
+   ],
+   [
+    "Measuring structure, not just preference",
+    "Perceptual scores alone cannot establish fidelity, because they are exactly the quantity a generative model can optimise without being faithful. The evaluation therefore asks three separate questions: does the image look natural, does its frequency content match the reference, and does useful semantic content survive restoration.\n\nThe second and third questions are the load-bearing ones. Spectral comparison tests the paper’s actual claim about frequency structure, while downstream detection, segmentation and OCR test whether restored detail still carries information a machine can use — a stricter requirement than looking right to a human.\n\nAblations isolate the two contributions by replacing Sobolev guidance with Euclidean guidance and by removing adversarial alignment. That design matters because both components could plausibly improve appearance; only the spectral and downstream measurements can say whether they improved fidelity."
+   ],
+   [
+    "Fidelity is not sharpness",
+    "The headline result is a 91.1% first-choice rate for naturalness and fidelity in a study with 50 participants and 64 test images, alongside improved spectral consistency and downstream task performance. Read together they support one specific claim: alignment in a frequency-aware geometry preserves structure that an isotropic objective loses.\n\nThe scope is narrower than a general fidelity guarantee. The results hold under the paper’s degradation model and evaluation settings, and a user study of this size establishes preference rather than correctness — participants judge plausibility, and plausibility is the thing generative models fake best.\n\nWhat transfers is the objective-design lesson. If a generative prior is aligned in a metric that ignores the spectrum of the data, it will be rewarded for inventing detail. Making the metric reflect the data distribution is a cheap change with a measurable consequence, and the downstream tasks are the check that keeps it honest."
+   ]
+  ],
+  "keypoints": [
+   "The diagnosis is spectral, not architectural. Isotropic objectives and spectrally flat Gaussian noise weight all frequencies equally, so they cannot distinguish a real high-frequency detail from an invented one.",
+   "ASASR colours the noise transition kernel to mirror natural spectral decay, recasting the generative flow in a Sobolev-induced geometry, and adds an adversary whose negatives are worst-case Sobolev gradients rather than random samples.",
+   "91.1% first-choice rate in a 50-participant study over 64 images, with spectral comparisons and downstream detection, segmentation and OCR as structural checks instead of perceptual scores alone."
+  ]
+ },
+ "tta_flow": {
+  "headline": "Using inference-time feedback for image restoration",
+  "dek": "ResFlow-Tuner separates conditioning from steering: one is architectural, the other is a compute budget you can dial.",
+  "sections": [
+   [
+    "Introduction",
+    "A text-to-image diffusion model contains an enormous amount of knowledge about what images look like. Using one for restoration means overriding that knowledge with a specific damaged input: the prior must generate, but it must generate this photograph.\n\nTwo problems have to be solved and they are usually conflated. The model has to receive the degraded image and any semantic context in a form it can condition on, and it has to be steered toward a reconstruction rather than toward a generic plausible image. The first is architectural; the second is an inference-time question.\n\nResFlow-Tuner, built on FLUX.1-dev, keeps them apart. Unified multimodal fusion handles conditioning, and a training-free test-time scaling procedure uses reward feedback to adjust the denoising direction during inference. On LSDIR-Val the scaling step alone moves LPIPS from 0.4015 to 0.3721 and FID from 22.91 to 19.82."
+   ],
+   [
+    "Conditioning the prior, then steering it",
+    "FLUX.1-dev is a multi-modal diffusion transformer: text and image tokens already live in one sequence. Unified multimodal fusion exploits that by encoding the degraded image and the semantic condition into the same shared sequence, so the transformer attends across both rather than receiving the image through a side adapter.\n\nWhy it matters: an adapter path forces the condition to compete with the model’s own prior at a fixed strength. Putting the condition inside the sequence lets attention decide, at every layer, how much the degraded observation should constrain generation.\n\nThe second half happens at inference and needs no training. A reward model scores intermediate candidates and that signal adjusts the denoising direction. Nothing about FLUX changes; what changes is how much computation is spent searching among trajectories the model already supports."
+   ],
+   [
+    "Spending compute where it pays",
+    "Test-time scaling reframes restoration as an allocation problem. Each input receives a budget, and the budget buys additional candidate trajectories that are scored and pruned instead of a single uncontrolled sample.\n\nThat is a different trade from training a larger model. Training cost is paid once and applies to every input; test-time compute is paid per input, so it can be spent unevenly — heavily on a difficult photograph, barely on an easy one — which is the right shape for a restoration service with a long tail.\n\nThe ablations therefore separate the design choices rather than reporting only a final configuration: how the low-quality image and text are fused, which reward signals steer the process, and how much compute is spent. Varying the budget is the part that matters most for anyone deciding whether to adopt it."
+   ],
+   [
+    "What the scaling buys",
+    "On LSDIR-Val, going from no test-time scaling to K=4 and N=7 improves LPIPS from 0.4015 to 0.3721 and FID from 22.91 to 19.82, with MUSIQ rising from 71.47 to 74.21. LPIPS and FID moving together is the informative part: the output is closer to the reference and drawn from a distribution closer to real images.\n\nThese gains are not free, and the paper reports the price rather than hiding it. The improvement is bought with additional sampling and reward evaluations per input; the method is tunable, which is the point rather than a caveat.\n\nOCR evaluation is the check that keeps the numbers honest. Text is where the difference between sharper and more correct is observable: a reconstruction can render crisper glyphs that read as different characters. If OCR accuracy improves alongside LPIPS, the detail being added is real rather than decorative."
+   ],
+   [
+    "A dial, not a promise",
+    "The useful reading is that inference compute becomes a controllable parameter of a restoration system. A batch pipeline can spend a large budget and an interactive one can spend almost none, using the same weights.\n\nThe limitation sits in the reward model. Steering optimises whatever the reward can measure, so a reward that favours sharpness will trade fidelity for sharpness exactly as a hand-designed loss would. The reward choice is not a neutral implementation detail; it is where the method’s values are set.\n\nThat is why the ablations matter more than the headline. They support a tunable method whose quality depends on the reward and the budget, not an unconditional claim that more inference always yields a better reconstruction. Anyone deploying it should re-measure the reward’s behaviour on their own degradation distribution."
+   ]
+  ],
+  "keypoints": [
+   "Conditioning and steering are separated: unified multimodal fusion places the low-quality image and text in one sequence for the MM-DiT, while a training-free test-time scaling step steers denoising with reward-model feedback.",
+   "The budget is a dial, not a setting: with K=4 and N=7 on LSDIR-Val, LPIPS falls from 0.4015 to 0.3721, FID from 22.91 to 19.82 and MUSIQ rises from 71.47 to 74.21.",
+   "Because nothing is retrained, the same weights serve a latency-sensitive and a quality-sensitive path — the trade is per-input compute instead of one committed model."
+  ]
+ },
+ "shiftlut": {
+  "headline": "A wider view for efficient image restoration",
+  "dek": "Expanding a look-up table’s receptive field usually costs storage and latency. Moving the context instead of the table costs almost nothing.",
+  "sections": [
+   [
+    "Introduction",
+    "A look-up table is one of the cheapest ways to do image restoration: precompute the mapping from a local patch to an output value, then index it at inference. The reason it is cheap is also its limitation — a pointwise table sees almost no spatial context.\n\nThe obvious remedy is a bigger table indexed by a bigger neighbourhood, and that is where the cost explodes. Entries grow combinatorially with the number of input pixels used, so storage and latency climb together, and the last few years of LUT work have largely been trading efficiency for receptive field.\n\nShiftLUT goes at all three costs at once and reports the largest receptive field among LUT methods — 3.8× that of TinyLUT — while improving average PSNR by more than 0.21 dB and reducing both storage and runtime in the reported configuration."
+   ],
+   [
+    "Moving context instead of enlarging tables",
+    "The first component is a learnable spatial shift. Rather than index a table with a larger patch, the network shifts feature channels by learnable offsets before the lookup, so different channels carry information from different positions and the effective receptive field grows without the table growing.\n\nThis is a reallocation rather than an addition. A shift costs almost nothing — it is an index manipulation, not a convolution — so the context is paid for in memory layout rather than in multiply-accumulates. Per-channel offsets let the network decide how far each channel should look.\n\nThe second component accepts that the two branches do not carry equal information. An asymmetric dual-branch architecture gives more computation to the information-dense branch instead of splitting capacity evenly, which lowers latency without the quality drop a symmetric cut would cause."
+   ],
+   [
+    "Storage is a budget too",
+    "The third component addresses a cost that FLOP counts hide. On an edge device the table itself has to live in memory, and error-bounded adaptive sampling compresses it by sampling the table non-uniformly with a bound on the resulting interpolation error.\n\nThe bound is the point. Downsampling a LUT uniformly is easy but degrades outputs unpredictably; sampling adaptively under an error bound turns compression into a controlled trade between storage and maximum error rather than a guess.\n\nTreating storage, latency and quality as one budget is what separates this from a PSNR paper. The small, medium and large variants exist so that a deployment can choose a point on that surface instead of inheriting the researcher’s."
+   ],
+   [
+    "Reading the measurements",
+    "Evaluation covers 4× super-resolution, denoising and JPEG deblocking, with PSNR and SSIM on the luminance channel across standard SR datasets, plus a runtime measurement from an Android implementation on a Snapdragon 888 at 320×180 input.\n\nThe three tasks matter because receptive field is not equally valuable in each. Deblocking is largely a local operation, while super-resolution benefits most from wider context. Removing the final spatial enlargement stage and still seeing gains is the evidence that the mechanism is not specific to upscaling.\n\nThe comparison worth keeping in view is Manga109: 29.16 dB against TinyLUT-F’s 28.83 dB, with storage down from 171 KB to 104 KB and runtime down from 146 ms to 84 ms. Better quality with less memory and less time at once is the unusual part — normally you buy one with another."
+   ],
+   [
+    "Deployment defines the claim",
+    "The model family is the contribution. A single best score would tell a deployer nothing, whereas a storage–quality–latency surface with three variants lets one pick a configuration for a specific device and input size.\n\nThe efficiency claim is scoped by how it was measured. Phone model, input resolution and degradation model all move runtime, and 320×180 is a small frame — the same ratios need not hold at 1080p, where memory traffic behaves differently.\n\nWhat transfers is the design argument. When a cheap operator is cheap because it sees too little, adding context can be cheaper than enlarging the operator. That reframing is worth more than the 0.21 dB and applies wherever a pointwise module is being stretched to do a spatial job."
+   ]
+  ],
+  "keypoints": [
+   "Context without a bigger table: a learnable spatial shift applies channel-wise offsets to the feature map, so information from other positions reaches each channel before the lookup instead of being indexed by a larger neighbourhood.",
+   "An asymmetric two-branch architecture gives more computation to the information-dense branch, and error-bounded adaptive sampling compresses feature-level tables with a bound on interpolation error — storage, not just FLOPs, is treated as a budget.",
+   "On Manga109, ShiftLUT-L reaches 29.16 dB against TinyLUT-F at 28.83 dB, with reported storage falling from 171 KB to 104 KB and runtime from 146 ms to 84 ms on a Snapdragon 888 at 320×180."
+  ]
+ },
+ "instantvir": {
+  "headline": "Bringing diffusion-based video restoration to real time",
+  "dek": "Distillation moves iterative sampling out of serving and into training — a causal student learns to hit a bidirectional teacher’s target in one pass.",
+  "sections": [
+   [
+    "Introduction",
+    "Restoring a video stream is an inverse problem with a deadline. You observe a degraded sequence and want the clean one, but the answer has to arrive before the next frames do — which rules out the methods that currently produce the best reconstructions.\n\nThe two available options fail in specific ways. Adapting an image diffusion model frame by frame and adding a temporal regulariser produces flicker, because consistency is imposed after the fact rather than modelled. Using a native video diffusion model properly needs iterative posterior sampling, which is orders of magnitude too slow for streaming.\n\nInstantViR removes the iteration by moving it into training. A bidirectional video diffusion teacher is distilled into a causal autoregressive student that maps a degraded clip to a restored one in a single forward pass, reporting 35.56 FPS for the LeanVAE variant and up to 100× speedups over iterative solvers."
+   ],
+   [
+    "Distilling iteration into a single pass",
+    "Teacher and student face different constraints. The teacher can look at the whole clip and use future frames when reconstructing the present; the student, running on a stream, cannot. Distillation transfers the teacher’s reconstruction behaviour into a form that respects that causality.\n\nThe student is autoregressive over time, so each frame is produced from what has already arrived, while the training target comes from a model that had the luxury of bidirectional context. This is the standard reason to distill: the expensive model sets the target and the cheap model learns to hit it.\n\nLeanVAE addresses the cost that remains once iteration is gone. Even a single pass through a video diffusion model spends much of its time encoding and decoding latents, so replacing the backbone VAE with a lighter one — through teacher-space regularised distillation — is where a further roughly 2.5× of throughput comes from."
+   ],
+   [
+    "Supervision from the forward operator",
+    "Amortised restoration usually needs pairs: a clean video and its degraded version, collected or synthesised. InstantViR avoids them by using known degradation operators instead — inpainting masks, blur kernels, downsampling — which can be applied to any candidate clean video to produce the measurement it should have yielded.\n\nThat turns training into a consistency requirement. The student proposes a clean clip, the known forward operator predicts what the sensor would have recorded, and the discrepancy is the training signal. No external paired data is needed and the inverse problem stays explicit rather than being folded into a learned prior.\n\nThe trade is scope. Known operators cover degradations you can write down, which is most of what capture and streaming pipelines produce. Degradations that are not modelled — an unknown sensor pipeline, codec artifacts — lie outside what the student was trained to invert."
+   ],
+   [
+    "Throughput, and what it depends on",
+    "Training uses 6,000 Open-Sora clips with measurements generated through known forward operators; evaluation uses 500 held-out clips plus REDS30 for zero-shot transfer, covering random inpainting, Gaussian deblurring and 4× super-resolution at 832×480.\n\nThe paper measures per-frame fidelity, perceptual quality, temporal distribution and throughput, and reports the original-VAE model separately from the LeanVAE variant — 13.91 and 35.56 FPS on a single NVIDIA A800 80GB. Reporting both is what makes the number usable.\n\nAcross the three tasks the one-step approach matches or surpasses diffusion baselines on the reported temporal and reconstruction measures. That is the substantive result: the speedup is not bought with a large quality drop, because the student inherits the teacher’s prior rather than approximating it from scratch."
+   ],
+   [
+    "Real time is a property of a setup",
+    "Distillation moves iterative work from serving time into training time. That is the right trade when many clips share a known restoration task, and a worse one when the degradation changes often or when inputs fall outside the training distribution.\n\nThe throughput figure also needs its conditions attached. Model variant, resolution and hardware all move it, and 832×480 on one accelerator is a specific operating point — quoting frames per second without those is why real-time claims are so hard to compare across papers.\n\nThe interesting consequence is what becomes possible rather than what gets faster. At tens of frames per second, diffusion-quality restoration fits into interactive and editable streaming pipelines — telepresence, AR/VR, live capture — where an iterative solver was never a candidate regardless of its quality."
+   ]
+  ],
+  "keypoints": [
+   "Distillation rather than approximation: a bidirectional video diffusion teacher is distilled into a causal autoregressive student that restores in one forward pass, inheriting temporal modelling while removing iterative test-time optimisation.",
+   "The distillation is prior-driven — it needs only the teacher and known degradation operators, with no externally paired clean/degraded video dataset. A forward model connects a candidate clean clip to the measurement it would have produced.",
+   "35.56 FPS for the LeanVAE variant and 13.91 FPS for the original-VAE model, measured on a single NVIDIA A800 80GB, with up to 100× speedups over iterative video diffusion solvers across inpainting, deblurring and super-resolution."
+  ]
+ },
+ "varsr": {
+  "headline": "Restoring images one scale at a time",
+  "dek": "Super-resolution has a correct coarse answer already: the input. Next-scale prediction builds on it instead of inventing one.",
+  "sections": [
+   [
+    "Introduction",
+    "Autoregression is how language models work: predict the next token conditional on everything before it. Images have no obvious token order, which is one reason diffusion dominated generation — until next-scale prediction reframed the sequence as coarse-to-fine rather than left-to-right.\n\nSuper-resolution fits that framing better than text-to-image does. There is already a correct low-resolution answer, namely the input, so the problem is not inventing an image but deciding what detail to add on top of one that is given.\n\nVARSR builds on this with next-scale prediction, conditioning every scale on prefix tokens derived from the low-resolution image, and adds scale-aligned rotary positional encodings plus a diffusion refiner for quantization residuals. In a 50-image study it is selected 55.2% of the time among six methods, at roughly a tenth of DiffBIR’s reported runtime."
+   ],
+   [
+    "Coarse first, then detail",
+    "Next-scale prediction does not order pixels spatially. The model predicts a coarse token map, then a finer one conditioned on it, then a finer one still, so each level is generated knowing what the level above has already committed to.\n\nThe ordering is a strong structural prior. A spatially autoregressive model can produce a plausible left half and a plausible right half that disagree at the seam; a coarse-to-fine model cannot, because global layout is decided at the scale where it is cheapest to decide.\n\nThe low-resolution input enters as prefix tokens — a sequence the autoregressive model attends to at every scale rather than a conditioning vector injected once. That targets a specific failure mode: generative super-resolution drifting from the input because the condition was applied only at the first step."
+   ],
+   [
+    "Making scales comparable",
+    "Two problems follow from predicting at several resolutions. Positions at different scales do not correspond under a naive positional encoding, and a discrete tokenizer cannot represent the continuous residual between its quantization and the true pixel values.\n\nScale-aligned rotary positional encoding fixes the first by rescaling positions so that the same image location keeps a consistent relative position across scales. Without it the model has to relearn the correspondence at every level, which wastes capacity on something that could be built in.\n\nThe diffusion refiner fixes the second by modelling the quantization residual so that the final output reaches pixel-level fidelity. The split matters for credit assignment: the autoregressive model owns semantic structure, and the refiner owns only what discretization threw away."
+   ],
+   [
+    "What next-scale prediction delivers",
+    "The evaluation combines reference-based metrics, no-reference quality scores, visual comparison and human preference. That combination is the right one here, because a method can win on perceptual scores while losing on fidelity and any single one of those numbers would hide it.\n\nThe 55.2% selection rate in a 50-image study across six methods is the preference result, and 0.59 s per image is the efficiency one. The ablations that carry the argument are the ones comparing prefix-token conditioning against alternative ways of injecting the low-resolution image.\n\nThose ablations exist to answer a fair objection. A diffusion refiner can produce impressive detail on its own, so a strong result might come from the refiner rather than from autoregressive restoration. Separating the positional encoding and the refiner is what makes this a claim about next-scale prediction instead of about the pipeline."
+   ],
+   [
+    "Representation, not just architecture",
+    "The transferable idea is to choose the representation before choosing the network. Coarse structure is decided where it is cheap, fine detail is conditioned on it, and the input remains an explicit condition throughout — a principle that does not depend on this particular tokenizer.\n\nThe caveat is the one that applies to every generative restoration method. Realism and fidelity are in tension, and a model that wins a preference study may still add texture that was not in the scene. Prefix-token conditioning reduces drift; it does not certify the absence of hallucination.\n\nThe efficiency comparison should also be read with its assumptions intact — hardware, image size and implementation all move it, so 10.1% of DiffBIR’s runtime is a statement about one measurement setup. The interesting claim is that autoregression can be cheaper here, because the coarse levels are cheap to predict."
+   ]
+  ],
+  "keypoints": [
+   "Super-resolution is cast as next-scale prediction: a coarse representation is established first and successive scales are predicted from it, with the low-resolution image entering as prefix tokens rather than as a one-shot condition.",
+   "Scale-aligned rotary positional encodings keep locations comparable across resolutions, and a diffusion refiner models the quantization residual — separating semantic structure from what a discrete tokenizer cannot represent.",
+   "55.2% of selections in a 50-image user study on DRealSR and RealSR across six methods, at 0.59 s per image — about 10.1% of DiffBIR’s reported runtime in the same setup."
+  ]
+ },
+ "tinvblocks": {
+  "headline": "Rethinking the information kept in a smaller image",
+  "dek": "Learned rescaling controls both directions, so the low-resolution image is a designed container. What goes in it is the design decision.",
+  "sections": [
+   [
+    "Introduction",
+    "Image rescaling is not super-resolution with extra steps. Downscaling and upscaling are designed together, so the low-resolution image is not an arbitrary degraded input but a container the system itself filled — and what it chose to put there determines what can later be recovered.\n\nInvertible networks make this explicit. One network handles both directions: a forward map that must be invertible by construction, plus a learned distribution for whatever is discarded. The usual design splits the representation into a low-frequency branch and a high-frequency branch, models the high-frequency part as noise, and processes the low-frequency part directly in RGB.\n\nT-InvBlocks changes what the surviving branch holds. It separates luminance from chrominance so the invertible map stops spending capacity on the correlation between R, G and B, and it forces the high-frequency input to zero at reconstruction time. Inserted into existing pipelines it gains 0.4–0.6 dB at 2× under JPEG compression at comparable parameter counts."
+   ],
+   [
+    "Three branches, three jobs",
+    "A vanilla invertible block splits its input in two and couples the halves with affine transforms that are invertible by construction. One half becomes the low-frequency representation that survives as the small image; the other is the high-frequency detail that must be stored or sampled at reconstruction time.\n\nThe tri-branch version is not a third prediction of the same image. It divides the surviving half into luminance and chrominance and keeps the high-frequency branch as a third path, so each branch has a distinct role in the mapping rather than three copies of one job.\n\nThe all-zero high-frequency mapping is the sharpest choice. At upscaling time the detail branch is fed zeros instead of a sampled code, which removes the option of leaning on generated detail and pressures the learned downscaler to keep whatever will actually be needed inside the small image."
+   ],
+   [
+    "Why RGB is the wrong space for the surviving half",
+    "The redundancy argument is concrete. In a natural image the three RGB channels are strongly correlated — much of what the R channel says is predictable from G and B — so a block processing them jointly spends capacity transmitting essentially the same luminance structure three times.\n\nSplitting into Y and CbCr concentrates most of the perceptually relevant information in one channel and leaves two low-bandwidth chrominance channels. The invertible coupling then operates on a representation whose channels mean different things instead of on three near-copies.\n\nThis is why the gain comes from redesigning what is stored rather than from adding depth. The block reportedly drops into existing architectures at comparable parameter counts, which is the signature of a representation change and not of a capacity increase."
+   ],
+   [
+    "What changes when the branches change",
+    "The evaluation inserts the block into two different families — IRN-style rescaling and SAIN-style compression-aware pipelines — and tests ordinary reconstruction alongside JPEG-compressed reconstruction across several quality factors and 2×/4× scaling.\n\nTesting across two hosts is the load-bearing part. A gain that appears in only one complete network could come from an interaction with that network; the same block improving two architectures points at the representation rather than at the host.\n\nThe JPEG setting is the honest test of the idea. Lossy encoding will discard part of the small image regardless, so the real question is whether information was placed where the codec is likely to keep it. Gains of 0.4–0.6 dB at 2× and 0.2–0.5 dB at 4× suggest it was."
+   ],
+   [
+    "Rescaling as information allocation",
+    "The framing that generalises is allocation. Because encoder and decoder are trained together, the system decides what the small image carries; once that is a design variable, luminance/chrominance separation and zero-detail reconstruction are both ways of spending the budget better.\n\nThe scope is narrower than super-resolution. This assumes a coordinated encode/decode pipeline where the downscaler is yours. Recovering an arbitrary image from the web is a different problem with none of this control, and the numbers should not be read as a claim about that setting.\n\nOne practical limit is worth naming. Forcing recovery information into the small image means that image carries structure a codec may treat as noise. Robustness under JPEG is evidence it works at the tested quality factors, not a guarantee across every compression pipeline a deployment might use."
+   ]
+  ],
+  "keypoints": [
+   "Learned rescaling controls both sides of the compression: the low-resolution image is a designed representation, not an arbitrary degraded input, so where information is placed is part of the model.",
+   "The low-frequency branch is split into luminance (Y) and chrominance (CbCr) instead of RGB, removing channel redundancy, and reconstruction uses an all-zero high-frequency input so recovery information has to live in the small image.",
+   "Plug-and-play: inserted into IRN-style rescaling and SAIN-style compression-aware pipelines, T-SAIN gains 0.4–0.6 dB at 2× and 0.2–0.5 dB at 4× over SAIN on JPEG-compressed DIV2K, at comparable parameter counts."
+  ]
+ },
+ "oapt": {
+  "headline": "Restoring images after a second JPEG compression",
+  "dek": "Two JPEG passes with different block grids put up to four artifact patterns inside one 8×8 block. The offset between the grids is the missing information.",
+  "sections": [
+   [
+    "Introduction",
+    "A photograph is usually compressed more than once. It is saved by a camera, cropped or edited, then saved again and uploaded, and each JPEG pass lays its own 8×8 block grid over the image. Nothing guarantees those grids line up.\n\nWhen they do not, the artifact structure stops being uniform. The paper’s analysis counts up to four distinct artifact patterns inside a single 8×8 block, because a block of the second compression can straddle four blocks of the first, each with its own quantization history.\n\nThat observation is the whole method. Rather than treat double compression as harder single compression, OAPT estimates the offset between the two grids and groups pixels by the pattern they belong to, gaining more than 0.16 dB over the compared state of the art."
+   ],
+   [
+    "Four patterns in one block",
+    "JPEG splits an image into 8×8 blocks, applies a discrete cosine transform to each, then quantizes the coefficients. Quantization is what loses information, and it is applied per block, so the artifact pattern a pixel shows is determined by which grid cell it fell into.\n\nApply the grid twice with a crop or shift in between and the second grid no longer coincides with the first. A block in the second pass can overlap four blocks from the first, each quantized independently, so four different artifact signatures coexist inside one block.\n\nThis is why models trained for single compression degrade. Their implicit assumption is that artifact structure is spatially uniform at the block scale, and that is exactly what a second misaligned pass breaks. Restoration requires knowing which pattern each pixel belongs to."
+   ],
+   [
+    "Grouping by compression history",
+    "OAPT’s first module predicts the offset between the two compression grids. With the offset known, pixels inside any window can be partitioned by which block of the first compression they came from — that is, by their compression history rather than by their coordinates.\n\nThe reconstruction network then uses hybrid partition attention blocks. Window-based self-attention handles ordinary local structure, while a sparse attention branch operates over the clustered pattern features, connecting positions that share an artifact signature however far apart they sit.\n\nThe two are genuinely complementary. Window attention is good at neighbourhoods and blind to the fact that two pixels on opposite sides of a block boundary may share a quantization history; sparse pattern attention captures exactly that and is useless for local texture."
+   ],
+   [
+    "What offset-aware grouping recovers",
+    "Training synthesises the degradation rather than collecting it: JPEG, then a pixel shift, then JPEG again, with both quality factors sampled from 5 to 95 and offsets from zero to seven pixels. One model covers the whole range instead of one model per setting.\n\nThat choice matters for the claim. Sampling both quality factors broadly forces the offset predictor to work both when the first compression was nearly lossless and when it was severe, which is the range real editing histories actually produce.\n\nThe reported gain over the compared state of the art exceeds 0.16 dB on double-JPEG restoration, and the pattern-clustering component transfers: inserted into other transformer restoration models it improves them without extra computation. That transfer is the strongest evidence the clustering captures something real about the degradation rather than fitting this network."
+   ],
+   [
+    "Degradation structure belongs in the architecture",
+    "The generalisable move is to expose the structure of the degradation to the attention mechanism. Pixels that look unrelated spatially can share a compression history, and once grouping reflects that, the model can learn relationships it otherwise could not.\n\nThe method is also correctly narrow. It models double JPEG specifically — two compression passes with one shift between them. Predictions are only as good as the offset estimator, and a history involving resizing, another codec or more passes introduces structure the model never saw.\n\nFor deployment that is a scoping question rather than a defect. Real pipelines have known, enumerable degradation histories, and the useful contribution is a method that turns one specific history into an architectural prior — at the cost of not generalising beyond it."
+   ]
+  ],
+  "keypoints": [
+   "A block of the second JPEG can straddle up to four blocks of the first, so a single 8×8 block may contain as many as four distinct artifact patterns — the degradation is piecewise, not uniform.",
+   "A compression offset predictor estimates the shift between the two grids; those estimates partition the features, and hybrid partition attention blocks combine window self-attention with sparse attention over the grouped features.",
+   "The pattern-clustering module is a plugin: it can be inserted into other transformer-based restoration models without added computation, and the gain over the compared state of the art exceeds 0.16 dB."
+  ]
+ },
+ "cpga": {
+  "headline": "Recovering video detail from the codec’s own clues",
+  "dek": "An encoder already estimated motion and recorded what its prediction missed. CPGA feeds both back into the enhancer.",
+  "sections": [
+   [
+    "Introduction",
+    "A compressed video carries more than the pixels you decode. To build a bitstream the encoder already estimated how content moves between frames and recorded what its prediction could not explain. Motion vectors and residuals are two byproducts most enhancement methods simply throw away.\n\nThey are not redundant with the decoded frames. A motion vector is a compact statement about where information is expected to move; a residual marks where the codec’s prediction failed, which is usually where detail is densest and compression damage is worst.\n\nCPGA treats them as evidence. Motion vectors guide aggregation across frames and residuals guide aggregation within a frame, and the work introduces VCP, a dataset of 300 videos with bitstream-derived coding priors. On 18 standard sequences under low-delay B at QP=37 it gains 0.03 dB over STDR and 0.08 dB over RFDA."
+   ],
+   [
+    "What the codec already computed",
+    "Inter-frame prediction is the reason video compression works. For each block the encoder searches a reference frame for a similar block, stores the displacement as a motion vector, and encodes the difference — the residual — which is usually small and therefore cheap.\n\nTwo useful facts fall out of that search. The motion vector is an estimate of where the corresponding content sits, computed at encode time with full access to the original frames. The residual is a map of where prediction failed, which correlates strongly with edges, texture and occlusion.\n\nBoth are cheaper and cleaner than anything an enhancement network would recompute from decoded pixels. The motion estimate was made before compression damage existed, and the residual is a direct measurement of unpredictability rather than a learned guess at it."
+   ],
+   [
+    "Two aggregations, two kinds of evidence",
+    "Temporal aggregation needs to know which neighbouring frame content actually aligns with the current one. Using the codec’s motion vectors instead of re-estimating alignment removes a specific failure mode: at low bitrates the network’s own flow estimate is computed from the artifacts it is trying to remove.\n\nSpatial aggregation needs to know where to look for repeated structure. Residuals supply that: high residual energy marks the places where local content is complex and where borrowing similar patches from elsewhere in the frame pays off most.\n\nThe design detail that matters is placement. Attaching the priors at the output would make them a correction; putting them inside the aggregation modules lets them decide which evidence is gathered in the first place — a different and stronger use of the same information."
+   ],
+   [
+    "What coding priors add",
+    "Evaluation uses standard compressed-video sequences under both low-delay B and random-access configurations at several quantization parameters, reporting average PSNR and SSIM alongside a temporal quality-fluctuation analysis.\n\nThe fluctuation measure is the right companion metric. Frame-wise averages hide flicker: a method can raise the mean while making per-frame quality oscillate, and viewers notice oscillation far more than a uniform small loss.\n\nThe reported margins — 0.03 dB over STDR and 0.08 dB over RFDA on 18 sequences at QP=37 — are small in absolute terms, which is expected this far along the curve. The ablations separating priors from aggregation modules are what distinguish gains from extra bitstream information from gains a larger pixel-based network could have bought."
+   ],
+   [
+    "Restoration beyond decoded pixels",
+    "The framing worth keeping is that a codec is not a black box that damages video and hands it over. It is a pipeline that already performed motion estimation and a prediction/decision split, and that work is reusable evidence for reconstruction.\n\nThe practical constraint is access. Motion vectors and residuals come from the bitstream; a service receiving only decoded RGB frames cannot compute them, and the same architecture should not be assumed to keep its advantage in that setting.\n\nThat makes this as much a systems paper as a model paper. The question it raises for anyone building an enhancement pipeline is where to attach the enhancer to the decoder — and the answer determines whether the reported margin is available at all."
+   ]
+  ],
+  "keypoints": [
+   "A codec already computes motion and separates predicted content from residual detail. CPGA reuses both: motion vectors guide temporal aggregation, residuals guide multi-scale non-local spatial aggregation.",
+   "The priors are used inside aggregation rather than appended at the output, so they decide which evidence gets gathered instead of only correcting the result afterwards.",
+   "VCP: 300 videos with bitstream-derived coding priors. On 18 standard sequences under low-delay B at QP=37, average PSNR gain is 0.03 dB over STDR and 0.08 dB over RFDA."
+  ]
+ },
+ "xpsr": {
+  "headline": "Using language to guide faithful super-resolution",
+  "dek": "A caption tells the diffusion model what the scene contains. It also carries the degradation that produced it — both have to be handled.",
+  "sections": [
+   [
+    "Introduction",
+    "Diffusion-based super-resolution leans on a text-to-image prior to fill in what the low-resolution input lost. That prior is powerful and indifferent: given a badly degraded patch it supplies the most likely structure, which may have nothing to do with what was actually there.\n\nLanguage is the obvious additional condition. A caption can say the image contains a shop sign with specific letterforms, supplying high-level context that no amount of upsampling will recover from the pixels. The difficulty is that the caption must be produced from the degraded image and therefore carries its degradation with it.\n\nXPSR is built around that tension. It uses multimodal language models for semantic conditions, fuses them with image features through Semantic-Fusion Attention, and adds a Degradation-Free Constraint so the fused representation keeps the content without importing the corruption. On DIV2K-val it gains 10.34% in MANIQA over SeeSR."
+   ],
+   [
+    "The condition is also a carrier",
+    "A semantic condition is attractive because it operates at a level pixels cannot. At 4× or 8× downscaling with compression on top, the identity of an object can be genuinely ambiguous from the image alone, and a caption can commit to one interpretation.\n\nBut the caption is generated from the same degraded input. Compression blocks, noise and blur are all present in the encoder’s input, so whatever semantic embedding comes out has been computed over corrupted evidence — the condition is informative and contaminated at once.\n\nConcatenating it with image features therefore does two things at once: it adds high-level guidance and it opens a second path for the degradation to reach the generative process. Any method using language this way has to separate those effects before it can claim the guidance helped."
+   ],
+   [
+    "Fusion, and a constraint on what is carried",
+    "Semantic-Fusion Attention is the mechanism for combining the two modalities. Rather than treating the caption as a fixed prefix, it lets image and semantic features interact, so the influence of language is modulated by what the image actually supports.\n\nThe Degradation-Free Constraint is the counterpart that does the separating. It pushes the fused representation toward preserving useful content while discouraging it from encoding the low-resolution image’s degradation — in effect asking the condition to describe the scene and not the damage.\n\nThe pairing is the point. Fusion alone would let a contaminated semantic signal through more effectively; the constraint alone would suppress signal along with corruption. Treating semantic assistance and degradation suppression as complementary requirements is what makes the conditioning usable."
+   ],
+   [
+    "Measuring guidance and fidelity separately",
+    "The evaluation covers synthetic degradations and real photographs, with captions produced from the degraded inputs rather than from clean references — the realistic setting, and the one that makes the constraint necessary rather than optional.\n\nOn DIV2K-val the reported relative gains over SeeSR are 10.34% in MANIQA, 8.57% in CLIPIQA and 1.64% in MUSIQ, and a real-image user study gives XPSR 64.3% of selections among six methods. These are perceptual measures, and the paper is careful to note that diffusion methods can still trail GAN-based ones on PSNR and SSIM.\n\nThat gap is not a footnote. Pixel-level similarity and perceptual quality genuinely disagree for generative restoration, and the paper treats the disagreement as a finding rather than averaging it away — a model can be preferred by humans and farther from the reference at the same time."
+   ],
+   [
+    "Semantic help without semantic invention",
+    "The conditional reading is the honest one. Better conditioning improves this pipeline under these settings; it does not establish that language can recover information absent from an image with certainty, because the caption is itself an inference from degraded evidence.\n\nThe failure mode to watch is confident misdescription. If the language model commits to the wrong object, the generative prior will render it convincingly — stronger semantic guidance raises both the quality of correct guesses and the plausibility of wrong ones.\n\nThat suggests an asymmetric deployment pattern. Use semantic conditioning where the scene is ambiguous and the interpretation is cheap to verify, and stay sceptical where a wrong guess downstream is expensive. The constraint reduces leakage; it cannot audit the caption."
+   ]
+  ],
+  "keypoints": [
+   "Semantic conditions come from a multimodal language model reading the degraded input, so the useful part — what the scene contains — arrives mixed with the degradation that produced it.",
+   "Semantic-Fusion Attention controls how language and image features interact, and a Degradation-Free Constraint pushes the representation to keep content without carrying the low-resolution image’s corruption into generation.",
+   "Relative gains over SeeSR on DIV2K-val: 10.34% MANIQA, 8.57% CLIPIQA, 1.64% MUSIQ, with 64.3% selection in a real-image user study — while diffusion methods still trail GAN-based ones on PSNR and SSIM."
+  ]
+ },
+ "ptmvqa": {
+  "headline": "Learning video quality from diverse pretrained models",
+  "dek": "Quality labels are scarce; pretrained representations are not. The problem is making several frozen feature spaces agree on what quality means.",
+  "sections": [
+   [
+    "Introduction",
+    "Predicting how a viewer will rate a video requires knowing about its content, its distortions and its motion, and the ground truth is expensive. Subjective scores have to be collected from people one clip at a time, so quality datasets are small by the standards of modern vision.\n\nThe obvious workaround is transfer, and the usual version of transfer — fine-tuning one large pretrained backbone — borrows from a single source. Different backbones know different things: objects, motion, texture statistics. None of them was trained to judge quality.\n\nPTM-VQA asks whether those complementary representations can be combined into one quality-aware space without fine-tuning any of them. On LSVQ-Test the reported configuration reaches PLCC 0.8637 and SRCC 0.8545, and the backbones are selected by how well their features cluster quality annotations."
+   ],
+   [
+    "Several frozen backbones, one space",
+    "Each pretrained model contributes features extracted with its weights frozen — no fine-tuning, no quality labels flowing back into the backbones. That keeps the method cheap and the pretrained knowledge intact, but the representations arrive in incompatible spaces with no shared notion of quality.\n\nConcatenating them would not fix that. Two backbones can emit feature vectors of the same length that order clips completely differently, and a predictor trained on the concatenation has to learn the correspondence from a small quality dataset — precisely the scarce resource the method was meant to avoid depending on.\n\nModel selection is therefore part of the method rather than a preliminary step. Candidates are ranked by clustering performance on quality-assessment data, which selects for backbones whose representations already separate quality levels instead of assuming that more sources are always better."
+   ],
+   [
+    "Consistency and separation",
+    "Two objectives shape the shared space, and they pull in different directions on purpose. Intra-consistency brings representations of the same video — however many backbones produced them — into agreement, so the space has a coherent notion of a single clip.\n\nInter-divisibility then separates the groups formed from the quality annotations, so similarly rated clips land near each other and differently rated clips do not. Consistency alone would collapse everything toward one point; separation alone would have nothing coherent to arrange.\n\nThe pairing is what makes the space quality-aware rather than merely aligned. Alignment is unsupervised and can be achieved with no label at all; the separation term is where subjective scores actually enter, and it is what turns a fused feature into a usable predictor."
+   ],
+   [
+    "What the constraints produce",
+    "Experiments compare pretrained feature combinations on KoNViD-1k, LIVE-VQC and YouTube-UGC, then test larger-scale training on LSVQ, with cross-database evaluation measuring transfer when nothing is fine-tuned on the target set.\n\nCross-database testing is the demanding condition. Within-database splits share capture conditions, content pools and distortion types with the training data; transferring between databases shares none of that, so a drop there is the honest measure of whether the space generalises or has memorised one dataset’s statistics.\n\nPLCC and SRCC measure agreement with human judgement, and ablations examine both constraints and the clustering choices. Runtime changes with the selected backbones, so efficiency is reported for the actual combination used rather than for one default — a necessary caveat when a method’s cost depends on its configuration."
+   ],
+   [
+    "Predicting quality is a distinct task",
+    "The value of the framework is reuse: knowledge acquired for object recognition, action recognition or self-supervised video modelling is repurposed for a task that has almost no labelled data of its own.\n\nIts output should not be over-read. A quality score is a prediction of perceived quality, not a guarantee about factual content or temporal correctness — a video can be rated highly while containing the wrong content or an impossible motion.\n\nIn a restoration system that makes VQA useful in one specific way and not another. It supports comparison and selection: choosing among candidate reconstructions, monitoring a pipeline. But a high predicted score still needs to be paired with fidelity checks and task-specific measures before it means the video is correct."
+   ]
+  ],
+  "keypoints": [
+   "Features come from multiple frozen pretrained models chosen by how well their representations cluster quality-annotated data — the bet is complementarity, and adding every available backbone is explicitly not assumed to help.",
+   "Two constraints shape the space: intra-consistency aligns representations of the same video, and inter-divisibility separates groups formed from the quality annotations, so the space is both coherent and predictive.",
+   "PLCC 0.8637 and SRCC 0.8545 on LSVQ-Test, with cross-database tests measuring transfer without fine-tuning on the target set — the output is a quality prediction, not a restoration or a factual claim about content."
+  ]
+ },
+ "cassr": {
+  "headline": "A clearer reference for generative super-resolution",
+  "dek": "One diffusion pass has to infer content and generate detail at once. CasSR spends a stage on the condition first.",
+  "sections": [
+   [
+    "Introduction",
+    "Real-world super-resolution asks a diffusion model to do two jobs at once. It must infer what the degraded image contains, and it must generate a high-resolution version of it — and it does both from one conditioning signal that is itself damaged.\n\nThe failure follows directly. When the condition is uninformative, the prior takes over and produces the most plausible content rather than the correct content. That is where semantic loss and invented detail come from: not from a weak prior, but from a prior asked to resolve an ambiguity it was given no evidence to resolve.\n\nCasSR separates the two jobs in sequence. A first stage produces a preliminary reference image that is cleaner and more informative than the original observation; a second, cascaded controllable diffusion stage generates the final result from it. On DIV2K validation this improves MUSIQ by 3.82% and MANIQA by 7.05% over the next-best compared method."
+   ],
+   [
+    "Improving the evidence before generating",
+    "The first stage exists to change what the second stage receives. Rather than conditioning generation on the raw degraded observation, the cascade produces a preliminary reference — less degraded, with clearer content — and conditions the generative pass on that.\n\nThe reference is not treated as ground truth, and the distinction matters. It is better-conditioned evidence: easier to extract semantics from, closer to the clean image in the ways that guide generation, yet still a reconstruction carrying its own errors.\n\nThis is worth separating from ordinary multi-stage super-resolution. The goal of the first stage is not to produce a good image; it is to produce a condition the generative prior can use well. Those are different objectives, and judging the intermediate output as a final result misreads the design."
+   ],
+   [
+    "Keeping generation tied to the original",
+    "A cleaner reference creates its own risk: the generative stage may drift toward the reference’s interpretation and away from the actual observation. The multi-attention mechanism is the counterweight, strengthening how the text-to-image backbone draws on the original image rather than only on the reference.\n\nThis is why both stages have to be judged together. The first changes the evidence; the second decides how much that evidence is trusted versus how much the pretrained visual prior is allowed to fill in. Improving either one alone is not the same as improving the pair.\n\nThe general pattern — restore the condition, then generate — is the transferable part. Asking a powerful prior to resolve every ambiguity at once wastes its capacity; handing it a partially disambiguated input lets the same prior spend that capacity on detail."
+   ],
+   [
+    "Where the cascade preserves detail",
+    "The comparison covers GAN-based and diffusion-based methods on DIV2K validation, DRealSR and RealSR, reporting reference-based perceptual distances alongside no-reference quality measures and detailed visual comparisons.\n\nThe reported relative improvements on DIV2K validation are 3.82% in MUSIQ and 7.05% in MANIQA over the next-best compared method. Visual examples are the more informative evidence here: cases where the cascade preserves a small identifying detail — a penguin’s eye, the boundary of a wing — are exactly the cases where a single-stage prior would have substituted a plausible one.\n\nPerformance varies across DRealSR and RealSR, and that variation should be read rather than averaged. The mechanism depends on the first stage extracting usable content, so the benefit is largest where degradation is severe but structure survives, and smaller where the input is already near the limit of what the reference stage can recover."
+   ],
+   [
+    "A prior needs an anchor",
+    "The idea that generalises is making the condition an object of restoration instead of a fixed input. Most work treats conditioning as given and improves the generator; this treats the quality of the evidence as a variable worth spending a stage on.\n\nThe obvious cost is error propagation. If the preliminary stage commits to the wrong content, the second stage renders that commitment convincingly — a harder failure to detect than a one-stage hallucination, because the output looks clean and internally coherent.\n\nThat suggests how to read results of this kind. Judge a final image on attractive detail and on consistency with the original observation, and treat the two as separate checks. A cascade improving both is doing what the design claims; one improving only the first is amplifying its own errors."
+   ]
+  ],
+  "keypoints": [
+   "Two jobs, one condition: inferring content and generating detail are forced into a single diffusion pass, and when the condition is badly degraded the prior resolves the ambiguity by inventing.",
+   "A preliminary reference image is generated first to extract content and reduce degradation, then a cascaded controllable diffusion model generates from that reference, with a multi-attention mechanism tying the backbone back to the original image.",
+   "Relative improvements of 3.82% in MUSIQ and 7.05% in MANIQA on DIV2K validation over the next-best compared method, with visual comparisons showing retention of small identifying details such as a penguin’s eye and wing boundaries."
+  ]
+ },
+ "magvortex": {
+  "headline": "How vortices change the splitting of magnetic tubes",
+  "dek": "A curved magnetic tube splits itself through the dipole it induces. An accompanying vortex can stop that from happening.",
+  "sections": [
+   [
+    "Introduction",
+    "A curved magnetic flux tube in a conducting fluid does not simply stay as it is. The Lorentz force acting on curved field generates a counter-rotating vortex dipole, and that dipole can tear the tube into smaller structures — a mechanism relevant wherever magnetic structures fragment and release energy.\n\nThe clean version of this problem is a magnetic tube alone. Real flows are rarely clean: a magnetic structure in a turbulent conducting fluid sits alongside vortical structures, and the two interact through the same velocity field. Whether the splitting mechanism survives that company is a separate question.\n\nThis study asks it with direct numerical simulations of linked magnetic and vortex tubes, varying their initial relative angle from zero to 45 degrees. The answer is conditional and interesting: a sufficiently strong accompanying vortex tube disrupts dipole formation and inhibits splitting."
+   ],
+   [
+    "A frame that follows the field line",
+    "The Frenet–Serret frame attaches a tangent, normal and binormal direction to every point of a curve. Applied to a magnetic field line it converts the geometry of that line — its curvature and torsion — into local coordinates for whatever force acts on it.\n\nThis matters because the Lorentz force depends on the field’s own geometry. Curvature determines the direction and magnitude of the magnetic tension force, so expressing the dynamics in the field’s own frame makes the force decomposition readable instead of leaving it buried in components.\n\nIn that description the vortex dipole is not a separate observation to be correlated with splitting after the fact. It is the flow response to the tension force, and therefore part of the mechanism — which is why anything that alters the local rotational flow should change whether splitting happens at all."
+   ],
+   [
+    "Varying the configuration",
+    "The simulations combine an analytical force decomposition with direct numerical simulation of linked magnetic and vortex tubes, varying the initial relative angle from zero to 45 degrees. Field-line geometry, vorticity generation and magnetic-to-kinetic energy transfer are examined together.\n\nSweeping the angle is the right control because it separates the two structures without changing either one. At zero the tubes are aligned and the vortex sits where the dipole wants to form; as the angle grows, the imposed rotation is progressively misaligned with the self-induced one.\n\nComparing an isolated magnetic structure with an accompanied one is the other necessary contrast. Without the isolated case you could not tell whether a change in splitting came from the vortex or merely from two structures in a periodic domain evolving differently from one."
+   ],
+   [
+    "When the vortex wins",
+    "The isolated magnetic tube behaves as expected. Curvature drives a Lorentz force, the force drives a dipole, and the dipole splits the tube into smaller structures while magnetic energy is converted into kinetic energy.\n\nWith a sufficiently strong accompanying vortex tube the outcome changes. The imposed rotational flow disrupts dipole formation before it can organise, and splitting is inhibited rather than merely delayed — the mechanism is interrupted upstream of the step that produces it.\n\nThe simulations also show sensitivity to small changes in angular configuration, and that sensitivity is worth reading carefully. A mechanism that depends on how two structures are oriented is one whose outcome in a turbulent flow cannot be predicted from local geometry alone."
+   ],
+   [
+    "From local forces to structural evolution",
+    "The result connects a local geometric description — curvature, torsion and the forces they generate — to a visible change in topology and energy release. That chain is the useful part: it explains why a tube splits rather than only recording that it did.\n\nIt also argues against treating a magnetic tube independently of its surroundings. In a conducting fluid, magnetic and vortical structures are coupled, and a prediction based on the magnetic structure alone can be qualitatively wrong — here, in the direction of over-predicting fragmentation.\n\nThe scope is idealised. These are clean numerical configurations with prescribed initial geometry, chosen to isolate one mechanism. The paper offers a basis for interpreting more complex magnetohydrodynamic flows, not a direct prediction for any particular astrophysical or laboratory configuration."
+   ]
+  ],
+  "keypoints": [
+   "A curved magnetic tube generates a Lorentz force and a vortex dipole that can split it into smaller structures — self-induced splitting requiring no external flow.",
+   "The analysis uses a Frenet–Serret frame along field lines, so curvature and torsion give a local language for the forces that bend and separate a tube, and the induced dipole becomes part of the mechanism rather than a flow visualisation.",
+   "Direct numerical simulations of linked magnetic and vortex tubes at initial angles from 0 to 45 degrees show that a sufficiently strong accompanying vortex can disrupt dipole formation and inhibit splitting, with sensitivity to small changes in angular configuration."
+  ]
+ },
+ "magknot": {
+  "headline": "Watching magnetic field lines tie themselves into knots",
+  "dek": "Reconnection changes connectivity, and each event changes the geometry that decides the next one. Following the sequence is the point.",
+  "sections": [
+   [
+    "Introduction",
+    "Magnetic field lines can be knotted, and in a sufficiently conducting fluid that knotting is constrained: reconnection is the only process that changes how field lines are connected. So the question of how complexity arises is really a question about a sequence of reconnection events.\n\nMost studies of magnetic topology compare states — an initial field and a later one — and infer what happened in between. That inference is where the mechanism hides, because a single reconnection event changes the geometry that determines whether the next one can occur.\n\nThis work follows two perpendicular helical flux tubes of opposite chirality through the entire sequence. Starting from an unknotted configuration, successive reconnections produce U-shaped loops, then overhand knots, then double overhand and more complex knots: a cascade rather than a single event."
+   ],
+   [
+    "One event enables the next",
+    "The first reconnection creates U-shaped field lines. That sounds minor, but it changes how neighbouring lines approach one another, and it is the changed approach geometry that makes the second event possible.\n\nThe second reconnection ties overhand knots. By then the field is no longer in the configuration the first event acted on, so describing the outcome as two independent reconnections would misrepresent it — the events are sequential and each is conditioned on the last.\n\nRotation and stretching driven by the Lorentz force then continue the sequence, producing double overhand knots and more complex types. The driving is not external: the field’s own geometry generates the motion that will reshape that geometry in the next stage."
+   ],
+   [
+    "Tracking surfaces instead of comparing snapshots",
+    "The analysis follows field lines through successive reconnection events rather than relying on snapshots of magnetic intensity. That is a deliberate methodological choice, because intensity fields can look similar across qualitatively different connectivities.\n\nA magnetic-surface field identifies evolving tube boundaries and reconnection regions. Having a surface representation means a tube’s identity can be followed through an event, instead of inferring identity from a field whose connectivity has just changed.\n\nKnot types extracted at different times are compared using crossing number and Alexander–Briggs classification, with energy conversion tracked alongside. This is what links the visual formation of a knot to a quantitative change in topology: the picture and the invariant refer to the same event."
+   ],
+   [
+    "A cascade that stops",
+    "Complexity is quantified through minimum crossing numbers and distributions of knot types, and it increases over time: the population of field lines moves from simple to more complex knot types through the sequence of reconnections.\n\nKnot formation coincides with the conversion of magnetic energy into kinetic energy, which is why the subject matters beyond topology — the same events that complicate the field also release energy.\n\nThe cascade eventually slows and stops under resistive and viscous dissipation. That ending is physically necessary: reconnection, and the motions that enable it, both draw on magnetic energy, and dissipation removes both the energy and the small-scale structure the mechanism needs."
+   ],
+   [
+    "Topology can become more complicated",
+    "The notable result is directional: complexity grows from an initially unknotted configuration. It would be reasonable to expect reconnection to simplify a tangled field, since it is often described as a release mechanism, and here it does the opposite over the observed sequence.\n\nThe feedback is the mechanism. Lorentz-force-driven motion participates in enabling the next reconnection, so geometry shapes dynamics and dynamics reshapes geometry — a loop that can run for several events before dissipation breaks it.\n\nThe claim is specific. This is one magnetic-knot mechanism in a resistive flow with one initial condition, not a statement that all reconnection increases knot complexity. Which initial geometries produce cascades and which produce simplification remains open."
+   ]
+  ],
+  "keypoints": [
+   "From two unknotted helical flux tubes of opposite chirality, successive reconnections produce U-shaped loops, then overhand knots, then double overhand and more complex knots — complexity grows stepwise rather than appearing at once.",
+   "A magnetic-surface field tracks tube boundaries and identifies reconnection regions, so field lines are followed through events rather than compared between snapshots; knot types are classified by crossing number and Alexander–Briggs notation.",
+   "Each reconnection changes the geometry that enables the next: Lorentz-force-driven rotation and stretching rearrange the lines, closing a feedback between geometry and dynamics until resistive and viscous dissipation ends the cascade."
+  ]
+ },
+ "vortex": {
+  "headline": "Following vortex surfaces beyond ideal flow",
+  "dek": "Two questions coincide in an ideal fluid: how particles move, and which velocity preserves a vortex surface. Non-ideal flow separates them.",
+  "sections": [
+   [
+    "Introduction",
+    "In an ideal fluid, vortex lines are carried by the flow. Helmholtz’s theorems say a vortex surface moves with the fluid, and Kelvin’s circulation theorem says circulation around a material loop is conserved. Together they make vortex surfaces well-defined objects that can be tracked for all time.\n\nSwitch on viscosity and both statements fail in the same way and for the same reason: vorticity diffuses, and diffusion breaks the frozen-in property. The usual conclusion is that coherent vortex geometry stops being trackable in a non-ideal flow, and analysis moves to snapshot diagnostics such as Q or λ₂ that identify a vortex at an instant rather than follow one through time.\n\nThis paper separates two questions that coincide only in the ideal case: how fluid particles move, and which velocity field, if any, preserves a vortex surface. They have the same answer under the classical assumptions and can have different answers once non-ideal terms act."
+   ],
+   [
+    "Material surfaces and vortex surfaces",
+    "A material surface is defined by the particles it contains, so it is transported by the physical velocity by definition. A vortex surface is defined by a relation to vorticity — it is everywhere tangent to the vorticity field — and nothing in that definition mentions velocity.\n\nThe two coincide in ideal flow because circulation conservation forces vorticity to be transported as though frozen into the fluid. Once that conservation fails, the identification becomes an assumption rather than a consequence, and surfaces defined by vorticity need not move with the particles lying on them.\n\nThat distinction is not pedantry. Vortex-surface tracking is used to study reconnection, helicity and the evolution of coherent structures — all questions about how a structure changes in time. If the tracking rule is wrong, an apparent topological change may be an artefact of the observer’s velocity field rather than of the flow."
+   ],
+   [
+    "A velocity chosen to preserve circulation",
+    "The virtual velocity is defined by what it has to conserve. It is a transport field chosen so that circulation — or the vorticity-flux relation standing in for it — is preserved along its flow. It is not an additional physical motion of the fluid.\n\nBecause it is not physical, there is no guarantee that it exists. The paper is explicit: the extension holds for non-ideal flows admitting a globally smooth circulation-preserving virtual velocity, and the construction is tested on a modified dissipative flow where an explicit one can be written down and exact tracking becomes checkable.\n\nThat test case also prevents vortex-line reconnection, which is the right choice for validation. If reconnection occurs, a vortex surface genuinely changes topology and no tracking rule can preserve it; removing reconnection isolates whether the rule works from whether the structure is being torn."
+   ],
+   [
+    "When no smooth solution exists",
+    "The second setting is harder and more representative: a magnetohydrodynamic Taylor–Green flow, where a globally smooth circulation-preserving velocity is unavailable and an approximate construction has to be used instead.\n\nComparing transport by physical and virtual velocities is the informative experiment. Where the two differ, the difference says which apparent changes in the surface come from the tracking rule and which come from the vorticity field itself — exactly the question the paper was set up to ask.\n\nIn this flow the approximate virtual velocity better preserves vorticity flux and removes spurious deformation attributable to the Lorentz force. That is a specific and useful claim: some of the distortion an observer using the physical velocity would report in an MHD flow belongs to the observer, not to the flow."
+   ],
+   [
+    "Changing coordinates without changing physics",
+    "The contribution is a change in the coordinate system used to follow a structure, not a claim that non-ideal physics disappears. Viscosity still diffuses vorticity, and reconnection still occurs wherever it occurs.\n\nWhat changes is attribution. A useful virtual transport can preserve a geometric description even when material transport cannot, so questions about vortex-surface evolution stay well-posed in flows where the classical theorems do not apply.\n\nThe boundary is existence and smoothness. Where a globally smooth virtual velocity exists the result is exact; where only an approximate one can be built it is an approximation, and the paper does not claim exact frozen-in tracking for arbitrary non-ideal flows. That condition, not the numerical evidence, decides whether the method applies to a given flow."
+   ]
+  ],
+  "keypoints": [
+   "Two questions that coincide in ideal flow — how particles move and which velocity preserves a vortex surface — separate once viscosity or other non-ideal terms act. Material transport and vortex transport are not the same thing.",
+   "The classical theorems extend to some non-ideal flows when a globally smooth circulation-preserving virtual velocity exists; a vortex-surface field then tracks the surfaces under that velocity instead of the physical one.",
+   "Where no globally smooth solution exists, an approximate virtual velocity still improves tracking: in the MHD Taylor–Green flow it better preserves vorticity flux and removes spurious deformation attributable to the Lorentz force."
+  ]
+ },
+ "kat-v25-dev": {
+  "headline": "KAT-Coder V2.5-Dev",
+  "dek": "A 35B-A3B coding model whose model card reports the failure modes as carefully as the scores.",
+  "sections": [
+   [
+    "Introduction",
+    "An open-weight coding model is judged twice: once on benchmarks, and once on whether it behaves sensibly at the tool interface. The second is where deployed agents actually fail — not by writing wrong code, but by issuing seventy tool calls in one turn and emitting tags the parser cannot read.\n\nThis release is a 35B-A3B mixture of experts built on Qwen3.6-35B-A3B, post-trained with 127K supervised examples followed by reinforcement learning. The model card is unusually useful because it reports the failures alongside the scores.\n\nThe number that sets the tone is 9.34% to 0.28%: the rate of malformed tool tags before and after the reward shaping described below. Under a binary success reward the model did not merely fail to improve — it collapsed, with some turns issuing more than seventy parallel tool calls."
+   ],
+   [
+    "What a binary reward teaches",
+    "Give RL a pure success/failure reward and the shortest path to a pass is often to try everything. The card describes exactly that: tool-call volume exploding until single turns contained more than seventy parallel calls, a rational response to a reward that only asks whether something eventually worked.\n\nFormat degraded alongside it. Malformed tool tags rose to 9.34% and continuous repetition within a single turn appeared in 0.34% of cases — small in absolute terms, but fatal for an agent whose next action depends on parsing its previous one.\n\nThe remedy was to make the reward describe behaviour rather than only outcome: penalties for excessive calls, for failed calls, for empty tool blocks and for repetition. With those in place the run held for ten stable epochs, malformed tags fell to 0.28% and the repetition rate to zero."
+   ],
+   [
+    "Measuring peers on the same rig",
+    "Model comparison in this space is usually a table of numbers copied from other people’s cards, each produced under a different harness, context budget and serving configuration. This card instead downloads public peer weights and re-runs them through one in-house pipeline.\n\nThat choice trades coverage for comparability. Every model gets Claude Code 2.1.195, pass@1 and a 256k context, so a gap between two rows is at least attributable to the model rather than to the scaffold — at the cost of the results describing one particular deployment.\n\nThe further cost is that most tests run once unless an obvious error shows up. Single-run results cannot resolve small gaps, and the card does not claim they do. Differences of a point or two should be treated as unresolved."
+   ],
+   [
+    "Where it lands",
+    "Under that pipeline the model scores 69.4 on SWE-bench Verified, 63.0 on Multilingual and 45.96 on Pro. Each measures something different: repository repair against tests, the same across languages, and harder repository tasks under a stricter protocol.\n\nWhat makes the release interesting is the pairing of those scores with behavioural measurements. A model can post a respectable SWE-bench number while emitting unparseable tool calls at a rate that makes it unusable inside a real agent loop; reporting both should be the convention.\n\nIt is also worth noting what is not claimed. These are single-run reproductions under a stated harness, and peer scores here can differ from the same models’ official reports — a reminder that an agent’s score is a property of a system, not of a checkpoint."
+   ],
+   [
+    "Open weights as an inspectable artifact",
+    "The value of open weights is not only cost. A 3B-active MoE can be served cheaply, but more importantly it can be instrumented: you can reproduce the harness, watch the tool-call distribution yourself, and check whether the reported failure modes appear in your workload.\n\nThat is the right use of this card. It is a starting point for studying long-horizon behaviour under a chosen harness, not independent evidence of universal superiority — the rankings come from the same team that built the model.\n\nFor anyone selecting a model the sequence is straightforward: reproduce the evaluation protocol, then check behaviour on the actual workload. Benchmark scores tell you where to look; tool-call statistics and format-error rates tell you whether the model will survive contact with your tool interface."
+   ]
+  ],
+  "keypoints": [
+   "35B total / 3B active MoE built on Qwen3.6-35B-A3B, post-trained with 127K supervised examples then RL, keeping the V2.5 infrastructure: token-consistent rollout and training, truncated importance weights, checked environments.",
+   "A binary reward caused collapse — some turns exceeded 70 parallel tool calls. Penalties on excessive calls, failures, empty tool blocks and repetition produced ten stable epochs; malformed tool tags fell from 9.34% to 0.28%.",
+   "69.4 on SWE-bench Verified, 63.0 Multilingual, 45.96 Pro, all measured through one in-house pipeline (Claude Code 2.1.195, pass@1, 256k context) rather than copied from each model’s published card."
+  ]
+ },
+ "kat-v25": {
+  "headline": "KAT-Coder V2.5",
+  "dek": "The scarce resource is not parameters but reproducible environments, verifiable rewards and high-value trajectories.",
+  "sections": [
+   [
+    "Introduction",
+    "The bottleneck for agentic coding is not obviously parameters. A model can be large and still have nothing to learn from: repository tasks that cannot be reconstructed, rewards that cannot be verified, and trajectories too cheap to be worth training on.\n\nThat framing drives this report. KAT-Coder V2.5 is trained to act inside real, executable repositories rather than to emit a single-turn completion, and most of the engineering goes into making that training possible — environments, rewards and trajectory selection, not scale.\n\nThe outcome is deliberately uneven: the best agentic tool-use result on PinchBench, second only to the frontier Opus 4.8 on repository-level software engineering, and a clear deficit on terminal tasks. Reading that profile is more useful than reading a rank."
+   ],
+   [
+    "Environments that can teach",
+    "A repository task is only useful for RL if it can be rebuilt and its success can be checked. AutoBuilder does both: it reconstructs multilingual repositories into sandboxed environments with fail-to-pass and pass-to-pass verification, so a candidate patch is judged against tests that failed before and tests that must keep passing.\n\nFrom those environments the pipeline does three more things that determine data quality. It regenerates self-contained task specifications, so the agent is not trained on underspecified prompts; it recovers near-miss trajectories, which are the most informative failures; and it filters supervision by process rather than by outcome alone.\n\nKwaiClawEnv covers the other half of the distribution — tool use — by synthesising trajectories from executable services and real task seeds. The split is deliberate: repository work rewards long-horizon planning, tool work rewards correct interface use, and mixing them without structure produces a policy mediocre at both."
+   ],
+   [
+    "Rewards that survive long trajectories",
+    "Long-horizon RL fails in specific ways. Sparse terminal rewards give almost no signal across a hundred actions; a flaky sandbox turns an environment bug into a negative gradient; and a policy that has only seen one harness learns the harness instead of the task.\n\nThe report addresses each one. Harness randomisation stops the policy overfitting a single interface, a reliability-hardened sandbox keeps execution failures from being misread as policy failures, and a harness-oriented reward framework credits useful intermediate progress instead of only a final pass.\n\nThe optimiser is an asymmetric actor–critic PPO with hindsight-augmented value estimation. Asymmetry gives the critic more information than the actor at training time, and hindsight augmentation lets a failed rollout still yield value estimates for the states it reached. Both exist to make long credit-assignment chains tractable."
+   ],
+   [
+    "A profile, not a rank",
+    "Reported scores separate cleanly by capability. On repository coding, KAT-Coder V2.5 reaches 65.2 on SWE-bench Pro and 53.1 on KAT Code Bench, with Opus 4.8 ahead at 69.2 and 57.3. On tool workflows the ordering shifts: 94.9 on PinchBench average, while KAT Claw Bench gives 85.5 against Opus at 90.7.\n\nTerminal-Bench 2.1 is where the gap is unmistakable — 60.7 against 84.6. That is not noise around an average; it is a missing capability, and it is the honest cost of a recipe that concentrates on repository and tool work.\n\nSciCode at 50.3, against the table’s joint high of 53.5, is the other informative line. Scientific programming is close, which suggests the deficit is specific to terminal-style interaction rather than to reasoning about code in general."
+   ],
+   [
+    "What the training system makes possible",
+    "The transferable idea is that environments and feedback quality are first-class levers. Reconstructing a reproducible task, verifying it from both directions, and selecting trajectories by process rather than outcome all change what RL can extract from the same model.\n\nIt is worth being precise about what the report does not show. These are the team’s own evaluations under their own harness, peer numbers come from published results rather than a shared re-run, and most tests are run once. Differences of a point or two are not resolvable at that resolution.\n\nThe practical reading is workload-specific. If the work is repository-scale engineering with heavy tool use, the profile supports this model. If it is terminal-heavy, the same profile says so plainly — and that is exactly what a benchmark average would have hidden."
+   ]
+  ],
+  "keypoints": [
+   "AutoBuilder reconstructs multilingual repositories into sandboxes with fail-to-pass and pass-to-pass verification at scale, then regenerates self-contained task specs and recovers near-miss trajectories — the environment, not model size, is treated as the scarce resource.",
+   "RL is scaled with harness randomisation, a reliability-hardened sandbox, an asymmetric actor–critic PPO with hindsight-augmented value estimation, and a harness-oriented reward framework.",
+   "The outcome is a profile, not a rank: 65.2 on SWE-bench Pro and 94.9 on PinchBench average, but 60.7 on Terminal-Bench 2.1 against Opus 4.8 at 84.6."
+  ]
+ },
+ "kat-v2": {
+  "headline": "KAT-Coder V2",
+  "dek": "Train five specialists, distill them into one model, then measure it under more than one harness.",
+  "sections": [
+   [
+    "Introduction",
+    "A coding agent has to be several things at once: read a repository, build a frontend, drive a terminal, search the web, and hold a general conversation in between. Training all of that under one objective is the default, and it is not obviously right — capabilities with different reward shapes compete for the same gradients.\n\nA second problem appears only once the model works. Coding agents are not called directly; they are called through a scaffold that owns the tools, the context budget and the retry logic. Behaviour tuned inside one harness can fall apart in another, and a benchmark score rarely says which harness produced it.\n\nKAT-Coder V2 treats both problems as one training-sequence question. Train five domain experts separately, then unify them by on-policy distillation into a model that has to work across scaffolds. The result is 79.6% on SWE-bench Verified under Claude Code, against Opus 4.6 at 80.8%."
+   ],
+   [
+    "Specialize, then unify",
+    "The five experts are not five slices of one dataset. They face different tool interfaces, different feedback latencies and different reward signals: repository work is verified by tests minutes later, terminal work by immediate exit codes, and web coding by something closer to aesthetic judgement.\n\nThat heterogeneity is the argument for specialising. Forcing every signal into one objective from the start asks a single policy to trade off things that are not commensurable, and the usual outcome is a model that is adequate everywhere and good nowhere.\n\nDistillation is then the real test. On-policy distillation trains the student on trajectories relevant to its own current behaviour rather than on a fixed dataset, which matters because the student’s behaviour is not any expert’s behaviour. Unification has to keep each expert’s useful habit without averaging the distinctions away."
+   ],
+   [
+    "Environments are part of the model",
+    "Reinforcement learning for coding needs somewhere to run. KwaiEnv is that layer: a modular infrastructure sustaining tens of thousands of concurrent sandbox instances, which is the difference between running RL on repository tasks and running it on toy ones.\n\nTwo training-side techniques address problems that only appear at that scale. MoE RL is unstable in ways dense RL is not, and MCLA is the stabiliser. Agent rollouts share long prefixes because actions branch into a tree, and Tree Training removes the redundant recomputation, with up to 6.2× speedup reported.\n\nThe third axis is scaffold generalisation: deliberately varying the harness during training so the policy does not overfit one execution interface. That choice is what makes the cross-scaffold evaluation meaningful rather than ceremonial."
+   ],
+   [
+    "What changes when the scaffold changes",
+    "The headline number is harness-dependent. SWE-bench Verified gives 79.6 with Claude Code, 74.8 with OpenCode and 72.8 with OpenClaw, against Opus 4.6 at 80.8, 75.0 and 75.7. The first Opus figure is quoted from Anthropic while the other two are measured in KwaiEnv, so the comparison is not uniform and should be read that way.\n\nThe rest of the table covers what a repository-repair score cannot. PinchBench best is 88.7 with an 81.9 average, and Claw-Eval reports 55.6 for Pass^3 against a 73.4 average score — reliability and average performance are different claims and should not be collapsed into one.\n\nTwo further results are worth noting. The model ranks first across all three frontend aesthetics scenarios, and it holds generalist scores on Terminal-Bench Hard (46.8) and tau^2-Bench (93.9). Generalisation beyond coding is what a specialist recipe is most likely to lose."
+   ],
+   [
+    "Capability fusion is only half the problem",
+    "Specialisation is a way to make progress on heterogeneous tasks without forcing every signal into one objective at once. Distillation is then the honest test of whether those gains coexist — and the measured cross-scaffold drop shows they do not transfer for free.\n\nThe 6.8-point spread between Claude Code and OpenClaw on the same benchmark is the number to remember. It is larger than most gaps between competing models, which makes harness choice a first-order variable in any coding-agent evaluation rather than a footnote.\n\nFor deployment this argues for measuring on your own stack. Benchmark scores specify tools, permissions and failure recovery only implicitly; a model that ranks well under one scaffold still needs its own retry behaviour, context budget and error handling checked before it is trusted with a real repository."
+   ]
+  ],
+  "keypoints": [
+   "Specialize-then-Unify: five experts — SWE, WebCoding, Terminal, WebSearch, General — each with independent SFT and RL, then consolidated into one model by on-policy distillation.",
+   "The infrastructure is part of the contribution: KwaiEnv sustains tens of thousands of concurrent sandboxes, MCLA stabilises MoE RL, and Tree Training removes redundant computation over tree-structured trajectories with up to 6.2× speedup.",
+   "Cross-scaffold numbers move a lot: 79.6 / 74.8 / 72.8 on SWE-bench Verified under Claude Code, OpenCode and OpenClaw. A coding score without its harness is not a complete measurement."
+  ]
+ },
+ "lpm": {
+  "headline": "LPM: Generative video restoration at scale",
+  "dek": "A diffusion restoration model deployed on roughly 45% of a platform’s viewing time — and paid for by bandwidth.",
+  "sections": [
+   [
+    "Introduction",
+    "User-generated video carries every degradation at once — sensor noise, motion blur, compression blocking — and the mix differs from clip to clip. Applying an image restoration model frame by frame fixes each frame and quietly ruins the video: textures shimmer because nothing constrains neighbouring frames to agree.\n\nMoving to a video model removes the flicker and introduces two harder constraints. Cost scales with the number of frames, and a drift invisible over two seconds becomes obvious over two minutes. Arbitrary length is the requirement that breaks most designs.\n\nLPM is a diffusion-based generative restoration framework built for exactly that setting and, as far as the authors know, the first generative video restoration model deployed at industrial scale. Restored videos now account for roughly 45% of Kuaishou’s total viewing time."
+   ],
+   [
+    "Appearance first, then time",
+    "The training split is the central design decision. LPM-Image learns what a restored frame should look like — texture, edge structure, the statistics of plausible detail under heavy degradation. LPM-Video then learns alignment and fusion across frames, reusing the spatial prior instead of relearning it with a temporal dimension bolted on.\n\nStaging it this way is cheaper, and more importantly cleaner. Learning appearance and motion jointly entangles two failure modes that look similar in a loss curve — a hallucinated texture and a misaligned one — whereas the staged model can be diagnosed one level at a time.\n\nThe architecture follows the same economy: a 2D VAE with a factorized 2D+1D diffusion transformer, so spatial and temporal attention are not priced identically. Full 3D attention over long clips is the obvious approach and the one that does not fit a serving budget."
+   ],
+   [
+    "Keeping long videos coherent",
+    "Arbitrary length is handled at inference rather than by training on longer clips. Temporal-pyramid inference gives two jobs to two kinds of reference: distant keyframes anchor overall appearance, while nearby restored frames act as local anchors for motion and texture continuity.\n\nThe distinction matters because the failure modes live at different time scales. Without local anchors, consecutive frames disagree and detail flickers; without long-range guidance, a slow drift in colour or contrast accumulates until the end of the clip no longer matches the beginning.\n\nCrucially, later windows are restored using information already restored, not independently. A pipeline that treats every fixed window as its own clip forces each window to re-invent a consistent appearance, which is both slower and less stable than inheriting one."
+   ],
+   [
+    "What deployment measured",
+    "Evaluation runs at two levels, and the second is the unusual one. Offline comparisons assess restoration quality and temporal behaviour against other methods; production deployment measures viewing experience and bitrate inside Kuaishou’s own pipeline.\n\nThe offline numbers are the quality claim; the production numbers are the systems claim. At comparable perceptual quality the pipeline reduces bitrate by roughly 20% relative to the in-house codec, which the report translates into annual bandwidth savings on the order of hundreds of millions.\n\nThere is a reason a restoration model reduces bitrate. Cleaner high-frequency content and fewer hard-to-encode artifacts make the encoder’s job easier, so perceived quality and serving cost are not independent objectives here — improving one improved the other."
+   ],
+   [
+    "Scale is a system property",
+    "The result does not come from one architecture. Curated data, staged training, temporal inference and integration with the encoding pipeline are all load-bearing; a sharper single frame would not have produced the bitrate saving on its own.\n\nThe 45% figure is also a statement about tolerance. At that volume the model runs on content distributions nobody curated, which is a stronger robustness claim than any benchmark average — a reminder that the test set that matters is production traffic.\n\nThe numbers should stay tied to their context. Bitrate savings depend on the codec used as the baseline, the content mix and the quality criterion; a different platform with a different encoder would not necessarily reproduce 20%. What transfers is the argument that generative restoration can be cheap enough to be a default."
+   ]
+  ],
+  "keypoints": [
+   "Training is staged: LPM-Image learns a spatial restoration prior, then LPM-Video adds temporal alignment and fusion — separating what detail should look like from how it should move.",
+   "Temporal-pyramid inference uses distant keyframes for long-range guidance and nearby anchor frames for local continuity, so quality does not depend on treating every clip window as an independent video.",
+   "At comparable perceptual quality the production pipeline cuts bitrate by about 20% versus Kuaishou’s in-house codec — generative restoration paying for itself in bandwidth, not only in perceived quality."
+  ]
+ },
+ "vortex-bursting": {
+  "headline": "How opposite magnetic twists trigger vortex bursting",
+  "dek": "No imposed flow and no initial vorticity — only a magnetic ring whose two halves twist in opposite directions. The eruption comes from the geometry.",
+  "sections": [
+   [
+    "From magnetic geometry to motion",
+    "Vortex bursting is usually driven. The standard recipe prescribes a perturbation — a core-size change, a differential twist, a nearby boundary — and watches a vortex tube break down. This study removes all of it: no imposed flow, no initial vorticity, a fluid at rest.\n\nWhat remains is a magnetic field. The initial condition is a closed magnetic ring whose two halves twist in opposite senses, meeting at two chirality-inversion regions. Everything that follows — vorticity, motion, energy release and the eventual breakdown of coherent structures — has to come from that geometry.\n\nThat is a strong claim and worth stating precisely: this is a self-contained magnetic route to eruptive dynamics. The simulations trace a three-stage bursting process from a quiescent start. This paper has been accepted for publication in the Journal of Fluid Mechanics."
+   ],
+   [
+    "A ring with two chiralities",
+    "The initial magnetic field is a smooth closed ring with a sinusoidally varying twist, so the two halves twist in opposite senses and meet at two chirality-inversion regions. The velocity is zero everywhere.\n\nThe geometry is the experiment. Opposite chiralities guarantee that the magnetic tension force cannot be symmetric about the ring: where the twist reverses, the field’s own geometry produces a stress concentration that a uniformly twisted tube would not have.\n\nNumerically the flow is incompressible magnetohydrodynamics solved with a pseudo-spectral method on a three-dimensional periodic domain at 1024³ resolution and unit magnetic Prandtl number. Three Lundquist numbers, approximately 800, 1600 and 2670, probe the balance between Alfvénic evolution and resistive diffusion."
+   ],
+   [
+    "Where the vorticity comes from",
+    "With no initial vorticity, the only source is the curl of the Lorentz force. It is not uniform: its magnitude peaks in the chirality-inversion regions, which is where the first motion appears and where the bursting later initiates.\n\nMeanwhile a second, distinguishable process is running. The pressure gradient generates an antisymmetric cross-helicity distribution in the regions of maximum twist — the signature of counter-propagating Alfvén waves launched from where the twist is strongest.\n\nThe mechanism is the interaction of the two. The Alfvén waves travel toward the chirality-inversion regions, where they meet locally generated vorticity and amplify field-line deformation. Bursting therefore emerges from the initial magnetic configuration rather than from any external strain or prescribed vortex."
+   ],
+   [
+    "Formation, expansion, breakdown",
+    "Stage one is the formation of a disk-like vortex structure — the shape characteristic of vortex bursting — accompanied by rapid conversion of magnetic energy into kinetic energy. This is the stage that connects most directly to the classical bursting literature.\n\nStage two is radial expansion and stretching, with enhanced magnetic and kinetic dissipation and increasing cross- and kinetic-helicity components. Higher Lundquist numbers produce greater radial spreading and stronger peaks in those components, which is the expected direction: less resistive diffusion lets the Alfvénic dynamics run further before being damped.\n\nStage three is the breakdown of the organised vortex and magnetic structures — reconnection and fragmentation, with helicity components decaying and dissipation rates declining. The system ends less organised and less energetic than at its peak, which is what an eruptive event should look like."
+   ],
+   [
+    "What the mechanism can explain",
+    "The contribution is a pathway. Starting from a magnetic configuration alone, the simulations produce localized vorticity, propagating Alfvén waves, their interaction, an eruptive breakdown and a return to a dissipated state — a chain that can be checked stage by stage rather than asserted.\n\nThat makes it useful for interpretation. Twisted flux tubes appear in solar and laboratory plasmas, and eruptive events there are usually attributed to instabilities or reconnection; this shows a route in which the twist distribution alone organises the onset, with the geometry deciding where it happens.\n\nThe limits are the usual ones and the paper states them. The simulations are incompressible, use unit magnetic Prandtl number and run at Lundquist numbers well below those of the solar corona, so this is not a direct reproduction of a solar eruption. The work isolates a mechanism under conditions chosen to make it visible; whether it dominates in a real corona is a separate question."
+   ]
+  ],
+  "keypoints": [
+   "No imposed flow and no initial vorticity: the fluid starts at rest and the only structure is a closed magnetic ring whose two halves carry opposite twist, meeting at two chirality-inversion regions.",
+   "The curl of the Lorentz force is a localized vorticity source peaking at the chirality inversions, while the pressure gradient launches counter-propagating Alfvén waves from the regions of maximum twist; their interaction initiates the bursting.",
+   "A three-stage process: a disk-like vortex forms as magnetic energy converts to kinetic energy, the structure expands and stretches with dissipation rising, then coherent structures break down through reconnection and fragmentation — with stronger radial spreading at higher Lundquist numbers."
+  ]
+ }
 }
