@@ -1,0 +1,106 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "KAT-Coder-V2.5 Technical Report",
+    "sources": [
+      {
+        "url": "https://arxiv.org/abs/2607.05471v1",
+        "version": "v1, 2026-07-06",
+        "local_path": "sources/paper.pdf"
+      }
+    ],
+    "page_convention": "1-based PDF pages; model card uses named sections",
+    "version": "v1, 2026-07-06"
+  },
+  "reader_profile": {
+    "domain": "computer-science-ai",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "en+zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "systems",
+      "computer-science-ai"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "Full primary-source text and original figure/table images"
+    ]
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 9,
+    "key": 8,
+    "key_explained": 8
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "Environment acceptance requires >90% test collection and reproducible outcomes.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.05471v1",
+          "anchor": "§2.1 p.4"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "claim": "Sandbox feedback error falls from about 16% to below 2%.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.05471v1",
+          "anchor": "§4.2.2 pp.11–12"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "claim": "Five teachers are fused with cold-start and drift-aware on-policy KL.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.05471v1",
+          "anchor": "§5 Eqs.6–8 pp.16–17"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "claim": "All Table 4 scores share one in-house protocol.",
+      "status": "unsupported",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.05471v1",
+          "anchor": "Table 4 footnote p.19"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "claim": "Infrastructure is the primary bottleneck rather than scale.",
+      "status": "weak",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.05471v1",
+          "anchor": "§1 and absence of matched scaling ablation"
+        }
+      ]
+    }
+  ],
+  "scope_note": "Primary source: arXiv:2607.05471v1, July 6, 2026, full 24-page report including reward tables on pp.23–24. Visually verified source assets. PinchBench is a July 2 historical snapshot. Download statistics elsewhere remain dated September 28, 2026."
+}

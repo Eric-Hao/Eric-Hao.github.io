@@ -1,0 +1,1125 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:04:36.530595+00:00",
+  "source_pdf": "paper.pdf",
+  "source_sha256": "46e7cee73dc588996c2ee222e20f72f69905f6996144d29db0ccd8a89a68db38",
+  "page_count": 16,
+  "render_dpi": 130,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 69039,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 6980,
+      "caption_count": 0
+    },
+    {
+      "page": 2,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 4066,
+      "caption_count": 1
+    },
+    {
+      "page": 3,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 7369,
+      "caption_count": 0
+    },
+    {
+      "page": 4,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 5197,
+      "caption_count": 1
+    },
+    {
+      "page": 5,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 6246,
+      "caption_count": 0
+    },
+    {
+      "page": 6,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 7198,
+      "caption_count": 1
+    },
+    {
+      "page": 7,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 2785,
+      "caption_count": 2
+    },
+    {
+      "page": 8,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 4464,
+      "caption_count": 3
+    },
+    {
+      "page": 9,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 7088,
+      "caption_count": 0
+    },
+    {
+      "page": 10,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 3492,
+      "caption_count": 0
+    },
+    {
+      "page": 11,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 6922,
+      "caption_count": 0
+    },
+    {
+      "page": 12,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-012.png",
+      "text": "text/pages/page-012.txt",
+      "text_characters": 4186,
+      "caption_count": 1
+    },
+    {
+      "page": 13,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-013.png",
+      "text": "text/pages/page-013.txt",
+      "text_characters": 1527,
+      "caption_count": 1
+    },
+    {
+      "page": 14,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-014.png",
+      "text": "text/pages/page-014.txt",
+      "text_characters": 406,
+      "caption_count": 1
+    },
+    {
+      "page": 15,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-015.png",
+      "text": "text/pages/page-015.txt",
+      "text_characters": 441,
+      "caption_count": 1
+    },
+    {
+      "page": 16,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-016.png",
+      "text": "text/pages/page-016.txt",
+      "text_characters": 672,
+      "caption_count": 2
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p002",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 2,
+      "caption": "We introduce InstantViR, a real-time video inverse problem solver that drastically outperforms slow sampling-based methods in both speed and quality. Bottom-right: At 832×480 resolution, our amortized framework is over 100× faster than sampling-based baselines like SVI [10], achieving over 35 FPS and the excellent quality. Left and Bottom-left: Qualitative examples demonstrate versatile, high-fidelity reconstruction for inpainting and deblurring, along with optional text-guided control (e.g., \"pink lips\", \"light-blue collar\").",
+      "raw_text": "Figure 1. We introduce InstantViR, a real-time video inverse problem solver that drastically outperforms slow sampling-based methods in both speed and quality. Bottom-right: At 832×480 resolution, our amortized framework is over 100× faster than sampling-based baselines like SVI [10], achieving over 35 FPS and the excellent quality. Left and Bottom-left: Qualitative examples demonstrate versatile, high-fidelity reconstruction for inpainting and deblurring, along with optional text-guided control (e.g., \"pink lips\", \"light-blue collar\").",
+      "caption_bbox_points": [
+        58.5,
+        388.223,
+        554.626,
+        430.134
+      ],
+      "caption_bbox_pixels": [
+        106,
+        701,
+        1001,
+        777
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        58.543,
+        564.626,
+        440.134
+      ],
+      "suggested_crop_bbox_pixels": [
+        88,
+        106,
+        1019,
+        795
+      ],
+      "candidate_crop": "crops/figure-1-p002.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        933,
+        690
+      ],
+      "source_page_image": "pages/page-002.png",
+      "source_page_text": "text/pages/page-002.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p002.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p004",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 4,
+      "caption": "Overview of the InstantViR framework. (Top) Training: We train a single-step solver qϕ using only degraded measurements y. The solver is optimized with two objectives: a data fidelity loss (ensuring the reconstruction matches the measurement y) and a prior distillation loss (using a frozen video diffusion prior [24], sθ, to enforce temporal consistency and realism). (Bottom) Inference: The trained solver qϕ operates as a fast, feed-forward network, processing the video in a causal, block-wise, and autoregressive manner. This enables real-time, single-step streaming reconstruction with optional text guidance.",
+      "raw_text": "Figure 2. Overview of the InstantViR framework. (Top) Training: We train a single-step solver qϕ using only degraded measurements y. The solver is optimized with two objectives: a data fidelity loss (ensuring the reconstruction matches the measurement y) and a prior distillation loss (using a frozen video diffusion prior [24], sθ, to enforce temporal consistency and realism). (Bottom) Inference: The trained solver qϕ operates as a fast, feed-forward network, processing the video in a causal, block-wise, and autoregressive manner. This enables real-time, single-step streaming reconstruction with optional text guidance.",
+      "caption_bbox_points": [
+        58.5,
+        420.352,
+        553.656,
+        473.362
+      ],
+      "caption_bbox_pixels": [
+        106,
+        759,
+        1000,
+        855
+      ],
+      "suggested_crop_bbox_points": [
+        48.305,
+        62.051,
+        563.656,
+        483.362
+      ],
+      "suggested_crop_bbox_pixels": [
+        87,
+        112,
+        1018,
+        873
+      ],
+      "candidate_crop": "crops/figure-2-p004.png",
+      "selected_asset": "pages/page-004.png",
+      "candidate_crop_size_pixels": [
+        931,
+        761
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p4"
+      ],
+      "text_asset": "text/visuals/figure-2-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-1-p006",
+      "label": "Table 1",
+      "kind": "table",
+      "number": "1",
+      "page": 6,
+      "caption": "Quantitative results of temporal quality and inference speed. The former is evaluated with FVD ↓and the latter is with FPS ↑. Best results are in bold, suboptimal are underlined.",
+      "raw_text": "Table 1. Quantitative results of temporal quality and inference speed. The former is evaluated with FVD ↓and the latter is with FPS ↑. Best results are in bold, suboptimal are underlined.",
+      "caption_bbox_points": [
+        58.222,
+        72.799,
+        294.752,
+        103.755
+      ],
+      "caption_bbox_pixels": [
+        105,
+        131,
+        532,
+        187
+      ],
+      "suggested_crop_bbox_points": [
+        48.032,
+        62.799,
+        305.994,
+        412.293
+      ],
+      "suggested_crop_bbox_pixels": [
+        87,
+        113,
+        552,
+        744
+      ],
+      "candidate_crop": "crops/table-1-p006.png",
+      "selected_asset": "pages/page-006.png",
+      "candidate_crop_size_pixels": [
+        467,
+        632
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p6"
+      ],
+      "text_asset": "text/visuals/table-1-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-3-p007",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 7,
+      "caption": "Qualitative comparison for video random inpainting. (Top) On the Open-Sora dataset [12], our model reconstructs a high- fidelity and temporally consistent video from a 50% masked measurement. The zoomed-in face sequence demonstrates the stability and fine detail of our single-step result. (Bottom) We demonstrate strong zero-shot generalization on the REDS dataset [33], our method generates a sharp, coherent video that is perceptually close to the ground truth.",
+      "raw_text": "Figure 3. Qualitative comparison for video random inpainting. (Top) On the Open-Sora dataset [12], our model reconstructs a high- fidelity and temporally consistent video from a 50% masked measurement. The zoomed-in face sequence demonstrates the stability and fine detail of our single-step result. (Bottom) We demonstrate strong zero-shot generalization on the REDS dataset [33], our method generates a sharp, coherent video that is perceptually close to the ground truth.",
+      "caption_bbox_points": [
+        58.5,
+        290.333,
+        554.992,
+        332.326
+      ],
+      "caption_bbox_pixels": [
+        106,
+        524,
+        1002,
+        600
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        59.24,
+        564.992,
+        342.326
+      ],
+      "suggested_crop_bbox_pixels": [
+        88,
+        107,
+        1020,
+        618
+      ],
+      "candidate_crop": "crops/figure-3-p007.png",
+      "selected_asset": "pages/page-007.png",
+      "candidate_crop_size_pixels": [
+        934,
+        513
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p7"
+      ],
+      "text_asset": "text/visuals/figure-3-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-4-p007",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 7,
+      "caption": "Results for text-guided video reconstruction. InstantViR not only restores high-fidelity details from severely masked measurements (top row) but also uses text prompts to control the reconstruction. (Left) Given a masked input, our method can add specific details like a \"black headband\" or \"wear glasses\" as guided by the text. (Right) The framework can generate multi-modal, semantically distinct, and plausible outputs from the same masked input, such as reconstructing the subject with either \"close eyes\" or \"open eyes\", demonstrating fine-grained controllability.",
+      "raw_text": "Figure 4. Results for text-guided video reconstruction. InstantViR not only restores high-fidelity details from severely masked measurements (top row) but also uses text prompts to control the reconstruction. (Left) Given a masked input, our method can add specific details like a \"black headband\" or \"wear glasses\" as guided by the text. (Right) The framework can generate multi-modal, semantically distinct, and plausible outputs from the same masked input, such as reconstructing the subject with either \"close eyes\" or \"open eyes\", demonstrating fine-grained controllability.",
+      "caption_bbox_points": [
+        58.5,
+        556.167,
+        554.619,
+        609.118
+      ],
+      "caption_bbox_pixels": [
+        106,
+        1004,
+        1001,
+        1100
+      ],
+      "suggested_crop_bbox_points": [
+        0.0,
+        333.326,
+        612.0,
+        619.118
+      ],
+      "suggested_crop_bbox_pixels": [
+        0,
+        602,
+        1105,
+        1118
+      ],
+      "candidate_crop": "crops/figure-4-p007.png",
+      "selected_asset": "pages/page-007.png",
+      "candidate_crop_size_pixels": [
+        1105,
+        517
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p7"
+      ],
+      "text_asset": "text/visuals/figure-4-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-2-p008",
+      "label": "Table 2",
+      "kind": "table",
+      "number": "2",
+      "page": 8,
+      "caption": "Quantitative results of spatial quality. Metrics include PSNR, SSIM, LPIPS. Best results are in bold, suboptimal are underlined.",
+      "raw_text": "Table 2. Quantitative results of spatial quality. Metrics include PSNR, SSIM, LPIPS. Best results are in bold, suboptimal are underlined.",
+      "caption_bbox_points": [
+        58.222,
+        72.827,
+        553.5,
+        81.837
+      ],
+      "caption_bbox_pixels": [
+        105,
+        131,
+        999,
+        148
+      ],
+      "suggested_crop_bbox_points": [
+        48.222,
+        62.827,
+        563.507,
+        447.644
+      ],
+      "suggested_crop_bbox_pixels": [
+        87,
+        113,
+        1017,
+        808
+      ],
+      "candidate_crop": "crops/table-2-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        931,
+        696
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/table-2-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-5-p008",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 8,
+      "caption": "Qualitative comparison for video Gaussian deblurring.",
+      "raw_text": "Figure 5. Qualitative comparison for video Gaussian deblurring.",
+      "caption_bbox_points": [
+        61.359,
+        503.664,
+        291.894,
+        512.63
+      ],
+      "caption_bbox_pixels": [
+        111,
+        909,
+        527,
+        926
+      ],
+      "suggested_crop_bbox_points": [
+        51.359,
+        216.452,
+        303.728,
+        522.63
+      ],
+      "suggested_crop_bbox_pixels": [
+        93,
+        391,
+        548,
+        944
+      ],
+      "candidate_crop": "crops/figure-5-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        457,
+        554
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/figure-5-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-6-p008",
+      "label": "Figure 6",
+      "kind": "figure",
+      "number": "6",
+      "page": 8,
+      "caption": "Qualitative comparison for video super-resolution (4x).",
+      "raw_text": "Figure 6. Qualitative comparison for video super-resolution (4x).",
+      "caption_bbox_points": [
+        318.706,
+        503.652,
+        552.048,
+        512.618
+      ],
+      "caption_bbox_pixels": [
+        575,
+        909,
+        997,
+        926
+      ],
+      "suggested_crop_bbox_points": [
+        308.706,
+        216.452,
+        562.478,
+        522.618
+      ],
+      "suggested_crop_bbox_pixels": [
+        557,
+        391,
+        1016,
+        944
+      ],
+      "candidate_crop": "crops/figure-6-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        459,
+        554
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/figure-6-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "algorithm-1-p012",
+      "label": "Algorithm 1",
+      "kind": "algorithm",
+      "number": "1",
+      "page": 12,
+      "caption": "InstantViR: Training Pipeline",
+      "raw_text": "Algorithm 1 InstantViR: Training Pipeline",
+      "caption_bbox_points": [
+        58.141,
+        74.007,
+        229.876,
+        84.061
+      ],
+      "caption_bbox_pixels": [
+        105,
+        134,
+        415,
+        152
+      ],
+      "suggested_crop_bbox_points": [
+        21.42,
+        10.647,
+        590.58,
+        321.661
+      ],
+      "suggested_crop_bbox_pixels": [
+        39,
+        19,
+        1066,
+        581
+      ],
+      "candidate_crop": "crops/algorithm-1-p012.png",
+      "selected_asset": "pages/page-012.png",
+      "candidate_crop_size_pixels": [
+        1029,
+        562
+      ],
+      "source_page_image": "pages/page-012.png",
+      "source_page_text": "text/pages/page-012.txt",
+      "crop_confidence": "low",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p12"
+      ],
+      "text_asset": "text/visuals/algorithm-1-p012.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "algorithm-2-p013",
+      "label": "Algorithm 2",
+      "kind": "algorithm",
+      "number": "2",
+      "page": 13,
+      "caption": "InstantViR: Inference Pipeline",
+      "raw_text": "Algorithm 2 InstantViR: Inference Pipeline",
+      "caption_bbox_points": [
+        58.141,
+        74.007,
+        233.523,
+        84.061
+      ],
+      "caption_bbox_pixels": [
+        105,
+        134,
+        422,
+        152
+      ],
+      "suggested_crop_bbox_points": [
+        21.42,
+        10.647,
+        590.58,
+        321.661
+      ],
+      "suggested_crop_bbox_pixels": [
+        39,
+        19,
+        1066,
+        581
+      ],
+      "candidate_crop": "crops/algorithm-2-p013.png",
+      "selected_asset": "pages/page-013.png",
+      "candidate_crop_size_pixels": [
+        1029,
+        562
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "low",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p13"
+      ],
+      "text_asset": "text/visuals/algorithm-2-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-1-p014",
+      "label": "Supplementary Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 14,
+      "caption": "Video Inpainting qualitative comparison. Each row shows a complete sequence reconstructed by a specific method. InstantViR (both WanVAE Ours and LeanVAE Ours† variants) produces coherent content for every frame while requiring only a single feed-forward pass.",
+      "raw_text": "Figure 1. Video Inpainting qualitative comparison. Each row shows a complete sequence reconstructed by a specific method. InstantViR (both WanVAE Ours and LeanVAE Ours† variants) produces coherent content for every frame while requiring only a single feed-forward pass.",
+      "caption_bbox_points": [
+        58.204,
+        592.305,
+        553.505,
+        623.232
+      ],
+      "caption_bbox_pixels": [
+        105,
+        1069,
+        999,
+        1125
+      ],
+      "suggested_crop_bbox_points": [
+        48.204,
+        162.234,
+        563.505,
+        633.232
+      ],
+      "suggested_crop_bbox_pixels": [
+        87,
+        293,
+        1017,
+        1143
+      ],
+      "candidate_crop": "crops/figure-1-p014.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        931,
+        852
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p015",
+      "label": "Supplementary Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 15,
+      "caption": "Video Deblurring qualitative comparison. Rows correspond to different methods; columns show consecutive frames covering the entire clip. InstantViR (both WanVAE Ours and LeanVAE Ours† variants) restores fine structures consistently across time, outperforming slower diffusion-based baselines.",
+      "raw_text": "Figure 2. Video Deblurring qualitative comparison. Rows correspond to different methods; columns show consecutive frames covering the entire clip. InstantViR (both WanVAE Ours and LeanVAE Ours† variants) restores fine structures consistently across time, outperforming slower diffusion-based baselines.",
+      "caption_bbox_points": [
+        58.5,
+        592.336,
+        553.502,
+        623.232
+      ],
+      "caption_bbox_pixels": [
+        106,
+        1069,
+        999,
+        1125
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        162.234,
+        563.502,
+        633.232
+      ],
+      "suggested_crop_bbox_pixels": [
+        88,
+        293,
+        1017,
+        1143
+      ],
+      "candidate_crop": "crops/figure-2-p015.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        931,
+        852
+      ],
+      "source_page_image": "pages/page-015.png",
+      "source_page_text": "text/pages/page-015.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-2-p015.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-3-p016",
+      "label": "Supplementary Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 16,
+      "caption": "Video Super-Resolution (4×) qualitative comparison. InstantViR restores temporally consistent structures, outperforming slower diffusion-based baselines in both sharpness and coherence.",
+      "raw_text": "Figure 3. Video Super-Resolution (4×) qualitative comparison. InstantViR restores temporally consistent structures, outperforming slower diffusion-based baselines in both sharpness and coherence.",
+      "caption_bbox_points": [
+        58.5,
+        478.155,
+        553.501,
+        498.404
+      ],
+      "caption_bbox_pixels": [
+        106,
+        863,
+        999,
+        900
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        104.846,
+        563.501,
+        508.404
+      ],
+      "suggested_crop_bbox_pixels": [
+        88,
+        189,
+        1017,
+        918
+      ],
+      "candidate_crop": "crops/figure-3-p016.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        931,
+        729
+      ],
+      "source_page_image": "pages/page-016.png",
+      "source_page_text": "text/pages/page-016.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-3-p016.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-4-p016",
+      "label": "Supplementary Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 16,
+      "caption": "Text-Guided Video Deblurring. InstantViR can generate diverse outcomes from the same blurred input based on text prompts, adding specific features like glasses or changing eye color while maintaining temporal coherence.",
+      "raw_text": "Figure 4. Text-Guided Video Deblurring. InstantViR can generate diverse outcomes from the same blurred input based on text prompts, adding specific features like glasses or changing eye color while maintaining temporal coherence.",
+      "caption_bbox_points": [
+        58.5,
+        660.67,
+        554.62,
+        680.698
+      ],
+      "caption_bbox_pixels": [
+        106,
+        1193,
+        1001,
+        1229
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        499.404,
+        564.62,
+        690.698
+      ],
+      "suggested_crop_bbox_pixels": [
+        88,
+        902,
+        1019,
+        1247
+      ],
+      "candidate_crop": "crops/figure-4-p016.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        933,
+        347
+      ],
+      "source_page_image": "pages/page-016.png",
+      "source_page_text": "text/pages/page-016.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-4-p016.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,396 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "WebCompass: Towards Multimodal Web Coding Evaluation for Code Language Models",
+    "authors": [
+      "Xinping Lei",
+      "Xinyu Che",
+      "Junqi Xiong",
+      "Chenchen Zhang",
+      "Yukai Huang",
+      "Chenyu Zhou",
+      "Haoyang Huang",
+      "Minghao Liu",
+      "Letian Zhu",
+      "Hongyi Ye",
+      "Jinhua Hao",
+      "Ken Deng",
+      "Zizheng Zhan",
+      "Han Li",
+      "Dailin Li",
+      "Yifan Yao",
+      "Ming Sun",
+      "Zhaoxiang Zhang",
+      "Jiaheng Liu"
+    ],
+    "venue": "arXiv preprint",
+    "version": "arXiv v1, 20 April 2026",
+    "sources": [
+      {
+        "type": "pdf",
+        "location": "https://arxiv.org/pdf/2604.18224v1",
+        "sha256": "4cc44139d0673db1b51cd424b797d2d0b2297616326e57b6f958bae22b57dede",
+        "role": "primary"
+      }
+    ],
+    "page_convention": "1-based physical PDF page numbers"
+  },
+  "reader_profile": {
+    "domain": "AI agents and evaluation",
+    "selected_lenses": [
+      "method",
+      "empirical-evidence",
+      "reproducibility"
+    ],
+    "audience": "broad-to-expert",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral",
+    "goal": "understand",
+    "depth": "deep",
+    "delivery": "explain",
+    "language": "English and Simplified Chinese, equivalent paired blocks"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "sources/paper.txt",
+      "sources/paper.pdf"
+    ]
+  },
+  "visual_coverage": {
+    "total_numbered": 28,
+    "key": 25,
+    "key_explained": 25
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "### Key concepts: what does correctness mean for a generated website?\nA page can render beautifully while its search button cannothing; a repair can hide a visual symptom while leaving the faulty state transition intact. Code-only tests miss appearance, and screenshot similarity misses interaction. WebCompass organizes evaluation around three real development activities: create a repository from requirements, modify an existing repository, and repair a defect without breaking what already works. It is a benchmark and evaluation protocol, not a new coding model or a training algorithm.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Abstract; §§1–2, PDF pp.1–3",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C2",
+      "claim": "Key observation and interpretation. Figure 3 shows text/image/video generation, text/image editing, and text/image repair. Generation produces complete web repositories; editing and repair produce patches against supplied repositories. Image inputs can include multiple pages or state changes, while videos show temporal interaction. This supports a lifecycle-and-modality view of capability, but a coverage boundary is that there are no video editing or video repair tasks. Calling the benchmark “three modalities by three tasks” must not imply nine fully populated categories or arbitrary production workflows.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 3, PDF p.3",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C3",
+      "claim": "Key observation and interpretation. The bars contain 123 text-generation, 109 image-generation and 94 video-generation tasks; each of the four editing/repair categories has 300, totaling 1,526. Each editing bar splits into 118 easy, 114 medium and 68 hard; each repair bar into 90/120/90. This supports reporting modality and difficulty separately: the categories are not equally numerous. It cannot make these examples independent draws from all web-development work. Editing and repair are derived from a shared pool of prototypes, so related tasks can share code and visual structure.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 2, PDF p.2",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C4",
+      "claim": "Key observation and interpretation. Figure 4 has separate construction paths. Text-generation requests are deduplicated with BGE-M3 embeddings and clustering, assigned domains using five independent LLM labels, stratified, and expanded into content/interaction/visual design documents. Images capture pages and state changes; video examples follow manually planned interaction paths. Editing/repair start from WebRenderBench prototypes: total code length 32k–64k characters, each file ≤48k, GPT-4o review ≥9/10 yielding 81 candidates, then human selection of 50 and expansion into single-/multi-page variants. This supports more explicit, reproducible requirements, but a limitation is that filtering and rewriting can favor a particular style of website and reduce the ambiguity present in real customer requests.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 4, PDF p.5",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C5",
+      "claim": "### Repair by controlled corruption\nThe authors inspect 200 real community submissions to define defect categories, then introduce defects into clean prototypes. Exact search/replace annotations map the buggy repository back to its clean target. For editing, requests specify desired UI changes, interaction flow and state feedback while omitting implementation details such as selectors and CSS values. Repair therefore has a known reference; generation remains more open-ended. A reversible injected patch makes the reference reproducible, not mathematically the only correct solution: different implementations can satisfy the same user-visible requirement.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "§2.2, PDF pp.5–6",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C6",
+      "claim": "Key observation and interpretation. Table 2 lists 15 generation domains, 16 editing operations and 11 repair defects. Editing ranges from tables, rich-text editors and drag-and-drop to asynchronous validation, animation, shopping carts and multi-step wizards. Repair includes layout defects, semantic errors and two interaction-oriented categories. This supports testing beyond static landing-page reproduction. It cannot cover backend correctness, security, real payment integration or every accessibility requirement merely because a mock business interface is present; the actual requirement checklist defines the tested behavior.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 2, PDF p.7",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C7",
+      "claim": "Key observation and interpretation. Figure 5 collects patches plus before/after/reference screenshots and sends this bounded evidence to an LLM judge for editing/repair. Figure 6 gives a generation judge browser control through MCP, DOM inspection, console logs, screenshots and executable JavaScript tests. The latter fixes a checklist before evaluation, permits adapting **selectors only** while keeping behavioral assertions unchanged, and discards scores without auditable evidence. This supports a distinction between local patch judging and execution-grounded acceptance testing; it cannot remove judge errors or prove exhaustive path coverage.\n\n**Source inconsistency:** Figure 5’s output box lists generation metrics RUN/SPI/DSQ, while Figure 6’s output box lists editing/repair metrics. These appear reversed relative to §§3.1–3.2 and Table 3. The explanation here follows the task assignments explicitly stated in those sections, not the swapped diagram legends. The implementation uses Claude Code 2.0.67 and Chrome DevTools MCP Server 0.19.0 with headless Chromium.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 5, Figure 6, PDF p.9",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C8",
+      "claim": "### What the nine dimensions measure\nGeneration: RUN asks whether the site runs, SPI whether specifications are implemented, DSQ whether the design is good. Editing: ITG asks whether the requested change was targeted, FTI whether new and existing features work, STC whether the edit fits the requested style. Repair: RCT asks whether the root cause was addressed, ITI whether interaction integrity is preserved, RFF whether the fixed result matches the reference. Similar-sounding dimensions are not interchangeable: preserving old interactions is easier than implementing an entire new interaction flow.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "§3; Table 3, PDF pp.8–11",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C9",
+      "claim": "### Equation 1: a weak requirement should matter\nHere sᵢ is a checklist-item score, mᵢ its maximum, rᵢ the normalized value and n the number of items. The harmonic mean penalizes a weak item more than an arithmetic mean. For two 10-point items scored 10 and 5, the result is 2/(1+2)=0.667 rather than 0.75. If the second item scores zero, smoothing substitutes 1/10, giving 2/(1+10)=0.182 rather than a total collapse to zero. This is a worked calculation, not an additional experiment. The smoothing is scale-sensitive: a zero on a 5-point item becomes 0.2, while a zero on a 10-point item becomes 0.1.\n\nThe formula is applied separately within each dimension. **Table 3’s Overall is the arithmetic mean of nine dimension scores.** Figures 8–10 use harmonic combinations of the three dimensions for the relevant task or subtask before aggregation. Do not describe the whole leaderboard with one undifferentiated “harmonic score.”",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Equation 1 and §3.3; Table 3; Figures 8–10, PDF pp.10–14",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C10",
+      "claim": "### Worked evaluation flow: a search interface\nConsider an illustrative requirement: typing a query and pressing Search must update a results list, and the layout must match a reference. A screenshot can establish initial appearance but not the transition. The generation judge freezes both expected behaviors, opens the site, types and clicks, checks the DOM before and after, then records tests and screenshots. If the implementation uses a different element ID, it may change the locator; it may not weaken “results update” into “button is visible.” The resulting functional and visual checklist scores enter separate dimension-level harmonic means.\n\nFailure handling follows the pipeline: build failure zeros functional/visual dimensions; partial rendering limits assessment to reachable content; runtime crashes preserve evidence from initial rendering but give untestable functional items zero. The paper cannot fully resolve the precedence between every zero-failure rule and the item-level smoothing, so an exact reimplementation should inspect released scoring code rather than infer it from the equation alone.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "§3.2–3.3, PDF pp.10–11; illustrative example is explanatory synthesis",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C11",
+      "claim": "Key observation and interpretation. Across ten tested models, Overall is 67.40 for Claude-Opus-4.5, 66.68 Gemini-3-Pro, 65.42 Gemini-3-Flash, 61.90 GPT-5.2 and 57.12 Claude-Sonnet-4.5. Qwen variants range from 41.14 (235B Instruct) to 28.08 (30B Instruct). Opus leads generation RUN/SPI and editing dimensions; Gemini-Pro leads repair RCT/ITI/RFF and generation DSQ. This supports task-dependent selection rather than a single “best web coder.” It cannot show a statistically established difference between 67.40 and 66.68; the table provides no uncertainty interval for that gap.\n\nFor Opus, RUN 77.18 exceeds SPI 68.95 and DSQ 62.26. For Gemini-Pro repair, ITI 87.30 exceeds RFF 72.00 and RCT 54.16. High repair ITI partly reflects task construction: nine of eleven defect types are visual or semantic, so many interactions never needed repair. It should not be read as evidence that difficult interactive programming is solved. Nor is visual quality universally the lowest generation metric: several Qwen rows have lower SPI than DSQ, qualifying the paper’s broad prose claim.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 3, PDF p.11",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C12",
+      "claim": "Key observation and interpretation. On a 200-sample human-labeled subset, Opus-4.5 judge correlations are 0.93/0.94/0.96 for generation/editing/repair, versus Sonnet 0.88/0.90/0.89 and Haiku 0.76/0.79/0.81. Reported average per-sample API costs are \\$4.66/\\$2.34/\\$1.02. This supports choosing Opus when agreement matters more than evaluator cost. Pearson correlation cannot establish perfect calibration, per-example correctness or freedom from same-family bias; the compared judges are all Claude-family models and the sample is finite.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 4, PDF p.12",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C13",
+      "claim": "Key observation and interpretation. Blue and orange bars compare automatic and human ranks on three task families for five models. Most coincide or differ by one position; generation swaps the top pair and editing swaps the middle pair. This supports broad ordering agreement with humans. It cannot prove every checklist deduction is correct, distinguish nearly tied models reliably, or replace auditing the judge’s actual evidence.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 7, PDF p.13",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C14",
+      "claim": "Key observation and interpretation. Figure 8 compares React, Vue and Vanilla on a 180-task subset (60 per category) for four models. Editing visibly benefits from Vanilla, and repair cannot follow a universal framework ordering. This supports treating framework as an experimental variable. However, the figure’s generation bars and Table 6’s per-dimension numbers cannot consistently imply the same model/framework ordering: for example the plotted GPT React generation bar is higher than Vanilla, whereas Table 6 gives Vanilla higher RUN and DSQ with similar SPI. The prose’s “Vanilla dominates generation across all four” is therefore too strong without reconciling plotting/aggregation. Do not turn this into a universal recommendation to avoid a framework.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 8, PDF p.13",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C15",
+      "claim": "Key observation and interpretation. Table 6 exposes the actual dimension scores, which is more useful than a single framework label. For GPT generation, React is 62.08/60.57/47.88 and Vanilla 75.13/60.18/56.38 (RUN/SPI/DSQ): a runnability/design gain with nearly unchanged specification score. GPT repair instead favors React on RCT/ITI/RFF. This supports task-specific trade-offs rather than one global framework winner. Because a harmonic mean of means need not equal a mean of per-instance harmonic means, and the plot/model correspondence is not fully reconciled, these aggregate cells cannot reconstruct every Figure 8 bar without raw data.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 6, PDF p.26",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C16",
+      "claim": "Key observation and interpretation. Figure 9 compares 16 editing types using per-subtask harmonic scores: animation-heavy operations such as page transitions and particle effects are generally harder than shopping carts or multi-step wizards. Figure 10 compares 11 repairs: semantic errors and crowding are weak; text overlap and loss of interactivity are relatively strong. This supports separating dynamic coordination from localized repairs. Boundary: these are category-averaged scores, not independent success probabilities, and category overlap/aggregation can change the apparent ranking. The text says Gemini leads all eleven repair categories, but Figure 10 visibly gives Opus a higher bar for Missing Attributes (and Text Overlap/Loss of Interactivity); preserve the plotted exceptions rather than repeating an absolute claim.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 9, Figure 10, PDF p.14",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C17",
+      "claim": "Key observation and interpretation. Figure 11 groups overall scores by easy/medium/hard across the three task families; harder tasks broadly reduce performance and Qwen remains weaker, especially on editing. Figure 12 separates generation dimensions: specification implementation shows a large difficulty gradient, with Gemini-Pro dropping from 89.83 on easy to 37.64 on hard in the reported text. This supports the importance of multi-step user flows and simultaneous requirements. It cannot prove task complexity is the sole cause: difficulty labels also co-vary with content and design choices, and a few visual-quality bars are not strictly monotone.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 11, Figure 12, PDF p.15",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C18",
+      "claim": "Key observation and interpretation. Figure 13 breaks editing into targeting, feature integrity and style, all generally declining with difficulty. Figure 14 keeps repair interaction integrity relatively high while root-cause targeting and reference fidelity drop on hard tasks. This supports a gap between “the old page still responds” and “the intended defect is correctly fixed.” It cannot let us compare identically named visual axes across tasks as if they shared a rubric: edit style and repair-reference matching ask different questions.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 13, Figure 14, PDF p.16",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C19",
+      "claim": "Key observation and interpretation. Figure 15’s violins show changed lines and contiguous diff hunks; the white dot is the median and thick segment the interquartile range. Editing median changed lines span roughly 646–1,976, versus 16–19 for repair. Repair distributions have tails beyond the human reference. This supports monitoring unnecessary edits, but a larger patch is not itself proof of worse correctness. Figure 16 then reports minimum scores across n=2 or 4 independently sampled outputs: Gemini falls about 67.0→53.6, Qwen235B about 39.9→27.8. This supports a reliability gap hidden by average scores. Boundary: Worst-of-n is a stress metric, not the probability a single user will receive the worst sampled result.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 15, Figure 16, PDF p.17",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C20",
+      "claim": "Key observation and interpretation. Table 8 decomposes the stability result. Gemini’s repair RCT falls 50.95→31.31 from Pass@1 to W@4, a 38.55% relative drop; its generation SPI falls 56.90→39.80. Qwen’s edit FTI falls 24.99→14.50, a 41.98% relative drop. This supports examining tail failures in specific requirements rather than just the average curve. It also qualifies the prose that Gemini’s dimensions remain above 49%: Table 8 contains 31.31 and 39.80. “Pass@1” here denotes the paper’s single-sample score summary, not a binary unit-test pass rate. Four samples cannot estimate extreme production tails.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 8, PDF p.27",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C21",
+      "claim": "Key observation and interpretation. On the text-only subset, Qwen3-VL-32B scores 36.49 overall versus Qwen3-32B’s 31.60, with better visual and edit/repair scores, while generation RUN is lower (44.48 versus 56.28). This supports complementary capabilities rather than unconditional multimodal superiority. Boundary: this is a comparison of two trained models, not a controlled causal ablation of vision alone. Separately, Table 3’s 235B Thinking variant raises RUN 61.26→63.86 but lowers SPI 42.14→35.02 and Overall 41.14→38.78. The authors attribute omissions to attention dilution from longer reasoning, but no controlled chain-length intervention establishes that causal explanation.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 5, PDF p.18",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C22",
+      "claim": "Key observation and interpretation. Figure 17 stacks counted generation errors; feature omissions and resource failures occupy roughly 40–55% for many models. Stronger models reduce fundamental errors, leaving a larger fraction of fine-grained visual issues. Figure 18 splits text/image/video: text emphasizes missing functionality, images emphasize layout and fidelity, video combines functional and visual difficulties. This supports different verification priorities by input type. Counts are judge-derived deductions and can include multiple errors per task; a larger visual-error share can occur because other errors decreased, not because visual ability became worse.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 17, Figure 18, PDF p.19",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C23",
+      "claim": "Key observation and interpretation. Figure 19’s blue regions show missing/incomplete features dominating edit deductions; for the weakest Qwen variants, missing features reach roughly three quarters of the error count. Figure 20 introduces repair-specific pink categories: defect not addressed, partially addressed and newly introduced defects, which dominate the repair profile. This supports checking requirement completion and regression separately rather than trusting a successful build. Boundary: the panels are error-count distributions, not causal diagnoses independently verified by humans; automated categorization inherits judge ambiguity and task-taxonomy choices.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 19, Figure 20, PDF p.20",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    }
+  ]
+}

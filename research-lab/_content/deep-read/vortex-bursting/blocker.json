@@ -1,0 +1,17 @@
+{
+  "status": "source-blocked",
+  "action": "Acquire and verify full manuscript for Vortex bursting in twisted magnetic flux tubes with opposite chiralities",
+  "reason": "Repository paper URL is null and BibTeX lacks DOI, year, volume and article number. Exact-title and title/author searches plus the coauthor publication page did not locate a verifiable matching manuscript. A similarly themed 2023 paper has different title/authors and was not substituted.",
+  "completed": [
+    "Read repository metadata as discovery context only",
+    "Searched exact title, opposite-chirality wording and author publication page",
+    "Preserved original article and bilingual text unchanged"
+  ],
+  "outcome": "No tool-policy denial; verified source unavailable",
+  "needed": "User-provided accepted manuscript PDF or verifiable primary-source URL/DOI",
+  "searched_sources": [
+    "https://shiyingxiong.github.io/",
+    "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics"
+  ],
+  "verification_date": "2026-11-11"
+}

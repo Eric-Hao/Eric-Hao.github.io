@@ -1,0 +1,165 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "OAPT: attention organized by JPEG history",
+    "version": "ECCV 2024 proceedings PDF, 19 pages",
+    "sources": [
+      "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf"
+    ],
+    "local_pdf": "paper.pdf",
+    "sha256": "e3ffebc3fd9f0ad4dc71e418f23616bed0ba6da2ebfbbd8851389f0197d1bb48",
+    "page_convention": "1-based PDF pages"
+  },
+  "reader_profile": {
+    "domain": "computer-science-ai",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "en + zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "computer-vision"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 13,
+    "key": 11,
+    "key_explained": 11
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "claims": [
+    {
+      "id": "figure-1-p002",
+      "claim": "A shift in both dimensions partitions an 8×8 block into four parts; zero shift along one dimension reduces this to two, and fully aligned grids to one. Regions in the same relative position across blocks share a structural compression pattern, although their actual image content and quantization errors differ. The method exploits that structural similarity rather than asserting identical errors.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Figure 1, PDF p.2"
+        }
+      ]
+    },
+    {
+      "id": "figure-2-p005",
+      "claim": "The predictor uses only the upper-left 44×44 patch and a lightweight ResNet-18-derived network with depthwise-separable convolutions. Six hybrid blocks form the reconstructor; each combines four standard and two pattern-clustered layers. The predicted offset controls rearrangement, while learned attention estimates useful content. Predictor pretraining followed by freezing avoids conflating offset learning with the reconstruction stage.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Figure 2, PDF p.5"
+        }
+      ]
+    },
+    {
+      "id": "figure-3-p006",
+      "claim": "For a teaching example with a 4-row, 2-column partition, an 8×8 block divides into areas 8, 24, 8 and 24 pixels. Matching parts from many blocks are packed into four feature groups; attention mixes tokens within the regrouped windows, then inverse clustering restores coordinates. A wrong phase still changes spatial reach but no longer guarantees matching compression patterns. Grouping is a permutation, not a loss of pixels, and does not make attention global over the entire image.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Figure 3, PDF p.6"
+        }
+      ]
+    },
+    {
+      "id": "table-1-p009",
+      "claim": "The reported average +0.16 dB is relative to FBCNN, not every strongest baseline. Against SwinIR, the paper reports about +0.06 dB; for LIVE1 (30,50,4,4), 32.77→32.86 dB. OAPT is not best in every row: Classic5 (50,30,4,4) gives 32.97 versus ART’s 33.02. Parameters increase 11.49→12.96M relative to SwinIR, while MACs are 293.42→293.60G. This supports a small accuracy gain at small arithmetic overhead, not zero total cost.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Table 1, PDF p.9"
+        }
+      ]
+    },
+    {
+      "id": "table-2-p009",
+      "claim": "ICB at (30,50,4,4) improves 34.93→35.08 dB over SwinIR; the paper reports approximately +0.08 dB on average for color. Gains extend beyond grayscale, but baseline counts are smaller and no confidence intervals establish whether every hundredth of a dB is stable.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Table 2, PDF p.9"
+        }
+      ]
+    },
+    {
+      "id": "table-3-p011",
+      "claim": "Despite double-compression training, the paper tests 2, 4, 5 and 7 random compression rounds and single compression. OAPT retains modest advantages over the compared transformers. Therefore “untested beyond two JPEG passes” would be false. What remains unestablished is broad reliability across arbitrary resizing, codec mixtures and real editing histories; blind NIQE/BRISQUE results offer weaker evidence than paired clean references.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Table 3, PDF p.11"
+        }
+      ]
+    },
+    {
+      "id": "figure-7-p012",
+      "claim": "Inserting clustering and inverse clustering around HAT-S attention gives roughly +0.03 dB average improvement without added learned parameters or nominal attention complexity. This isolates the usefulness of rearrangement more directly than the full model comparison, but supplies privileged offset information. It does not show that a blind plugin needs no predictor, memory movement or wall-clock overhead.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Figure 7, PDF p.12"
+        }
+      ]
+    },
+    {
+      "id": "figure-6-p012",
+      "claim": "The regrouped models draw on a broader set of input locations, consistent with nonlocal access after permutation. This supports the receptive-field explanation, but neither proves that each selected pixel is causally necessary nor measures general restoration accuracy. The controlled attention ablation tests the local/nonlocal balance next.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Figure 6, PDF p.12"
+        }
+      ]
+    },
+    {
+      "id": "figure-8-p013",
+      "claim": "Serial hybrid reaches the highest displayed PSNR; all-sparse and parallel designs trail it. This shows that grouping alone is insufficient: the natural local geometry still matters. The authors’ explanation that parallel branches “confuse” features is a hypothesis, whereas the measured ranking is direct evidence limited to the tested condition.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Figure 8, PDF p.13"
+        }
+      ]
+    },
+    {
+      "id": "figure-9-p013",
+      "claim": "When the second JPEG is much stronger, first-grid evidence can be overwritten and predictions concentrate around central phases. L1 offset regression encourages central values when evidence is ambiguous. Exact classification accuracy and restoration quality need not move together, because even an incorrect permutation may enlarge spatial access. Table 4 quantifies that distinction.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Figure 9, PDF p.13"
+        }
+      ]
+    },
+    {
+      "id": "table-4-p014",
+      "claim": "At (10,90,0,2), accuracy is 97% and both score 29.77 dB. At (90,10,2,0), accuracy is 0%, yet OAPT gives 29.57 versus SwinIR 29.54 and oracle 29.62. Thus restoration gains can survive incorrect phase estimates, while true phase still helps. The most important limitation is unreliable offset identification, not an absolute inability to handle repeated JPEG.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+          "locator": "Table 4, PDF p.14"
+        }
+      ]
+    }
+  ]
+}

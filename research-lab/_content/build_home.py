@@ -4,8 +4,15 @@ from build_styles import build_styles
 build_styles()
 import json,html
 from model_components import release_card
+from deep_read_content import REPORTS, validate_report
+from deep_read_build import sync_metadata
 r=Path(__file__).resolve().parents[1];e=html.escape
 papers=json.loads((r/'data.js').read_text().removeprefix('const papers = ').rstrip(';\n'))
+deep_reads={}
+for path in sorted(REPORTS.glob('*/report.json')):
+ report=validate_report(json.loads(path.read_text()),path.parent.name)
+ if report['status']=='complete':deep_reads[report['key']]=report
+sync_metadata(papers,deep_reads)
 figures=json.loads((r/'_content/covers.json').read_text())
 originals=json.loads((r/'_content/figures.json').read_text())
 categories=[('Large Language Models','大语言模型','models'),('Generative AI','生成式人工智能','generative-models'),('Restoration & Super-Resolution','复原与超分辨率','super-resolution'),('Physics & Fluid Dynamics','物理与流体动力学','physics')]

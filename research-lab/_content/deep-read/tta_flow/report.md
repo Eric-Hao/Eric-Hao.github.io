@@ -1,0 +1,283 @@
+# Tuning Real-World Image Restoration at Inference: A Test-Time Scaling Paradigm for Flow Matching Models
+
+推理时调优真实图像修复：流匹配模型的测试时扩展范式
+
+Source: [Tuning Real-World Image Restoration at Inference: A Test-Time Scaling Paradigm for Flow Matching Models](https://arxiv.org/abs/2603.22027v1), arXiv:2603.22027v1, 23 March 2026; complete 27-page source. Page references count PDF pages, including the supplement. Figures are verified source-page facsimiles; captions and adjacent evidence remain visible. Numerical claims are paper-reported, not independently reproduced.
+
+来源：[Tuning Real-World Image Restoration at Inference: A Test-Time Scaling Paradigm for Flow Matching Models](https://arxiv.org/abs/2603.22027v1)，arXiv:2603.22027v1, 23 March 2026; complete 27-page source。页码按 PDF 物理页计，含补充材料。配图为已目视核验的原文页面，保留图注与相邻证据。数值来自论文，未独立复现实验。
+
+## 1. 核心思想一句话总结（Elevator Pitch）
+
+<!-- pair:1-1:en -->
+
+ResFlow-Tuner spends extra inference compute exploring and ranking flow trajectories, improving perceptual restoration without updating model weights at test time.
+
+<!-- pair:1-1:zh -->
+
+ResFlow-Tuner 在推理时搜索并排序流轨迹，以额外计算换取感知质量，而不更新模型权重。
+
+## 2. 论文背景与动机（Background & Motivation）
+
+<!-- pair:2-1:en -->
+
+### Restoration has several plausible answers
+A degraded photograph leaves uncertain texture and semantic details. A single deterministic flow trajectory commits early to one answer. ResFlow-Tuner asks whether extra inference work can find a better path, while using the input image and an automatically generated description as guidance. Despite the existing tta_flow route, this is test-time scaling through sampling/search, not test-time adaptation of network weights. Its quality judges score appearance and text alignment; neither alone establishes the exact missing scene content. [§§1–2]
+
+<!-- pair:2-1:zh -->
+
+### 修复存在多个合理答案
+退化照片留下不确定的纹理与语义细节。单条确定性流轨迹会过早锁定一种答案。ResFlow-Tuner 探索能否增加推理计算以寻找更好路径，同时利用输入图像与自动生成描述作为引导。虽然既有路径名为 tta_flow，这实际是采样/搜索式测试时扩展，不是测试时更新网络权重。质量评判器衡量外观与文本一致性，二者都不能单独确定缺失的真实场景内容。[§§1–2]
+
+<!-- pair:2-2:en -->
+
+The prerequisites are modest: a flow model predicts a velocity that transports noisy latent variables toward clean image latents; an ODE solver follows that velocity; a reward ranks candidate outputs. A latent is a compressed representation, not an RGB image. The restoration network is trained first, and search then reuses its fixed weights. More candidate paths mean more model evaluations and reward evaluations.
+
+<!-- pair:2-2:zh -->
+
+理解所需的前提很简单：流模型预测速度，将噪声潜变量运输为干净图像潜变量；ODE 求解器沿速度推进；奖励模型对候选结果排序。潜变量是压缩表征，不是 RGB 图像。先训练修复网络，随后搜索复用固定权重。候选路径越多，模型求值与奖励求值次数越多。
+
+## 3. 核心方法/模型详解（The Core Method/Model）
+
+![Figure 2](assets/pages/page-005.png)
+
+<!-- pair:3-2:en -->
+
+**How to read:** Compare the input branches, look-ahead box, and surviving green paths in order.
+
+**Key observation:** Figure 2 (p. 5) is the full computation graph. On the left, a lightweight SwinIR restorer makes a reference image for Qwen2.5-VL to describe. The original low-quality image remains a conditioning branch. The middle-bottom MSPDE box previews candidate futures using several partial denoising steps. On the right, green paths survive the reward selection and red paths are discarded. **Boundary:** Snowflakes/fire icons distinguish frozen and trainable modules during training; they do not indicate test-time gradient updates.
+
+This supports the separation of training-time conditioning from inference search.
+
+<!-- pair:3-2:zh -->
+
+**如何读：** 对比依次查看输入分支、前瞻模块与保留的绿色路径。
+
+**关键观察：** 图 2（第 5 页）给出完整计算图。左侧轻量 SwinIR 修复器生成参考图，让 Qwen2.5-VL 描述；原始低清图仍通过条件分支输入。中下方 MSPDE 使用若干局部去噪步骤预览候选未来；右侧绿色路径通过奖励筛选，红色路径被淘汰。**边界：** 雪花/火焰区分训练时冻结与可训练模块，不代表测试时梯度更新。
+
+这一观察支持训练期条件融合与推理搜索的分工。
+
+<!-- pair:3-3:en -->
+
+### Stage 1: semantics; stage 2: multimodal fusion
+The caption is a semantic hint derived from a preliminary restoration, so errors can propagate from SwinIR into the description. UMMF concatenates noisy-image, low-quality-image, and text tokens into one multimodal sequence. With common channel width $d$ and token counts $L_z,L_{img},L_{txt}$,
+
+<!-- pair:3-3:zh -->
+
+### 第一阶段语义，第二阶段多模态融合
+描述来自初步修复，是语义提示，因此 SwinIR 的错误可能传播到描述中。UMMF 将加噪图像、低清图像和文本 token 拼接为多模态序列。设共同通道宽度为 $d$，token 数分别为 $L_z,L_{img},L_{txt}$，则
+
+$$
+S=[z_t;C_{img};C_{txt}]\in\mathbb R^{(L_z+L_{img}+L_{txt})\times d}.
+$$
+
+<!-- pair:3-5:en -->
+
+Shared multimodal attention lets the generation tokens consult both structure and semantics. RoPE represents position and a modality code identifies the token source. The paper’s schematic $S_0=S+P+M$ should not be read as a literal implementation of rotary embeddings, which act by rotations inside attention. UMMF has 58M trainable parameters, about 0.5% of the 12B backbone; that percentage does not make the whole model small. [§3.1, Table 4]
+
+<!-- pair:3-5:zh -->
+
+共享多模态注意力使生成 token 同时参考结构与语义。RoPE 表示位置，模态编码标识 token 来源。论文示意式 $S_0=S+P+M$ 不应按旋转位置编码的字面实现理解，后者在注意力内部执行旋转。UMMF 有 5800 万可训练参数，约占 120 亿主干的 0.5%；这一比例不意味着整个模型很小。[§3.1、表 4]
+
+<!-- pair:3-6:en -->
+
+### Search: perturb, look ahead, rank, continue
+At each of $K$ intervention times, perturb the current latent into $N$ candidates. Each candidate receives an $S$-step partial ODE rollout; MSPDE estimates a cleaner endpoint for scoring without completing every candidate’s entire trajectory. Rank the previews, retain the best $M$, and continue. Final decoding happens after the selected path reaches the endpoint. Here time runs from noisy 1 toward clean 0. [§3.2, Eqs. 11–13]
+
+<!-- pair:3-6:zh -->
+
+### 搜索：扰动、前瞻、排序、继续
+在 $K$ 个干预时刻，当前潜变量被扰动为 $N$ 个候选。每个候选执行 $S$ 步局部 ODE 推进；MSPDE 估计较干净的端点以供打分，不必为每个候选完成整条轨迹。对预览排序，保留最优 $M$ 个并继续推进，最后对到达端点的选中路径解码。这里时间从噪声 1 流向干净 0。[§3.2、式 11–13]
+
+$$
+\bar z_{t_k}^{(i)}=z_{t_k}+\epsilon^{(i)},\quad\epsilon^{(i)}\sim\mathcal N(0,\sigma_k^2 I),\qquad R_i=-\frac{r_{aes,i}+r_{clip,i}+r_{IR,i}}3.
+$$
+
+<!-- pair:3-8:en -->
+
+The three ranks come from an aesthetic predictor, CLIP alignment, and ImageReward. Rank 1 is best; a higher negative mean rank wins. For a minimal example, A has ranks (1,3,2) and reward −2, while B has (2,1,1) and reward −4/3. B survives even though A wins aesthetics. Ranks avoid incompatible numerical score scales, but throw away score margins and do not remove shared reward-model biases. Increasing candidate count can optimize those biases as well as actual quality.
+
+<!-- pair:3-8:zh -->
+
+三个名次来自美学预测器、CLIP 对齐与 ImageReward。第 1 名最佳，负平均名次越高越好。最小例子：A 的名次为 (1,3,2)，奖励 −2；B 为 (2,1,1)，奖励 −4/3。即使 A 的美学分最高，B 仍被保留。名次规避不同分数尺度，却丢弃分差，也无法消除奖励模型的共同偏差。增加候选数可能同时放大这些偏差与真实质量。
+
+<!-- pair:3-9:en -->
+
+### The distribution-preservation caveat
+The theoretical motivation introduces a score-corrected stochastic dynamics:
+
+<!-- pair:3-9:zh -->
+
+### 分布保持的限定条件
+理论动机引入带 score 修正的随机动力学：
+
+$$
+dx_t=\left[u_t(x_t)-\frac{\sigma_t^2}{2}\nabla\log p_t(x_t)\right]dt+\sigma_t\,dw.
+$$
+
+<!-- pair:3-11:en -->
+
+A score here is the gradient of log density, not the aesthetic score. Matching marginals requires the appropriate drift, score, and time convention. The practical algorithm explicitly omits the score correction and combines mutation with deterministic rollouts; selecting paths by reward further changes the output law. Therefore the implemented search does not inherit an exact distribution-preservation guarantee from this equation. This qualification on p. 9 is essential when reading the stronger language on pp. 7–8.
+
+<!-- pair:3-11:zh -->
+
+这里的 score 是对数密度梯度，不是美学分数。保持边缘分布需要匹配漂移项、score 与时间约定。实际算法明确省略 score 修正，并将扰动与确定性推进结合；按奖励筛选也会改变输出分布。因此，实际搜索不能直接继承此方程的精确分布保持保证。阅读第 7–8 页较强表述时，第 9 页这一限定尤为关键。
+
+## 4. 实验与结果分析（Experiments & Results）
+
+<!-- pair:4-1:en -->
+
+**Evidence grade:** Strong for the reported within-paper numerical comparisons and mechanism descriptions; moderate for broader transfer claims; unsupported as a guarantee of exact recovery on arbitrary unseen inputs. No independent reproduction was performed.
+
+<!-- pair:4-1:zh -->
+
+**证据评级：** 文内数值比较与机制描述得到强支持；更广泛迁移主张为中等支持；任意未见输入精确恢复的保证不受支持。这里未进行独立复现。
+
+<!-- pair:4-2:en -->
+
+### Setup and metrics
+The paper uses FLUX.1-dev, Qwen2.5-VL-7B captions, rank-16 LoRA, 512×512 training images, 30,000 iterations, and effective batch size 64. The reported sampler uses 50 denoising steps and guidance 5.5, with mutation rate 0.3. Training data include DIV2K, Flickr2K, LSDIR, and DIV8K. Synthetic benchmarks span mild, medium, and severe degradation; RealPhoto60, RealSR, and DRealSR evaluate real images. PSNR/SSIM test fidelity; LPIPS/DISTS and FID test perceptual/distributional agreement; no-reference metrics do not verify exact content. [§4.1, p. 11]
+
+<!-- pair:4-2:zh -->
+
+### 设置与指标
+论文使用 FLUX.1-dev、Qwen2.5-VL-7B 描述、rank-16 LoRA、512×512 训练图、30,000 次迭代和有效批量 64。报告采样器采用 50 步去噪、引导强度 5.5、扰动率 0.3。训练数据包括 DIV2K、Flickr2K、LSDIR、DIV8K。合成测试覆盖轻、中、重退化，真实测试使用 RealPhoto60、RealSR、DRealSR。PSNR/SSIM 衡量保真，LPIPS/DISTS 和 FID 衡量感知或分布一致性，无参考指标不核验准确内容。[§4.1，第 11 页]
+
+![Figure 3](assets/pages/page-008.png)
+
+<!-- pair:4-4:en -->
+
+**How to read:** Compare row content and method columns, noting missing ground truth for real images.
+
+**Key observation:** Figure 3 (p. 8) compares columns of methods across a synthetic animal-detail example and three real-image examples. ResFlow-Tuner often renders crisp fur, faces, and architecture. **Boundary:** The real rows lack a ground-truth column, so they support appearance comparisons rather than proving identity preservation or correct fine texture.
+
+This supports a selected-example appearance comparison.
+
+<!-- pair:4-4:zh -->
+
+**如何读：** 对比图像行与方法列，并注意真实图像缺少真值。
+
+**关键观察：** 图 3（第 8 页）按列比较方法，第一行为合成动物细节，其余三行为真实图像。ResFlow-Tuner 常生成清晰毛发、人脸和建筑。**边界：** 真实图像行没有真值列，因此只能支持外观比较，不能证明身份保持或精细纹理正确。
+
+这一观察支持选例中的外观比较。
+
+![Table 1, Table 2](assets/pages/page-011.png)
+
+<!-- pair:4-6:en -->
+
+**How to read:** Compare paired fidelity metrics separately from no-reference quality scores.
+
+**Key observation:** Tables 1–2 (p. 11) show the central trade-off. Mild DIV2K PSNR is 23.11 versus BSRGAN 27.63, while CLIPIQA+ reaches 0.7925. On LSDIR the full model reports LPIPS 0.3721, DISTS 0.1406, and FID 19.82. RealSR MANIQA/MUSIQ are 0.6205/72.34; DRealSR values are 0.6192/71.82. **Boundary:** These favor perceptual quality but do not overturn the measured fidelity loss on the paired synthetic benchmark.
+
+This supports perceptual gains rather than universal reconstruction superiority.
+
+<!-- pair:4-6:zh -->
+
+**如何读：** 对比将配对保真指标与无参考质量分数分开查看。
+
+**关键观察：** 表 1–2（第 11 页）展示核心折中。轻度 DIV2K 的 PSNR 为 23.11，低于 BSRGAN 的 27.63，而 CLIPIQA+ 达到 0.7925。LSDIR 上完整模型报告 LPIPS 0.3721、DISTS 0.1406、FID 19.82。RealSR 的 MANIQA/MUSIQ 为 0.6205/72.34，DRealSR 为 0.6192/71.82。**边界：** 这些支持感知质量，却不能抹去配对合成测试中的保真度下降。
+
+这一观察支持感知提升，而非普遍重建优势。
+
+![Table 3, Table 4](assets/pages/page-012.png)
+
+<!-- pair:4-8:en -->
+
+**How to read:** Compare OCR against the GT ceiling, then ablations against their compute budgets.
+
+**Key observation:** Table 3 (p. 12) uses PaddleOCR v3 on 200 Occluded RoadText images. Precision/recall are 42.23%/49.75%, above FaithDiff 36.45%/46.74%, but below ground truth 52.72%/56.67%. Table 4 separates components: adding captions improves LPIPS 0.3856→0.3721; UMMF beats direct addition (0.4223) and ControlNet (0.4056); the ensemble improves over each individual reward and listed pairs. **Boundary:** These are within-system controls, not proof of reward robustness outside the tested data.
+
+This supports component usefulness at a substantial computational price.
+
+<!-- pair:4-8:zh -->
+
+**如何读：** 对比先对照 GT 上限看 OCR，再结合计算预算看消融。
+
+**关键观察：** 表 3（第 12 页）在 200 张 Occluded RoadText 图上使用 PaddleOCR v3。精确率/召回率为 42.23%/49.75%，高于 FaithDiff 的 36.45%/46.74%，但低于真值的 52.72%/56.67%。表 4 分离组件：增加描述使 LPIPS 从 0.3856 改善到 0.3721；UMMF 优于直接相加的 0.4223 和 ControlNet 的 0.4056；组合奖励优于各单项及列出的两两组合。**边界：** 这是系统内部的受控比较，不证明奖励在测试数据之外仍稳健。
+
+这一观察支持组件有效但计算代价显著。
+
+<!-- pair:4-9:en -->
+
+### Scaling is not free
+The same table gives inference-compute units of 0.025×10⁴ without TTS, 0.15×10⁴ for $(K,N)=(2,5)$, 0.375×10⁴ for (4,7), and 1.0×10⁴ for (10,15). Thus the default (4,7) is 15× the no-search figure; the largest is 40×. LPIPS improves 0.4015→0.3874→0.3721→0.3675, while MUSIQ rises 71.47→72.85→74.21→76.33. The incremental fidelity gains diminish. These are the paper’s compute accounting, not measured wall-clock speedups; captioning and reward overhead also matter. A fair deployment comparison needs matched total runtime and memory, not only trainable-parameter percentages.
+
+<!-- pair:4-9:zh -->
+
+### 扩展并非免费
+同表给出的推理计算单位分别为：无 TTS 的 0.025×10⁴，$(K,N)=(2,5)$ 的 0.15×10⁴，(4,7) 的 0.375×10⁴，(10,15) 的 1.0×10⁴。因此默认 (4,7) 是无搜索的 15 倍，最大配置为 40 倍。LPIPS 依次为 0.4015→0.3874→0.3721→0.3675，MUSIQ 为 71.47→72.85→74.21→76.33，新增感知距离收益逐渐减小。这是论文的计算量记账，不是实测运行时间；描述与奖励开销同样重要。部署比较应匹配总耗时与显存，而非只比较可训练参数百分比。
+
+![Figure 4](assets/pages/page-017.png)
+
+<!-- pair:4-11:en -->
+
+**How to read:** Compare the left rank axis and the right cumulative top-K bars.
+
+**Key observation:** Figure 4 (p. 17) shows an average rank near 1.2, roughly 80% top-1, and 98% top-2 selection for the proposed method. The described study uses 64 participants and 50 images; the later normalization mentions 100 groups without clearly reconciling that count. **Boundary:** Error bars and aggregated preference should not be read as calibrated uncertainty about exact scene recovery.
+
+This supports human preference among the presented candidates.
+
+<!-- pair:4-11:zh -->
+
+**如何读：** 对比左侧排名轴与右侧累积前 K 名柱形。
+
+**关键观察：** 图 4（第 17 页）显示该方法平均排名约 1.2，第一名比例约 80%，前两名约 98%。研究描述为 64 位参与者与 50 张图，后续归一化又提到 100 组，未清楚解释计数对应关系。**边界：** 误差线与聚合偏好不能当作真实场景恢复的校准不确定性。
+
+这一观察支持对给定候选的人工偏好。
+
+![Figure 5](assets/pages/page-022.png)
+
+<!-- pair:4-13:en -->
+
+**How to read:** Compare the hoof boundary and hair pattern relative to the GT panels.
+
+**Key observation:** Figure 5 (p. 22) ablates TTS, captions, and reward ensembling on an animal hoof and a face. The no-TTS version is smoother; removing captions or the ensemble changes structures and textures. Ground truth is included, making visible that a more elaborate hair or hoof texture can still depart from the reference. The example supports component relevance, not a universal ordering.
+
+This supports the visible influence of search and semantic guidance.
+
+<!-- pair:4-13:zh -->
+
+**如何读：** 对比相对真值查看蹄部边界与发型纹理。
+
+**关键观察：** 图 5（第 22 页）在动物蹄部与人脸上消融 TTS、描述和奖励组合。无 TTS 版本更平滑；去除描述或组合奖励会改变结构与纹理。图中包含真值，能看到更复杂的头发或蹄部纹理仍可能偏离参考。该例支持组件有作用，不是普适排名。
+
+这一观察支持搜索与语义引导可见的影响。
+
+![Figure 6](assets/pages/page-023.png)
+
+<!-- pair:4-15:en -->
+
+**How to read:** Compare kernel repetition and petal/background geometry against ground truth.
+
+**Key observation:** Figure 6 (p. 23) repeats the same controls on corn and flowers. Inspect repeated kernels, petal boundaries, and background geometry, not sharpness alone. The full model has more coherent local patterns, but generated detail remains a hypothesis. **Boundary:** Together with Table 4, these figures offer both qualitative and quantitative support for the search design.
+
+This supports local pattern coherence in these examples.
+
+<!-- pair:4-15:zh -->
+
+**如何读：** 对比相对真值查看玉米粒重复及花瓣/背景几何。
+
+**关键观察：** 图 6（第 23 页）在玉米与花朵上重复相同控制。应查看重复玉米粒、花瓣边界和背景几何，而非只看清晰度。完整模型的局部纹理更协调，但生成细节仍是推测。**边界：** 结合表 4，这些图为搜索设计提供定性与定量支持。
+
+这一观察支持这些例子的局部模式协调性。
+
+## 5. 论文的贡献与影响（Contribution & Impact）
+
+<!-- pair:5-1:en -->
+
+### Future directions and contribution
+The contribution is an ODE-aware candidate-search system with multimodal conditioning, partial-rollout evaluation, and rank-based reward ensembling. It creates an adjustable quality/compute knob without test-time weight updates. The important unresolved questions are reward hacking under larger searches, caption-induced semantic errors, equal-runtime comparisons, and the lack of an exact marginal-preservation guarantee for the implemented mutation scheme. A useful follow-up experiment would hold total network evaluations fixed while comparing more candidates, longer rollouts, and ordinary repeated independent samples.
+
+<!-- pair:5-1:zh -->
+
+### 贡献与后续方向
+贡献是把多模态条件、局部前瞻评估和名次组合奖励整合为理解 ODE 过程的候选搜索系统，在不更新测试时权重的前提下提供质量/计算量调节。未解决问题包括更大搜索下的奖励投机、描述引入的语义错误、等运行时间比较，以及实际扰动方案缺乏精确边缘分布保证。值得做的后续实验是在固定总网络求值次数下，比较更多候选、更长前瞻和普通独立重复采样。
+
+## 6. 结论（Conclusion）
+
+<!-- pair:6-1:en -->
+
+**Final judgment:** ResFlow-Tuner is best understood as spending substantially more computation to select a preferred restoration, not cheaply adapting a model to a new image. The paper gives strong perceptual and OCR evidence within its benchmarks. Use its scaling knob only with an explicit compute budget and independent checks of important scene details.
+
+<!-- pair:6-1:zh -->
+
+**最终判断：** ResFlow-Tuner 应理解为投入显著更多计算来选择偏好的修复结果，而非低成本地让模型适配新图。论文在其测试范围内提供了较强的感知与 OCR 证据。使用扩展旋钮时应明确计算预算，并独立核验重要场景细节。

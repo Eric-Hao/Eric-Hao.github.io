@@ -1,0 +1,113 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "Tracking vortex surfaces frozen in the virtual velocity in non-ideal flows",
+    "doi": "10.1017/jfm.2018.1014",
+    "sources": [
+      {
+        "type": "published PDF",
+        "url": "https://shiyingxiong.github.io/proj/VirtualVSF/VirtualVSF.pdf",
+        "local_path": "sources/paper.pdf",
+        "sha256": "3fa555b42e991fb654452e404c83761b24f030e46c960b88fc2db1533550a061",
+        "version": "Published version; title, authors, DOI and journal checked on first page",
+        "scope": "Full main text and appendices"
+      }
+    ],
+    "page_convention": "1-based PDF pages"
+  },
+  "reader_profile": {
+    "domain": "physics-mathematics",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "bilingual en/zh-CN",
+    "selected_lenses": [
+      "physics-mathematics",
+      "methods-and-numerical-physics"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "Full PDF text layer",
+      "Main-paper and appendix equations and captions"
+    ],
+    "date": "2026-11-11"
+  },
+  "visual_coverage": {
+    "total_numbered": 16,
+    "key": 16,
+    "key_explained": 16
+  },
+  "claims": [
+    {
+      "id": "conditional-transport",
+      "claim": "A smooth compatible virtual velocity preserves vorticity transport and vortex-surface tangency.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "§2.1–2.4; Eqs.(2.7),(2.26); PDF pp.4–8",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Sufficient conditions; global existence in arbitrary 3D flow unresolved. Separate proof supplement not audited."
+    },
+    {
+      "id": "modified-flow",
+      "claim": "The artificial normal-force modified flow is dissipative but prohibits the demonstrated reconnection.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "§5; Figures 3–7; PDF pp.15–19",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Changing the force changes physical dynamics; finite grid does not resolve the shrinking gap."
+    },
+    {
+      "id": "tracking-artifact",
+      "claim": "Small tangency error does not guarantee a coherent surface history.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "§6.1; Figure 8; PDF pp.19–20",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Special exact-geometry negative control, not proof all MHD deformation is spurious."
+    },
+    {
+      "id": "approximate-carrier",
+      "claim": "Approximate virtual transport improves pre-reconnection flux conservation.",
+      "status": "partial",
+      "evidence": [
+        {
+          "anchor": "§6.2–6.3; Figures 9–14; PDF pp.21–25",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Low-Re symmetric case, omitted gauge and viscosity, null regularization."
+    },
+    {
+      "id": "generalization",
+      "claim": "Universal smooth virtual tracking through arbitrary reconnection is not established.",
+      "status": "unsupported",
+      "evidence": [],
+      "boundary": "Explicit unresolved existence and singularity problems."
+    }
+  ],
+  "source_conflicts": [
+    "§6.3 repeated MHD-IV label conflicts with intended contrast; figure/caption used.",
+    "Separate theorem proof supplement not retrieved; no independent proof audit claimed."
+  ]
+}

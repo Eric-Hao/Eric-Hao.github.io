@@ -1,0 +1,165 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "XPSR: separating what is present from what is damaged",
+    "version": "ECCV 2024 proceedings PDF, 19 pages",
+    "sources": [
+      "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf"
+    ],
+    "local_pdf": "paper.pdf",
+    "sha256": "5ab221ff56ea983de76ac86ca4d32ba3f30a74c566445ec62e90c76b67fb76ff",
+    "page_convention": "1-based PDF pages"
+  },
+  "reader_profile": {
+    "domain": "computer-science-ai",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "en + zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "computer-vision"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 12,
+    "key": 11,
+    "key_explained": 11
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "claims": [
+    {
+      "id": "figure-1-p004",
+      "claim": "The selected examples show that prompts can change both semantic content and artifact appearance. They motivate separating the two instructions, but also demonstrate a risk: language steers output, so an incorrect description can steer it away from the original. These examples do not establish caption accuracy over the test distribution.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Figure 1, PDF p.4"
+        }
+      ]
+    },
+    {
+      "id": "figure-2-p006",
+      "claim": "The two text streams enter parallel branches in Semantic-Fusion Attention (SFA). The fused image-conditioned representation controls denoising through added Conditional Attention. High-level semantics also condition the U-Net, while low-level semantics are used in ControlNet rather than directly in the noisy U-Net branch. Clean image and clean latent targets supervise intermediate ControlNet representations only during training. There is no clean reference available at inference.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Figure 2, PDF p.6"
+        }
+      ]
+    },
+    {
+      "id": "figure-3-p007",
+      "claim": "The high-level instruction requests a descriptive summary; the low-level one explicitly asks about clarity, color, noise and lighting. The palm example additionally discusses composition and focus of attention. Thus these prompts are rich but noisy semantic observations, not guaranteed ground truth about the camera or codec. A robust method must tolerate this mismatch rather than treat the sentences as exact measurements.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Figure 3, PDF p.7"
+        }
+      ]
+    },
+    {
+      "id": "table-1-p010",
+      "claim": "On DIV2K, MANIQA is 0.5046→0.6080, CLIPIQA 0.6959→0.7816, MUSIQ 68.35→69.99. Differences are +0.1034, +0.0857 and +1.64 score units; relative changes are approximately 20.49%, 12.32% and 2.40%. The paper’s “10.34%, 8.57%, 1.64%” wording is therefore not standard relative-change arithmetic. Meanwhile PSNR falls 23.56→22.80, LPIPS worsens 0.3283→0.3761 and FID 28.89→33.38. The supported conclusion is improved no-reference perceptual quality with a measurable reference-fidelity trade-off, not simultaneous superiority in all senses.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Table 1, PDF p.10"
+        }
+      ]
+    },
+    {
+      "id": "figure-4-p010",
+      "claim": "The examples show that sharper-looking texture can receive worse reference scores. They illustrate metric disagreement, not proof that reference metrics are universally invalid. The panel’s “human perception” labels are author judgments; this proceedings PDF does not report the previously quoted 64.3% six-method user preference study. That statistic is not carried into this source-grounded note.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Figure 4, PDF p.10"
+        }
+      ]
+    },
+    {
+      "id": "table-2-p012",
+      "claim": "On DRealSR, high-only SSIM is 0.7254 versus 0.7220 with both, while MANIQA rises 0.5505→0.5713 when low-level priors are added. Low-only MANIQA is even higher, 0.6213, but FID worsens to 195.37 versus 164.68 with both. Thus the dual stream balances content and quality; it does not maximize every metric. Because this removes conditions after training, some loss may reflect a train/test condition mismatch.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Table 2, PDF p.12"
+        }
+      ]
+    },
+    {
+      "id": "figure-6-p012",
+      "claim": "The semantic examples show content changes when a stream is absent; the negative-prompt examples show changes in clarity and texture. These make the trade-off tangible but remain selected outputs. They cannot distinguish correct recovered details from visually plausible inventions without reference-based inspection and broader evaluation.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Figure 6, PDF p.12"
+        }
+      ]
+    },
+    {
+      "id": "table-3-p013",
+      "claim": "SFA generally improves the quality-oriented balance relative to serial fusion, but high-only attention can retain stronger reference measures. This supports the architectural choice as a trade-off, not an information-preservation theorem. The qualitative text example in Figure 7 is useful because recognizable glyphs make semantic mistakes especially consequential.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Table 3, PDF p.13"
+        }
+      ]
+    },
+    {
+      "id": "figure-7-p013",
+      "claim": "The text and repeated-edge examples display different failure modes: letter-like artifacts and residual aliasing. Using both constraints reduces visible noise in the selected edge example. This links feature supervision to output behavior, but neither a crisp text crop nor a clean edge guarantees exact transcription or geometry across inputs.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Figure 7, PDF p.13"
+        }
+      ]
+    },
+    {
+      "id": "table-4-p014",
+      "claim": "The combined constraint is the intended balance, while individual metrics vary across rows. Its mechanistic evidence is more direct than a comparison against another entire SR system because the supervision is the intervention. It remains an empirical regularizer; the name “Degradation-Free” should not be read as a formal guarantee of zero degradation.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Table 4, PDF p.14"
+        }
+      ]
+    },
+    {
+      "id": "table-5-p014",
+      "claim": "Negative prompts improve no-reference quality while some reference metrics worsen. Changing the frozen foundation model also changes results; the authors suggest a pretraining-resolution mismatch for SD2.1, but do not isolate that cause. Consequently the gains cannot be attributed entirely to cross-modal semantics independently of backbone and guidance settings.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+          "locator": "Table 5, PDF p.14"
+        }
+      ]
+    }
+  ]
+}

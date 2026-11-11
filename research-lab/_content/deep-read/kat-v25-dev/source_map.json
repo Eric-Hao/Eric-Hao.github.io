@@ -1,0 +1,106 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "KAT-Coder-V2.5-Dev Model Card",
+    "sources": [
+      {
+        "url": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/tree/7be56fe773e72b6f5ca93c1ae45d828ddb893922",
+        "version": "official model card revision 7be56fe773e72b6f5ca93c1ae45d828ddb893922",
+        "local_path": "sources/model-card.md"
+      }
+    ],
+    "page_convention": "1-based PDF pages; model card uses named sections",
+    "version": "official model card revision 7be56fe773e72b6f5ca93c1ae45d828ddb893922"
+  },
+  "reader_profile": {
+    "domain": "computer-science-ai",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "en+zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "systems",
+      "computer-science-ai"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "Full primary-source text and original figure/table images"
+    ]
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 2,
+    "key": 2,
+    "key_explained": 2
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "Dev is Qwen3.6-35B-A3B post-trained with 127K SFT examples then RL.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/tree/7be56fe773e72b6f5ca93c1ae45d828ddb893922",
+          "anchor": "Post-training"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "claim": "All seven aggregate scores improve over the base under the card protocol.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/tree/7be56fe773e72b6f5ca93c1ae45d828ddb893922",
+          "anchor": "Benchmark performance table"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "claim": "Every harness improves on Terminal-Bench.",
+      "status": "unsupported",
+      "evidence": [
+        {
+          "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/tree/7be56fe773e72b6f5ca93c1ae45d828ddb893922",
+          "anchor": "Terminal-Bench per-harness rows"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "claim": "Penalty adaptations cause all gains.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/tree/7be56fe773e72b6f5ca93c1ae45d828ddb893922",
+          "anchor": "Post-training; no isolated ablation"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "claim": "Million-token configuration establishes million-token reasoning quality.",
+      "status": "unsupported",
+      "evidence": [
+        {
+          "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/tree/7be56fe773e72b6f5ca93c1ae45d828ddb893922",
+          "anchor": "Processing Ultra-Long Texts"
+        }
+      ]
+    }
+  ],
+  "scope_note": "Primary source: official model card retrieved November 11, 2026; repository revision 7be56fe773e72b6f5ca93c1ae45d828ddb893922 recorded in API metadata. This is a model-card analysis, not a separate paper. Two original unnumbered figures receive local numbering. September 28 download statistics elsewhere remain historical."
+}

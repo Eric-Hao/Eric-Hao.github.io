@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "Tuning Real-World Image Restoration at Inference: A Test-Time Scaling Paradigm for Flow Matching Models",
+    "sources": [
+      "https://arxiv.org/abs/2603.22027v1"
+    ],
+    "page_convention": "Physical PDF pages, starting at 1; supplement included."
+  },
+  "claims": [
+    {
+      "id": "p5",
+      "claim": "**How to read:** Compare the input branches, look-ahead box, and surviving green paths in order.\n\n**Key observation:** Figure 2 (p. 5) is the full computation graph. On the left, a lightweight SwinIR restorer makes a reference image for Qwen2.5-VL to describe. The original low-quality image remains a conditioning branch. The middle-bottom MSPDE box previews candidate futures using several partial denoising steps. On the right, green paths survive the reward selection and red paths are discarded. **Boundary:** Snowflakes/fire icons distinguish frozen and trainable modules during training; they do not indicate test-time gradient updates.\n\nThis supports the separation of training-time conditioning from inference search.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2603.22027v1",
+          "page": 5,
+          "asset": "assets/pages/page-005.png"
+        }
+      ]
+    },
+    {
+      "id": "p8",
+      "claim": "**How to read:** Compare row content and method columns, noting missing ground truth for real images.\n\n**Key observation:** Figure 3 (p. 8) compares columns of methods across a synthetic animal-detail example and three real-image examples. ResFlow-Tuner often renders crisp fur, faces, and architecture. **Boundary:** The real rows lack a ground-truth column, so they support appearance comparisons rather than proving identity preservation or correct fine texture.\n\nThis supports a selected-example appearance comparison.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2603.22027v1",
+          "page": 8,
+          "asset": "assets/pages/page-008.png"
+        }
+      ]
+    },
+    {
+      "id": "p11",
+      "claim": "**How to read:** Compare paired fidelity metrics separately from no-reference quality scores.\n\n**Key observation:** Tables 1–2 (p. 11) show the central trade-off. Mild DIV2K PSNR is 23.11 versus BSRGAN 27.63, while CLIPIQA+ reaches 0.7925. On LSDIR the full model reports LPIPS 0.3721, DISTS 0.1406, and FID 19.82. RealSR MANIQA/MUSIQ are 0.6205/72.34; DRealSR values are 0.6192/71.82. **Boundary:** These favor perceptual quality but do not overturn the measured fidelity loss on the paired synthetic benchmark.\n\nThis supports perceptual gains rather than universal reconstruction superiority.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2603.22027v1",
+          "page": 11,
+          "asset": "assets/pages/page-011.png"
+        }
+      ]
+    },
+    {
+      "id": "p12",
+      "claim": "**How to read:** Compare OCR against the GT ceiling, then ablations against their compute budgets.\n\n**Key observation:** Table 3 (p. 12) uses PaddleOCR v3 on 200 Occluded RoadText images. Precision/recall are 42.23%/49.75%, above FaithDiff 36.45%/46.74%, but below ground truth 52.72%/56.67%. Table 4 separates components: adding captions improves LPIPS 0.3856→0.3721; UMMF beats direct addition (0.4223) and ControlNet (0.4056); the ensemble improves over each individual reward and listed pairs. **Boundary:** These are within-system controls, not proof of reward robustness outside the tested data.\n\nThis supports component usefulness at a substantial computational price.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2603.22027v1",
+          "page": 12,
+          "asset": "assets/pages/page-012.png"
+        }
+      ]
+    },
+    {
+      "id": "p17",
+      "claim": "**How to read:** Compare the left rank axis and the right cumulative top-K bars.\n\n**Key observation:** Figure 4 (p. 17) shows an average rank near 1.2, roughly 80% top-1, and 98% top-2 selection for the proposed method. The described study uses 64 participants and 50 images; the later normalization mentions 100 groups without clearly reconciling that count. **Boundary:** Error bars and aggregated preference should not be read as calibrated uncertainty about exact scene recovery.\n\nThis supports human preference among the presented candidates.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2603.22027v1",
+          "page": 17,
+          "asset": "assets/pages/page-017.png"
+        }
+      ]
+    },
+    {
+      "id": "p22",
+      "claim": "**How to read:** Compare the hoof boundary and hair pattern relative to the GT panels.\n\n**Key observation:** Figure 5 (p. 22) ablates TTS, captions, and reward ensembling on an animal hoof and a face. The no-TTS version is smoother; removing captions or the ensemble changes structures and textures. Ground truth is included, making visible that a more elaborate hair or hoof texture can still depart from the reference. The example supports component relevance, not a universal ordering.\n\nThis supports the visible influence of search and semantic guidance.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2603.22027v1",
+          "page": 22,
+          "asset": "assets/pages/page-022.png"
+        }
+      ]
+    },
+    {
+      "id": "p23",
+      "claim": "**How to read:** Compare kernel repetition and petal/background geometry against ground truth.\n\n**Key observation:** Figure 6 (p. 23) repeats the same controls on corn and flowers. Inspect repeated kernels, petal boundaries, and background geometry, not sharpness alone. The full model has more coherent local patterns, but generated detail remains a hypothesis. **Boundary:** Together with Table 4, these figures offer both qualitative and quantitative support for the search design.\n\nThis supports local pattern coherence in these examples.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2603.22027v1",
+          "page": 23,
+          "asset": "assets/pages/page-023.png"
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "visual_coverage": {
+    "total_numbered": 14,
+    "key": 9,
+    "key_explained": 9
+  },
+  "reading_order": [
+    "Problem and prerequisites",
+    "Mechanism and equations",
+    "All main tables",
+    "Supplementary controls and limitations"
+  ],
+  "limitations": [
+    "Paper-reported results; no independent training or benchmark rerun.",
+    "Page facsimiles preserve context instead of presenting unverified extracted crops."
+  ]
+}

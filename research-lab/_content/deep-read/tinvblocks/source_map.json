@@ -1,0 +1,121 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "T-InvBlocks: what invertibility can and cannot preserve",
+    "version": "arXiv:2412.13508v1, 18 December 2024; AAAI 2025 manuscript",
+    "sources": [
+      "https://arxiv.org/pdf/2412.13508v1"
+    ],
+    "local_pdf": "paper.pdf",
+    "sha256": "4a4fb34f33a5e561b4c182e7878b2c328001224091e680eb341ddb976e898f74",
+    "page_convention": "1-based PDF pages"
+  },
+  "reader_profile": {
+    "domain": "computer-science-ai",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "en + zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "computer-vision"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 9,
+    "key": 7,
+    "key_explained": 7
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "claims": [
+    {
+      "id": "figure-2-p003",
+      "claim": "Each later branch reads already updated earlier branches. This triangular dependence makes inversion possible without inverting the convolutional subnetworks themselves. The diagram does not imply the three streams are independent: deliberate cross-stream interaction is the whole point.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2412.13508v1",
+          "locator": "Figure 2, PDF p.3"
+        }
+      ]
+    },
+    {
+      "id": "figure-3-p004",
+      "claim": "T-SAIN replaces blocks in both f and g while retaining the asymmetric compression-aware framework. The actual JPEG codec is not rendered invertible by the surrounding network. Its inverse simulator is a learned correction for expected corruption. The zero-latent strategy removes sampling, but deterministic output is not equivalent to authentic detail recovery.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2412.13508v1",
+          "locator": "Figure 3, PDF p.4"
+        }
+      ]
+    },
+    {
+      "id": "table-1-p005",
+      "claim": "At ×2, DIV2K improves 44.32→45.46 dB while parameters decrease 1.67→1.57M. At ×4, Urban100 declines 31.41→31.19 dB and parameters increase 4.35→4.67M; DIV2K improves only 35.07→35.10. Thus the evidence supports substantial ×2 gains, not uniform superiority or uniformly smaller models. These are means without seed-level uncertainty intervals.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2412.13508v1",
+          "locator": "Table 1, PDF p.5"
+        }
+      ]
+    },
+    {
+      "id": "table-2-p006",
+      "claim": "At ×4 and QF70, the score rises 29.83→30.34 dB; at QF90 it rises 30.31→30.92 dB, with 5.45M versus 6.49M parameters. This supports compression-aware transfer beyond the QF75 training setting. The +0.61 dB endpoint also shows why the prose’s approximate “0.2–0.5 dB” should not replace exact table values. Only the tested JPEG pipeline is covered, not arbitrary bitrates, codecs or chroma subsampling choices.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2412.13508v1",
+          "locator": "Table 2, PDF p.6"
+        }
+      ]
+    },
+    {
+      "id": "table-3-p006",
+      "claim": "On DIV2K, baseline IRN scores 44.32; color conversion alone falls to 44.02, zero-only rises to 45.18, and full T-IRN reaches 45.46. Most of this particular gain already appears with zero-latent training; the remaining +0.28 dB accompanies the block redesign. Because there is no complete factorial comparison of every component combination at identical parameterization, this cannot assign an independent causal contribution to every coupling function.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2412.13508v1",
+          "locator": "Table 3, PDF p.6"
+        }
+      ]
+    },
+    {
+      "id": "table-4-p007",
+      "claim": "At QF80, SAIN gives 30.13, color conversion 30.47, zero-only 30.12, and T-SAIN 30.69 dB. Unlike the uncompressed experiment, zero alone does not help here. The evidence supports a context-dependent interaction between color handling, compression and coupling, rather than a universal claim that sampling always harms reconstruction.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2412.13508v1",
+          "locator": "Table 4, PDF p.7"
+        }
+      ]
+    },
+    {
+      "id": "figure-5-p007",
+      "claim": "The feather and building-grid crops illustrate sharper recovered structure under compression. They help interpret the numerical gains but remain selected examples, not a rate of artifact-free restoration. Their two quality settings also cannot isolate the effect of each individual block.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2412.13508v1",
+          "locator": "Figure 5, PDF p.7"
+        }
+      ]
+    }
+  ]
+}

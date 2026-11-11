@@ -159,6 +159,26 @@ A convenience script `run_server.sh` is available for native Ruby (rbenv) or Doc
 # Choose option 1 for native Ruby, option 2 for Docker
 ```
 
+### Cloud environment (verified 2026-11-11)
+
+The complete production build was verified with Ruby **3.2.2**, Bundler
+**2.2.19**, Jekyll **3.10.0**, and all **43 locked gems**. The isolated cloud
+installation and gem caches live outside the checkout. `Gemfile.lock` stays
+unchanged and `BUNDLE_FROZEN=true` prevents dependency resolution drift.
+
+In the configured cloud workspace:
+
+```bash
+source /workspace/scratch/b7ea28637fb3/cloud-ruby/activate.sh
+JEKYLL_ENV=production bundle _2.2.19_ exec jekyll build --safe
+python3 -m http.server 4000 --bind 127.0.0.1 --directory _site
+```
+
+The preview server is loopback-only; this does not publish the site. Rebuild the
+Research Notes sources first when changing their canonical content, following
+`research-lab/README.md`. The full-site check covers the homepage and all 22
+research article routes, including exclusion of authoring inputs from `_site`.
+
 ### Platform Notes
 
 - **Apple Silicon (arm64):** `ruby:3.3` is multi-arch, but the `Gemfile.lock` pins a precompiled `nokogiri-x86_64-linux` gem, so `--platform linux/amd64` is required (Podman emulates it via QEMU). The `image platform does not match` warning is harmless.

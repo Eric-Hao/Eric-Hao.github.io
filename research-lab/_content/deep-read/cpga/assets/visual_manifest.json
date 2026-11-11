@@ -1,0 +1,1073 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:07:20.474176+00:00",
+  "source_pdf": "sources/paper.pdf",
+  "source_sha256": "8fc433133ddf155050f5ffa10b1de4234ad96d93f82c225f572cfc9d00ae1c0a",
+  "page_count": 11,
+  "render_dpi": 150,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 75084,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 7440,
+      "caption_count": 1
+    },
+    {
+      "page": 2,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 6698,
+      "caption_count": 0
+    },
+    {
+      "page": 3,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 6483,
+      "caption_count": 2
+    },
+    {
+      "page": 4,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 8200,
+      "caption_count": 1
+    },
+    {
+      "page": 5,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 8014,
+      "caption_count": 1
+    },
+    {
+      "page": 6,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 7661,
+      "caption_count": 1
+    },
+    {
+      "page": 7,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 8610,
+      "caption_count": 5
+    },
+    {
+      "page": 8,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 4522,
+      "caption_count": 2
+    },
+    {
+      "page": 9,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 9111,
+      "caption_count": 0
+    },
+    {
+      "page": 10,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 7125,
+      "caption_count": 0
+    },
+    {
+      "page": 11,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 1220,
+      "caption_count": 0
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p001",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 1,
+      "caption": "Comparison between previous methods and our CPGA. Compared with previous methods, the coding priors are extracted from the bitstream to input into our enhancement model for VQE.",
+      "raw_text": "Figure 1. Comparison between previous methods and our CPGA. Compared with previous methods, the coding priors are extracted from the bitstream to input into our enhancement model for VQE.",
+      "caption_bbox_points": [
+        308.862,
+        361.133,
+        545.109,
+        392.016
+      ],
+      "caption_bbox_pixels": [
+        643,
+        752,
+        1136,
+        817
+      ],
+      "suggested_crop_bbox_points": [
+        38.406,
+        1.0,
+        573.594,
+        402.016
+      ],
+      "suggested_crop_bbox_pixels": [
+        80,
+        2,
+        1195,
+        838
+      ],
+      "candidate_crop": "crops/figure-1-p001.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        1115,
+        836
+      ],
+      "source_page_image": "pages/page-001.png",
+      "source_page_text": "text/pages/page-001.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": true,
+      "visual_verification": "not-performed",
+      "review_notes": "",
+      "key": false,
+      "classification_reason": "Redundant conceptual or feature illustration; mechanisms and causal evidence are covered by the architecture and ablation objects.",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "Nonessential duplicate; recorded in inventory but not repeated in the explanation.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p001.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-1-p003",
+      "label": "Table 1",
+      "kind": "table",
+      "number": "1",
+      "page": 3,
+      "caption": "Comparison between existing video enhancement datasets and our dataset.",
+      "raw_text": "Table 1. Comparison between existing video enhancement datasets and our dataset.",
+      "caption_bbox_points": [
+        148.108,
+        75.706,
+        447.119,
+        84.672
+      ],
+      "caption_bbox_pixels": [
+        309,
+        158,
+        931,
+        176
+      ],
+      "suggested_crop_bbox_points": [
+        53.623,
+        65.706,
+        541.601,
+        320.933
+      ],
+      "suggested_crop_bbox_pixels": [
+        112,
+        137,
+        1128,
+        669
+      ],
+      "candidate_crop": "crops/table-1-p003.png",
+      "selected_asset": "crops/table-1-p003-verified.png",
+      "candidate_crop_size_pixels": [
+        1018,
+        533
+      ],
+      "source_page_image": "pages/page-003.png",
+      "source_page_text": "text/pages/page-003.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-1-p003.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        57,
+        548,
+        180
+      ]
+    },
+    {
+      "id": "figure-2-p003",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 3,
+      "caption": "Some examples of LQ frames, motion vectors, predictive frames and residual frames in proposed VCP dataset.",
+      "raw_text": "Figure 2. Some examples of LQ frames, motion vectors, predictive frames and residual frames in proposed VCP dataset.",
+      "caption_bbox_points": [
+        308.862,
+        321.256,
+        545.109,
+        341.181
+      ],
+      "caption_bbox_pixels": [
+        643,
+        669,
+        1136,
+        711
+      ],
+      "suggested_crop_bbox_points": [
+        298.862,
+        191.893,
+        555.109,
+        351.181
+      ],
+      "suggested_crop_bbox_pixels": [
+        623,
+        400,
+        1156,
+        732
+      ],
+      "candidate_crop": "crops/figure-2-p003.png",
+      "selected_asset": "crops/figure-2-p003-verified.png",
+      "candidate_crop_size_pixels": [
+        535,
+        333
+      ],
+      "source_page_image": "pages/page-003.png",
+      "source_page_text": "text/pages/page-003.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-2-p003.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        305,
+        195,
+        548,
+        346
+      ]
+    },
+    {
+      "id": "figure-3-p004",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 4,
+      "caption": "The architecture of CPGA. The MVs and predictive frames are fed into the ITA module to obtain the temporally-aggregated feature, and current residual frame is utilized in the MNA module to obtain the spatially-aggregated feature.",
+      "raw_text": "Figure 3. The architecture of CPGA. The MVs and predictive frames are fed into the ITA module to obtain the temporally-aggregated feature, and current residual frame is utilized in the MNA module to obtain the spatially-aggregated feature.",
+      "caption_bbox_points": [
+        50.112,
+        316.814,
+        545.111,
+        336.739
+      ],
+      "caption_bbox_pixels": [
+        104,
+        660,
+        1136,
+        702
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        48.924,
+        574.946,
+        346.739
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        102,
+        1198,
+        722
+      ],
+      "candidate_crop": "crops/figure-3-p004.png",
+      "selected_asset": "crops/figure-3-p004-verified.png",
+      "candidate_crop_size_pixels": [
+        1115,
+        622
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-3-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        43,
+        580,
+        338
+      ]
+    },
+    {
+      "id": "figure-4-p005",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 5,
+      "caption": "The structure of non-local aggregation unit (NLAU).",
+      "raw_text": "Figure 4. The structure of non-local aggregation unit (NLAU).",
+      "caption_bbox_points": [
+        314.998,
+        269.183,
+        538.979,
+        278.149
+      ],
+      "caption_bbox_pixels": [
+        656,
+        561,
+        1123,
+        579
+      ],
+      "suggested_crop_bbox_points": [
+        303.33,
+        63.714,
+        550.539,
+        288.149
+      ],
+      "suggested_crop_bbox_pixels": [
+        632,
+        133,
+        1147,
+        600
+      ],
+      "candidate_crop": "crops/figure-4-p005.png",
+      "selected_asset": "crops/figure-4-p005-verified.png",
+      "candidate_crop_size_pixels": [
+        516,
+        469
+      ],
+      "source_page_image": "pages/page-005.png",
+      "source_page_text": "text/pages/page-005.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-4-p005.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        309,
+        41,
+        548,
+        285
+      ]
+    },
+    {
+      "id": "figure-5-p006",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 6,
+      "caption": "The structure of the quality enhancement (QE) module and the shift channel attention block (SCAB).",
+      "raw_text": "Figure 5. The structure of the quality enhancement (QE) module and the shift channel attention block (SCAB).",
+      "caption_bbox_points": [
+        50.112,
+        234.156,
+        286.359,
+        254.081
+      ],
+      "caption_bbox_pixels": [
+        104,
+        488,
+        597,
+        529
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        64.68,
+        296.359,
+        264.081
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        135,
+        617,
+        550
+      ],
+      "candidate_crop": "crops/figure-5-p006.png",
+      "selected_asset": "crops/figure-5-p006-verified.png",
+      "candidate_crop_size_pixels": [
+        535,
+        417
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-5-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        42,
+        295,
+        258
+      ]
+    },
+    {
+      "id": "table-2-p007",
+      "label": "Table 2",
+      "kind": "table",
+      "number": "2",
+      "page": 7,
+      "caption": "Quantitative comparison in terms of ∆PSNR (dB) and ∆SSIM (×10−2) under LDB configuration. Red text indicates the best and blue text indicates the second best performance. * Video resolutions: Class A (2560×1600), Class B (1920×1080), Class C (832×480), Class D (416×240) and Class E (1280×720).",
+      "raw_text": "Table 2. Quantitative comparison in terms of ∆PSNR (dB) and ∆SSIM (×10−2) under LDB configuration. Red text indicates the best and blue text indicates the second best performance. * Video resolutions: Class A (2560×1600), Class B (1920×1080), Class C (832×480), Class D (416×240) and Class E (1280×720).",
+      "caption_bbox_points": [
+        50.112,
+        46.207,
+        545.112,
+        78.848
+      ],
+      "caption_bbox_pixels": [
+        104,
+        96,
+        1136,
+        164
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        36.207,
+        555.112,
+        322.677
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        75,
+        1156,
+        672
+      ],
+      "candidate_crop": "crops/table-2-p007.png",
+      "selected_asset": "crops/table-2-p007-verified.png",
+      "candidate_crop_size_pixels": [
+        1074,
+        598
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-2-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        43,
+        549,
+        320
+      ]
+    },
+    {
+      "id": "table-3-p007",
+      "label": "Table 3",
+      "kind": "table",
+      "number": "3",
+      "page": 7,
+      "caption": "Quantitative comparison in terms of ∆PSNR (dB) and ∆SSIM (×10−2) under RA configuration. Red text indicates the best and blue text indicates the second best performance.",
+      "raw_text": "Table 3. Quantitative comparison in terms of ∆PSNR (dB) and ∆SSIM (×10−2) under RA configuration. Red text indicates the best and blue text indicates the second best performance.",
+      "caption_bbox_points": [
+        50.112,
+        330.0,
+        286.361,
+        361.091
+      ],
+      "caption_bbox_pixels": [
+        104,
+        688,
+        597,
+        752
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        84.212,
+        529.367,
+        371.091
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        175,
+        1103,
+        773
+      ],
+      "candidate_crop": "crops/table-3-p007.png",
+      "selected_asset": "crops/table-3-p007-verified.png",
+      "candidate_crop_size_pixels": [
+        1020,
+        599
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-3-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        327,
+        293,
+        431
+      ]
+    },
+    {
+      "id": "figure-6-p007",
+      "label": "Figure 6",
+      "kind": "figure",
+      "number": "6",
+      "page": 7,
+      "caption": "PSNR curves of HEVC, STDF-R3L, STDR and our model on BasketballPass testing sequence under LDB configura- tion at QP=37.",
+      "raw_text": "Figure 6. PSNR curves of HEVC, STDF-R3L, STDR and our model on BasketballPass testing sequence under LDB configura- tion at QP=37.",
+      "caption_bbox_points": [
+        50.112,
+        514.334,
+        286.359,
+        545.217
+      ],
+      "caption_bbox_pixels": [
+        104,
+        1072,
+        597,
+        1136
+      ],
+      "suggested_crop_bbox_points": [
+        24.718,
+        436.626,
+        325.629,
+        555.217
+      ],
+      "suggested_crop_bbox_pixels": [
+        51,
+        910,
+        678,
+        1157
+      ],
+      "candidate_crop": "crops/figure-6-p007.png",
+      "selected_asset": "crops/figure-6-p007-verified.png",
+      "candidate_crop_size_pixels": [
+        628,
+        248
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-6-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        440,
+        293,
+        547
+      ]
+    },
+    {
+      "id": "table-4-p007",
+      "label": "Table 4",
+      "kind": "table",
+      "number": "4",
+      "page": 7,
+      "caption": "The comparison of parameters and FPS.",
+      "raw_text": "Table 4. The comparison of parameters and FPS.",
+      "caption_bbox_points": [
+        339.297,
+        330.208,
+        514.68,
+        339.174
+      ],
+      "caption_bbox_pixels": [
+        707,
+        688,
+        1072,
+        707
+      ],
+      "suggested_crop_bbox_points": [
+        320.518,
+        320.208,
+        533.456,
+        426.904
+      ],
+      "suggested_crop_bbox_pixels": [
+        668,
+        667,
+        1111,
+        889
+      ],
+      "candidate_crop": "crops/table-4-p007.png",
+      "selected_asset": "crops/table-4-p007-verified.png",
+      "candidate_crop_size_pixels": [
+        445,
+        223
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-4-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        310,
+        327,
+        548,
+        420
+      ]
+    },
+    {
+      "id": "table-5-p007",
+      "label": "Table 5",
+      "kind": "table",
+      "number": "5",
+      "page": 7,
+      "caption": "The ablation study of coding priors.",
+      "raw_text": "Table 5. The ablation study of coding priors.",
+      "caption_bbox_points": [
+        347.012,
+        426.66,
+        506.964,
+        435.626
+      ],
+      "caption_bbox_pixels": [
+        723,
+        889,
+        1056,
+        908
+      ],
+      "suggested_crop_bbox_points": [
+        320.518,
+        356.892,
+        524.243,
+        445.626
+      ],
+      "suggested_crop_bbox_pixels": [
+        668,
+        744,
+        1092,
+        928
+      ],
+      "candidate_crop": "crops/table-5-p007.png",
+      "selected_asset": "crops/table-5-p007-verified.png",
+      "candidate_crop_size_pixels": [
+        426,
+        186
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-5-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        310,
+        426,
+        550,
+        522
+      ]
+    },
+    {
+      "id": "figure-7-p008",
+      "label": "Figure 7",
+      "kind": "figure",
+      "number": "7",
+      "page": 8,
+      "caption": "Visual results obtained by using different enhancement methods. The settings in the LQ sequences: BasketballPass at QP = 22 (RA), Cactus at QP = 27 (LDB), RaceHorses QP = 32 (RA), and KristenAndSara at QP = 37 (LDB).",
+      "raw_text": "Figure 7. Visual results obtained by using different enhancement methods. The settings in the LQ sequences: BasketballPass at QP = 22 (RA), Cactus at QP = 27 (LDB), RaceHorses QP = 32 (RA), and KristenAndSara at QP = 37 (LDB).",
+      "caption_bbox_points": [
+        50.112,
+        326.357,
+        545.111,
+        346.282
+      ],
+      "caption_bbox_pixels": [
+        104,
+        680,
+        1136,
+        721
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        47.056,
+        555.111,
+        356.282
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        98,
+        1156,
+        742
+      ],
+      "candidate_crop": "crops/figure-7-p008.png",
+      "selected_asset": "crops/figure-7-p008-verified.png",
+      "candidate_crop_size_pixels": [
+        1074,
+        645
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-7-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        51,
+        550,
+        346
+      ]
+    },
+    {
+      "id": "table-6-p008",
+      "label": "Table 6",
+      "kind": "table",
+      "number": "6",
+      "page": 8,
+      "caption": "Quantitative comparison on MFQE-CP dataset and VCP(LDP) dataset in terms of ∆PSNR (dB) and ∆SSIM (×10−2) LDP configuration at QP=37.",
+      "raw_text": "Table 6. Quantitative comparison on MFQE-CP dataset and VCP(LDP) dataset in terms of ∆PSNR (dB) and ∆SSIM (×10−2) LDP configuration at QP=37.",
+      "caption_bbox_points": [
+        308.862,
+        356.091,
+        545.112,
+        386.975
+      ],
+      "caption_bbox_pixels": [
+        643,
+        742,
+        1136,
+        806
+      ],
+      "suggested_crop_bbox_points": [
+        298.862,
+        346.091,
+        555.115,
+        723.407
+      ],
+      "suggested_crop_bbox_pixels": [
+        623,
+        721,
+        1156,
+        1507
+      ],
+      "candidate_crop": "crops/table-6-p008.png",
+      "selected_asset": "crops/table-6-p008-verified.png",
+      "candidate_crop_size_pixels": [
+        535,
+        787
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-6-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        306,
+        352,
+        550,
+        440
+      ]
+    },
+    {
+      "id": "figure-8-p008",
+      "label": "Figure 8",
+      "kind": "figure",
+      "number": "8",
+      "page": 8,
+      "caption": "Feature visual results obtained by using coding priors.",
+      "candidate_crop": "crops/figure-8-p008.png",
+      "key": false,
+      "selected_for_report": false,
+      "classification_reason": "Redundant conceptual or feature illustration; mechanisms and causal evidence are covered by the architecture and ablation objects.",
+      "selection_reason": "Nonessential duplicate; recorded in inventory but not repeated in the explanation.",
+      "report_role": null,
+      "selected_asset": null,
+      "manual_crop_bbox_points": [
+        47,
+        353,
+        289,
+        427
+      ],
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet."
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "Visual Autoregressive Modeling for Image Super-Resolution",
+    "sources": [
+      "https://arxiv.org/abs/2501.18993v1"
+    ],
+    "page_convention": "Physical PDF pages, starting at 1; supplement included."
+  },
+  "claims": [
+    {
+      "id": "p4",
+      "claim": "**How to read:** Compare the LR prefix path, scale mask, and aligned coordinate locations.\n\n**Key observation:** Figures 1–2 (p. 4) connect the whole system to its attention design. Figure 1 runs from the low-resolution prefix through next-scale prediction to a residual diffusion refiner. Figure 2 shows the attention mask: a scale may consult the low-resolution condition and already generated scales, but not future scales. Its coordinate diagram aligns positions across different grid sizes. **Boundary:** These are architecture diagrams, not measured proof of fidelity.\n\nThis supports the proposed information-flow design.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 4,
+          "asset": "assets/pages/page-004.png"
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "claim": "**How to read:** Compare the early scales, dropped scales, and residual branch separately.\n\n**Key observation:** Figure 3 (p. 5) visualizes multi-scale quantization, scale dropout, and continuous residuals. Early token maps carry coarse semantics; later maps progressively fill structure. Randomly dropping scales during tokenizer training prevents all information from concentrating in the last scale. **Boundary:** The residual panel motivates recovering what the sum of discrete codebook features misses; it does not establish that the residual is pure sensor noise.\n\nThis supports the division of discrete structure and continuous detail.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 5,
+          "asset": "assets/pages/page-005.png"
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "claim": "**How to read:** Compare metric arrows before comparing the sharpness of example images.\n\n**Key observation:** Table 1 and Figure 4 (p. 6) make the perceptual objective visible. On RealSR, VARSR has PSNR 24.61 versus BSRGAN 26.38, and LPIPS 0.3504 versus SwinIR 0.2614, both worse for VARSR. Its MANIQA 0.5570 and MUSIQ 71.26 exceed SeeSR 0.5370/69.56. Figure 4 illustrates sharp, detailed output, but the numeric comparison prevents calling this a universal fidelity advance. **Boundary:** PSNR/SSIM reward matched reference structure, LPIPS/DISTS are reference perceptual distances, and no-reference IQA measures appearance.\n\nThis supports a perception–fidelity trade-off.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 6,
+          "asset": "assets/pages/page-006.png"
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "claim": "**How to read:** Compare the full comparison, conditioning ablation, and runtime table independently.\n\n**Key observation:** The dense p. 7 combines four distinct checks. Figure 5 compares birds, plants, and buildings against ground truth and restoration baselines; inspect shape as well as detail. Table 2 favors prefix conditioning: DRealSR SSIM 0.7652 versus direct addition 0.6902, ControlNet 0.7188, and extra cross-attention 0.7314. Figure 6 shows corresponding conditioning effects on spatial content including traffic-light/text details. Table 3 reports 0.59 seconds/image versus DiffBIR 5.85 and StableSR 18.70, about 9.9× faster than DiffBIR in that setup. **Boundary:** These timings do not include amortized pretraining cost and should not be transferred to another GPU without matching resolution, batch size, and timing scope.\n\nThis supports prefix-conditioning effectiveness and setup-specific speed.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 7,
+          "asset": "assets/pages/page-007.png"
+        }
+      ]
+    },
+    {
+      "id": "p8",
+      "claim": "**How to read:** Compare one controlled component at a time and the direction of every metric.\n\n**Key observation:** Tables 4–6 and Figures 7–9 (p. 8) test the three central mechanisms. Applying scale-aligned RoPE to both branches raises DRealSR SSIM from 0.7424 to 0.7652, though MANIQA is slightly higher when only discrete tokens use it. The refiner raises SSIM 0.7583→0.7652 but slightly worsens LPIPS 0.3532→0.3541. Quality CFG raises MANIQA 0.4052→0.5362 while SSIM falls 0.8004→0.7652 and LPIPS worsens 0.2961→0.3541. Figure 7 illustrates spatial structure, Figure 8 separates discrete/refined output, and Figure 9 sweeps guidance strength. They explain the trade-off rather than erasing it. **Boundary:** Table 6’s guided MUSIQ is 67.63, not the 68.15 of the main DRealSR table.\n\nThis supports different components optimizing different objectives.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 8,
+          "asset": "assets/pages/page-008.png"
+        }
+      ]
+    },
+    {
+      "id": "p13",
+      "claim": "**How to read:** Compare the literal quantization row labels and the quality-filtering branches.\n\n**Key observation:** Table 7 and Figure 10 (p. 13) clarify tokenizer and data dependencies. The reconstruction table labels PSNR 34.33 “with quantization” and 29.86 “without quantization”; that reported direction should not be silently reversed to fit a simplistic quantization-loss story. Figure 10 shows the curated high/low-quality branches, making quality-conditioned training dependent on dataset selection and quality scorers. **Boundary:** Their biases can propagate into guidance.\n\nThis supports the dependence on tokenizer and data preparation.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 13,
+          "asset": "assets/pages/page-013.png"
+        }
+      ]
+    },
+    {
+      "id": "p14",
+      "claim": "**How to read:** Compare dataset statistics separately from class-to-image pretraining results.\n\n**Key observation:** Tables 8–9 and Figure 11 (p. 14) support the scale of data preparation and class-conditioned pretraining. Table 8 lists the assembled dataset sources; Table 9 evaluates class-to-image generation before SR transfer; Figure 11 gives visual examples of that prior. **Boundary:** This is enabling evidence for a stronger generative model, not an isolated test that autoregressive architecture alone caused the SR improvement.\n\nThis supports a strong pretrained prior as an enabling factor.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 14,
+          "asset": "assets/pages/page-014.png"
+        }
+      ]
+    },
+    {
+      "id": "p15",
+      "claim": "**How to read:** Compare the human-study population and the reference-free test setting.\n\n**Key observation:** Tables 10–11 (p. 15) add preference and real-LR evidence. Twenty visual researchers make 1,000 choices over 50 images, with VARSR selected 55.2% versus SeeSR 20.3%. This is a narrow participant population. On RealLR200, MANIQA/CLIPIQA/MUSIQ are 0.5177/0.7513/71.92 versus SeeSR 0.4844/0.6553/68.37. **Boundary:** With no paired reference, those figures establish quality-score preference, not exact reconstruction accuracy.\n\nThis supports preference and quality-score advantages.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 15,
+          "asset": "assets/pages/page-015.png"
+        }
+      ]
+    },
+    {
+      "id": "p16",
+      "claim": "**How to read:** Compare the data, crop, and dropout controls without merging their effects.\n\n**Key observation:** Tables 12–14 and Figure 12 (p. 16) separate data, crop, and dropout effects. Larger data improves perceptual scores but DRealSR SSIM falls 0.7750→0.7652 and LPIPS worsens 0.3441→0.3541. The center-crop recipe similarly trades SSIM 0.7772→0.7652 for MUSIQ 63.19→68.15; Figure 12 illustrates the altered visual outcome. Scale dropout improves SSIM 0.7567→0.7652 and LPIPS 0.3667→0.3541, yet MANIQA falls slightly 0.5410→0.5362. **Boundary:** “All components improve all metrics” would contradict these controls.\n\nThis supports distinct contributions and trade-offs from each training choice.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 16,
+          "asset": "assets/pages/page-016.png"
+        }
+      ]
+    },
+    {
+      "id": "p17",
+      "claim": "**How to read:** Compare the identity and hairstyle failures, not just texture sharpness.\n\n**Key observation:** Figures 13–14 (p. 17) finish with both a positive ablation and explicit failures. Figure 13 visualizes scale-dropout effects. Figure 14 shows an altered Spider-Man identity and simplified historical hairstyle: the model resolves ambiguous inputs toward familiar or simpler patterns. These are substantive failure cases for semantic fidelity, not minor cosmetic imperfections, and limit applications where identity or historical detail matters.\n\nThis supports a concrete semantic-fidelity limitation.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2501.18993v1",
+          "page": 17,
+          "asset": "assets/pages/page-017.png"
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "visual_coverage": {
+    "total_numbered": 31,
+    "key": 28,
+    "key_explained": 28
+  },
+  "reading_order": [
+    "Problem and prerequisites",
+    "Mechanism and equations",
+    "All main tables",
+    "Supplementary controls and limitations"
+  ],
+  "limitations": [
+    "Paper-reported results; no independent training or benchmark rerun.",
+    "Page facsimiles preserve context instead of presenting unverified extracted crops."
+  ]
+}

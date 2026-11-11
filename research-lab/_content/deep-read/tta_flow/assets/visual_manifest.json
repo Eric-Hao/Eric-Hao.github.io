@@ -1,0 +1,1251 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:04:16.487955+00:00",
+  "source_pdf": "paper.pdf",
+  "source_sha256": "0ab85ac63e928e0fb5f082ad4df273fef778d1548ead73d538765ac5b3ab9071",
+  "page_count": 27,
+  "render_dpi": 130,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 86868,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 2620,
+      "caption_count": 0
+    },
+    {
+      "page": 2,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 2047,
+      "caption_count": 1
+    },
+    {
+      "page": 3,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 3164,
+      "caption_count": 0
+    },
+    {
+      "page": 4,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 2905,
+      "caption_count": 0
+    },
+    {
+      "page": 5,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 11098,
+      "caption_count": 1
+    },
+    {
+      "page": 6,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 2807,
+      "caption_count": 0
+    },
+    {
+      "page": 7,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 3394,
+      "caption_count": 0
+    },
+    {
+      "page": 8,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 2148,
+      "caption_count": 1
+    },
+    {
+      "page": 9,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 3557,
+      "caption_count": 0
+    },
+    {
+      "page": 10,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 3910,
+      "caption_count": 0
+    },
+    {
+      "page": 11,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 16521,
+      "caption_count": 2
+    },
+    {
+      "page": 12,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-012.png",
+      "text": "text/pages/page-012.txt",
+      "text_characters": 4075,
+      "caption_count": 2
+    },
+    {
+      "page": 13,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-013.png",
+      "text": "text/pages/page-013.txt",
+      "text_characters": 3060,
+      "caption_count": 0
+    },
+    {
+      "page": 14,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-014.png",
+      "text": "text/pages/page-014.txt",
+      "text_characters": 3023,
+      "caption_count": 0
+    },
+    {
+      "page": 15,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-015.png",
+      "text": "text/pages/page-015.txt",
+      "text_characters": 3311,
+      "caption_count": 0
+    },
+    {
+      "page": 16,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-016.png",
+      "text": "text/pages/page-016.txt",
+      "text_characters": 2672,
+      "caption_count": 0
+    },
+    {
+      "page": 17,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-017.png",
+      "text": "text/pages/page-017.txt",
+      "text_characters": 1680,
+      "caption_count": 1
+    },
+    {
+      "page": 18,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-018.png",
+      "text": "text/pages/page-018.txt",
+      "text_characters": 3116,
+      "caption_count": 0
+    },
+    {
+      "page": 19,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-019.png",
+      "text": "text/pages/page-019.txt",
+      "text_characters": 3580,
+      "caption_count": 0
+    },
+    {
+      "page": 20,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-020.png",
+      "text": "text/pages/page-020.txt",
+      "text_characters": 3683,
+      "caption_count": 0
+    },
+    {
+      "page": 21,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-021.png",
+      "text": "text/pages/page-021.txt",
+      "text_characters": 1857,
+      "caption_count": 0
+    },
+    {
+      "page": 22,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-022.png",
+      "text": "text/pages/page-022.txt",
+      "text_characters": 512,
+      "caption_count": 1
+    },
+    {
+      "page": 23,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-023.png",
+      "text": "text/pages/page-023.txt",
+      "text_characters": 473,
+      "caption_count": 1
+    },
+    {
+      "page": 24,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-024.png",
+      "text": "text/pages/page-024.txt",
+      "text_characters": 413,
+      "caption_count": 1
+    },
+    {
+      "page": 25,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-025.png",
+      "text": "text/pages/page-025.txt",
+      "text_characters": 411,
+      "caption_count": 1
+    },
+    {
+      "page": 26,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-026.png",
+      "text": "text/pages/page-026.txt",
+      "text_characters": 416,
+      "caption_count": 1
+    },
+    {
+      "page": 27,
+      "width_pixels": 748,
+      "height_pixels": 1111,
+      "width_points": 413.858,
+      "height_points": 615.118,
+      "image": "pages/page-027.png",
+      "text": "text/pages/page-027.txt",
+      "text_characters": 415,
+      "caption_count": 1
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p002",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 2,
+      "caption": "ResFlow-Tuner delivers superior performance on both synthetic (the first row) and real-world (the second row) benchmarks, excelling in terms of perceptual quality and objective image quality assessment.",
+      "raw_text": "Fig. 1: ResFlow-Tuner delivers superior performance on both synthetic (the first row) and real-world (the second row) benchmarks, excelling in terms of perceptual quality and objective image quality assessment.",
+      "caption_bbox_points": [
+        34.016,
+        278.765,
+        379.904,
+        309.649
+      ],
+      "caption_bbox_pixels": [
+        61,
+        503,
+        686,
+        559
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        24.017,
+        389.904,
+        319.649
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        43,
+        704,
+        577
+      ],
+      "candidate_crop": "crops/figure-1-p002.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        661,
+        535
+      ],
+      "source_page_image": "pages/page-002.png",
+      "source_page_text": "text/pages/page-002.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p002.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p005",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 5,
+      "caption": "Architecture of the proposed ResFlow-Tuner. ResFlow-Tuner enhances train- ing performance through the seamless integration of multi-modal guidance. During in- ference, it adopts a greedy optimization strategy for path selection, augmented by our Multi-Step Partial Denoising Estimator (MSPDE) for more accurate path evaluation.",
+      "raw_text": "Fig. 2: Architecture of the proposed ResFlow-Tuner. ResFlow-Tuner enhances train- ing performance through the seamless integration of multi-modal guidance. During in- ference, it adopts a greedy optimization strategy for path selection, augmented by our Multi-Step Partial Denoising Estimator (MSPDE) for more accurate path evaluation.",
+      "caption_bbox_points": [
+        34.016,
+        294.854,
+        379.922,
+        336.697
+      ],
+      "caption_bbox_pixels": [
+        61,
+        532,
+        686,
+        608
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        24.012,
+        389.922,
+        346.697
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        43,
+        704,
+        626
+      ],
+      "candidate_crop": "crops/figure-2-p005.png",
+      "selected_asset": "pages/page-005.png",
+      "candidate_crop_size_pixels": [
+        662,
+        583
+      ],
+      "source_page_image": "pages/page-005.png",
+      "source_page_text": "text/pages/page-005.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p5"
+      ],
+      "text_asset": "text/visuals/figure-2-p005.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-3-p008",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 8,
+      "caption": "Qualitative comparisons on both synthetic (the first row) and real-world (the last three rows) benchmarks. Please zoom in for a better view.",
+      "raw_text": "Fig. 3: Qualitative comparisons on both synthetic (the first row) and real-world (the last three rows) benchmarks. Please zoom in for a better view.",
+      "caption_bbox_points": [
+        34.016,
+        230.795,
+        379.913,
+        250.72
+      ],
+      "caption_bbox_pixels": [
+        61,
+        417,
+        686,
+        453
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        24.018,
+        389.913,
+        260.72
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        43,
+        704,
+        471
+      ],
+      "candidate_crop": "crops/figure-3-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        662,
+        428
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/figure-3-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-1-p011",
+      "label": "Table 1",
+      "kind": "table",
+      "number": "1",
+      "page": 11,
+      "caption": "Quantitative comparison with state-of-the-art methods on synthetic bench- mark. ‘I’, ‘II’, and ‘III’ denote the datasets with mild, medium, and severe degrada- tions, respectively. The best and second performances are marked in red and blue, respectively.",
+      "raw_text": "Table 1: Quantitative comparison with state-of-the-art methods on synthetic bench- mark. ‘I’, ‘II’, and ‘III’ denote the datasets with mild, medium, and severe degrada- tions, respectively. The best and second performances are marked in red and blue, respectively.",
+      "caption_bbox_points": [
+        34.016,
+        34.514,
+        379.913,
+        76.357
+      ],
+      "caption_bbox_pixels": [
+        61,
+        62,
+        686,
+        138
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        24.514,
+        389.913,
+        236.881
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        44,
+        704,
+        428
+      ],
+      "candidate_crop": "crops/table-1-p011.png",
+      "selected_asset": "pages/page-011.png",
+      "candidate_crop_size_pixels": [
+        662,
+        384
+      ],
+      "source_page_image": "pages/page-011.png",
+      "source_page_text": "text/pages/page-011.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p11"
+      ],
+      "text_asset": "text/visuals/table-1-p011.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-2-p011",
+      "label": "Table 2",
+      "kind": "table",
+      "number": "2",
+      "page": 11,
+      "caption": "Quantitative comparison with state-of-the-art methods on real-world bench- mark. The best and second performances are marked in red and blue, respectively.",
+      "raw_text": "Table 2: Quantitative comparison with state-of-the-art methods on real-world bench- mark. The best and second performances are marked in red and blue, respectively.",
+      "caption_bbox_points": [
+        34.016,
+        241.42,
+        379.913,
+        261.52
+      ],
+      "caption_bbox_pixels": [
+        61,
+        436,
+        686,
+        472
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        80.139,
+        389.913,
+        271.52
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        145,
+        704,
+        490
+      ],
+      "candidate_crop": "crops/table-2-p011.png",
+      "selected_asset": "pages/page-011.png",
+      "candidate_crop_size_pixels": [
+        662,
+        347
+      ],
+      "source_page_image": "pages/page-011.png",
+      "source_page_text": "text/pages/page-011.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p11"
+      ],
+      "text_asset": "text/visuals/table-2-p011.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-3-p012",
+      "label": "Table 3",
+      "kind": "table",
+      "number": "3",
+      "page": 12,
+      "caption": "Recognition results on the dataset of Occluded RoadText 2024 [45] (OCR recognition). The best and second performances are highlighted in red and blue, re- spectively.",
+      "raw_text": "Table 3: Recognition results on the dataset of Occluded RoadText 2024 [45] (OCR recognition). The best and second performances are highlighted in red and blue, re- spectively.",
+      "caption_bbox_points": [
+        34.016,
+        34.514,
+        379.886,
+        65.398
+      ],
+      "caption_bbox_pixels": [
+        61,
+        62,
+        686,
+        118
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        24.514,
+        389.886,
+        107.603
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        44,
+        704,
+        194
+      ],
+      "candidate_crop": "crops/table-3-p012.png",
+      "selected_asset": "pages/page-012.png",
+      "candidate_crop_size_pixels": [
+        661,
+        151
+      ],
+      "source_page_image": "pages/page-012.png",
+      "source_page_text": "text/pages/page-012.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p12"
+      ],
+      "text_asset": "text/visuals/table-3-p012.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-4-p012",
+      "label": "Table 4",
+      "kind": "table",
+      "number": "4",
+      "page": 12,
+      "caption": "Ablation results on LSDIR-Val for ResFlow-Tuner.",
+      "raw_text": "Table 4: Ablation results on LSDIR-Val for ResFlow-Tuner.",
+      "caption_bbox_points": [
+        83.919,
+        114.581,
+        329.966,
+        123.722
+      ],
+      "caption_bbox_pixels": [
+        152,
+        207,
+        596,
+        223
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        104.581,
+        389.907,
+        444.929
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        189,
+        704,
+        803
+      ],
+      "candidate_crop": "crops/table-4-p012.png",
+      "selected_asset": "pages/page-012.png",
+      "candidate_crop_size_pixels": [
+        661,
+        616
+      ],
+      "source_page_image": "pages/page-012.png",
+      "source_page_text": "text/pages/page-012.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p12"
+      ],
+      "text_asset": "text/visuals/table-4-p012.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-4-p017",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 17,
+      "caption": "User Study Results. (a) Average ranking of the six methods across all partici- pants and test images, with error bars. (b) Top-K ratios (K=1,2,3,4,5) demonstrating our method’s consistency in producing high-quality results across diverse image con- tent.",
+      "raw_text": "Fig. 4: User Study Results. (a) Average ranking of the six methods across all partici- pants and test images, with error bars. (b) Top-K ratios (K=1,2,3,4,5) demonstrating our method’s consistency in producing high-quality results across diverse image con- tent.",
+      "caption_bbox_points": [
+        34.016,
+        238.157,
+        379.886,
+        279.999
+      ],
+      "caption_bbox_pixels": [
+        61,
+        430,
+        686,
+        506
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        24.015,
+        389.886,
+        289.999
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        43,
+        704,
+        524
+      ],
+      "candidate_crop": "crops/figure-4-p017.png",
+      "selected_asset": "pages/page-017.png",
+      "candidate_crop_size_pixels": [
+        661,
+        481
+      ],
+      "source_page_image": "pages/page-017.png",
+      "source_page_text": "text/pages/page-017.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p17"
+      ],
+      "text_asset": "text/visuals/figure-4-p017.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-5-p022",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 22,
+      "caption": "Visual comparisons for ablation study on ResFlow-Tuner (1/2).",
+      "raw_text": "Fig. 5: Visual comparisons for ablation study on ResFlow-Tuner (1/2).",
+      "caption_bbox_points": [
+        62.97,
+        560.486,
+        350.935,
+        569.627
+      ],
+      "caption_bbox_pixels": [
+        114,
+        1012,
+        634,
+        1028
+      ],
+      "suggested_crop_bbox_points": [
+        43.899,
+        157.636,
+        369.959,
+        579.627
+      ],
+      "suggested_crop_bbox_pixels": [
+        79,
+        285,
+        668,
+        1047
+      ],
+      "candidate_crop": "crops/figure-5-p022.png",
+      "selected_asset": "pages/page-022.png",
+      "candidate_crop_size_pixels": [
+        589,
+        763
+      ],
+      "source_page_image": "pages/page-022.png",
+      "source_page_text": "text/pages/page-022.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p22"
+      ],
+      "text_asset": "text/visuals/figure-5-p022.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-6-p023",
+      "label": "Figure 6",
+      "kind": "figure",
+      "number": "6",
+      "page": 23,
+      "caption": "Visual comparisons for ablation study on ResFlow-Tuner (2/2).",
+      "raw_text": "Fig. 6: Visual comparisons for ablation study on ResFlow-Tuner (2/2).",
+      "caption_bbox_points": [
+        62.97,
+        560.486,
+        350.935,
+        569.627
+      ],
+      "caption_bbox_pixels": [
+        114,
+        1012,
+        634,
+        1028
+      ],
+      "suggested_crop_bbox_points": [
+        43.899,
+        157.636,
+        369.959,
+        579.627
+      ],
+      "suggested_crop_bbox_pixels": [
+        79,
+        285,
+        668,
+        1047
+      ],
+      "candidate_crop": "crops/figure-6-p023.png",
+      "selected_asset": "pages/page-023.png",
+      "candidate_crop_size_pixels": [
+        589,
+        763
+      ],
+      "source_page_image": "pages/page-023.png",
+      "source_page_text": "text/pages/page-023.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p23"
+      ],
+      "text_asset": "text/visuals/figure-6-p023.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-7-p024",
+      "label": "Figure 7",
+      "kind": "figure",
+      "number": "7",
+      "page": 24,
+      "caption": "Visual comparisons on real-world benchmarks (1/2). Please zoom in for a better view.",
+      "raw_text": "Fig. 7: Visual comparisons on real-world benchmarks (1/2). Please zoom in for a better view.",
+      "caption_bbox_points": [
+        34.016,
+        535.33,
+        379.886,
+        555.255
+      ],
+      "caption_bbox_pixels": [
+        61,
+        967,
+        686,
+        1003
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        163.115,
+        389.886,
+        565.255
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        295,
+        704,
+        1021
+      ],
+      "candidate_crop": "crops/figure-7-p024.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        661,
+        727
+      ],
+      "source_page_image": "pages/page-024.png",
+      "source_page_text": "text/pages/page-024.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-7-p024.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-8-p025",
+      "label": "Figure 8",
+      "kind": "figure",
+      "number": "8",
+      "page": 25,
+      "caption": "Visual comparisons on real-world benchmarks (2/2). Please zoom in for a better view.",
+      "raw_text": "Fig. 8: Visual comparisons on real-world benchmarks (2/2). Please zoom in for a better view.",
+      "caption_bbox_points": [
+        34.016,
+        535.33,
+        379.886,
+        555.255
+      ],
+      "caption_bbox_pixels": [
+        61,
+        967,
+        686,
+        1003
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        163.115,
+        389.886,
+        565.255
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        295,
+        704,
+        1021
+      ],
+      "candidate_crop": "crops/figure-8-p025.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        661,
+        727
+      ],
+      "source_page_image": "pages/page-025.png",
+      "source_page_text": "text/pages/page-025.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-8-p025.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-9-p026",
+      "label": "Figure 9",
+      "kind": "figure",
+      "number": "9",
+      "page": 26,
+      "caption": "Visual comparisons on synthetic benchmarks (1/2). Please zoom in for a better view.",
+      "raw_text": "Fig. 9: Visual comparisons on synthetic benchmarks (1/2). Please zoom in for a better view.",
+      "caption_bbox_points": [
+        34.016,
+        489.336,
+        379.886,
+        509.261
+      ],
+      "caption_bbox_pixels": [
+        61,
+        884,
+        686,
+        919
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        94.361,
+        389.886,
+        519.261
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        170,
+        704,
+        938
+      ],
+      "candidate_crop": "crops/figure-9-p026.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        661,
+        768
+      ],
+      "source_page_image": "pages/page-026.png",
+      "source_page_text": "text/pages/page-026.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-9-p026.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-10-p027",
+      "label": "Figure 10",
+      "kind": "figure",
+      "number": "10",
+      "page": 27,
+      "caption": "Visual comparisons on synthetic benchmarks (2/2). Please zoom in for a better view.",
+      "raw_text": "Fig. 10: Visual comparisons on synthetic benchmarks (2/2). Please zoom in for a better view.",
+      "caption_bbox_points": [
+        34.016,
+        489.336,
+        379.895,
+        509.261
+      ],
+      "caption_bbox_pixels": [
+        61,
+        884,
+        686,
+        919
+      ],
+      "suggested_crop_bbox_points": [
+        24.016,
+        94.361,
+        389.895,
+        519.261
+      ],
+      "suggested_crop_bbox_pixels": [
+        43,
+        170,
+        704,
+        938
+      ],
+      "candidate_crop": "crops/figure-10-p027.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        661,
+        768
+      ],
+      "source_page_image": "pages/page-027.png",
+      "source_page_text": "text/pages/page-027.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-10-p027.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    }
+  ]
+}

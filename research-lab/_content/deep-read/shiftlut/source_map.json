@@ -1,0 +1,198 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "ShiftLUT: learning where a tiny table should look",
+    "version": "arXiv:2603.00906v2, 3 March 2026",
+    "sources": [
+      "https://arxiv.org/pdf/2603.00906v2"
+    ],
+    "local_pdf": "paper.pdf",
+    "sha256": "76b62a09fd76dfa7b003cae233489e28552d5b81dbe71698319dc037a092dd3e",
+    "page_convention": "1-based PDF pages"
+  },
+  "reader_profile": {
+    "domain": "computer-science-ai",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "en + zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "computer-vision"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 19,
+    "key": 14,
+    "key_explained": 14
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "claims": [
+    {
+      "id": "figure-2-p003",
+      "claim": "The low two bits receive only shallow extraction before addition to the high-six-bit branch. ShiftBlocks combine a channel-wise displacement, pointwise channel mixing, and a spatial depthwise convolution. PixelShuffle rearranges channels into subpixels. The learned predictor is discarded after stage one; deployment is not a dynamic offset network. Panel (c) caches interpolated values once per layer so many pixels reuse them. The diagram establishes interfaces, not the accuracy of the approximation.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Figure 2, PDF p.3"
+        }
+      ]
+    },
+    {
+      "id": "algorithm-1-p014",
+      "claim": "Algorithm 1 explains why interpolation is amortized: each legal index is reconstructed once for the current layer, then every pixel performs a lookup. Reusing the buffer avoids allocating an expanded table for every layer simultaneously. This relies on sequential execution and says nothing about cache misses or memory bandwidth on another device.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Algorithm 1, PDF p.14"
+        }
+      ]
+    },
+    {
+      "id": "figure-4-p005",
+      "claim": "The symmetric low-bit branch approaches nearly all-zero activations at depth. This motivates simplifying that branch, but sparsity alone is not a causal proof: the direct comparison in §3.3 reports essentially equal average PSNR (28.19 dB) while latency drops from 164 to 84 ms. Low-bit detail is retained through shallow extraction rather than discarded.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Figure 4, PDF p.5"
+        }
+      ]
+    },
+    {
+      "id": "table-1-p006",
+      "claim": "The pair changes storage 171→104 KB, runtime 146→84 ms and Manga109 PSNR 28.83→29.16 dB. Average PSNR is 28.01→28.19 dB in this table, a +0.18 dB difference, so the abstract’s “over 0.21 dB” should not replace this explicitly tabulated comparison. Receptive-field side length changes 33→65; the approximately 3.8× claim refers to area (65²/33²), not linear span.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Table 1, PDF p.6"
+        }
+      ]
+    },
+    {
+      "id": "figure-3-p004",
+      "claim": "The diffusion index of the local attribution map rises 3.71→6.13 while the displayed patch improves 27.75→29.67 dB. The broader attribution is consistent with using more context; the example is not an average gain, and attribution is a diagnostic rather than an independent proof of causality. The multi-configuration ablation tests whether this extends beyond one patch.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Figure 3, PDF p.4"
+        }
+      ]
+    },
+    {
+      "id": "figure-8-p008",
+      "claim": "Adding LSS improves all displayed configurations, with annotated gains around 0.30–0.46 dB. Holding each configuration fixed provides stronger mechanism evidence than simply comparing larger final models. This still evaluates a limited architecture family and one benchmark, without seed-wise confidence intervals.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Figure 8, PDF p.8"
+        }
+      ]
+    },
+    {
+      "id": "table-4-p008",
+      "claim": "EAS at ε=0.4 gives 104 KB and 84 ms versus 217 KB and 81 ms, with unchanged displayed PSNR. Thus it saves over half the storage with a small timing cost, rather than making compression free. At ε=0.8, storage reaches 54 KB with small quality loss. The error criterion must be tuned to the desired trade-off.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Table 4, PDF p.8"
+        }
+      ]
+    },
+    {
+      "id": "figure-9-p008",
+      "claim": "Moving bits to the high-bit branch improves quality but increases memory steeply; 6/2 is selected as a compromise. This prevents interpreting asymmetry as “always allocate everything to the strong branch.” Its optimum depends on the bit budget and architecture.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Figure 9, PDF p.8"
+        }
+      ]
+    },
+    {
+      "id": "table-5-p012",
+      "claim": "Set5 drops 31.35→31.33 dB when shifts become deployable integers, whereas straight-through estimation and Gumbel-Softmax reach 30.91 and 31.11. The small rounding cost supports this training strategy under the tested settings; it does not establish that continuous-to-discrete conversion is universally better.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Table 5, PDF p.12"
+        }
+      ]
+    },
+    {
+      "id": "table-6-p013",
+      "claim": "TinyLUT benefits more consistently than four-channel SPLUT. Importantly SPLUT’s BSDS100 score decreases 26.68→26.65, contradicting the nearby prose’s blanket “non-negative” characterization. Channel diversity is a plausible explanation for different gains, not a controlled causal isolation of channel count.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Table 6, PDF p.13"
+        }
+      ]
+    },
+    {
+      "id": "table-2-p007",
+      "claim": "At noise level 15, Set12 improves 32.22→32.43 dB over TinyLUT-F, using 60 rather than 187 KB. This supports a restoration task beyond enlargement; it is still a known synthetic noise model.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Table 2, PDF p.7"
+        }
+      ]
+    },
+    {
+      "id": "table-3-p007",
+      "claim": "At JPEG quality 10, Classic5 PSNR-B improves 28.74→29.12 and LIVE1 28.67→28.96 over TinyLUT-F. Blocking-aware quality is relevant here; it does not establish robustness to arbitrary codecs.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Table 3, PDF p.7"
+        }
+      ]
+    },
+    {
+      "id": "table-7-p013",
+      "claim": "Higher JPEG qualities preserve the LUT advantage, but SwinIR remains stronger on these listed conditions. The claim is a favorable efficiency/quality point among compact tables, not beating all neural restorers.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Table 7, PDF p.13"
+        }
+      ]
+    },
+    {
+      "id": "table-8-p013",
+      "claim": "At noise levels 25 and 50 the proposed table outperforms the listed LUT baselines, while DnCNN, FFDNet and SwinIR remain stronger. Noise robustness within this family does not erase the capacity trade-off.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2603.00906v2",
+          "locator": "Table 8, PDF p.13"
+        }
+      ]
+    }
+  ]
+}

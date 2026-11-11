@@ -1,0 +1,285 @@
+# KAT-Coder-V2.5-Dev Model Card
+
+KAT-Coder-V2.5-Dev Model Card
+
+Primary source: official model card retrieved November 11, 2026; repository revision 7be56fe773e72b6f5ca93c1ae45d828ddb893922 recorded in API metadata. This is a model-card analysis, not a separate paper. Two original unnumbered figures receive local numbering. September 28 download statistics elsewhere remain historical.
+
+主来源：2026年11月11日获取的官方模型卡，API 元数据记录仓库修订7be56fe773e72b6f5ca93c1ae45d828ddb893922。本文为模型卡分析，不是独立论文；两张原始无编号图在此赋予本地编号。其他位置9月28日下载量仍属历史数据。
+
+## 1. 核心思想一句话总结（Elevator Pitch）
+
+<!-- pair:1-1:en -->
+
+KAT-Coder-V2.5-Dev adapts agent training to an open Qwen base, showing why reliable execution and behavior-specific rewards matter as much as final-answer correctness.
+
+<!-- pair:1-1:zh -->
+
+KAT Dev把智能体训练迁移到开放Qwen底座，揭示可靠执行与行为奖励的重要性。
+
+## 2. 论文背景与动机（Background & Motivation）
+
+<!-- pair:2-1:en -->
+
+This is a reading of an official model card, not a separate research paper. The card cites the KAT-Coder-V2.5 Technical Report and says most of its training recipe is retained, but Dev is a distinct checkpoint based on Qwen3.6-35B-A3B. It is not the V2.5 report’s full-sized model under a new name. The scientific question here is transfer: which parts of an agent-training system survive a change of base model, and which need adaptation? [Card: Highlights; Post-training]
+
+<!-- pair:2-1:zh -->
+
+本文解读官方模型卡，而非另一篇独立论文。模型卡引用 KAT-Coder-V2.5 技术报告，并称沿用大部分训练配方，但 Dev 是以 Qwen3.6-35B-A3B 为基础的不同检查点，不能视为原报告完整模型的改名版。这里的研究问题是迁移：更换底座后，智能体训练系统哪些部分可复用，哪些必须调整？[模型卡：Highlights；Post-training]
+
+<!-- pair:2-2:en -->
+
+### Key concepts and prerequisites
+
+<!-- pair:2-2:zh -->
+
+### 必要概念与前置知识
+
+<!-- pair:2-3:en -->
+
+The model has approximately 35B total parameters and 3B activated per token through a mixture-of-experts architecture. Sparse activation reduces the active computation, not the need to store the full weights. The release is Apache-2.0 licensed and text-only: its language weights do not include a vision tower. Agent capability comes from a policy interacting with tools through a harness, the program that defines tools, prompts, context handling and stopping rules. A rollout is one recorded interaction trajectory; a verifier scores its result. [Card: metadata; Serving]
+
+<!-- pair:2-3:zh -->
+
+模型约有350亿总参数，每词元通过混合专家架构激活约30亿。稀疏激活减少参与计算的参数，不代表只需存储激活部分权重。发布采用 Apache-2.0，且仅含文本语言权重，没有视觉编码塔。智能体能力来自策略借助执行框架与工具交互；执行框架定义工具、提示、上下文处理和停止规则。一次 rollout 是记录下来的交互轨迹，验证器为结果评分。[模型卡：元数据；Serving]
+
+<!-- pair:2-4:en -->
+
+A binary reward is attractive because passing tests appears objective. But a policy can change the way it uses tools before it learns to repair code: issuing many calls at once increases observations, consumes context and creates execution errors. Those errors then change the training signal. This feedback loop motivates studying the model, harness and reward together rather than treating the harness as neutral plumbing.
+
+<!-- pair:2-4:zh -->
+
+二元奖励很诱人，因为测试通过看似客观。但策略可能先改变工具使用方式，再学会修代码：一次发出大量调用会增加观察内容、占满上下文并制造执行错误，错误又反过来改变训练信号。因此应共同研究模型、执行框架与奖励，而非把框架视为中性的管道。
+
+## 3. 核心方法/模型详解（The Core Method/Model）
+
+<!-- pair:3-1:en -->
+
+### Two stages, with infrastructure kept explicit
+
+<!-- pair:3-1:zh -->
+
+### 两个阶段，明确基础设施角色
+
+<!-- pair:3-2:en -->
+
+The card first applies supervised fine-tuning to 127K examples, then reinforcement learning. SFT learns example behavior; RL adjusts the policy using rewards from attempted tasks. It retains four designs: token-in-token-out (TITO) equality between rollout and training; truncated importance sampling (TIS) to limit extreme corrections for stale asynchronous samples; reliable sandboxes and verifiers; and hierarchical rewards from harness feedback, including meaningful partial progress on failures. [Card: Post-training]
+
+<!-- pair:3-2:zh -->
+
+模型卡先用12.7万示例做监督微调，再做强化学习。SFT 学习示例行为，RL 用尝试任务得到的奖励调整策略。保留四项设计：采样与训练词元完全一致的 TITO；截断重要性采样 TIS，限制异步旧样本带来的极端修正；可靠沙箱与验证器；以及根据框架反馈构建的分层奖励，让失败中的有意义进展也有价值。[模型卡：Post-training]
+
+<!-- pair:3-3:en -->
+
+TITO matters because decoding a token sequence to text and encoding it again need not recover the same tokens, especially around tool markup and chat templates. The learner must optimize the sequence that actually produced the observation. TIS addresses a different mismatch: the sampled policy may lag the policy being updated. Limiting importance weights reduces variance but introduces a bias–variance trade-off. The card does not disclose its clipping threshold, token/turn granularity, exact RL objective, optimizer, batch sizes or reward coefficients. Do not import every equation or hyperparameter from the V2.5 paper as though independently specified for Dev.
+
+<!-- pair:3-3:zh -->
+
+TITO 重要，是因为把词元解码成文本再编码，未必恢复原词元，尤其在工具标记与对话模板边界。学习器必须优化真正生成观察结果的序列。TIS 解决另一种不一致：采样策略可能落后于更新中的策略；限制重要性权重可降低方差，但存在偏差与方差的权衡。卡片没有披露截断阈值、词元或轮次粒度、确切 RL 目标、优化器、批大小及奖励系数；不能把 V2.5 论文的每个公式或超参数当成 Dev 已独立明确的配置。
+
+<!-- pair:3-4:en -->
+
+### Worked example: why a correct patch is not enough
+
+<!-- pair:3-4:zh -->
+
+### 贯穿例子：补丁正确还不够
+
+<!-- pair:3-5:en -->
+
+Imagine fixing a parser that rejects an empty list. A useful trajectory reads the relevant file, reproduces the failure, edits the guard and reruns targeted plus regression tests. A pathological trajectory dispatches dozens of redundant searches in parallel, fills the context with duplicated output and never reaches verification. A final 0/1 reward gives both an almost-correct repair and this pathological trace zero. Hierarchical feedback can distinguish useful localization from failed calls, empty call blocks and repetition. This is an explanatory example, not an additional measured task.
+
+<!-- pair:3-5:zh -->
+
+设想修复一个拒绝空列表的解析器。有效轨迹会读相关文件、复现失败、修改判断条件，再运行针对性与回归测试。病态轨迹则并行发出几十个重复搜索，让重复输出塞满上下文，最终无法验证。最终0/1奖励会把接近正确的修复与病态轨迹都记为零；分层反馈可区分有效定位和调用失败、空调用块、重复内容。这是机制演示，不是额外测量的实验任务。
+
+<!-- pair:3-6:en -->
+
+In the initial binary-reward experiment, the authors report collapse as early as epoch two and occasionally more than 70 parallel calls in one turn. They add penalties for excessive parallelism, failed calls, empty tool-call blocks and repetition, reporting stable training for ten epochs. These are base-specific adjustments, not evidence that parallel calls are intrinsically bad. Good parallelism can save time; an undocumented threshold or indiscriminate failure penalty could punish useful exploration. The card gives no controlled ablation separating the individual penalties. [Card: Post-training]
+
+<!-- pair:3-6:zh -->
+
+初始二元奖励实验报告最早在第二轮训练崩溃，单轮有时超过70个并行调用。作者随后惩罚过度并行、失败调用、空调用块及重复，报告可稳定训练十轮。这是底座特定调整，不证明并行调用本身有害；合理并行可省时间，未公开的阈值或一律惩罚失败可能误伤探索。模型卡没有控制消融来分离各项惩罚的贡献。[模型卡：Post-training]
+
+<!-- pair:3-7:en -->
+
+### Serving choices are part of the experiment
+
+<!-- pair:3-7:zh -->
+
+### 服务配置也是实验的一部分
+
+<!-- pair:3-8:en -->
+
+The native context limit is 262,144 tokens including input and output. The card recommends SGLang ≥0.5.10 or vLLM ≥0.19.0, with a Qwen reasoning parser and qwen3_coder tool parser. vLLM requires language-model-only loading because vision weights are absent; SGLang may need an equivalent text-only option. Its eight-way tensor-parallel examples are deployment examples, not a demonstrated minimum hardware requirement. Transformers serving additionally requires accelerate for sharded loading. These instructions are documented here, not executed. [Card: Quickstart]
+
+<!-- pair:3-8:zh -->
+
+原生上下文上限为262,144词元，包含输入与输出。模型卡建议 SGLang≥0.5.10 或 vLLM≥0.19.0，使用 Qwen 推理解析器及 qwen3_coder 工具解析器。由于无视觉权重，vLLM 必须采用 language-model-only 加载；SGLang 也可能需要等效纯文本选项。八路张量并行命令是部署示例，并非经验证的最低硬件要求；Transformers 分片加载还需要 accelerate。这里只解释文档，未执行部署。[模型卡：Quickstart]
+
+<!-- pair:3-9:en -->
+
+The API examples use temperature 0.7, top-p 0.8, top-k 20, presence penalty 1.5 and up to 32,768 generated tokens. These serving examples differ from benchmark settings below. Non-thinking mode uses enable_thinking=False; preserve_thinking=True retains older reasoning blocks instead of only the latest user-message reasoning. The card claims potential consistency and cache benefits, not a quantified benchmark ablation. YaRN factor 4 and a configured limit of 1,010,000 tokens are extrapolation guidance, not evidence of native million-token accuracy. Larger contexts also increase memory and may change quality. [Card: API; Preserve Thinking; Ultra-Long Texts]
+
+<!-- pair:3-9:zh -->
+
+API 示例使用温度0.7、top-p 0.8、top-k 20、存在惩罚1.5及最多32,768个生成词元，不能混同下文基准设置。非思考模式用 enable_thinking=False；preserve_thinking=True 保留较早推理块，而不只保留最近用户消息对应推理。模型卡称可能改善一致性和缓存效率，但未提供量化消融。YaRN 倍率4与1,010,000词元配置上限是外推指南，并非原生百万词元准确性的证据；更长上下文也增加内存并可能改变质量。[模型卡：API；Preserve Thinking；Ultra-Long Texts]
+
+## 4. 实验与结果分析（Experiments & Results）
+
+<!-- pair:4-1:en -->
+
+### Read scores with their exact harness
+
+<!-- pair:4-1:zh -->
+
+### 分数必须与具体框架一起读
+
+<!-- pair:4-2:en -->
+
+The authors downloaded all compared checkpoints and ran them in-house with vLLM or SGLang. Each benchmark was evaluated once, with reruns only for obvious errors. All use pass@1, one attempted solution rather than best-of-many selection. Repository metrics measure executable issue resolution; Terminal-Bench measures command-line tasks; PinchBench tool workflows; SciCode scientific programming; KAT Code Bench internal engineering tasks. Single runs do not provide confidence intervals. [Card: Benchmark performance]
+
+<!-- pair:4-2:zh -->
+
+作者下载全部对比检查点，在内部以 vLLM 或 SGLang 运行。各基准只评一次，仅明显错误才重跑；全部用 pass@1，即一次尝试，而非多次择优。仓库指标测可执行问题修复，Terminal-Bench 测命令行任务，PinchBench 测工具工作流，SciCode 测科学编程，KAT Code Bench 测内部工程任务。单次运行不能提供置信区间。[模型卡：Benchmark performance]
+
+<!-- pair:4-3:en -->
+
+| Benchmark group | Harness | Temperature / top-p | Context |
+|---|---|---|---|
+| SWE Verified, Multilingual, Pro; KAT Code | Claude Code 2.1.195 | 1.0 / 0.95 | 256K |
+| Terminal-Bench 2.1 | Terminus 2 and Claude Code | 0.7 / 1.0 | 256K |
+| PinchBench | OpenClaw 2026.3.13 | 0.7 / 1.0 | 256K |
+| SciCode | Scientific-code evaluation | 0.6 / 1.0 | 256K |
+
+<!-- pair:4-3:zh -->
+
+| 基准组 | 框架 | 温度 / top-p | 上下文 |
+|---|---|---|---|
+| SWE Verified、Multilingual、Pro；KAT Code | Claude Code 2.1.195 | 1.0 / 0.95 | 256K |
+| Terminal-Bench 2.1 | Terminus 2 与 Claude Code | 0.7 / 1.0 | 256K |
+| PinchBench | OpenClaw 2026.3.13 | 0.7 / 1.0 | 256K |
+| SciCode | 科学代码评测 | 0.6 / 1.0 | 256K |
+
+<!-- pair:4-4:en -->
+
+### Figure 1: Seven tasks, different margins
+
+<!-- pair:4-4:zh -->
+
+### 图1：七项任务，不同增幅
+
+<!-- pair:4-5:en -->
+
+**How to read.** Compare bars within a panel, not bar heights across panels. Axes are truncated and peers differ between panels; the chart rounds the underlying table.
+
+<!-- pair:4-5:zh -->
+
+**如何读。** 在同一面板内比较，不要跨面板比较柱高；纵轴截断，各面板对手也不同，图中数字对表格做了舍入。
+
+![Figure 1: Seven tasks, different margins](assets/crops/KAT-Coder-V2.5-Dev-Benchmarks.png)
+
+<!-- pair:4-7:en -->
+
+**Key observation, inference and limitations.** Dev improves over its Qwen3.6 base on all seven displayed aggregate metrics. The largest shown aggregate gain is Terminal-Bench, +9.00 points, but this conceals a decrease under Terminus and a large increase under Claude Code. The visual therefore supports harness-conditioned improvement, not uniform improvement under every agent. Rounded 46.0 and 41.0 correspond to 45.96 and 41.02 in the table. These are internal comparisons, not directly comparable to the V2.5 report’s external PinchBench snapshot.
+
+<!-- pair:4-7:zh -->
+
+**关键观察、推理桥与边界。** Dev 在展示的七项汇总指标上均超过 Qwen3.6 底座，最大汇总增幅为 Terminal-Bench 的9.00点，但它掩盖 Terminus 下下降与 Claude Code 下大幅上升。因此图支持依赖框架的提升，而非所有智能体下都一致改善。图中46.0、41.0对应原表45.96、41.02。这是内部对比，不能直接与 V2.5 报告引用的外部 PinchBench 快照混比。
+
+<!-- pair:4-8:en -->
+
+| Metric | Dev | Qwen3.6 base | Difference (points) |
+|---|---:|---:|---:|
+| SWE Verified | 69.40 | 64.40 | +5.00 |
+| SWE Multilingual | 63.00 | 57.00 | +6.00 |
+| SWE Pro | 45.96 | 40.63 | +5.33 |
+| Terminal average | 41.02 | 32.02 | +9.00 |
+| Terminal / Terminus | 32.60 | 34.83 | −2.23 |
+| Terminal / Claude Code | 49.44 | 29.20 | +20.24 |
+| PinchBench | 93.43 | 92.21 | +1.22 |
+| SciCode | 44.20 | 37.53 | +6.67 |
+| KAT Code Bench | 46.21 | 42.76 | +3.45 |
+
+<!-- pair:4-8:zh -->
+
+| 指标 | Dev | Qwen3.6 底座 | 差值（百分点） |
+|---|---:|---:|---:|
+| SWE Verified | 69.40 | 64.40 | +5.00 |
+| SWE Multilingual | 63.00 | 57.00 | +6.00 |
+| SWE Pro | 45.96 | 40.63 | +5.33 |
+| Terminal 平均 | 41.02 | 32.02 | +9.00 |
+| Terminal / Terminus | 32.60 | 34.83 | −2.23 |
+| Terminal / Claude Code | 49.44 | 29.20 | +20.24 |
+| PinchBench | 93.43 | 92.21 | +1.22 |
+| SciCode | 44.20 | 37.53 | +6.67 |
+| KAT Code Bench | 46.21 | 42.76 | +3.45 |
+
+<!-- pair:4-9:en -->
+
+This selected table preserves the most informative controlled baseline, the original Qwen3.6 model; it is not the card’s entire model leaderboard. For context, Qwen3.5-27B reaches 68.60 on Verified, close to Dev’s 69.40, but 25.58 on SciCode versus 44.20. No single average captures those differences. The authors note their Qwen3.6 SWE scores are roughly ten points below official values, attributing the discrepancy to harness versions and evaluation optimizations. Qwen3.5-35B sometimes calls unavailable MultiEdit; Gemma4-26BA4B encounters context overflow and unavailable MultiEdit. A common harness controls one variable but can favor models trained for that interface. [Card: benchmark notes]
+
+<!-- pair:4-9:zh -->
+
+此精选表保留最有信息量的受控参照，即原始 Qwen3.6，并非复制模型卡全部排行榜。作为补充，Qwen3.5-27B 的 Verified 为68.60，接近 Dev 69.40，但 SciCode 为25.58，对 Dev 44.20；单一均值不能表达这些差异。作者指出内部 Qwen3.6 SWE 分数比官方约低十点，归因为框架版本与评测优化；Qwen3.5-35B 有时调用不存在的 MultiEdit，Gemma4-26BA4B 出现上下文溢出及不存在的 MultiEdit。统一框架控制一个变量，却可能偏向针对该接口训练的模型。[模型卡：基准说明]
+
+<!-- pair:4-10:en -->
+
+### Figure 2: Pass rate during one training window
+
+<!-- pair:4-10:zh -->
+
+### 图2：一个训练窗口内的通过率
+
+<!-- pair:4-11:en -->
+
+**How to read.** The x-axis shows approximately steps 60–90; the y-axis is the batch fraction passing unit tests. Read noisy observations together with the smoothed trend.
+
+<!-- pair:4-11:zh -->
+
+**如何读。** 横轴约为第60–90步，纵轴是批内通过单元测试的样本比例；同时看噪声点与平滑趋势。
+
+![Figure 2: Pass rate during one training window](assets/crops/KAT-Coder-V2.5-Dev-RL-Reward-Curve.png)
+
+<!-- pair:4-13:en -->
+
+**Key observation, inference and limitations.** The trend rises approximately from 0.505 to 0.571, with substantial local variation. The caption defines binary test success, not the full shaped training reward. This window is compatible with useful learning but does not display the entire ten epochs, a held-out score or a no-penalty control. Reported abnormal tool-call rate decreases from 9.34% to 0.28%, a 9.06-percentage-point difference, while single-turn repetition decreases from 0.34% to zero in the measured sample. Zero observed repetition is not a universal guarantee; sample sizes and uncertainty are absent.
+
+<!-- pair:4-13:zh -->
+
+**关键观察、推理桥与边界。** 趋势约从0.505升到0.571，局部波动明显。图注定义的是二元测试成功，而非完整塑形奖励。该窗口与有效学习相符，但不展示完整十轮训练、独立测试分数或不加惩罚的对照。所报异常工具调用率从9.34%降至0.28%，差9.06个百分点；单轮重复从0.34%降为测量样本中的零。观察到零重复不等于普遍保证，样本量与不确定性未提供。
+
+<!-- pair:4-14:en -->
+
+**Evidence strength:** strong for the reported within-protocol score differences; moderate for the feasibility of adapting the training recipe; weak for attributing gains to any individual penalty without matched ablations.
+
+<!-- pair:4-14:zh -->
+
+**证据强度**：已报告协议内分数差异获得强支持；训练配方可迁移的可行性有中等支持；缺乏匹配消融时，单项惩罚导致增益的归因证据较弱。
+
+## 5. 论文的贡献与影响（Contribution & Impact）
+
+<!-- pair:5-1:en -->
+
+The useful contribution is a concrete warning about recipe transfer: a base model can exploit the same environment differently, so stable learning may require inspecting trajectories and adapting rewards. Open weights make deployment experiments more accessible, but they do not make the original training fully reproducible when data, coefficients and compute are undisclosed. The card supports feasibility and a useful engineering diagnosis more strongly than a causal estimate of each intervention.
+
+<!-- pair:5-1:zh -->
+
+有用贡献是对配方迁移的具体警示：不同底座会以不同方式利用同一环境，稳定学习可能要求检查轨迹并调整奖励。开放权重方便部署实验，但当数据、系数与计算预算未披露时，不代表原始训练完全可复现。模型卡对可行性和工程诊断的支持，强于对每项干预因果效应的估计。
+
+<!-- pair:5-2:en -->
+
+Next tests should hold rollout tokens and tasks fixed while ablating each penalty; repeat each benchmark with uncertainty estimates; cross the base and Dev checkpoints with several harness versions; and measure task success, invalid-call rate, latency and token cost jointly. For long contexts, test retrieval and actual repository repair at increasing lengths rather than equating a server’s accepted limit with preserved reasoning quality. These tests would separate better coding, improved interface compatibility and merely reduced pathological output.
+
+<!-- pair:5-2:zh -->
+
+后续应固定采样词元与任务，逐项消融惩罚；重复基准并估计不确定性；交叉比较底座、Dev 与多个框架版本；同时测任务成功、无效调用率、延迟与词元成本。长上下文应逐步增加长度，测试检索和真实仓库修复，不能把服务接受的长度上限当成推理质量不变。这些实验可区分编程改善、接口兼容改善与单纯减少病态输出。
+
+## 6. 结论（Conclusion）
+
+<!-- pair:6-1:en -->
+
+**Final judgment: worth close reading with conditions.** Use Dev as an open deployment candidate and a case study in behavior-aware RL, not as a substitute citation for the full KAT-V2.5 paper. Its strongest evidence is the measured same-base improvement under disclosed harnesses and the documented parallel-call failure mode. The main boundaries are single-run evaluation, incomplete training specification, harness-sensitive results and unvalidated long-context extrapolation.
+
+<!-- pair:6-1:zh -->
+
+**最终判断：值得有条件精读。** 可将 Dev 视为开放部署候选和行为感知 RL 案例，不能拿它替代完整 KAT-V2.5 论文引用。最强证据是已披露框架下相对同一底座的测量提升，以及记录明确的并行调用故障。主要边界是单次评测、训练规范不完整、框架敏感性和未经验证的长上下文外推。

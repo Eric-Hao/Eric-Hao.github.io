@@ -759,4 +759,51 @@ body.article-page {
     font-size:13px;
   }
 }
+/* Source-verified, paired-language deep reads. The math engine is built offline. */
+.deep-read .prose { overflow-wrap:break-word; }
+.deep-read .source-note { padding:20px 24px; border:1px solid var(--line); border-radius:12px; background:var(--surface); margin:24px 0; }
+.deep-read .source-note p { font-size:14px; line-height:1.7; margin:0 0 8px; }
+.deep-read .source-note .lang-zh p { font-size:13px; }
+.deep-read .article-toc { margin:28px 0 48px; padding:20px 24px; border-block:1px solid var(--line); }
+.deep-read .article-toc ol { margin:0; padding-left:20px; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 30px; }
+.deep-read .article-toc a { display:block; font-size:14px; line-height:1.6; }
+.deep-read .article-toc span { display:block; color:var(--muted); font-size:12px; }
+.deep-read .deep-read-section { scroll-margin-top:24px; }
+.deep-read .bilingual-block { margin:0 0 27px; min-width:0; }
+.deep-read .bilingual-block .lang-en p { margin-bottom:12px; }
+.deep-read .lang-zh { color:var(--muted); }
+.deep-read .lang-zh p,.deep-read .lang-zh li { font-size:15px; line-height:1.85; color:var(--muted); }
+.deep-read .lang-zh p:last-child { margin-bottom:0; }
+.deep-read .prose h3 { margin:30px 0 16px; font:500 21px/1.45 var(--sans); }
+.deep-read .lang-zh h3 { font-size:17px; margin-top:12px; }
+.deep-read .prose li { line-height:1.75; margin-bottom:9px; }
+.deep-read .prose :where(div,section,figure,details,summary) { min-width:0; }
+.deep-read .prose blockquote { margin:20px 0; padding:4px 0 4px 20px; border-left:3px solid var(--line); }
+.deep-read .report-display-math { max-width:100%; overflow:auto; padding:8px 2px; overflow-wrap:normal; }
+.deep-read .katex-display { margin:.6em 0; }
+.deep-read .katex-display>.katex { white-space:nowrap; text-align:left; }
+.deep-read .report-table-scroll { max-width:100%; overflow:auto; margin:24px 0; border:1px solid var(--line); border-radius:8px; }
+.deep-read table { border-collapse:collapse; width:100%; font:14px/1.6 var(--sans); }
+.deep-read td,.deep-read th { border:1px solid var(--line); padding:10px 13px; vertical-align:top; }
+.deep-read th { background:var(--surface); text-align:left; }
+.deep-read .report-table-cell { min-width:8ch; max-width:36ch; overflow-wrap:anywhere; }
+.deep-read .report-figure { max-width:100%; margin:30px 0; }
+.deep-read .report-figure summary { display:block; cursor:zoom-in; list-style:none; }
+.deep-read .report-figure summary::-webkit-details-marker { display:none; }
+/* Prevent legacy disclosure-icon rotation from affecting figure content. */
+.deep-read .report-figure summary .report-image-hint,
+.deep-read .report-figure summary .report-image-viewport { transform:none; }
+.deep-read .report-image-hint { display:block; color:var(--muted); font-size:12px; padding-top:8px; }
+.deep-read .report-image-viewport { display:block; max-width:100%; overflow:auto; background:white; }
+.deep-read .report-image-viewport img { display:block; max-width:100%; height:auto; margin:0 auto; }
+.deep-read .report-figure details[open] summary { cursor:zoom-out; }
+.deep-read .report-figure details[open] .report-image-viewport { max-height:80vh; }
+.deep-read .report-figure details[open] img { max-width:none; margin:0; }
+.deep-read .report-figure summary:focus-visible,.deep-read .report-table-scroll:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+/* Keep provenance notices visible when the legacy sidebar is hidden. */
+.article-layout .prose > .source-note { display:block; }
+.source-gap { margin:24px 0; padding:20px; border:1px solid #c9ae77; border-radius:10px; background:#fff8e8; }
+@media(max-width:560px) { .deep-read .article-toc ol { grid-template-columns:1fr; } .deep-read .source-note,.deep-read .article-toc { padding:16px; } }
+@media print { .deep-read .report-image-hint { display:none; } .deep-read .report-figure details[open] img { max-width:100%; } .deep-read .report-figure details[open] .report-image-viewport { max-height:none; } }
+
 }

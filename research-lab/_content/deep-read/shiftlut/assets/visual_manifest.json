@@ -1,0 +1,1394 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:04:26.300441+00:00",
+  "source_pdf": "../paper.pdf",
+  "source_sha256": "76b62a09fd76dfa7b003cae233489e28552d5b81dbe71698319dc037a092dd3e",
+  "page_count": 14,
+  "render_dpi": 110,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 83072,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 5620,
+      "caption_count": 1
+    },
+    {
+      "page": 2,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 7387,
+      "caption_count": 0
+    },
+    {
+      "page": 3,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 9971,
+      "caption_count": 1
+    },
+    {
+      "page": 4,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 6822,
+      "caption_count": 1
+    },
+    {
+      "page": 5,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 7166,
+      "caption_count": 1
+    },
+    {
+      "page": 6,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 4223,
+      "caption_count": 2
+    },
+    {
+      "page": 7,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 5632,
+      "caption_count": 4
+    },
+    {
+      "page": 8,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 7665,
+      "caption_count": 3
+    },
+    {
+      "page": 9,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 8411,
+      "caption_count": 0
+    },
+    {
+      "page": 10,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 3852,
+      "caption_count": 0
+    },
+    {
+      "page": 11,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 5940,
+      "caption_count": 0
+    },
+    {
+      "page": 12,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-012.png",
+      "text": "text/pages/page-012.txt",
+      "text_characters": 5305,
+      "caption_count": 2
+    },
+    {
+      "page": 13,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-013.png",
+      "text": "text/pages/page-013.txt",
+      "text_characters": 4207,
+      "caption_count": 4
+    },
+    {
+      "page": 14,
+      "width_pixels": 935,
+      "height_pixels": 1210,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-014.png",
+      "text": "text/pages/page-014.txt",
+      "text_characters": 871,
+      "caption_count": 1
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p001",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 1,
+      "caption": "Model comparison in terms of storage size, PSNR and runtime on Set5 for x4 super-resolution. Our method produces a family of models that has the smallest storage size and occupies the top-left corner, indicating superior performances (PSNR on y- axis) with fast inference speed (Runtime on x-axis).",
+      "raw_text": "Figure 1. Model comparison in terms of storage size, PSNR and runtime on Set5 for x4 super-resolution. Our method produces a family of models that has the smallest storage size and occupies the top-left corner, indicating superior performances (PSNR on y- axis) with fast inference speed (Runtime on x-axis).",
+      "caption_bbox_points": [
+        317.25,
+        367.786,
+        553.497,
+        420.587
+      ],
+      "caption_bbox_pixels": [
+        485,
+        562,
+        846,
+        643
+      ],
+      "suggested_crop_bbox_points": [
+        307.25,
+        221.701,
+        563.497,
+        430.587
+      ],
+      "suggested_crop_bbox_pixels": [
+        469,
+        339,
+        861,
+        658
+      ],
+      "candidate_crop": "crops/figure-1-p001.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        392,
+        320
+      ],
+      "source_page_image": "pages/page-001.png",
+      "source_page_text": "text/pages/page-001.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": false,
+      "classification_reason": "Summary trade-off plot duplicates the complete numerical comparison in Table 1.",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "Not needed to reconstruct the argument; retained in the complete inventory.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p001.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p003",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 3,
+      "caption": "(a) Overall architecture of ShiftLUT. (b) The structure of LSS, which consists of an offset prediction network and a spatial shift operator. In Stage 1, the network predicts floating-point offsets (∆x, ∆y), which are applied via bilinear interpolation. In Stage 2, the offsets are replaced with integer-valued approximations, computed by rounding the average offset from Stage 1. (c) Illustration of the EAS inference pipeline with an example using two sampling steps. EAS precomputes and caches interpolated LUT outputs into a reusable buffer, replacing per-pixel interpolation with a single query operation for faster inference.",
+      "raw_text": "Figure 2. (a) Overall architecture of ShiftLUT. (b) The structure of LSS, which consists of an offset prediction network and a spatial shift operator. In Stage 1, the network predicts floating-point offsets (∆x, ∆y), which are applied via bilinear interpolation. In Stage 2, the offsets are replaced with integer-valued approximations, computed by rounding the average offset from Stage 1. (c) Illustration of the EAS inference pipeline with an example using two sampling steps. EAS precomputes and caches interpolated LUT outputs into a reusable buffer, replacing per-pixel interpolation with a single query operation for faster inference.",
+      "caption_bbox_points": [
+        58.5,
+        351.597,
+        553.526,
+        404.398
+      ],
+      "caption_bbox_pixels": [
+        89,
+        537,
+        846,
+        618
+      ],
+      "suggested_crop_bbox_points": [
+        47.885,
+        61.98,
+        568.472,
+        414.398
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        95,
+        868,
+        633
+      ],
+      "candidate_crop": "crops/figure-2-p003.png",
+      "selected_asset": "pages/page-003.png",
+      "candidate_crop_size_pixels": [
+        796,
+        540
+      ],
+      "source_page_image": "pages/page-003.png",
+      "source_page_text": "text/pages/page-003.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: The low two bits receive only shallow extraction before addition to the high-six-bit branch. ShiftBlocks combine a channel-wise displacement, pointwise channel mixing, and a spatial depthwise convolution. PixelShuffle rearranges channels into subpixels. The learned predictor is discarded after stage one; deployment is not a dynamic offset network. Panel (c) caches interpolated values once per layer so many pixels reuse them. The diagram establishes interfaces, not the accuracy of the approximation.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Figure 2, PDF p.3",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-2-p003.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-3-p004",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 4,
+      "caption": "Local Attribution Map (LAM) visualization for a 16×16 output patch. A larger DI indicates that a wider range of pixels contributes to the output result. Our method with LSS shows larger DI and better performance than the variant without LSS.",
+      "raw_text": "Figure 3. Local Attribution Map (LAM) visualization for a 16×16 output patch. A larger DI indicates that a wider range of pixels contributes to the output result. Our method with LSS shows larger DI and better performance than the variant without LSS.",
+      "caption_bbox_points": [
+        317.25,
+        236.104,
+        553.497,
+        278.271
+      ],
+      "caption_bbox_pixels": [
+        485,
+        361,
+        846,
+        425
+      ],
+      "suggested_crop_bbox_points": [
+        307.25,
+        71.036,
+        563.497,
+        288.271
+      ],
+      "suggested_crop_bbox_pixels": [
+        469,
+        109,
+        861,
+        440
+      ],
+      "candidate_crop": "crops/figure-3-p004.png",
+      "selected_asset": "pages/page-004.png",
+      "candidate_crop_size_pixels": [
+        392,
+        333
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: The diffusion index of the local attribution map rises 3.71→6.13 while the displayed patch improves 27.75→29.67 dB. The broader attribution is consistent with using more context; the example is not an average gain, and attribution is a diagnostic rather than an independent proof of causality. The multi-configuration ablation tests whether this extends beyond one patch.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Figure 3, PDF p.4",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-3-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-4-p005",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 5,
+      "caption": "The symmetric network architecture (top) and its corre- sponding LSB feature sparsity (bottom). The layer-wise analysis shows that feature sparsity in the LSB branch increases signifi- cantly with network depth.",
+      "raw_text": "Figure 4. The symmetric network architecture (top) and its corre- sponding LSB feature sparsity (bottom). The layer-wise analysis shows that feature sparsity in the LSB branch increases signifi- cantly with network depth.",
+      "caption_bbox_points": [
+        58.5,
+        214.654,
+        294.747,
+        256.497
+      ],
+      "caption_bbox_pixels": [
+        89,
+        328,
+        450,
+        392
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        60.883,
+        304.747,
+        266.497
+      ],
+      "suggested_crop_bbox_pixels": [
+        74,
+        93,
+        466,
+        407
+      ],
+      "candidate_crop": "crops/figure-4-p005.png",
+      "selected_asset": "pages/page-005.png",
+      "candidate_crop_size_pixels": [
+        392,
+        315
+      ],
+      "source_page_image": "pages/page-005.png",
+      "source_page_text": "text/pages/page-005.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: The symmetric low-bit branch approaches nearly all-zero activations at depth. This motivates simplifying that branch, but sparsity alone is not a causal proof: the direct comparison in §3.3 reports essentially equal average PSNR (28.19 dB) while latency drops from 164 to 84 ms. Low-bit detail is retained through shallow extraction rather than discarded.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Figure 4, PDF p.5",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-4-p005.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-1-p006",
+      "label": "Table 1",
+      "kind": "table",
+      "number": "1",
+      "page": 6,
+      "caption": "Quantitative comparisons on 5 standard SISR test sets for an upscaling factor of 4. The best and second-best results of each metric are highlighted in red and blue, respectively (the highlighting is restricted to LUT-based methods to emphasize fair comparison).",
+      "raw_text": "Table 1. Quantitative comparisons on 5 standard SISR test sets for an upscaling factor of 4. The best and second-best results of each metric are highlighted in red and blue, respectively (the highlighting is restricted to LUT-based methods to emphasize fair comparison).",
+      "caption_bbox_points": [
+        58.5,
+        257.379,
+        553.499,
+        277.304
+      ],
+      "caption_bbox_pixels": [
+        89,
+        393,
+        846,
+        424
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        247.379,
+        563.499,
+        542.529
+      ],
+      "suggested_crop_bbox_pixels": [
+        74,
+        378,
+        861,
+        829
+      ],
+      "candidate_crop": "crops/table-1-p006.png",
+      "selected_asset": "pages/page-006.png",
+      "candidate_crop_size_pixels": [
+        787,
+        452
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: The pair changes storage 171→104 KB, runtime 146→84 ms and Manga109 PSNR 28.83→29.16 dB. Average PSNR is 28.01→28.19 dB in this table, a +0.18 dB difference, so the abstract’s “over 0.21 dB” should not replace this explicitly tabulated comparison. Receptive-field side length changes 33→65; the approximately 3.8× claim refers to area (65²/33²), not linear span.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Table 1, PDF p.6",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-1-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-5-p006",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 6,
+      "caption": "Qualitative comparison for 4× super-resolution on different images.",
+      "raw_text": "Figure 5. Qualitative comparison for 4× super-resolution on different images.",
+      "caption_bbox_points": [
+        166.125,
+        542.96,
+        445.877,
+        552.25
+      ],
+      "caption_bbox_pixels": [
+        254,
+        830,
+        681,
+        844
+      ],
+      "suggested_crop_bbox_points": [
+        119.457,
+        288.339,
+        492.589,
+        562.25
+      ],
+      "suggested_crop_bbox_pixels": [
+        183,
+        441,
+        753,
+        859
+      ],
+      "candidate_crop": "crops/figure-5-p006.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        571,
+        419
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": false,
+      "classification_reason": "Selected super-resolution crops illustrate results already quantified by Table 1 and the LSS attribution example.",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "Not needed to reconstruct the argument; retained in the complete inventory.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-5-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-2-p007",
+      "label": "Table 2",
+      "kind": "table",
+      "number": "2",
+      "page": 7,
+      "caption": "The comparison for grayscale image denoising at a noise level of 15 on standard benchmark datasets. The best of each met- ric is highlighted in Red.",
+      "raw_text": "Table 2. The comparison for grayscale image denoising at a noise level of 15 on standard benchmark datasets. The best of each met- ric is highlighted in Red.",
+      "caption_bbox_points": [
+        58.5,
+        163.332,
+        294.747,
+        194.216
+      ],
+      "caption_bbox_pixels": [
+        89,
+        250,
+        450,
+        297
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        153.332,
+        304.747,
+        296.979
+      ],
+      "suggested_crop_bbox_pixels": [
+        74,
+        234,
+        466,
+        454
+      ],
+      "candidate_crop": "crops/table-2-p007.png",
+      "selected_asset": "pages/page-007.png",
+      "candidate_crop_size_pixels": [
+        392,
+        220
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: At noise level 15, Set12 improves 32.22→32.43 dB over TinyLUT-F, using 60 rather than 187 KB. This supports a restoration task beyond enlargement; it is still a known synthetic noise model.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Table 2, PDF p.7",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-2-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-6-p007",
+      "label": "Figure 6",
+      "kind": "figure",
+      "number": "6",
+      "page": 7,
+      "caption": "Qualitative comparison for image denoising",
+      "raw_text": "Figure 6. Qualitative comparison for image denoising",
+      "caption_bbox_points": [
+        80.282,
+        296.21,
+        272.97,
+        305.176
+      ],
+      "caption_bbox_pixels": [
+        123,
+        453,
+        417,
+        466
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        207.722,
+        304.764,
+        315.176
+      ],
+      "suggested_crop_bbox_pixels": [
+        74,
+        317,
+        466,
+        482
+      ],
+      "candidate_crop": "crops/figure-6-p007.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        392,
+        165
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": false,
+      "classification_reason": "Single denoising illustration; quantitative scope and limitations are covered by Tables 2 and 8.",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "Not needed to reconstruct the argument; retained in the complete inventory.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-6-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-3-p007",
+      "label": "Table 3",
+      "kind": "table",
+      "number": "3",
+      "page": 7,
+      "caption": "The comparison for image deblocking under a quality factor of 10 on standard benchmark datasets. The best of each metric is highlighted in Red.",
+      "raw_text": "Table 3. The comparison for image deblocking under a quality factor of 10 on standard benchmark datasets. The best of each metric is highlighted in Red.",
+      "caption_bbox_points": [
+        317.25,
+        163.332,
+        553.497,
+        194.216
+      ],
+      "caption_bbox_pixels": [
+        485,
+        250,
+        846,
+        297
+      ],
+      "suggested_crop_bbox_points": [
+        307.25,
+        153.332,
+        563.497,
+        298.387
+      ],
+      "suggested_crop_bbox_pixels": [
+        469,
+        234,
+        861,
+        456
+      ],
+      "candidate_crop": "crops/table-3-p007.png",
+      "selected_asset": "pages/page-007.png",
+      "candidate_crop_size_pixels": [
+        392,
+        222
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: At JPEG quality 10, Classic5 PSNR-B improves 28.74→29.12 and LIVE1 28.67→28.96 over TinyLUT-F. Blocking-aware quality is relevant here; it does not establish robustness to arbitrary codecs.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Table 3, PDF p.7",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-3-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-7-p007",
+      "label": "Figure 7",
+      "kind": "figure",
+      "number": "7",
+      "page": 7,
+      "caption": "Qualitative comparison for image deblocking",
+      "raw_text": "Figure 7. Qualitative comparison for image deblocking",
+      "caption_bbox_points": [
+        336.544,
+        299.123,
+        534.208,
+        308.089
+      ],
+      "caption_bbox_pixels": [
+        514,
+        457,
+        816,
+        471
+      ],
+      "suggested_crop_bbox_points": [
+        307.25,
+        209.131,
+        563.514,
+        318.089
+      ],
+      "suggested_crop_bbox_pixels": [
+        469,
+        320,
+        861,
+        486
+      ],
+      "candidate_crop": "crops/figure-7-p007.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        392,
+        167
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": false,
+      "classification_reason": "Single deblocking illustration; quantitative scope and limitations are covered by Tables 3 and 7.",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "Not needed to reconstruct the argument; retained in the complete inventory.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-7-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-8-p008",
+      "label": "Figure 8",
+      "kind": "figure",
+      "number": "8",
+      "page": 8,
+      "caption": "PSNR comparison on the Set5 under different network configurations. The left and right figures show results obtained by varying the number of stacked ShiftBlocks and channels, respec- tively. Each bar group compares models with and without LSS.",
+      "raw_text": "Figure 8. PSNR comparison on the Set5 under different network configurations. The left and right figures show results obtained by varying the number of stacked ShiftBlocks and channels, respec- tively. Each bar group compares models with and without LSS.",
+      "caption_bbox_points": [
+        58.5,
+        179.378,
+        294.747,
+        221.221
+      ],
+      "caption_bbox_pixels": [
+        89,
+        274,
+        450,
+        338
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        62.0,
+        304.747,
+        231.221
+      ],
+      "suggested_crop_bbox_pixels": [
+        74,
+        95,
+        466,
+        353
+      ],
+      "candidate_crop": "crops/figure-8-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        392,
+        260
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: Adding LSS improves all displayed configurations, with annotated gains around 0.30–0.46 dB. Holding each configuration fixed provides stronger mechanism evidence than simply comparing larger final models. This still evaluates a limited architecture family and one benchmark, without seed-wise confidence intervals.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Figure 8, PDF p.8",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-8-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-4-p008",
+      "label": "Table 4",
+      "kind": "table",
+      "number": "4",
+      "page": 8,
+      "caption": "Compare EAS with other LUT compression methods.",
+      "raw_text": "Table 4. Compare EAS with other LUT compression methods.",
+      "caption_bbox_points": [
+        64.398,
+        239.072,
+        288.854,
+        248.038
+      ],
+      "caption_bbox_pixels": [
+        98,
+        365,
+        441,
+        379
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        229.072,
+        304.753,
+        597.063
+      ],
+      "suggested_crop_bbox_pixels": [
+        74,
+        350,
+        466,
+        912
+      ],
+      "candidate_crop": "crops/table-4-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        392,
+        564
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: EAS at ε=0.4 gives 104 KB and 84 ms versus 217 KB and 81 ms, with unchanged displayed PSNR. Thus it saves over half the storage with a small timing cost, rather than making compression free. At ε=0.8, storage reaches 54 KB with small quality loss. The error criterion must be tuned to the desired trade-off.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Table 4, PDF p.8",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-4-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-9-p008",
+      "label": "Figure 9",
+      "kind": "figure",
+      "number": "9",
+      "page": 8,
+      "caption": "Comparison for different MSB/LSB splits.",
+      "raw_text": "Figure 9. Comparison for different MSB/LSB splits.",
+      "caption_bbox_points": [
+        341.319,
+        197.267,
+        529.434,
+        206.233
+      ],
+      "caption_bbox_pixels": [
+        521,
+        301,
+        809,
+        315
+      ],
+      "suggested_crop_bbox_points": [
+        307.25,
+        62.0,
+        563.498,
+        216.233
+      ],
+      "suggested_crop_bbox_pixels": [
+        469,
+        95,
+        861,
+        330
+      ],
+      "candidate_crop": "crops/figure-9-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        392,
+        237
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: Moving bits to the high-bit branch improves quality but increases memory steeply; 6/2 is selected as a compromise. This prevents interpreting asymmetry as “always allocate everything to the strong branch.” Its optimum depends on the bit budget and architecture.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Figure 9, PDF p.8",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-9-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-10-p012",
+      "label": "Figure 10",
+      "kind": "figure",
+      "number": "10",
+      "page": 12,
+      "caption": "Illustration of training, transferring and testing process for LUT-based methods.",
+      "raw_text": "Figure 10. Illustration of training, transferring and testing process for LUT-based methods.",
+      "caption_bbox_points": [
+        143.28,
+        315.509,
+        468.724,
+        324.475
+      ],
+      "caption_bbox_pixels": [
+        219,
+        482,
+        716,
+        496
+      ],
+      "suggested_crop_bbox_points": [
+        47.732,
+        61.997,
+        568.587,
+        334.475
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        95,
+        869,
+        511
+      ],
+      "candidate_crop": "crops/figure-10-p012.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        797,
+        418
+      ],
+      "source_page_image": "pages/page-012.png",
+      "source_page_text": "text/pages/page-012.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": false,
+      "classification_reason": "Generic train/transfer/test teaching diagram; the same workflow is explained in prose and the method-specific Figure 2.",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "Not needed to reconstruct the argument; retained in the complete inventory.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-10-p012.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-5-p012",
+      "label": "Table 5",
+      "kind": "table",
+      "number": "5",
+      "page": 12,
+      "caption": "Comparison of different shifting operations in ShiftLUT on standard SISR test sets for an upscaling factor of 4.",
+      "raw_text": "Table 5. Comparison of different shifting operations in ShiftLUT on standard SISR test sets for an upscaling factor of 4.",
+      "caption_bbox_points": [
+        317.25,
+        394.863,
+        553.497,
+        414.788
+      ],
+      "caption_bbox_pixels": [
+        485,
+        603,
+        846,
+        634
+      ],
+      "suggested_crop_bbox_points": [
+        307.25,
+        384.863,
+        566.598,
+        723.407
+      ],
+      "suggested_crop_bbox_pixels": [
+        469,
+        588,
+        866,
+        1105
+      ],
+      "candidate_crop": "crops/table-5-p012.png",
+      "selected_asset": "pages/page-012.png",
+      "candidate_crop_size_pixels": [
+        397,
+        519
+      ],
+      "source_page_image": "pages/page-012.png",
+      "source_page_text": "text/pages/page-012.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: Set5 drops 31.35→31.33 dB when shifts become deployable integers, whereas straight-through estimation and Gumbel-Softmax reach 30.91 and 31.11. The small rounding cost supports this training strategy under the tested settings; it does not establish that continuous-to-discrete conversion is universally better.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Table 5, PDF p.12",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-5-p012.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-6-p013",
+      "label": "Table 6",
+      "kind": "table",
+      "number": "6",
+      "page": 13,
+      "caption": "Quantitative comparison of PSNR on standard benchmark datasets for x4 super-resolution tasks between the original version of SPLUT and TinyLUT, and the modified version integrating LSS.",
+      "raw_text": "Table 6. Quantitative comparison of PSNR on standard benchmark datasets for x4 super-resolution tasks between the original version of SPLUT and TinyLUT, and the modified version integrating LSS.",
+      "caption_bbox_points": [
+        58.5,
+        72.871,
+        553.499,
+        92.796
+      ],
+      "caption_bbox_pixels": [
+        89,
+        111,
+        846,
+        142
+      ],
+      "suggested_crop_bbox_points": [
+        48.5,
+        62.871,
+        563.499,
+        173.274
+      ],
+      "suggested_crop_bbox_pixels": [
+        74,
+        96,
+        861,
+        265
+      ],
+      "candidate_crop": "crops/table-6-p013.png",
+      "selected_asset": "pages/page-013.png",
+      "candidate_crop_size_pixels": [
+        787,
+        169
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: TinyLUT benefits more consistently than four-channel SPLUT. Importantly SPLUT’s BSDS100 score decreases 26.68→26.65, contradicting the nearby prose’s blanket “non-negative” characterization. Channel diversity is a plausible explanation for different gains, not a controlled causal isolation of channel count.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Table 6, PDF p.13",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-6-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-7-p013",
+      "label": "Table 7",
+      "kind": "table",
+      "number": "7",
+      "page": 13,
+      "caption": "PSNR-B results of different methods on Classic5 and LIVE1 (quality factor 20, 30, 40).",
+      "raw_text": "Table 7. PSNR-B results of different methods on Classic5 and LIVE1 (quality factor 20, 30, 40).",
+      "caption_bbox_points": [
+        132.794,
+        177.678,
+        479.211,
+        186.644
+      ],
+      "caption_bbox_pixels": [
+        203,
+        271,
+        732,
+        285
+      ],
+      "suggested_crop_bbox_points": [
+        122.794,
+        167.678,
+        489.211,
+        346.823
+      ],
+      "suggested_crop_bbox_pixels": [
+        188,
+        256,
+        747,
+        530
+      ],
+      "candidate_crop": "crops/table-7-p013.png",
+      "selected_asset": "pages/page-013.png",
+      "candidate_crop_size_pixels": [
+        561,
+        274
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: Higher JPEG qualities preserve the LUT advantage, but SwinIR remains stronger on these listed conditions. The claim is a favorable efficiency/quality point among compact tables, not beating all neural restorers.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Table 7, PDF p.13",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-7-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-8-p013",
+      "label": "Table 8",
+      "kind": "table",
+      "number": "8",
+      "page": 13,
+      "caption": "PSNR results of different methods on Set12 and BSD68 (noise levels 25, 50).",
+      "raw_text": "Table 8. PSNR results of different methods on Set12 and BSD68 (noise levels 25, 50).",
+      "caption_bbox_points": [
+        317.25,
+        348.797,
+        553.497,
+        368.722
+      ],
+      "caption_bbox_pixels": [
+        485,
+        533,
+        846,
+        563
+      ],
+      "suggested_crop_bbox_points": [
+        153.468,
+        189.685,
+        563.497,
+        378.722
+      ],
+      "suggested_crop_bbox_pixels": [
+        234,
+        290,
+        861,
+        579
+      ],
+      "candidate_crop": "crops/table-8-p013.png",
+      "selected_asset": "pages/page-013.png",
+      "candidate_crop_size_pixels": [
+        627,
+        290
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: At noise levels 25 and 50 the proposed table outperforms the listed LUT baselines, while DnCNN, FFDNet and SwinIR remain stronger. Noise robustness within this family does not erase the capacity trade-off.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Table 8, PDF p.13",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-8-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "algorithm-1-p014",
+      "label": "Algorithm 1",
+      "kind": "algorithm",
+      "number": "1",
+      "page": 14,
+      "caption": "EAS Pipeline: Optimization & Inference",
+      "raw_text": "Algorithm 1 EAS Pipeline: Optimization & Inference",
+      "caption_bbox_points": [
+        58.5,
+        271.015,
+        275.485,
+        281.068
+      ],
+      "caption_bbox_pixels": [
+        89,
+        414,
+        421,
+        429
+      ],
+      "suggested_crop_bbox_points": [
+        21.42,
+        207.655,
+        590.58,
+        518.668
+      ],
+      "suggested_crop_bbox_pixels": [
+        33,
+        317,
+        902,
+        792
+      ],
+      "candidate_crop": "crops/algorithm-1-p014.png",
+      "selected_asset": "pages/page-014.png",
+      "candidate_crop_size_pixels": [
+        871,
+        476
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "low",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected complete PDF page render; captions and numbers cross-checked with PDF text. Full-page asset selected to prevent heuristic clipping.",
+      "key": true,
+      "classification_reason": "Required to evaluate this specific evidence: Algorithm 1 explains why interpolation is amortized: each legal index is reconstructed once for the current layer, then every pixel performs a lookup. Reusing the buffer avoids allocating an expanded table for every layer simultaneously. This relies on sequential execution and says nothing about cache misses or memory bandwidth on another device.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Explained next to the verified source image, with observation, inference and boundary: Algorithm 1, PDF p.14",
+      "claim_ids": [],
+      "text_asset": "text/visuals/algorithm-1-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    }
+  ]
+}

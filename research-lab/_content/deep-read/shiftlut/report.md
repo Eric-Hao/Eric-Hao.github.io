@@ -1,0 +1,479 @@
+# ShiftLUT: learning where a tiny table should look
+
+ShiftLUT：让小查找表学会看哪里
+
+Primary source: arXiv:2603.00906v2, 3 March 2026. Read the complete PDF, including the supplied appendices. Page numbers are 1-based PDF pages. Figures were inspected against page renders; full-page images deliberately retain labels, legends and neighboring context. This is an analytical reading, not an independent reproduction.
+
+一手来源：arXiv:2603.00906v2, 3 March 2026。已阅读完整 PDF 及文件内附录；页码均为从 1 起算的 PDF 页码。图表已对照页面渲染核查；完整页面截图保留标签、图例及邻近上下文。本报告是分析性阅读，并非独立复现实验。
+
+## 1. 核心思想一句话总结（Elevator Pitch）
+
+<!-- pair:1-1:en -->
+
+ShiftLUT learns static spatial shifts, asymmetric processing and error-budgeted table compression to improve restoration without expanding table dimensionality.
+
+<!-- pair:1-1:zh -->
+
+ShiftLUT以静态位移、不对称分支和误差约束压缩，改善小表恢复效果。
+
+## 2. 论文背景与动机（Background & Motivation）
+
+<!-- pair:2-1:en -->
+
+### Key concepts and the problem
+
+A lookup table (LUT) stores the answers of a trained mapping so inference reads memory instead of repeatedly evaluating a neural network. Super-resolution enlarges a low-resolution image while reconstructing missing detail; denoising removes noise; deblocking suppresses compression boundaries. A receptive field is the set of input locations capable of affecting an output. The difficulty is that a direct table with B possible values at each of N inputs needs B^N entries: for 256 values and four inputs, that is 4,294,967,296 combinations before storing any output vector. More spatial context can therefore destroy the memory advantage. [§§1–2]
+
+<!-- pair:2-1:zh -->
+
+### 必要概念与问题
+
+查找表（LUT）把训练后映射的答案存下来，推理时读取内存，而不反复运行神经网络。超分辨率放大低分辨率图像并重建缺失细节；去噪去除噪声；去块效应抑制压缩边界。感受野是能够影响一个输出的输入位置集合。困难在于：若每个输入有 B 种取值，直接联合索引 N 个输入就需要 B^N 个表项；256 种取值、四个输入已产生 4,294,967,296 种组合，尚未计算输出向量的存储。增加空间上下文可能直接摧毁查表的内存优势。［§§1–2］
+
+<!-- pair:2-2:en -->
+
+SR-LUT enumerates local patches; MuLUT combines small spatial patterns; TinyLUT uses separable one-dimensional tables. ShiftLUT retains the latter representation, but changes which spatial locations meet before channel mixing. Its three interventions address distinct costs: spatial coverage, redundant branch computation, and stored samples. Bit significance is not a literal frequency decomposition: the paper motivates the branches through coarse structure and detail, but least-significant bits can also contain noise. [§§2–3]
+
+<!-- pair:2-2:zh -->
+
+SR-LUT 枚举局部图块，MuLUT 组合小型空间模式，TinyLUT 使用可分离的一维表。ShiftLUT 保留后一种表示，却改变通道混合之前相遇的空间位置。三项改动分别针对空间覆盖、冗余分支计算和采样存储。位的重要性不等于严格的频率分解：论文用粗结构与细节解释两支，但最低有效位也可能包含噪声。［§§2–3］
+
+## 3. 核心方法/模型详解（The Core Method/Model）
+
+<!-- pair:3-1:en -->
+
+### Figure 2: evidence to inspect
+
+**How to read.** Follow panel (a) from bit splitting through early fusion, ShiftBlocks and PixelShuffle; then distinguish the training and deployment paths in (b), and cache preparation from pixel queries in (c). [PDF p.3]
+
+<!-- pair:3-1:zh -->
+
+### Figure 2：如何检查这项证据
+
+**如何读。** 沿(a)看位拆分、早期融合、ShiftBlock和PixelShuffle，再区分(b)的训练与部署路径以及(c)的缓存准备与逐像素查询。［PDF p.3］
+
+![Figure 2, PDF p.3, verified source page](assets/pages/page-003.png)
+
+<!-- pair:3-3:en -->
+
+**Key observation.** The low two bits receive only shallow extraction before addition to the high-six-bit branch.
+
+**Why this supports the claim, and its limitations.** ShiftBlocks combine a channel-wise displacement, pointwise channel mixing, and a spatial depthwise convolution. PixelShuffle rearranges channels into subpixels. The learned predictor is discarded after stage one; deployment is not a dynamic offset network. Panel (c) caches interpolated values once per layer so many pixels reuse them. The diagram establishes interfaces, not the accuracy of the approximation.
+
+<!-- pair:3-3:zh -->
+
+**关键观察。** 低两位只做浅层提取，随后加到高六位分支。
+
+**推理桥与局限。** ShiftBlock依次执行逐通道位移、逐点通道混合和逐通道空间卷积；PixelShuffle把通道重排为子像素。第一阶段后删除偏移预测器，所以部署时不是动态偏移网络。(c)每层先缓存插值值，再供大量像素复用。这张图说明接口，并不证明近似精度。
+
+<!-- pair:3-4:en -->
+
+### Worked example
+
+A minimal walkthrough: an 8-bit value 173 is 10101101₂, split into high-bit value 172 and residual 1. Both receive a small learned extraction, then fuse. Suppose three feature channels learn integer displacements (−1,0), (0,0), (1,0): at one output location, channel mixing now sees left, center and right samples without a three-input joint table. Subsequent depthwise filtering and blocks compose these dependencies. The final channel vector is rearranged into the enlarged image. These numbers illustrate the dataflow, not published learned offsets. Removing shifts removes the cross-location channel meeting; removing early fusion restores an unnecessarily deep low-bit branch. [§§3.1–3.3]
+
+<!-- pair:3-4:zh -->
+
+### 最小例子
+
+最小流程例：8位数值173写作10101101₂，拆为高位值172和余数1。两者经过小型学习式提取后融合。假设三个特征通道学到整数位移(−1,0)、(0,0)、(1,0)，同一输出位置的通道混合便能读取左、中、右三个样本，无须三输入联合索引表。后续逐通道滤波和更多模块继续组合这些依赖，最终把通道向量重排成放大图像。这里的数字用于说明流程，并非论文公布的学习偏移。去掉位移就失去跨位置通道汇合；取消早期融合则重新引入不必要的深层低位分支。［§§3.1–3.3］
+
+$$
+\{(\Delta x_c,\Delta y_c)\}_{c=1}^{C}=\mathcal O(F),\qquad F'_c(x,y)=F_c(x-\Delta x_c,y-\Delta y_c).
+$$
+
+<!-- pair:3-6:en -->
+
+Equations (1)–(2), PDF p.4: F has C channels and spatial size H×W; O predicts one displacement pair per channel, not per pixel. Noninteger coordinates require bilinear interpolation during stage one. Stage two rounds the mean learned displacement and fine-tunes without the predictor. A displacement of (1,0) reads x−1; its sign is a sampling convention, not a statement about object motion. Low observed offset variance motivates a static approximation, but does not prove stability under every new degradation.
+
+<!-- pair:3-6:zh -->
+
+式(1)–(2)，PDF p.4：F有C个通道，空间大小为H×W；O为每个通道预测一对位移，而不是每个像素一对。第一阶段的非整数坐标需要双线性插值；第二阶段把学习位移的均值取整，移除预测器后微调。(1,0)意味着读取x−1；符号是采样约定，不代表物体运动方向。观测到的低偏移方差支持静态近似，却不证明面对任意新退化都稳定。
+
+<!-- pair:3-7:en -->
+
+Error-bounded Adaptive Sampling (EAS) chooses the largest power-of-two stride satisfying the paper’s weighted interpolation-error criterion, independently for each LUT (Eq.3, PDF p.5). This is a table-level error surrogate, not a theorem bounding final image error. For a simple table with endpoint values 3 and 7 at indices 2 and 4, linear interpolation gives 5 at index 3; if the original value is 6, the absolute discrepancy is 1. A stricter tolerance rejects this stride. At runtime the compressed table is expanded into a shared buffer one layer at a time; for a six-bit index, 64 entries cover all queries. Compression saves persistent storage, not all working memory.
+
+<!-- pair:3-7:zh -->
+
+误差约束自适应采样（EAS）为每张表独立选择满足论文加权插值误差判据的最大二次幂步长（式3，PDF p.5）。这是表级误差代理，并非最终图像误差的理论上界。例如索引2和4的表值为3和7，线性插值得到索引3的值为5；若原值为6，绝对偏差就是1，更严格的容差会拒绝这个步长。运行时逐层把压缩表展开到共享缓冲区；六位索引的64个条目即可覆盖所有查询。压缩减少持久存储，并不是消除全部工作内存。
+
+<!-- pair:3-8:en -->
+
+### Algorithm 1: evidence to inspect
+
+**How to read.** Read the two stages separately: offline stride search and online serial layer processing. The inner buffer loop precedes the pixel loop. [PDF p.14]
+
+<!-- pair:3-8:zh -->
+
+### Algorithm 1：如何检查这项证据
+
+**如何读。** 分别读离线步长搜索和在线串行逐层处理；注意填充缓存的循环位于像素循环之前。［PDF p.14］
+
+![Algorithm 1, PDF p.14, verified source page](assets/pages/page-014.png)
+
+<!-- pair:3-10:en -->
+
+**Key observation.** Algorithm 1 explains why interpolation is amortized: each legal index is reconstructed once for the current layer, then every pixel performs a lookup.
+
+**Why this supports the claim, and its limitations.** Reusing the buffer avoids allocating an expanded table for every layer simultaneously. This relies on sequential execution and says nothing about cache misses or memory bandwidth on another device.
+
+<!-- pair:3-10:zh -->
+
+**关键观察。** 算法1解释了插值如何被摊销：当前层每个合法索引只重建一次，此后每个像素直接查表。
+
+**推理桥与局限。** 复用缓冲区避免同时给所有层分配展开表。这依赖逐层串行执行，也不能说明其他设备上的缓存未命中和内存带宽表现。
+
+<!-- pair:3-11:en -->
+
+### Figure 4: evidence to inspect
+
+**How to read.** Read sparsity as the fraction of zero activations, with layer number on the horizontal axis. [PDF p.5]
+
+<!-- pair:3-11:zh -->
+
+### Figure 4：如何检查这项证据
+
+**如何读。** 纵轴稀疏率是零激活比例，横轴是层编号。［PDF p.5］
+
+![Figure 4, PDF p.5, verified source page](assets/pages/page-005.png)
+
+<!-- pair:3-13:en -->
+
+**Key observation.** The symmetric low-bit branch approaches nearly all-zero activations at depth.
+
+**Why this supports the claim, and its limitations.** This motivates simplifying that branch, but sparsity alone is not a causal proof: the direct comparison in §3.3 reports essentially equal average PSNR (28.19 dB) while latency drops from 164 to 84 ms. Low-bit detail is retained through shallow extraction rather than discarded.
+
+<!-- pair:3-13:zh -->
+
+**关键观察。** 对称结构中的低位分支越深越接近全零激活。
+
+**推理桥与局限。** 这支持简化该分支，但仅靠稀疏率还不是因果证明：§3.3的直接比较显示平均PSNR基本相同（28.19 dB），延迟却从164降至84 ms。低位细节通过浅层提取保留，而非直接丢弃。
+
+$$
+s^*=\max_{s\in S}\{s:\operatorname{Error}(s)<\epsilon\},\qquad \operatorname{Error}(s)=\frac{s}{s-1}\mathbb E_{i\sim\mathcal I}\big[|\operatorname{Query}_s(i)-\operatorname{LUT}[i]|\big].
+$$
+
+<!-- pair:3-15:en -->
+
+Exact EAS criterion (Eq.3, PDF p.5): S contains power-of-two strides, I indexes the original table, and Query reconstructs a sampled value by linear interpolation. The factor s/(s−1) penalizes a given discrepancy more at smaller compression gains: if mean absolute error is 0.1, stride 2 scores 0.2 and stride 4 scores about 0.133. The formula is singular at stride 1 even though S includes 1; a no-compression fallback must be treated separately in an implementation. The paper’s displayed equation does not spell out that special case. This is a reproduction caveat, not a reason to silently change the formula.
+
+<!-- pair:3-15:zh -->
+
+精确EAS判据（式3，PDF p.5）：S包含二次幂步长，I索引原表，Query用线性插值重建采样值。s/(s−1)使相同偏差在较小压缩收益下受更重惩罚：平均绝对误差0.1时，步长2得0.2，步长4约0.133。尽管S包括1，公式在步长1奇异，因此实现必须单独处理不压缩回退；论文展示公式没有写出这一特例。这是复现注意事项，不能据此悄悄修改原式。
+
+## 4. 实验与结果分析（Experiments & Results）
+
+<!-- pair:4-1:en -->
+
+Training uses DIV2K, 200,000 iterations and 48×48 low-resolution patches; evaluation covers ×4 bicubic super-resolution, Gaussian grayscale denoising and JPEG deblocking. PSNR is a logarithmic measure of inverse mean squared pixel error (higher is better); SSIM compares local luminance, contrast and structure (higher is better); PSNR-B additionally penalizes blocking. Phone timings use Xiaomi 11 / Snapdragon 888, 320×180 inputs and a common Android application. This is a useful deployment comparison, not a universal device latency ranking. [§4]
+
+<!-- pair:4-1:zh -->
+
+训练使用DIV2K、200,000次迭代和48×48低分辨率图块；评估覆盖×4双三次超分辨率、灰度高斯去噪和JPEG去块。PSNR以对数形式度量均方像素误差的倒数，越高越好；SSIM比较局部亮度、对比度和结构，越高越好；PSNR-B还惩罚块边界。手机测速使用小米11／骁龙888、320×180输入和同一Android应用。这是有价值的部署比较，不是所有设备上的通用速度排名。［§4］
+
+<!-- pair:4-2:en -->
+
+### Table 1: evidence to inspect
+
+**How to read.** Read storage, runtime and receptive field together with five dataset columns; compare ShiftLUT-L with TinyLUT-F, not with a different model size. [PDF p.6]
+
+<!-- pair:4-2:zh -->
+
+### Table 1：如何检查这项证据
+
+**如何读。** 把存储、时间、感受野与五个数据集一起读；应比较ShiftLUT-L和TinyLUT-F，不能混用不同尺寸型号。［PDF p.6］
+
+![Table 1, PDF p.6, verified source page](assets/pages/page-006.png)
+
+<!-- pair:4-4:en -->
+
+**Key observation.** The pair changes storage 171→104 KB, runtime 146→84 ms and Manga109 PSNR 28.83→29.16 dB.
+
+**Why this supports the claim, and its limitations.** Average PSNR is 28.01→28.19 dB in this table, a +0.18 dB difference, so the abstract’s “over 0.21 dB” should not replace this explicitly tabulated comparison. Receptive-field side length changes 33→65; the approximately 3.8× claim refers to area (65²/33²), not linear span.
+
+<!-- pair:4-4:zh -->
+
+**关键观察。** 这组比较中存储171→104 KB、时间146→84 ms、Manga109 PSNR 28.83→29.16 dB。
+
+**推理桥与局限。** 表内平均PSNR为28.01→28.19 dB，即+0.18 dB，因此不能用摘要“超过0.21 dB”替代这项明确的表格比较。感受野边长33→65；约3.8倍指面积65²/33²，而不是线性跨度。
+
+<!-- pair:4-5:en -->
+
+### Figure 3: evidence to inspect
+
+**How to read.** Compare the same 16×16 output region with and without LSS, then read attribution and reconstruction separately. [PDF p.4]
+
+<!-- pair:4-5:zh -->
+
+### Figure 3：如何检查这项证据
+
+**如何读。** 比较有无LSS时相同的16×16输出区域，分别读归因图和重建图。［PDF p.4］
+
+![Figure 3, PDF p.4, verified source page](assets/pages/page-004.png)
+
+<!-- pair:4-7:en -->
+
+**Key observation.** The diffusion index of the local attribution map rises 3.71→6.13 while the displayed patch improves 27.75→29.67 dB.
+
+**Why this supports the claim, and its limitations.** The broader attribution is consistent with using more context; the example is not an average gain, and attribution is a diagnostic rather than an independent proof of causality. The multi-configuration ablation tests whether this extends beyond one patch.
+
+<!-- pair:4-7:zh -->
+
+**关键观察。** 局部归因图的扩散指数从3.71升至6.13，展示图块的PSNR从27.75升至29.67 dB。
+
+**推理桥与局限。** 更广归因与利用更多上下文一致；这个例子不是平均增益，归因也只是诊断而非独立因果证明。多配置消融进一步检验它是否超出单个图块。
+
+<!-- pair:4-8:en -->
+
+### Figure 8: evidence to inspect
+
+**How to read.** Compare paired bars at fixed block counts and channel counts; the vertical quantity is Set5 PSNR. [PDF p.8]
+
+<!-- pair:4-8:zh -->
+
+### Figure 8：如何检查这项证据
+
+**如何读。** 在相同模块数和通道数下比较成对柱子；纵轴是Set5 PSNR。［PDF p.8］
+
+![Figure 8, PDF p.8, verified source page](assets/pages/page-008.png)
+
+<!-- pair:4-10:en -->
+
+**Key observation.** Adding LSS improves all displayed configurations, with annotated gains around 0.30–0.46 dB.
+
+**Why this supports the claim, and its limitations.** Holding each configuration fixed provides stronger mechanism evidence than simply comparing larger final models. This still evaluates a limited architecture family and one benchmark, without seed-wise confidence intervals.
+
+<!-- pair:4-10:zh -->
+
+**关键观察。** 加入LSS改善所有展示配置，标注增益约0.30–0.46 dB。
+
+**推理桥与局限。** 在每个配置内固定其他条件，比直接比较不同大小的最终模型更能支持机制判断。但它仍只覆盖有限架构族和一个基准，没有按随机种子给出的置信区间。
+
+<!-- pair:4-11:en -->
+
+### Table 4: evidence to inspect
+
+**How to read.** Compare compressed variants against the 217 KB uncompressed ShiftLUT row, checking quality and latency together. [PDF p.8]
+
+<!-- pair:4-11:zh -->
+
+### Table 4：如何检查这项证据
+
+**如何读。** 对照217 KB未压缩ShiftLUT一行，同时检查压缩版本的质量与延迟。［PDF p.8］
+
+![Table 4, PDF p.8, verified source page](assets/pages/page-008.png)
+
+<!-- pair:4-13:en -->
+
+**Key observation.** EAS at ε=0.4 gives 104 KB and 84 ms versus 217 KB and 81 ms, with unchanged displayed PSNR.
+
+**Why this supports the claim, and its limitations.** Thus it saves over half the storage with a small timing cost, rather than making compression free. At ε=0.8, storage reaches 54 KB with small quality loss. The error criterion must be tuned to the desired trade-off.
+
+<!-- pair:4-13:zh -->
+
+**关键观察。** ε=0.4的EAS为104 KB、84 ms，未压缩版本为217 KB、81 ms，显示精度下PSNR不变。
+
+**推理桥与局限。** 因此它以少量时间代价节省超过一半存储，并非让压缩完全免费。ε=0.8时存储54 KB，质量略降；误差判据需要按实际权衡选择。
+
+<!-- pair:4-14:en -->
+
+### Figure 9: evidence to inspect
+
+**How to read.** Read both PSNR and storage axes as the eight bits are redistributed between branches. [PDF p.8]
+
+<!-- pair:4-14:zh -->
+
+### Figure 9：如何检查这项证据
+
+**如何读。** 当八位在分支间重新分配时，同时读PSNR轴和存储轴。［PDF p.8］
+
+![Figure 9, PDF p.8, verified source page](assets/pages/page-008.png)
+
+<!-- pair:4-16:en -->
+
+**Key observation.** Moving bits to the high-bit branch improves quality but increases memory steeply; 6/2 is selected as a compromise.
+
+**Why this supports the claim, and its limitations.** This prevents interpreting asymmetry as “always allocate everything to the strong branch.” Its optimum depends on the bit budget and architecture.
+
+<!-- pair:4-16:zh -->
+
+**关键观察。** 把更多位分给高位支路会提高质量，却使内存陡增；6/2是折中。
+
+**推理桥与局限。** 这说明不对称不等于“总把所有资源分给强支路”，最佳分配依赖位预算和架构。
+
+<!-- pair:4-17:en -->
+
+### Table 5: evidence to inspect
+
+**How to read.** Compare first-stage continuous offsets, second-stage integer offsets, and direct discrete-learning alternatives. [PDF p.12]
+
+<!-- pair:4-17:zh -->
+
+### Table 5：如何检查这项证据
+
+**如何读。** 比较第一阶段连续偏移、第二阶段整数偏移与直接离散学习方案。［PDF p.12］
+
+![Table 5, PDF p.12, verified source page](assets/pages/page-012.png)
+
+<!-- pair:4-19:en -->
+
+**Key observation.** Set5 drops 31.35→31.33 dB when shifts become deployable integers, whereas straight-through estimation and Gumbel-Softmax reach 30.91 and 31.11.
+
+**Why this supports the claim, and its limitations.** The small rounding cost supports this training strategy under the tested settings; it does not establish that continuous-to-discrete conversion is universally better.
+
+<!-- pair:4-19:zh -->
+
+**关键观察。** 位移转为可部署整数后Set5从31.35降至31.33 dB，而直通估计和Gumbel-Softmax分别为30.91和31.11。
+
+**推理桥与局限。** 较小的取整代价支持当前设置下的两阶段策略，并不证明连续转离散在所有问题上都更好。
+
+<!-- pair:4-20:en -->
+
+### Table 6: evidence to inspect
+
+**How to read.** Read each backbone against its own LSS variant; storage is unchanged within each pair. [PDF p.13]
+
+<!-- pair:4-20:zh -->
+
+### Table 6：如何检查这项证据
+
+**如何读。** 每个骨干只与自己的LSS版本比较；每对存储不变。［PDF p.13］
+
+![Table 6, PDF p.13, verified source page](assets/pages/page-013.png)
+
+<!-- pair:4-22:en -->
+
+**Key observation.** TinyLUT benefits more consistently than four-channel SPLUT.
+
+**Why this supports the claim, and its limitations.** Importantly SPLUT’s BSDS100 score decreases 26.68→26.65, contradicting the nearby prose’s blanket “non-negative” characterization. Channel diversity is a plausible explanation for different gains, not a controlled causal isolation of channel count.
+
+<!-- pair:4-22:zh -->
+
+**关键观察。** TinyLUT的收益比四通道SPLUT更稳定。
+
+**推理桥与局限。** 尤其SPLUT的BSDS100从26.68降至26.65，与邻近正文概括的“非负”提升不一致。通道多样性可以解释收益不同，但不是对通道数的受控因果隔离。
+
+<!-- pair:4-23:en -->
+
+### Table 2: evidence to inspect
+
+**How to read.** Compare rows only within the same dataset and degradation column; higher scores are better. [PDF p.7]
+
+<!-- pair:4-23:zh -->
+
+### Table 2：如何检查这项证据
+
+**如何读。** 只在相同数据集和退化列内比较各行；分数越高越好。［PDF p.7］
+
+![Table 2, PDF p.7, verified source page](assets/pages/page-007.png)
+
+<!-- pair:4-25:en -->
+
+**Key observation.** At noise level 15, Set12 improves 32.22→32.43 dB over TinyLUT-F, using 60 rather than 187 KB.
+
+**Why this supports the claim, and its limitations.** This supports a restoration task beyond enlargement; it is still a known synthetic noise model.
+
+<!-- pair:4-25:zh -->
+
+**关键观察。** 噪声水平15时，Set12相对TinyLUT-F从32.22升至32.43 dB，存储60而非187 KB。
+
+**推理桥与局限。** 这支持超出放大任务的恢复用途，但仍是已知合成噪声模型。
+
+<!-- pair:4-26:en -->
+
+### Table 3: evidence to inspect
+
+**How to read.** Compare rows only within the same dataset and degradation column; higher scores are better. [PDF p.7]
+
+<!-- pair:4-26:zh -->
+
+### Table 3：如何检查这项证据
+
+**如何读。** 只在相同数据集和退化列内比较各行；分数越高越好。［PDF p.7］
+
+![Table 3, PDF p.7, verified source page](assets/pages/page-007.png)
+
+<!-- pair:4-28:en -->
+
+**Key observation.** At JPEG quality 10, Classic5 PSNR-B improves 28.74→29.12 and LIVE1 28.67→28.96 over TinyLUT-F.
+
+**Why this supports the claim, and its limitations.** Blocking-aware quality is relevant here; it does not establish robustness to arbitrary codecs.
+
+<!-- pair:4-28:zh -->
+
+**关键观察。** JPEG质量10时，相对TinyLUT-F，Classic5 PSNR-B从28.74升至29.12、LIVE1从28.67升至28.96。
+
+**推理桥与局限。** 这里块效应指标有意义，但不能推得对任意编码器都鲁棒。
+
+<!-- pair:4-29:en -->
+
+### Table 7: evidence to inspect
+
+**How to read.** Compare rows only within the same dataset and degradation column; higher scores are better. [PDF p.13]
+
+<!-- pair:4-29:zh -->
+
+### Table 7：如何检查这项证据
+
+**如何读。** 只在相同数据集和退化列内比较各行；分数越高越好。［PDF p.13］
+
+![Table 7, PDF p.13, verified source page](assets/pages/page-013.png)
+
+<!-- pair:4-31:en -->
+
+**Key observation.** Higher JPEG qualities preserve the LUT advantage, but SwinIR remains stronger on these listed conditions.
+
+**Why this supports the claim, and its limitations.** The claim is a favorable efficiency/quality point among compact tables, not beating all neural restorers.
+
+<!-- pair:4-31:zh -->
+
+**关键观察。** 较高JPEG质量仍保留相对LUT的优势，但SwinIR在列出的条件中更强。
+
+**推理桥与局限。** 因此应说它在紧凑查表方法中有较好效率／质量权衡，而非击败全部神经恢复模型。
+
+<!-- pair:4-32:en -->
+
+### Table 8: evidence to inspect
+
+**How to read.** Compare rows only within the same dataset and degradation column; higher scores are better. [PDF p.13]
+
+<!-- pair:4-32:zh -->
+
+### Table 8：如何检查这项证据
+
+**如何读。** 只在相同数据集和退化列内比较各行；分数越高越好。［PDF p.13］
+
+![Table 8, PDF p.13, verified source page](assets/pages/page-013.png)
+
+<!-- pair:4-34:en -->
+
+**Key observation.** At noise levels 25 and 50 the proposed table outperforms the listed LUT baselines, while DnCNN, FFDNet and SwinIR remain stronger.
+
+**Why this supports the claim, and its limitations.** Noise robustness within this family does not erase the capacity trade-off.
+
+<!-- pair:4-34:zh -->
+
+**关键观察。** 噪声水平25和50时，本文查表法优于列出的LUT基线，但DnCNN、FFDNet和SwinIR仍更强。
+
+**推理桥与局限。** 这一任务族内的噪声鲁棒性并没有消除容量权衡。
+
+## 5. 论文的贡献与影响（Contribution & Impact）
+
+<!-- pair:5-1:en -->
+
+The strongest contribution is architectural co-design: change spatial routing without multiplying table dimensions, remove redundant low-bit depth, and amortize interpolation over the finite feature alphabet. Evidence is strong for the reported phone implementation and moderate for broad transfer. A useful next experiment is a matched-memory, matched-latency comparison across several phones, with cache/buffer memory included. Another is to measure offset variance under unseen blur and noise, then compare frozen versus adaptive shifts at equal cost. These directly test the static-pattern assumption rather than merely adding datasets.
+
+<!-- pair:5-1:zh -->
+
+最强贡献是架构协同设计：改变空间路由而不增加表维数，移除冗余低位深度，再把插值摊销到有限特征字母表。对所报告手机实现的证据强，对广泛迁移的证据中等。下一步可在多款手机上做同内存、同延迟比较，并计入缓存和缓冲内存；还可在未见模糊、噪声下测量偏移方差，以相同成本比较固定与自适应位移。这些实验直接检验静态模式假设，而不只是增加数据集。
+
+## 6. 结论（Conclusion）
+
+<!-- pair:6-1:en -->
+
+**Final judgment.** ShiftLUT is worth reproducing as an edge-restoration design, particularly when model storage and integer-friendly execution dominate. Its main comparison improves quality, storage and measured latency together, while ablations explain where the gains come from. Remember the precise deployment claim: learned during training, fixed during inference. Neither the error-budgeted sampling nor a larger receptive-field area guarantees recovery of information absent from the input.
+
+<!-- pair:6-1:zh -->
+
+**最终判断。** 当模型存储和便于整数执行的实现是主要约束时，ShiftLUT值得作为端侧恢复设计复现。主比较同时改善质量、存储和实测延迟，消融则解释收益来源。应记住准确的部署表述：训练时学习，推理时固定。误差预算采样和更大感受野面积，都不保证恢复输入中不存在的信息。

@@ -1,0 +1,2283 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:04:21.167651+00:00",
+  "source_pdf": "paper.pdf",
+  "source_sha256": "53140e3d3696a514b18843592218a5412cbd36a60a034759c5111c99ea53d37b",
+  "page_count": 20,
+  "render_dpi": 130,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 105166,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 6943,
+      "caption_count": 0
+    },
+    {
+      "page": 2,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 7269,
+      "caption_count": 0
+    },
+    {
+      "page": 3,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 7083,
+      "caption_count": 0
+    },
+    {
+      "page": 4,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 8786,
+      "caption_count": 2
+    },
+    {
+      "page": 5,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 9976,
+      "caption_count": 1
+    },
+    {
+      "page": 6,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 12333,
+      "caption_count": 2
+    },
+    {
+      "page": 7,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 4497,
+      "caption_count": 3
+    },
+    {
+      "page": 8,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 6481,
+      "caption_count": 6
+    },
+    {
+      "page": 9,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 6308,
+      "caption_count": 0
+    },
+    {
+      "page": 10,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 6401,
+      "caption_count": 0
+    },
+    {
+      "page": 11,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 5476,
+      "caption_count": 0
+    },
+    {
+      "page": 12,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-012.png",
+      "text": "text/pages/page-012.txt",
+      "text_characters": 2379,
+      "caption_count": 0
+    },
+    {
+      "page": 13,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-013.png",
+      "text": "text/pages/page-013.txt",
+      "text_characters": 5265,
+      "caption_count": 2
+    },
+    {
+      "page": 14,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-014.png",
+      "text": "text/pages/page-014.txt",
+      "text_characters": 3298,
+      "caption_count": 3
+    },
+    {
+      "page": 15,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-015.png",
+      "text": "text/pages/page-015.txt",
+      "text_characters": 4700,
+      "caption_count": 2
+    },
+    {
+      "page": 16,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-016.png",
+      "text": "text/pages/page-016.txt",
+      "text_characters": 4058,
+      "caption_count": 4
+    },
+    {
+      "page": 17,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-017.png",
+      "text": "text/pages/page-017.txt",
+      "text_characters": 1088,
+      "caption_count": 3
+    },
+    {
+      "page": 18,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-018.png",
+      "text": "text/pages/page-018.txt",
+      "text_characters": 912,
+      "caption_count": 1
+    },
+    {
+      "page": 19,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-019.png",
+      "text": "text/pages/page-019.txt",
+      "text_characters": 959,
+      "caption_count": 1
+    },
+    {
+      "page": 20,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-020.png",
+      "text": "text/pages/page-020.txt",
+      "text_characters": 954,
+      "caption_count": 1
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p004",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 4,
+      "caption": "VARSR framework, which can be divided into three parts: (1) LR image is set as Prefix Tokens as condition. (2) VAR generates discrete tokens based on next-scale prediction. (3) Diffusion Refiner predicts the continious tokens as quantization residuals.",
+      "raw_text": "Figure 1. VARSR framework, which can be divided into three parts: (1) LR image is set as Prefix Tokens as condition. (2) VAR generates discrete tokens based on next-scale prediction. (3) Diffusion Refiner predicts the continious tokens as quantization residuals.",
+      "caption_bbox_points": [
+        54.938,
+        218.373,
+        541.436,
+        238.408
+      ],
+      "caption_bbox_pixels": [
+        99,
+        394,
+        978,
+        430
+      ],
+      "suggested_crop_bbox_points": [
+        44.938,
+        1.0,
+        551.436,
+        248.408
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        2,
+        996,
+        449
+      ],
+      "candidate_crop": "crops/figure-1-p004.png",
+      "selected_asset": "pages/page-004.png",
+      "candidate_crop_size_pixels": [
+        915,
+        448
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p4"
+      ],
+      "text_asset": "text/visuals/figure-1-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p004",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 4,
+      "caption": "Internal structure of the autoregressive transformer. SA- RoPE represents the spatial structure. Quality-centered control generates offsets for autoregression.",
+      "raw_text": "Figure 2. Internal structure of the autoregressive transformer. SA- RoPE represents the spatial structure. Quality-centered control generates offsets for autoregression.",
+      "caption_bbox_points": [
+        54.938,
+        427.169,
+        290.929,
+        458.246
+      ],
+      "caption_bbox_pixels": [
+        99,
+        771,
+        525,
+        827
+      ],
+      "suggested_crop_bbox_points": [
+        0.0,
+        239.408,
+        612.0,
+        468.246
+      ],
+      "suggested_crop_bbox_pixels": [
+        0,
+        432,
+        1105,
+        845
+      ],
+      "candidate_crop": "crops/figure-2-p004.png",
+      "selected_asset": "pages/page-004.png",
+      "candidate_crop_size_pixels": [
+        1105,
+        414
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p4"
+      ],
+      "text_asset": "text/visuals/figure-2-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-3-p005",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 5,
+      "caption": "Image tokenization process of VQVAE. The quantizer converts the image latent to multi-scale discrete tokens while rep- resenting the quantization loss as continuous tokens.",
+      "raw_text": "Figure 3. Image tokenization process of VQVAE. The quantizer converts the image latent to multi-scale discrete tokens while rep- resenting the quantization loss as continuous tokens.",
+      "caption_bbox_points": [
+        306.938,
+        173.057,
+        542.926,
+        204.008
+      ],
+      "caption_bbox_pixels": [
+        554,
+        312,
+        980,
+        368
+      ],
+      "suggested_crop_bbox_points": [
+        296.938,
+        58.253,
+        552.926,
+        214.008
+      ],
+      "suggested_crop_bbox_pixels": [
+        536,
+        105,
+        998,
+        386
+      ],
+      "candidate_crop": "crops/figure-3-p005.png",
+      "selected_asset": "pages/page-005.png",
+      "candidate_crop_size_pixels": [
+        463,
+        282
+      ],
+      "source_page_image": "pages/page-005.png",
+      "source_page_text": "text/pages/page-005.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p5"
+      ],
+      "text_asset": "text/visuals/figure-3-p005.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-1-p006",
+      "label": "Table 1",
+      "kind": "table",
+      "number": "1",
+      "page": 6,
+      "caption": "Comparison with SOTA methods on synthetic and real-world benchmarks. Red and blue colors are the best and second-best.",
+      "raw_text": "Table 1. Comparison with SOTA methods on synthetic and real-world benchmarks. Red and blue colors are the best and second-best.",
+      "caption_bbox_points": [
+        54.893,
+        76.338,
+        532.56,
+        85.304
+      ],
+      "caption_bbox_pixels": [
+        99,
+        138,
+        962,
+        154
+      ],
+      "suggested_crop_bbox_points": [
+        44.893,
+        66.338,
+        542.56,
+        412.008
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        120,
+        980,
+        744
+      ],
+      "candidate_crop": "crops/table-1-p006.png",
+      "selected_asset": "pages/page-006.png",
+      "candidate_crop_size_pixels": [
+        899,
+        625
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p6"
+      ],
+      "text_asset": "text/visuals/table-1-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-4-p006",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 6,
+      "caption": "Limitations of current full-reference metrics (e.g., PSNR, SSIM, LPIPS). VARSR has generated images of higher perceptual quality for humans, yet it lags behind in certain metrics.",
+      "raw_text": "Figure 4. Limitations of current full-reference metrics (e.g., PSNR, SSIM, LPIPS). VARSR has generated images of higher perceptual quality for humans, yet it lags behind in certain metrics.",
+      "caption_bbox_points": [
+        306.938,
+        410.511,
+        542.56,
+        441.484
+      ],
+      "caption_bbox_pixels": [
+        554,
+        741,
+        980,
+        797
+      ],
+      "suggested_crop_bbox_points": [
+        296.938,
+        317.531,
+        552.56,
+        451.484
+      ],
+      "suggested_crop_bbox_pixels": [
+        536,
+        573,
+        998,
+        815
+      ],
+      "candidate_crop": "crops/figure-4-p006.png",
+      "selected_asset": "pages/page-006.png",
+      "candidate_crop_size_pixels": [
+        462,
+        243
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p6"
+      ],
+      "text_asset": "text/visuals/figure-4-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-5-p007",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 7,
+      "caption": "Qualitative comparisons with different SOTA methods. Zoom in for a better view.",
+      "raw_text": "Figure 5. Qualitative comparisons with different SOTA methods. Zoom in for a better view.",
+      "caption_bbox_points": [
+        130.899,
+        338.801,
+        465.982,
+        347.849
+      ],
+      "caption_bbox_pixels": [
+        236,
+        612,
+        841,
+        628
+      ],
+      "suggested_crop_bbox_points": [
+        76.985,
+        61.063,
+        516.093,
+        357.849
+      ],
+      "suggested_crop_bbox_pixels": [
+        139,
+        110,
+        932,
+        646
+      ],
+      "candidate_crop": "crops/figure-5-p007.png",
+      "selected_asset": "pages/page-007.png",
+      "candidate_crop_size_pixels": [
+        793,
+        537
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p7"
+      ],
+      "text_asset": "text/visuals/figure-5-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-2-p007",
+      "label": "Table 2",
+      "kind": "table",
+      "number": "2",
+      "page": 7,
+      "caption": "Ablation on the LR Condition Mode. Condition Mode",
+      "raw_text": "Table 2. Ablation on the LR Condition Mode. Condition Mode",
+      "caption_bbox_points": [
+        98.036,
+        354.548,
+        380.072,
+        381.483
+      ],
+      "caption_bbox_pixels": [
+        177,
+        640,
+        686,
+        689
+      ],
+      "suggested_crop_bbox_points": [
+        79.486,
+        344.548,
+        510.217,
+        428.366
+      ],
+      "suggested_crop_bbox_pixels": [
+        144,
+        622,
+        921,
+        773
+      ],
+      "candidate_crop": "crops/table-2-p007.png",
+      "selected_asset": "pages/page-007.png",
+      "candidate_crop_size_pixels": [
+        779,
+        152
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p7"
+      ],
+      "text_asset": "text/visuals/table-2-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-3-p007",
+      "label": "Table 3",
+      "kind": "table",
+      "number": "3",
+      "page": 7,
+      "caption": "Complexity comparison.",
+      "raw_text": "Table 3. Complexity comparison.",
+      "caption_bbox_points": [
+        112.297,
+        439.449,
+        232.585,
+        448.415
+      ],
+      "caption_bbox_pixels": [
+        203,
+        793,
+        420,
+        810
+      ],
+      "suggested_crop_bbox_points": [
+        45.44,
+        429.449,
+        301.094,
+        727.468
+      ],
+      "suggested_crop_bbox_pixels": [
+        82,
+        775,
+        544,
+        1313
+      ],
+      "candidate_crop": "crops/table-3-p007.png",
+      "selected_asset": "pages/page-007.png",
+      "candidate_crop_size_pixels": [
+        462,
+        539
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p7"
+      ],
+      "text_asset": "text/visuals/table-3-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-4-p008",
+      "label": "Table 4",
+      "kind": "table",
+      "number": "4",
+      "page": 8,
+      "caption": "Ablation on the Scale-aligned RoPE.",
+      "raw_text": "Table 4. Ablation on the Scale-aligned RoPE.",
+      "caption_bbox_points": [
+        90.195,
+        70.532,
+        254.686,
+        79.657
+      ],
+      "caption_bbox_pixels": [
+        163,
+        127,
+        460,
+        144
+      ],
+      "suggested_crop_bbox_points": [
+        52.27,
+        60.532,
+        292.611,
+        169.774
+      ],
+      "suggested_crop_bbox_pixels": [
+        94,
+        109,
+        528,
+        307
+      ],
+      "candidate_crop": "crops/table-4-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        435,
+        198
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/table-4-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-5-p008",
+      "label": "Table 5",
+      "kind": "table",
+      "number": "5",
+      "page": 8,
+      "caption": "Ablation on the Diffusion Refiner.",
+      "raw_text": "Table 5. Ablation on the Diffusion Refiner.",
+      "caption_bbox_points": [
+        95.75,
+        170.295,
+        249.131,
+        179.42
+      ],
+      "caption_bbox_pixels": [
+        173,
+        307,
+        450,
+        324
+      ],
+      "suggested_crop_bbox_points": [
+        83.403,
+        160.295,
+        261.477,
+        253.774
+      ],
+      "suggested_crop_bbox_pixels": [
+        151,
+        289,
+        472,
+        458
+      ],
+      "candidate_crop": "crops/table-5-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        323,
+        170
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/table-5-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-6-p008",
+      "label": "Table 6",
+      "kind": "table",
+      "number": "6",
+      "page": 8,
+      "caption": "Ablation on the Image-based CFG.",
+      "raw_text": "Table 6. Ablation on the Image-based CFG.",
+      "caption_bbox_points": [
+        93.275,
+        254.295,
+        251.606,
+        263.42
+      ],
+      "caption_bbox_pixels": [
+        168,
+        459,
+        454,
+        476
+      ],
+      "suggested_crop_bbox_points": [
+        83.275,
+        173.854,
+        261.606,
+        273.42
+      ],
+      "suggested_crop_bbox_pixels": [
+        150,
+        314,
+        472,
+        494
+      ],
+      "candidate_crop": "crops/table-6-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        323,
+        181
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/table-6-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-7-p008",
+      "label": "Figure 7",
+      "kind": "figure",
+      "number": "7",
+      "page": 8,
+      "caption": "Effectivess of the Scale-aligned RoPE.",
+      "raw_text": "Figure 7. Effectivess of the Scale-aligned RoPE.",
+      "caption_bbox_points": [
+        337.151,
+        157.926,
+        511.73,
+        167.051
+      ],
+      "caption_bbox_pixels": [
+        609,
+        285,
+        924,
+        302
+      ],
+      "suggested_crop_bbox_points": [
+        303.938,
+        147.926,
+        568.728,
+        169.295
+      ],
+      "suggested_crop_bbox_pixels": [
+        549,
+        267,
+        1027,
+        306
+      ],
+      "candidate_crop": "crops/figure-7-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        479,
+        39
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/figure-7-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-8-p008",
+      "label": "Figure 8",
+      "kind": "figure",
+      "number": "8",
+      "page": 8,
+      "caption": "Visualization of Continuous Tokens and Discrete Tokens.",
+      "raw_text": "Figure 8. Visualization of Continuous Tokens and Discrete Tokens.",
+      "caption_bbox_points": [
+        306.938,
+        253.702,
+        543.0,
+        262.785
+      ],
+      "caption_bbox_pixels": [
+        554,
+        458,
+        980,
+        474
+      ],
+      "suggested_crop_bbox_points": [
+        294.026,
+        180.42,
+        612.0,
+        272.785
+      ],
+      "suggested_crop_bbox_pixels": [
+        531,
+        326,
+        1105,
+        493
+      ],
+      "candidate_crop": "crops/figure-8-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        575,
+        168
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/figure-8-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-9-p008",
+      "label": "Figure 9",
+      "kind": "figure",
+      "number": "9",
+      "page": 8,
+      "caption": "Effect of the Image-based CFG with guidance scale λs.",
+      "raw_text": "Figure 9. Effect of the Image-based CFG with guidance scale λs.",
+      "caption_bbox_points": [
+        306.938,
+        351.429,
+        541.504,
+        360.739
+      ],
+      "caption_bbox_pixels": [
+        554,
+        635,
+        978,
+        651
+      ],
+      "suggested_crop_bbox_points": [
+        294.026,
+        264.42,
+        612.0,
+        370.739
+      ],
+      "suggested_crop_bbox_pixels": [
+        531,
+        477,
+        1105,
+        669
+      ],
+      "candidate_crop": "crops/figure-9-p008.png",
+      "selected_asset": "pages/page-008.png",
+      "candidate_crop_size_pixels": [
+        575,
+        193
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p8"
+      ],
+      "text_asset": "text/visuals/figure-9-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-7-p013",
+      "label": "Table 7",
+      "kind": "table",
+      "number": "7",
+      "page": 13,
+      "caption": "Reconstruction results of the VQVAE on RealSR dataset. Methods Compression ratio PSNR ↑ SSIM↑ LPIPS↓ DISTS↓ FID↓ MANIQA ↑ CLIPIQA↑",
+      "raw_text": "Table 7. Reconstruction results of the VQVAE on RealSR dataset. Methods Compression ratio PSNR ↑ SSIM↑ LPIPS↓ DISTS↓ FID↓ MANIQA ↑ CLIPIQA↑",
+      "caption_bbox_points": [
+        94.925,
+        116.881,
+        538.453,
+        139.152
+      ],
+      "caption_bbox_pixels": [
+        171,
+        211,
+        972,
+        251
+      ],
+      "suggested_crop_bbox_points": [
+        45.44,
+        37.227,
+        548.453,
+        149.152
+      ],
+      "suggested_crop_bbox_pixels": [
+        82,
+        67,
+        990,
+        269
+      ],
+      "candidate_crop": "crops/table-7-p013.png",
+      "selected_asset": "pages/page-013.png",
+      "candidate_crop_size_pixels": [
+        909,
+        203
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p13"
+      ],
+      "text_asset": "text/visuals/table-7-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-10-p013",
+      "label": "Figure 10",
+      "kind": "figure",
+      "number": "10",
+      "page": 13,
+      "caption": "Databaet Collection. We collect a large-scale, high-quality dataset, and select 50k low-quality images from IQA and IAA datasets as negative samples, each with different quality-centered controls attached. We collect billions of images from public datasets (e.g., LAION (Schuhmann et al., 2022), DataComp (Gadre et al., 2023)) and internal datasets. Employing a progressive filtering and semantic balance strategy, we have constructed a dataset comprising 4 million high-quality, high-resolution images.",
+      "raw_text": "Figure 10. Databaet Collection. We collect a large-scale, high-quality dataset, and select 50k low-quality images from IQA and IAA datasets as negative samples, each with different quality-centered controls attached. We collect billions of images from public datasets (e.g., LAION (Schuhmann et al., 2022), DataComp (Gadre et al., 2023)) and internal datasets. Employing a progressive filtering and semantic balance strategy, we have constructed a dataset comprising 4 million high-quality, high-resolution images.",
+      "caption_bbox_points": [
+        54.938,
+        659.519,
+        542.106,
+        717.468
+      ],
+      "caption_bbox_pixels": [
+        99,
+        1191,
+        979,
+        1295
+      ],
+      "suggested_crop_bbox_points": [
+        44.938,
+        527.597,
+        552.106,
+        727.468
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        953,
+        997,
+        1313
+      ],
+      "candidate_crop": "crops/figure-10-p013.png",
+      "selected_asset": "pages/page-013.png",
+      "candidate_crop_size_pixels": [
+        916,
+        362
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p13"
+      ],
+      "text_asset": "text/visuals/figure-10-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-8-p014",
+      "label": "Table 8",
+      "kind": "table",
+      "number": "8",
+      "page": 14,
+      "caption": "Comparison of our large-scale dataset with other well-known datasets.",
+      "raw_text": "Table 8. Comparison of our large-scale dataset with other well-known datasets.",
+      "caption_bbox_points": [
+        156.381,
+        76.338,
+        440.503,
+        85.304
+      ],
+      "caption_bbox_pixels": [
+        282,
+        138,
+        795,
+        154
+      ],
+      "suggested_crop_bbox_points": [
+        45.082,
+        66.338,
+        552.824,
+        384.095
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        120,
+        998,
+        694
+      ],
+      "candidate_crop": "crops/table-8-p014.png",
+      "selected_asset": "pages/page-014.png",
+      "candidate_crop_size_pixels": [
+        918,
+        575
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p14"
+      ],
+      "text_asset": "text/visuals/table-8-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-9-p014",
+      "label": "Table 9",
+      "kind": "table",
+      "number": "9",
+      "page": 14,
+      "caption": "Comparison of the base generative model on C2I task.",
+      "raw_text": "Table 9. Comparison of the base generative model on C2I task.",
+      "caption_bbox_points": [
+        185.248,
+        396.117,
+        411.636,
+        405.083
+      ],
+      "caption_bbox_pixels": [
+        334,
+        715,
+        743,
+        731
+      ],
+      "suggested_crop_bbox_points": [
+        122.337,
+        386.117,
+        480.454,
+        644.514
+      ],
+      "suggested_crop_bbox_pixels": [
+        221,
+        697,
+        867,
+        1164
+      ],
+      "candidate_crop": "crops/table-9-p014.png",
+      "selected_asset": "pages/page-014.png",
+      "candidate_crop_size_pixels": [
+        648,
+        467
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p14"
+      ],
+      "text_asset": "text/visuals/table-9-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-11-p014",
+      "label": "Figure 11",
+      "kind": "figure",
+      "number": "11",
+      "page": 14,
+      "caption": "Visualization of C2I generation results from closely related categories.",
+      "raw_text": "Figure 11. Visualization of C2I generation results from closely related categories.",
+      "caption_bbox_points": [
+        151.929,
+        648.212,
+        444.954,
+        657.178
+      ],
+      "caption_bbox_pixels": [
+        274,
+        1170,
+        803,
+        1187
+      ],
+      "suggested_crop_bbox_points": [
+        141.929,
+        467.402,
+        454.954,
+        667.178
+      ],
+      "suggested_crop_bbox_pixels": [
+        256,
+        844,
+        821,
+        1205
+      ],
+      "candidate_crop": "crops/figure-11-p014.png",
+      "selected_asset": "pages/page-014.png",
+      "candidate_crop_size_pixels": [
+        566,
+        362
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p14"
+      ],
+      "text_asset": "text/visuals/figure-11-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-10-p015",
+      "label": "Table 10",
+      "kind": "table",
+      "number": "10",
+      "page": 15,
+      "caption": "Results of user study on real-world images.",
+      "raw_text": "Table 10. Results of user study on real-world images.",
+      "caption_bbox_points": [
+        202.544,
+        226.851,
+        394.339,
+        235.817
+      ],
+      "caption_bbox_pixels": [
+        366,
+        410,
+        712,
+        426
+      ],
+      "suggested_crop_bbox_points": [
+        44.972,
+        216.851,
+        553.181,
+        402.958
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        392,
+        999,
+        728
+      ],
+      "candidate_crop": "crops/table-10-p015.png",
+      "selected_asset": "pages/page-015.png",
+      "candidate_crop_size_pixels": [
+        918,
+        337
+      ],
+      "source_page_image": "pages/page-015.png",
+      "source_page_text": "text/pages/page-015.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p15"
+      ],
+      "text_asset": "text/visuals/table-10-p015.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-11-p015",
+      "label": "Table 11",
+      "kind": "table",
+      "number": "11",
+      "page": 15,
+      "caption": "Quantitative comparison with SOTA methods on RealLR200 dataset with no reference images. Red and blue colors are the best and second-best performance.",
+      "raw_text": "Table 11. Quantitative comparison with SOTA methods on RealLR200 dataset with no reference images. Red and blue colors are the best and second-best performance.",
+      "caption_bbox_points": [
+        54.893,
+        412.946,
+        541.437,
+        432.984
+      ],
+      "caption_bbox_pixels": [
+        99,
+        746,
+        978,
+        782
+      ],
+      "suggested_crop_bbox_points": [
+        44.693,
+        402.946,
+        553.188,
+        752.374
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        728,
+        999,
+        1358
+      ],
+      "candidate_crop": "crops/table-11-p015.png",
+      "selected_asset": "pages/page-015.png",
+      "candidate_crop_size_pixels": [
+        919,
+        632
+      ],
+      "source_page_image": "pages/page-015.png",
+      "source_page_text": "text/pages/page-015.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p15"
+      ],
+      "text_asset": "text/visuals/table-11-p015.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-12-p016",
+      "label": "Table 12",
+      "kind": "table",
+      "number": "12",
+      "page": 16,
+      "caption": "Ablation on the Training Database.",
+      "raw_text": "Table 12. Ablation on the Training Database.",
+      "caption_bbox_points": [
+        90.139,
+        76.202,
+        254.02,
+        85.327
+      ],
+      "caption_bbox_pixels": [
+        163,
+        138,
+        459,
+        154
+      ],
+      "suggested_crop_bbox_points": [
+        53.573,
+        66.202,
+        449.203,
+        372.911
+      ],
+      "suggested_crop_bbox_pixels": [
+        97,
+        120,
+        811,
+        673
+      ],
+      "candidate_crop": "crops/table-12-p016.png",
+      "selected_asset": "pages/page-016.png",
+      "candidate_crop_size_pixels": [
+        716,
+        555
+      ],
+      "source_page_image": "pages/page-016.png",
+      "source_page_text": "text/pages/page-016.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p16"
+      ],
+      "text_asset": "text/visuals/table-12-p016.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-13-p016",
+      "label": "Table 13",
+      "kind": "table",
+      "number": "13",
+      "page": 16,
+      "caption": "Ablation on the Image Preprocess Strategy.",
+      "raw_text": "Table 13. Ablation on the Image Preprocess Strategy.",
+      "caption_bbox_points": [
+        328.694,
+        76.179,
+        520.909,
+        85.304
+      ],
+      "caption_bbox_pixels": [
+        593,
+        138,
+        941,
+        154
+      ],
+      "suggested_crop_bbox_points": [
+        151.542,
+        66.179,
+        545.899,
+        372.911
+      ],
+      "suggested_crop_bbox_pixels": [
+        274,
+        119,
+        986,
+        673
+      ],
+      "candidate_crop": "crops/table-13-p016.png",
+      "selected_asset": "pages/page-016.png",
+      "candidate_crop_size_pixels": [
+        713,
+        555
+      ],
+      "source_page_image": "pages/page-016.png",
+      "source_page_text": "text/pages/page-016.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p16"
+      ],
+      "text_asset": "text/visuals/table-13-p016.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-12-p016",
+      "label": "Figure 12",
+      "kind": "figure",
+      "number": "12",
+      "page": 16,
+      "caption": "Comparison of different dataset and image preprocess methods.",
+      "raw_text": "Figure 12. Comparison of different dataset and image preprocess methods.",
+      "caption_bbox_points": [
+        164.28,
+        370.765,
+        432.601,
+        379.89
+      ],
+      "caption_bbox_pixels": [
+        297,
+        669,
+        781,
+        686
+      ],
+      "suggested_crop_bbox_points": [
+        147.35,
+        172.259,
+        447.206,
+        389.89
+      ],
+      "suggested_crop_bbox_pixels": [
+        266,
+        311,
+        807,
+        704
+      ],
+      "candidate_crop": "crops/figure-12-p016.png",
+      "selected_asset": "pages/page-016.png",
+      "candidate_crop_size_pixels": [
+        542,
+        393
+      ],
+      "source_page_image": "pages/page-016.png",
+      "source_page_text": "text/pages/page-016.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p16"
+      ],
+      "text_asset": "text/visuals/figure-12-p016.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-14-p016",
+      "label": "Table 14",
+      "kind": "table",
+      "number": "14",
+      "page": 16,
+      "caption": "Ablation on the VQVAE Scale Dropout Strategy.",
+      "raw_text": "Table 14. Ablation on the VQVAE Scale Dropout Strategy.",
+      "caption_bbox_points": [
+        193.501,
+        464.057,
+        403.38,
+        473.182
+      ],
+      "caption_bbox_pixels": [
+        349,
+        838,
+        728,
+        854
+      ],
+      "suggested_crop_bbox_points": [
+        45.082,
+        454.057,
+        553.184,
+        752.374
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        820,
+        999,
+        1358
+      ],
+      "candidate_crop": "crops/table-14-p016.png",
+      "selected_asset": "pages/page-016.png",
+      "candidate_crop_size_pixels": [
+        918,
+        540
+      ],
+      "source_page_image": "pages/page-016.png",
+      "source_page_text": "text/pages/page-016.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p16"
+      ],
+      "text_asset": "text/visuals/table-14-p016.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-13-p017",
+      "label": "Figure 13",
+      "kind": "figure",
+      "number": "13",
+      "page": 17,
+      "caption": "Effectivess of the VQVAE Scale Dropout Strategy.",
+      "raw_text": "Figure 13. Effectivess of the VQVAE Scale Dropout Strategy.",
+      "caption_bbox_points": [
+        188.458,
+        228.216,
+        408.423,
+        237.341
+      ],
+      "caption_bbox_pixels": [
+        340,
+        412,
+        737,
+        429
+      ],
+      "suggested_crop_bbox_points": [
+        147.669,
+        62.317,
+        450.378,
+        247.341
+      ],
+      "suggested_crop_bbox_pixels": [
+        267,
+        113,
+        813,
+        447
+      ],
+      "candidate_crop": "crops/figure-13-p017.png",
+      "selected_asset": "pages/page-017.png",
+      "candidate_crop_size_pixels": [
+        548,
+        335
+      ],
+      "source_page_image": "pages/page-017.png",
+      "source_page_text": "text/pages/page-017.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p17"
+      ],
+      "text_asset": "text/visuals/figure-13-p017.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-14-p017",
+      "label": "Figure 14",
+      "kind": "figure",
+      "number": "14",
+      "page": 17,
+      "caption": "Limitations of VARSR. Due to limitations in the scope of training data coverage, it may be challenging to restore the correct semantics in certain extreme scenarios.",
+      "raw_text": "Figure 14. Limitations of VARSR. Due to limitations in the scope of training data coverage, it may be challenging to restore the correct semantics in certain extreme scenarios.",
+      "caption_bbox_points": [
+        54.938,
+        374.623,
+        541.444,
+        394.562
+      ],
+      "caption_bbox_pixels": [
+        99,
+        676,
+        978,
+        712
+      ],
+      "suggested_crop_bbox_points": [
+        44.938,
+        238.341,
+        612.0,
+        404.562
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        430,
+        1105,
+        730
+      ],
+      "candidate_crop": "crops/figure-14-p017.png",
+      "selected_asset": "pages/page-017.png",
+      "candidate_crop_size_pixels": [
+        1024,
+        301
+      ],
+      "source_page_image": "pages/page-017.png",
+      "source_page_text": "text/pages/page-017.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p17"
+      ],
+      "text_asset": "text/visuals/figure-14-p017.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-15-p018",
+      "label": "Figure 15",
+      "kind": "figure",
+      "number": "15",
+      "page": 18,
+      "caption": "Comparisons with different methods on real-world images. Zoom in for a better view.",
+      "raw_text": "Figure 15. Comparisons with different methods on real-world images. Zoom in for a better view.",
+      "caption_bbox_points": [
+        121.578,
+        704.578,
+        475.303,
+        713.626
+      ],
+      "caption_bbox_pixels": [
+        220,
+        1272,
+        858,
+        1288
+      ],
+      "suggested_crop_bbox_points": [
+        74.677,
+        211.785,
+        514.958,
+        723.626
+      ],
+      "suggested_crop_bbox_pixels": [
+        135,
+        382,
+        930,
+        1307
+      ],
+      "candidate_crop": "crops/figure-15-p018.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        796,
+        925
+      ],
+      "source_page_image": "pages/page-018.png",
+      "source_page_text": "text/pages/page-018.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-15-p018.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-16-p019",
+      "label": "Figure 16",
+      "kind": "figure",
+      "number": "16",
+      "page": 19,
+      "caption": "Additional qualitative comparisons with different SOTA methods (Part 1). Zoom in for a better view.",
+      "raw_text": "Figure 16. Additional qualitative comparisons with different SOTA methods (Part 1). Zoom in for a better view.",
+      "caption_bbox_points": [
+        94.729,
+        709.26,
+        502.152,
+        718.308
+      ],
+      "caption_bbox_pixels": [
+        171,
+        1281,
+        907,
+        1297
+      ],
+      "suggested_crop_bbox_points": [
+        82.362,
+        217.707,
+        516.953,
+        728.308
+      ],
+      "suggested_crop_bbox_pixels": [
+        149,
+        393,
+        933,
+        1315
+      ],
+      "candidate_crop": "crops/figure-16-p019.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        786,
+        923
+      ],
+      "source_page_image": "pages/page-019.png",
+      "source_page_text": "text/pages/page-019.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-16-p019.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-17-p020",
+      "label": "Figure 17",
+      "kind": "figure",
+      "number": "17",
+      "page": 20,
+      "caption": "Additional qualitative comparisons with different SOTA methods (Part 2). Zoom in for a better view.",
+      "raw_text": "Figure 17. Additional qualitative comparisons with different SOTA methods (Part 2). Zoom in for a better view.",
+      "caption_bbox_points": [
+        94.729,
+        707.12,
+        502.152,
+        716.168
+      ],
+      "caption_bbox_pixels": [
+        171,
+        1277,
+        907,
+        1293
+      ],
+      "suggested_crop_bbox_points": [
+        80.493,
+        215.301,
+        513.95,
+        726.168
+      ],
+      "suggested_crop_bbox_pixels": [
+        145,
+        389,
+        928,
+        1311
+      ],
+      "candidate_crop": "crops/figure-17-p020.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        783,
+        924
+      ],
+      "source_page_image": "pages/page-020.png",
+      "source_page_text": "text/pages/page-020.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "not-selected",
+      "review_notes": "Number and caption inventoried from complete PDF; not claimed visually inspected.",
+      "key": false,
+      "classification_reason": "Additional teaser or qualitative examples repeat evidence covered by the selected mechanism, main comparisons, and ablations; not a separate causal or quantitative claim.",
+      "selected_for_report": false,
+      "report_role": "supplementary context",
+      "selection_reason": "Redundant example, inventoried but not embedded.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-17-p020.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-6-p007",
+      "label": "Figure 6",
+      "kind": "figure",
+      "number": "6",
+      "page": 7,
+      "caption": "Visual comparison of different conditioning strategies.",
+      "raw_text": "Figure 1. VARSR framework, which can be divided into three parts: (1) LR image is set as Prefix Tokens as condition. (2) VAR generates discrete tokens based on next-scale prediction. (3) Diffusion Refiner predicts the continious tokens as quantization residuals.",
+      "caption_bbox_points": [
+        54.938,
+        218.373,
+        541.436,
+        238.408
+      ],
+      "caption_bbox_pixels": [
+        99,
+        394,
+        978,
+        430
+      ],
+      "suggested_crop_bbox_points": [
+        44.938,
+        1.0,
+        551.436,
+        248.408
+      ],
+      "suggested_crop_bbox_pixels": [
+        81,
+        2,
+        996,
+        449
+      ],
+      "candidate_crop": null,
+      "selected_asset": "pages/page-007.png",
+      "candidate_crop_size_pixels": [
+        915,
+        448
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Rendered full page visually inspected; report explains visual and its limits.",
+      "key": true,
+      "classification_reason": "Direct evidence for mechanism, quantitative comparison, ablation, or limitation explained in the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Full-page source preserves every panel, labels, and caption.",
+      "claim_ids": [
+        "p7"
+      ],
+      "text_asset": "text/visuals/figure-1-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    }
+  ]
+}

@@ -1,0 +1,376 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "MMG2Skill: Can Agents Distill In-the-Wild Guides into Self-Evolving Skills?",
+    "authors": [
+      "Xinyu Che",
+      "Junqi Xiong",
+      "Yunfei Ge",
+      "Xinping Lei",
+      "Shihao Li",
+      "Hang Yan",
+      "Han Li (affiliation 1)",
+      "Yuanxing Zhang",
+      "Zhiqi Bai",
+      "Jinhua Hao",
+      "Ming Sun",
+      "Han Li (affiliation 2)",
+      "Jiaheng Liu"
+    ],
+    "venue": "arXiv preprint",
+    "version": "arXiv v1, 1 June 2026",
+    "sources": [
+      {
+        "type": "pdf",
+        "location": "https://arxiv.org/pdf/2606.01993v1",
+        "sha256": "f08e07d83c7afbbe0275cee1e4296b6a8f5775afcda02c18b13df7cc5e816e3a",
+        "role": "primary"
+      }
+    ],
+    "page_convention": "1-based physical PDF page numbers"
+  },
+  "reader_profile": {
+    "domain": "AI agents and evaluation",
+    "selected_lenses": [
+      "method",
+      "empirical-evidence",
+      "reproducibility"
+    ],
+    "audience": "broad-to-expert",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral",
+    "goal": "understand",
+    "depth": "deep",
+    "delivery": "explain",
+    "language": "English and Simplified Chinese, equivalent paired blocks"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "sources/paper.txt",
+      "sources/paper.pdf"
+    ]
+  },
+  "visual_coverage": {
+    "total_numbered": 30,
+    "key": 23,
+    "key_explained": 23
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "### Key concepts: knowing a procedure is not the same as executing it\nA human guide can omit assumptions that feel obvious to its writer: the current inventory, which window has focus, what counts as a saved file, or when a general card-game heuristic applies. Pasting the guide into an agent’s context cannot resolve those assumptions. MMG2Skill asks whether a fixed vision-language model (VLM) can turn this material into an executable, editable procedural representation and repair it after seeing what actually happened. Here “self-evolving” means revising a skill file across attempts at a supplied task, not unrestricted model self-improvement.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "§§1–3, PDF pp.1–4",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C2",
+      "claim": "Key observation and interpretation. The stacked bars show 40 GUI tasks, 30 Minecraft tasks and 60 strategy-game hands; diamonds use the right axis for mean guides per task, approximately 1.02, 3.00 and 5.00. GUI covers OSWorld applications, Game covers mining/crafting/smelting, and Strategy covers Doudizhu and Mahjong. This supports cross-domain breadth, but not large-scale coverage: there are only 130 main tasks. Public, task-relevant guides exclude solution traces, gold action sequences and hidden evaluation labels. Tasks whose answers can be copied directly from public references are excluded. The upstream problem of finding the right guide is not evaluated.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 2, PDF p.3",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C3",
+      "claim": "The main guide format is HTML plus image resources, with a rendered-screenshot alternative. One qualification matters: Minecraft HTML image references are filtered because many are tiny duplicated sprites or navigation icons; its HTML condition is effectively text-only guide input. Thus “multimodal” describes the framework and benchmark, not every guide in every condition. Main tasks are selected so success is inferable from visible trajectories or a public final state. Hold’em is deliberately outside that boundary because private cards can determine payoff.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "§2; Appendix C.1, PDF pp.3,16–17",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C4",
+      "claim": "Key observation and interpretation. Figure 3 moves from tutorial material to a shared skill cache, through environment execution, then back through root-cause analysis and skill rewriting. All four roles use the same backbone in a model condition; there is no separately stronger judge. This supports a representation-level learning interpretation. The purple return path is a change to procedural context, not a gradient update to θ. It cannot establish cross-task transfer or a growing universal skill library.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 3, PDF p.4",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C5",
+      "claim": "### Five equations, two different information boundaries\nEquation 1 states an **evaluation objective**: choose a guide-derived skill set S that maximizes expected benchmark score under fixed policy πθ. The method never receives that score during construction, execution, analysis or refinement. Confusing this objective with online feedback would turn the method into a much easier oracle-assisted system. Ω(G) denotes skill sets induced by guide G; I is the task instruction, τ the executed trajectory and s(τ) the offline score.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Equation 1, PDF p.3",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C6",
+      "claim": "Construction produces S₁={zᵢ}, with conceptual skill zᵢ=(uᵢ,cᵢ,vᵢ,qᵢ): procedure, applicability conditions, expected-state cues and recovery knowledge. These fields explain what the representation should retain; the implementation is Markdown with text and referenced images, not a mandatory four-field data schema. At attempt k, actions condition on the task, current skill set and bounded recent history hₜ. Skills remain available even when older observation/action turns leave the window.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Equations 2–3, PDF p.4",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C7",
+      "claim": "After execution, Analyze reads only I and the agent-visible trajectory τₖ, producing ρₖ=(eₖ,rₖ): grounded evidence plus a self-assessed outcome such as likely_success. Refine receives the original guide, the current skill set and **all accumulated diagnoses** ρ₁:ₖ. The guide lets it recover omitted details; diagnosis history helps avoid undoing earlier fixes. The output is a normalized rewritten skill set, rather than a growing transcript of complaints. Both the diagnosis and the repair can still be wrong.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Equations 4–5, PDF pp.4–5",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C8",
+      "claim": "Key observation and interpretation. Algorithm 1 returns the first attempt judged likely_success within N=5; if no such judgment appears, it returns the final attempt. This supports a deployable selection rule using only visible evidence, not “pick the attempt with highest benchmark reward.” For analysis, the authors continue recorded runs beyond hypothetical stop points and replay early-stop and full-run policies on the same attempts. This controls trajectory differences between those policy comparisons, but cannot eliminate the analyzer’s false positives.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Algorithm 1, PDF p.5",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C9",
+      "claim": "Key observation and interpretation. Algorithm 2 chunks decision turns, passes a running summary between chunks and asks the final chunk for the root-cause diagnosis. Refinement intensity depends on the assessment: preserve and reinforce successes, edit normally under uncertainty, permit larger changes after failure. This supports bounded per-call analysis without discarding the diagnosis chain. It cannot guarantee lossless summarization or preservation of every correct rule. Table 4 specifies GUI/Game/Strategy step caps 15/60/60, recent-history windows 3/10/60 and analyzer chunk sizes 15/15/30. Those budgets are part of the experimental conditions, not incidental implementation trivia.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Algorithm 2, PDF p.13",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C10",
+      "claim": "### Worked example: “run the crop command” is an incomplete contract\nAppendix G.1 follows Claude-Sonnet-4.6 cropping the top 20% from cola.png and saving cropped.png. Attempt 1 executes the GIMP batch procedure, declares DONE, but no output file exists; the offline score is 0. The diagnosis identifies premature completion. Refinement edits run-gimp-crop-command/SKILL.md by extending the wait and adding an explicit “ls -la cropped.png” output-file check before completion. The next attempt scores 1.0. Input guide → procedural skill → visible missing output → diagnosis → new verification precondition → successful execution is the entire loop.\n\nThis example demonstrates repairing a runtime assumption that static extraction missed. It cannot show that the analyzer saw the oracle score: that score is only the researcher’s evaluation. Conversely, Appendix G.2’s essay-submission case shows surface completion triggering likely_success while the oracle score is 0. The same interface can encode a useful fix or confidently preserve an error.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Appendix G.1–G.2, PDF pp.26–30",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C11",
+      "claim": "Key observation and interpretation. Table 1’s macro-average rises from 56.85→69.64 for Opus-4.6, 54.08→67.41 for GPT-5.5, 48.81→64.92 for Sonnet-4.6, 44.36→58.81 for Kimi-K2.6, 35.82→54.17 for Gemini-3.1-Pro and 26.67→51.94 for Qwen3.6-Plus. All 18 model-domain cells improve over vanilla. These are domain-score averages, not 18 independent large benchmarks.\n\nTable 2 isolates the stages: GUI vanilla/raw guide/construction/full gives 42.74/42.79/51.08/55.67; Game 43.89/42.22/43.89/66.11; Strategy 46.67/45.14/47.92/61.67. Raw guides can hurt. Extraction supplies much of the GUI gain; revision accounts for over 90% of the gain in Game and Strategy. This supports repairing guide-to-runtime mismatches rather than merely adding knowledge. It cannot by itself isolate skill editing from extra attempts: the full method receives up to five attempts.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 1, Table 2, PDF p.6",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C12",
+      "claim": "Key observation and interpretation. Figure 10 compares skill edits with Raw Guide + root-cause memory under the same N=5 budget, analyzer and early-stop rule. At N=5, Kimi/Qwen gaps favor skills by 2.50/5.02 points on GUI and 16.67/6.67 on Game. This supports an advantage for materializing feedback in the skill interface beyond simply supplying diagnoses and retries, within four tested model-domain pairs. It cannot establish superiority to every memory architecture or an equal-token-budget baseline. Figure 9 plots skill characters across attempts: content generally grows, especially Strategy, while some curves flatten. That supports monitoring prompt-size cost; it cannot mean the method’s persistent representation is free or bounded under unlimited revision.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 10, Figure 9, PDF p.22",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C13",
+      "claim": "Key observation and interpretation. Figure 4 uses lines for per-attempt scores and bars on a second axis for cumulative stop-trigger rates. GPT-5.5 starts stronger in GUI/Game; Qwen accumulates more benefit through revision. Some score curves regress even while trigger rates increase. Table 3 reports likely_success precision/recall: GUI 74.16/98.51%, Game 87.02/95.80%, Strategy 84.56/70.79%; mean stopping attempts are 2.35/2.54/3.73. This supports early stopping when success is observable, but a limitation is that a high trigger rate is not high accuracy, and 74% precision still permits consequential false stops. Attempt savings of 52.92/49.22/25.44% and API-call savings of 41.77/37.46/23.60% are relative to always running the **full MMG2Skill budget**, not vanilla.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 4, Table 3, PDF p.7",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C14",
+      "claim": "Key observation and interpretation. The paired bars compare returning attempt K with replaying the first likely_success up to K on the same recorded attempts. At K=5 GUI is approximately 55.7 for both; Game is 47.8 full-run versus 66.1 early-stop; Strategy 47.6 versus 61.7. This supports the claim that deployment policy contributes materially to the headline result, particularly where late revisions regress. It cannot turn early-stop into an oracle: the broader Table 8 shows exceptions and remaining oracle gaps, especially Mahjong.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 5, PDF p.8",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C15",
+      "claim": "Key observation and interpretation. The left panels separate early-stop and full-run scores, while the right panels track skill characters for Qwen at N=7. Game’s early-stop curve plateaus by five attempts while full-run remains lower; GUI visibly rises to 40 at five and falls to about 37.5 at six and seven. This supports diminishing returns and regression risk rather than indefinite self-improvement. The text describes a plateau in both domains, but the GUI curve is more qualified: tasks that have not triggered stopping can still change the aggregate as their fallback attempt changes. A one-backbone, two-domain extension cannot establish a universal optimal N=5.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 8, PDF p.21",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C16",
+      "claim": "Key observation and interpretation. Table 12 compares likely_success with no_issue, and Figure 11 plots their selected scores and trigger rates. For GUI, no_issue raises precision from 74.2 to 82.2 but lowers recall from 98.5 to 82.8; for Game it lowers recall from 95.8 to 58.6 without a precision advantage (87.0 versus 86.6). This supports selecting a stopping signal using its actual precision–recall trade-off. It cannot imply likely_success is always appropriate: aggregate Strategy hides Mahjong’s lower 71.4% precision and 49.5% recall, and hidden-outcome tasks are a different regime.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 12, Figure 11, PDF p.23",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C17",
+      "claim": "Key observation and interpretation. Table 13 shows Hold’em likely_success triggering on 74.2% of tasks with only 9.9% precision; actual positive outcomes occur on 13.4%. Mean payoffs are 2.44 vanilla, 3.59 early-stop and 2.23 full-run. Table 14 exposes much larger oracle gaps and model variation, including a negative Qwen screenshot early-stop payoff. This supports the paper’s warning that plausible visible behavior is not evidence of a favorable hidden outcome. An improved average payoff cannot validate this stopping rule. Where outcome-determining information is unavailable, disable analyzer-based stopping or use external outcome feedback; the skill-revision loop itself can still run.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 13, Table 14, PDF p.24",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C18",
+      "claim": "Key observation and interpretation. The stacked bars count error tags among attempts that still fail, split by domain and model. GUI mixes grounding, diagnosis and bad skill information; Game emphasizes grounded execution and exhausted budgets; Strategy often fails to turn general advice into the next state-dependent action. This supports domain-specific debugging rather than one universal broken stage. Multiple tags can occur per case, and the denominator excludes successes, so bar length cannot measure a component’s causal share of all failures or directly rank models by success rate.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 6, PDF p.9",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C19",
+      "claim": "Key observation and interpretation. Table 9 first averages each task’s gain over six models, then tests paired task differences. All six domain/modality cells have one-sided Wilcoxon p≤8.9×10⁻⁴ and sign-test p≤2.0×10⁻³. Table 10 instead combines per-model paired Wilcoxon tests with Stouffer’s method; the paper reports significance surviving Bonferroni correction over six cells. This supports gains beyond a few favorable examples under these tests. It cannot manufacture independent evidence from correlated models or establish population-wide transfer; the small, curated task collection remains the sampling unit that matters.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 9, Table 10, PDF p.18",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C20",
+      "claim": "Key observation and interpretation. Table 11 repeats vanilla, raw guide and MMG2Skill for Opus, GPT and Kimi with unchanged settings. The method’s advantage persists, while individual cells move by several points: GPT’s MMG Game score changes 80.00→86.67 and Opus GUI 64.75→70.00. This supports directional stability for three backbones. Two runs cannot tightly characterize variance, tail risk or every model’s reliability; the exact main-table decimal should not be treated as a guaranteed deployment rate.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 11, PDF p.19",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C21",
+      "claim": "Key observation and interpretation. Table 15 counts steps in the displayed/selected attempt: macro means fall 10.08→9.21 for GUI and 41.17→36.08 for Game. Figure 12 instead counts all pipeline calls, including attempts before stopping, extraction, analysis and refinement. Agent-loop calls dominate, so earlier stopping saves calls compared with five full attempts. This supports more directed execution and a cost benefit for early stopping, but they cannot prove MMG2Skill is cheaper than single-attempt vanilla. Strategy is omitted from step-efficiency claims because a short hand can be a quick win or quick loss.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Table 15, Figure 12, PDF p.25",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "C22",
+      "claim": "Key observation and interpretation. Figure 13 stacks token use by stage for three models with full logs. Early-stop uses fewer tokens than full N=5 in every shown domain/model cell; GUI and Game are loop-heavy, whereas refinement can dominate Strategy for Gemini and GPT. This supports measuring both calls and token volumes before deployment. The o200k tokenizer accounting is a diagnostic, not a universal provider billing estimate, and three fully logged backbones cannot cover every model in Table 1.",
+      "status": "strong",
+      "inference": false,
+      "evidence": [
+        {
+          "type": "text",
+          "locator": "Figure 13, PDF p.26",
+          "note": "Primary-paper passage or table, interpreted with the boundaries stated in the claim."
+        }
+      ],
+      "caveats": []
+    }
+  ]
+}

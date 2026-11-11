@@ -1,0 +1,43 @@
+{
+  "schema_version": 4,
+  "analysis_mode": "visual",
+  "source_url": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev",
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "visuals": [
+    {
+      "id": "figure-1",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 1,
+      "caption": "Seven benchmark panels",
+      "selected_asset": "crops/KAT-Coder-V2.5-Dev-Benchmarks.png",
+      "key": true,
+      "selected_for_report": true,
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "review_notes": "Original official model-card image visually inspected, including all axes and labels. Local figure numbering; original card figures are unnumbered.",
+      "classification_reason": "Key empirical evidence",
+      "report_role": "evidence",
+      "selection_reason": "All substantive source figures included."
+    },
+    {
+      "id": "figure-2",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 1,
+      "caption": "Batch unit-test pass fraction",
+      "selected_asset": "crops/KAT-Coder-V2.5-Dev-RL-Reward-Curve.png",
+      "key": true,
+      "selected_for_report": true,
+      "visual_verification": "complete",
+      "crop_review_required": false,
+      "review_notes": "Original official model-card image visually inspected, including all axes and labels. Local figure numbering; original card figures are unnumbered.",
+      "classification_reason": "Key empirical evidence",
+      "report_role": "evidence",
+      "selection_reason": "All substantive source figures included."
+    }
+  ],
+  "inventory_note": "The card has no numbered figures or tables. These two unnumbered figures receive local numbers; the unnumbered evaluation and score tables are reproduced as structured Markdown with explicit scope. Logo is decorative."
+}

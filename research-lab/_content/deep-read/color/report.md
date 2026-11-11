@@ -1,0 +1,349 @@
+# Coloring the Noise: Adversarial Sobolev Alignment for Faithful Image Super Resolution
+
+为噪声着色：以对抗 Sobolev 对齐提升图像超分辨率保真度
+
+Source: [Coloring the Noise: Adversarial Sobolev Alignment for Faithful Image Super Resolution](https://arxiv.org/abs/2605.23264v2), arXiv:2605.23264v2, 26 June 2026. Page references count PDF pages, including the supplement. Figures are verified source-page facsimiles; captions and adjacent evidence remain visible. Numerical claims are paper-reported, not independently reproduced.
+
+来源：[Coloring the Noise: Adversarial Sobolev Alignment for Faithful Image Super Resolution](https://arxiv.org/abs/2605.23264v2)，arXiv:2605.23264v2, 26 June 2026。页码按 PDF 物理页计，含补充材料。配图为已目视核验的原文页面，保留图注与相邻证据。数值来自论文，未独立复现实验。
+
+## 1. 核心思想一句话总结（Elevator Pitch）
+
+<!-- pair:1-1:en -->
+
+ASASR learns from structurally difficult negatives and frequency-weighted preferences to make generative super-resolution more faithful without equating attractive textures with recovered truth.
+
+<!-- pair:1-1:zh -->
+
+ASASR 用结构性负样本和频率加权偏好，改善生成式超分辨率的结构保真度。
+
+## 2. 论文背景与动机（Background & Motivation）
+
+<!-- pair:2-1:en -->
+
+### Key concepts
+**Flow matching**: learning a velocity field that moves noisy images toward data. **Sobolev norm**: a squared-error measure that also weights variation across spatial frequencies. **Preference optimization**: training a model to favor a better candidate over a worse one relative to a reference model.
+
+<!-- pair:2-1:zh -->
+
+### 必要概念
+**流匹配：** 学习把噪声图像推向数据的速度场。**Sobolev 范数：** 同时按空间频率变化加权的平方误差度量。**偏好优化：** 相对参考模型训练，使模型更偏好好候选而非差候选。
+
+<!-- pair:2-2:en -->
+
+### The problem is where the error lies
+A low-resolution image does not uniquely specify its high-resolution source. A powerful generator can draw convincing fur or windows while changing their arrangement. Pixel error, perceptual similarity, and no-reference attractiveness measure different things. ASASR targets the imbalance in an ordinary squared-error objective: natural images concentrate energy at low spatial frequencies, so a loss with equal frequency weights can under-emphasize weaker but important high-frequency structure. The paper calls the method Adversarial Sobolev Alignment for Super-Resolution; the existing “color” route is a title mnemonic, not a separate CoLoR algorithm. [§§1–3, pp. 1–4]
+
+<!-- pair:2-2:zh -->
+
+### 问题在于误差出现在哪里
+低分辨率图像无法唯一确定原始高清图像。强生成器可以画出逼真的毛发或窗户，却改变其排列。像素误差、感知相似度和无参考美观度衡量不同目标。ASASR 针对普通平方误差的失衡：自然图像能量主要集中于低空间频率，频率等权的损失可能忽略较弱但关键的高频结构。论文将方法命名为 Adversarial Sobolev Alignment for Super-Resolution；既有 “color” 路径只是标题缩写，并非另一个 CoLoR 算法。[§§1–3，第 1–4 页]
+
+![Figure 2](assets/pages/page-003.png)
+
+<!-- pair:2-4:en -->
+
+**How to read:** Compare the separation between the three geometries, not the size of the drawn regions.
+
+**Key observation:** Figure 2 (p. 3) contrasts Euclidean alignment, adversarial negatives, and the proposed Sobolev geometry. Read its colored regions as an intuition about objectives, not measured image manifolds. A curved drawing does not prove that generated and real distributions coincide. **Boundary:** The actual evidence must come from residual definitions, ablations, and reconstruction tests.
+
+This supports the motivation for changing the objective.
+
+<!-- pair:2-4:zh -->
+
+**如何读：** 对比三种几何的区别，而非所画区域的大小。
+
+**关键观察：** 图 2（第 3 页）对比欧氏对齐、对抗负样本与 Sobolev 几何。彩色区域是目标函数的直觉示意，不是实测图像流形；曲线图不能证明生成分布与真实分布重合。**边界：** 实际证据需要来自残差定义、消融与重建测试。
+
+这一观察支持改变目标函数的动机。
+
+## 3. 核心方法/模型详解（The Core Method/Model）
+
+<!-- pair:3-1:en -->
+
+### From flow residuals to a frequency-aware preference
+Let $x_0$ be noise, $x_1$ the target high-resolution image, and $c$ the low-resolution condition. This paper runs time from noise at 0 to data at 1. The straight training path and velocity target are
+
+<!-- pair:3-1:zh -->
+
+### 从流残差到频率感知偏好
+令 $x_0$ 为噪声，$x_1$ 为目标高清图像，$c$ 为低清条件。本论文的时间方向为 0 时噪声到 1 时数据。直线训练路径与速度目标为
+
+$$
+x_t=(1-t)x_0+t x_1,\qquad v_q=x_1-x_0.
+$$
+
+<!-- pair:3-3:en -->
+
+The trainable velocity $v_\theta$ makes residual $\gamma_\theta=v_\theta-v_q$. Instead of summing its squared frequency coefficients equally, the Sobolev norm raises the cost of higher-frequency error. $s\geq0$ controls how strongly; $s=0$ recovers ordinary $L^2$. [Eqs. 1–5, 11–14]
+
+<!-- pair:3-3:zh -->
+
+可训练速度 $v_\theta$ 的残差为 $\gamma_\theta=v_\theta-v_q$。Sobolev 范数不再对平方频率系数等权求和，而是提高高频误差的代价。$s\geq0$ 控制力度；$s=0$ 退化为普通 $L^2$。[式 1–5、11–14]
+
+$$
+\|f\|_{H^s}^{2}=\sum_\omega(1+\|\omega\|^2)^s|\widehat f(\omega)|^2,\qquad \Sigma_s=\mathcal F^{-1}\operatorname{diag}\big((1+\|\omega\|^2)^{-s}\big)\mathcal F.
+$$
+
+<!-- pair:3-5:en -->
+
+The covariance $\Sigma_s$ is the “colored noise”: its inverse is the frequency-weighted precision of a Gaussian error model. The implementation uses a DCT-II to handle reflective boundaries rather than literally assuming periodic Fourier boundaries. Weighting frequencies is not a guarantee of correct phase or text identity. A minimal example makes the geometry concrete: two unit-amplitude residual modes at frequencies 0 and 1 cost 2 under $L^2$, but cost $1+2=3$ under $H^1$. It is the error penalty, not a command to sharpen every edge. [§3, Appendix C]
+
+<!-- pair:3-5:zh -->
+
+协方差 $\Sigma_s$ 就是“有色噪声”：其逆矩阵是高斯误差模型中按频率加权的精度。实现使用 DCT-II 处理反射边界，并非直接假设傅里叶周期边界。频率加权不保证相位或文字身份正确。最小例子：频率 0 和 1 上各一个单位幅度残差，在 $L^2$ 下代价为 2，在 $H^1$ 下为 $1+2=3$。它改变误差惩罚，不等于要求所有边缘都锐化。[§3、附录 C]
+
+![Figure 3](assets/pages/page-004.png)
+
+<!-- pair:3-7:en -->
+
+**How to read:** Compare the blue and red curves at high frequency on the logarithmic vertical axis.
+
+**Key observation:** Figure 3 (p. 4) plots power spectral density against spatial frequency on synthetic and real data. The logarithmic vertical scale matters: the red $L^2$ curve falls below the natural-image spectrum at higher frequencies; the blue Sobolev curve follows it more closely. The reported slope deviations are 0.06/0.02 versus 0.85/0.73. **Boundary:** Similar spectrum is evidence of frequency balance, not proof that a particular window or character was reconstructed correctly.
+
+This supports improved spectral balance.
+
+<!-- pair:3-7:zh -->
+
+**如何读：** 对比对数纵轴下高频处蓝红曲线的差距。
+
+**关键观察：** 图 3（第 4 页）展示合成与真实数据的功率谱密度随空间频率的变化。纵轴采用对数尺度：红色 $L^2$ 曲线在高频低于自然图像谱，蓝色 Sobolev 曲线更接近。报告的斜率偏差分别为 0.06/0.02 与 0.85/0.73。**边界：** 谱接近支持频率平衡，并不能证明某扇窗或某个字符恢复正确。
+
+这一观察支持频谱平衡改善。
+
+<!-- pair:3-8:en -->
+
+### The adversary creates informative alternatives
+The adversarial network $v_\phi$ takes a noisy winner state, predicts an imperfect endpoint, and re-noises it with the same $x_0,t$. This preserves comparison correspondence while introducing structural mistakes. A frozen supervised reference anchors optimization. With $w$ denoting the winner and $a$ the adversarial alternative, define
+
+<!-- pair:3-8:zh -->
+
+### 对抗网络生成有信息量的替代结果
+对抗网络 $v_\phi$ 接收加噪后的优胜样本状态，预测不完美端点，再使用同一 $x_0,t$ 加噪。这保留比较对应关系，同时引入结构错误。冻结的监督参考模型用于锚定优化。以 $w$ 表示优胜样本、$a$ 表示对抗替代结果，定义
+
+$$
+\widehat x_1^a=x_t^w+(1-t)v_\phi(x_t^w,t,c),\qquad x_t^a=(1-t)x_0+t\widehat x_1^a,
+$$
+
+$$
+\Delta E(x_t,c)=\|\gamma_\theta(x_t,c)\|_{H^s}^2-\|\gamma_{\mathrm{ref}}(x_t,c)\|_{H^s}^2,
+$$
+
+$$
+\mathcal L=-\mathbb E\log\sigma\!\left(\beta[\Delta E(x_t^a,c)-\Delta E(x_t^w,c)]\right).
+$$
+
+<!-- pair:3-12:en -->
+
+Here $\sigma$ is the logistic function and $\beta>0$ sets preference sensitivity. Equal relative energies give loss $\log2$; increasing the adversarial-minus-winner margin lowers it. For a blurred sign, the winner preserves the target letters while the alternative bends their strokes. Sharing time and noise helps isolate this structural distinction rather than comparing unrelated noise realizations. This is preference fine-tuning during training, not a verifier search at inference. [Eqs. 15–18]
+
+<!-- pair:3-12:zh -->
+
+其中 $\sigma$ 为 logistic 函数，$\beta>0$ 控制偏好敏感度。相对能量相同时损失为 $\log2$；增加“对抗样本减优胜样本”的间隔会降低损失。以模糊招牌为例，优胜样本保留目标文字，对抗样本扭曲笔画。共享时间与噪声有助于隔离结构差异，避免比较无关噪声。这是训练期间的偏好微调，不是推理时的验证器搜索。[式 15–18]
+
+![Figure 4](assets/pages/page-005.png)
+
+<!-- pair:3-14:en -->
+
+**How to read:** Compare paired building edges and character strokes.
+
+**Key observation:** Figure 4 (p. 5) pairs winner and loser images with architectural or text distortions. The negatives are near the correct content, unlike arbitrary random images. **Boundary:** These selected pairs motivate the design but do not establish that the learned adversary finds every worst-case error.
+
+This supports content-aligned negative construction.
+
+<!-- pair:3-14:zh -->
+
+**如何读：** 对比成对建筑边缘与文字笔画。
+
+**关键观察：** 图 4（第 5 页）并列建筑或文字结构出现变形的优胜与劣质图像。负样本接近正确内容，不是任意随机图像。**边界：** 这些选例说明设计动机，但不能证明学到的对抗网络找到了所有最坏情况。
+
+这一观察支持内容对齐的负样本构造。
+
+<!-- pair:3-15:en -->
+
+### What the local derivation does and does not prove
+The constrained first-order analysis yields
+
+<!-- pair:3-15:zh -->
+
+### 局部推导证明了什么、没有证明什么
+带约束的一阶分析得到
+
+$$
+\delta_t^*=-\epsilon_t\frac{\Sigma_s\nabla J_{L^2}}{\sqrt{\langle\nabla J_{L^2},\Sigma_s\nabla J_{L^2}\rangle}}.
+$$
+
+<!-- pair:3-17:en -->
+
+This is a local energy-reducing direction inside a Sobolev trust region, with radius $\epsilon_t$, assuming a nonzero gradient. The negative sign is important: it seeks a confidently misleading low-energy alternative, not simply maximal pixel corruption. Appendix B relies on linearization, an Euler approximation, and sufficient adversary capacity. It is not a global optimization or exact natural-image-manifold theorem.
+
+<!-- pair:3-17:zh -->
+
+这是半径为 $\epsilon_t$ 的 Sobolev 信赖域内降低局部能量的方向，要求梯度非零。负号很重要：它寻找模型有信心但错误的低能量替代结果，而非单纯最大化像素破坏。附录 B 依赖线性化、Euler 近似和足够的对抗网络容量，并非全局优化或精确自然图像流形定理。
+
+## 4. 实验与结果分析（Experiments & Results）
+
+<!-- pair:4-1:en -->
+
+**Evidence grade:** Strong for the reported within-paper numerical comparisons and mechanism descriptions; moderate for broader transfer claims; unsupported as a guarantee of exact recovery on arbitrary unseen inputs. No independent reproduction was performed.
+
+<!-- pair:4-1:zh -->
+
+**证据评级：** 文内数值比较与机制描述得到强支持；更广泛迁移主张为中等支持；任意未见输入精确恢复的保证不受支持。这里未进行独立复现。
+
+<!-- pair:4-2:en -->
+
+### Protocol and metric meanings
+The main task is ×4 image super-resolution. FLUX.1-dev uses rank-16, alpha-16 LoRA on eight H800 GPUs; $s=1.5$, preference $\beta=2000$, and 28 inference steps are reported. PSNR/SSIM compare aligned references; LPIPS/DISTS estimate reference perceptual distance; MANIQA/MUSIQ/CLIPIQA score appearance without checking the exact reference. No-reference gains cannot alone establish faithful recovery. The adversary is trained on baseline outputs from a random 25% subset named as DIV2K, LSDIR, RealSR, and DRealSR. The text does not establish the exact train/evaluation disjointness of those subsets; that must be checked before interpreting cross-dataset claims. [§4, Appendix C]
+
+<!-- pair:4-2:zh -->
+
+### 设置与指标含义
+主任务为 ×4 图像超分辨率。FLUX.1-dev 使用 rank-16、alpha-16 LoRA，在八张 H800 上训练；报告设置包括 $s=1.5$、偏好 $\beta=2000$ 和 28 步推理。PSNR/SSIM 比较对齐参考图，LPIPS/DISTS 衡量参考感知距离，MANIQA/MUSIQ/CLIPIQA 不核验具体参考内容。无参考分数提高不能单独证明忠实恢复。对抗网络使用 DIV2K、LSDIR、RealSR、DRealSR 的随机 25% 子集产生的基线输出训练；文中未明确这些子集与评估样本的精确隔离关系，解释跨数据集结论前应核查。[§4、附录 C]
+
+![Table 1, Table 2](assets/pages/page-006.png)
+
+<!-- pair:4-4:en -->
+
+**How to read:** Compare reference metrics and downstream tasks separately, respecting each metric direction.
+
+**Key observation:** Tables 1–2 (p. 6) support a mixed, not universal, improvement. On DIV2K, ASASR reaches PSNR 20.60 and LPIPS 0.2784; Real-ESRGAN has higher PSNR 21.11, while SeeSR has lower DISTS 0.1986 than ASASR’s 0.2038. On RealSR, PSNR 24.09 is below SwinIR’s 24.44. Downstream OCR recall rises to 45.91 versus DP2O-SR 40.03, but ground truth reaches 50.32. Detection AP 35.62 and segmentation mIoU 43.33 remain below ground truth 48.32 and 49.39. **Boundary:** These are useful task-level checks, not guarantees for every text string.
+
+This supports task-specific gains alongside fidelity trade-offs.
+
+<!-- pair:4-4:zh -->
+
+**如何读：** 对比分别查看参考指标与下游任务，并注意指标方向。
+
+**关键观察：** 表 1–2（第 6 页）支持的是多目标改善，而非全面占优。DIV2K 上 ASASR 的 PSNR 为 20.60、LPIPS 为 0.2784；Real-ESRGAN 的 PSNR 21.11 更高，SeeSR 的 DISTS 0.1986 也优于 ASASR 的 0.2038。RealSR 上 PSNR 24.09 低于 SwinIR 的 24.44。下游 OCR 召回率为 45.91，高于 DP2O-SR 的 40.03，但真值图像达到 50.32。检测 AP 35.62、分割 mIoU 43.33 仍低于真值的 48.32、49.39。**边界：** 这些是有价值的任务级检查，不保证每串文字正确。
+
+这一观察支持任务特定收益与保真折中并存。
+
+![Figure 5](assets/pages/page-007.png)
+
+<!-- pair:4-6:en -->
+
+**How to read:** Compare the ground-truth columns in the first two rows before judging real images.
+
+**Key observation:** Figure 5 (p. 7) places methods in columns and four scenes in rows. The first two rows include ground truth; the real-world dog and ornament rows do not. Architectural line regularity and reduced face distortions are plausible visual benefits. Texture preferences in the reference-free rows cannot establish which fine details existed in the original scene.
+
+This supports the qualitative structural benefit on selected scenes.
+
+<!-- pair:4-6:zh -->
+
+**如何读：** 对比先看前两行真值列，再评判真实图像。
+
+**关键观察：** 图 5（第 7 页）按列排列方法，按行排列四个场景。前两行提供真值，真实犬只与摆件两行没有真值。建筑线条更规整、人脸变形减少是可观察优势；无参考行中的纹理偏好不能判断哪些细节原本真实存在。
+
+这一观察支持选定场景的定性结构优势。
+
+![Figure 6, Table 3](assets/pages/page-008.png)
+
+<!-- pair:4-8:en -->
+
+**How to read:** Compare the spectral example and objective-ablation rows as distinct evidence.
+
+**Key observation:** Figure 6 and Table 3 (p. 8) test mechanism more directly. The window example compares image details and spectra: ASASR’s log-spectral distance is 27.35 versus roughly 36–44 for the alternatives. In the ablation, replacing the Sobolev objective with Euclidean DPO drops PSNR 20.60→18.34 and worsens LPIPS 0.2784→0.3115; supervised DPO reaches 20.08/0.3109. The full system is best among these controlled variants, but Table 3 lists DISTS 0.2088 where Table 1 lists 0.2038. **Boundary:** The discrepancy is retained rather than silently reconciled.
+
+This supports the importance of the frequency-weighted objective.
+
+<!-- pair:4-8:zh -->
+
+**如何读：** 对比将频谱示例与目标消融行作为不同证据。
+
+**关键观察：** 图 6 与表 3（第 8 页）更直接检验机制。窗户示例同时比较细节与频谱：ASASR 的对数谱距离为 27.35，其他方法约 36–44。消融中以欧氏 DPO 替代 Sobolev 目标，PSNR 从 20.60 降至 18.34，LPIPS 从 0.2784 恶化至 0.3115；监督 DPO 为 20.08/0.3109。完整模型在这些控制变体中最好，但表 3 的 DISTS 为 0.2088，表 1 为 0.2038。**边界：** 这里保留差异，不擅自解释成同一个值。
+
+这一观察支持频率加权目标的重要性。
+
+![Figure 7](assets/pages/page-009.png)
+
+<!-- pair:4-10:en -->
+
+**How to read:** Compare the peaks of perceptual metrics as the Sobolev order increases.
+
+**Key observation:** Figure 7 (p. 9) sweeps the Sobolev order. LPIPS generally improves as high frequencies receive more weight, while MANIQA and MUSIQ peak around $s=1.5$ and then decline. **Boundary:** This is an empirical balance, not a theorem that more high-frequency emphasis is always better or that 1.5 transfers universally.
+
+This supports an intermediate empirical operating point.
+
+<!-- pair:4-10:zh -->
+
+**如何读：** 对比Sobolev 阶数增加时感知指标的峰值。
+
+**关键观察：** 图 7（第 9 页）扫描 Sobolev 阶数。高频权重增大时 LPIPS 总体改善，但 MANIQA 与 MUSIQ 在 $s=1.5$ 左右达到峰值后下降。**边界：** 这是经验折中，不意味着高频权重越大越好，也不意味着 1.5 普遍最优。
+
+这一观察支持中间阶数的经验工作点。
+
+![Table 4, Table 5](assets/pages/page-016.png)
+
+<!-- pair:4-12:en -->
+
+**How to read:** Compare rank saturation separately from latency and memory units.
+
+**Key observation:** Tables 4–5 (p. 16) expose capacity and cost. Increasing adversary LoRA rank 4→8→16 raises PSNR 19.43→20.54→20.60; ranks 32/64 largely plateau. This supports a sufficient-capacity regime but not the theorem’s approximation assumptions. Inference on A800 is reported as 19.60 seconds/image, 33.02 GB peak memory, and 2.85 PFLOPs, averaged over 100 runs after warm-up. **Boundary:** This is not a lightweight real-time restorer.
+
+This supports diminishing capacity gains and substantial inference cost.
+
+<!-- pair:4-12:zh -->
+
+**如何读：** 对比将 rank 饱和与延迟、显存单位分开阅读。
+
+**关键观察：** 表 4–5（第 16 页）展示容量与代价。对抗网络 LoRA rank 从 4→8→16，PSNR 从 19.43→20.54→20.60；32/64 基本进入平台期。这支持容量足够后的饱和现象，但不验证理论中的近似假设。A800 推理报告为 19.60 秒/图、峰值显存 33.02 GB、计算量 2.85 PFLOPs，预热后取 100 次平均。**边界：** 这不是轻量实时修复器。
+
+这一观察支持容量收益递减与显著推理开销。
+
+![Table 6, Table 7](assets/pages/page-017.png)
+
+<!-- pair:4-14:en -->
+
+**How to read:** Compare within-backbone changes and lower-is-better NIQE.
+
+**Key observation:** Tables 6–7 (p. 17) extend the scope. PSNR improves from supervised fine-tuning to ASASR on SD1.5 (18.52→19.14), SDXL (19.31→19.92), and FLUX (19.96→20.60). On RealLQ250, MUSIQ 71.16 exceeds SeeSR 70.57, but NIQE 3.64 is worse than DreamClear 3.55 because lower is better. **Boundary:** Transfer evidence is encouraging without establishing all-metric dominance.
+
+This supports partial transfer across backbones and domains.
+
+<!-- pair:4-14:zh -->
+
+**如何读：** 对比各主干内部变化及越低越好的 NIQE。
+
+**关键观察：** 表 6–7（第 17 页）扩大验证范围。监督微调到 ASASR 的 PSNR 在 SD1.5 上为 18.52→19.14，SDXL 为 19.31→19.92，FLUX 为 19.96→20.60。RealLQ250 上 MUSIQ 71.16 高于 SeeSR 的 70.57，但 NIQE 3.64 差于 DreamClear 的 3.55，因为该指标越低越好。**边界：** 迁移证据积极，却不是所有指标全面领先。
+
+这一观察支持跨主干与领域的部分迁移。
+
+![Table 8, Figure 8](assets/pages/page-018.png)
+
+<!-- pair:4-16:en -->
+
+**How to read:** Compare the old-film scores separately from top-K human rankings.
+
+**Key observation:** Table 8 and Figure 8 (p. 18) add old-film and human-preference evidence. Old-film MUSIQ/CLIPIQA are 54.42/0.6078 versus DiT4SR 52.67/0.5004. The study uses 50 participants and 64 images with anonymized randomized rankings; the plotted top-1 preference is 91.1%. **Boundary:** It measures preference within the presented alternatives, not factual fidelity, and does not supply an independent replication.
+
+This supports appearance preference in the evaluated setting.
+
+<!-- pair:4-16:zh -->
+
+**如何读：** 对比将老电影分数与人工前 K 名排序分开阅读。
+
+**关键观察：** 表 8 与图 8（第 18 页）补充老电影与人工偏好证据。老电影 MUSIQ/CLIPIQA 为 54.42/0.6078，DiT4SR 为 52.67/0.5004。人工实验使用 50 位参与者与 64 张图像，以匿名随机顺序排序；图示第一名偏好率为 91.1%。**边界：** 它衡量给定候选中的偏好，不是事实保真度，也没有独立复现。
+
+这一观察支持评估设置内的外观偏好。
+
+## 5. 论文的贡献与影响（Contribution & Impact）
+
+<!-- pair:5-1:en -->
+
+### Future directions and contribution
+The useful combination is frequency-aware preference geometry plus content-aligned structural negatives. It links a covariance choice, a preference objective, and a learned adversary rather than merely adding a sharper-image loss. The strongest evidence is the controlled objective/adversary ablation and downstream recognition tests. The weakest leap is from matching power spectra or preference to universally faithful recovery. Reproduction should first resolve dataset splits and the DISTS discrepancy, then test unseen degradations, actual text identity, and equal-compute comparisons. A natural extension is uncertainty reporting for ambiguous details rather than selecting one plausible image and calling it true.
+
+<!-- pair:5-1:zh -->
+
+### 贡献与后续方向
+有价值的组合是频率感知偏好几何与内容对齐的结构负样本。它把协方差选择、偏好目标和可学习对抗网络联系起来，并非简单增加锐化损失。最有力的证据是受控目标函数/对抗网络消融及下游识别测试。最薄弱的跳跃则是从频谱匹配或偏好推断普遍忠实恢复。复现应先澄清数据划分与 DISTS 差异，再检验未见退化、真实文字身份及等计算量比较。自然扩展是报告歧义细节的不确定性，而非把单张合理图像称为事实。
+
+## 6. 结论（Conclusion）
+
+<!-- pair:6-1:en -->
+
+**Final judgment:** ASASR is a principled training-time attempt to make generative SR pay attention to the right structural errors. Its reported gains justify further study, especially for OCR and architectural detail. Use it when perceptual quality and structural plausibility matter, while retaining originals and checking consequential details. It does not eliminate hallucinations, dominate every metric, or provide a low-cost real-time solution.
+
+<!-- pair:6-1:zh -->
+
+**最终判断：** ASASR 是一种有理论动机的训练期方案，让生成式超分辨率更重视关键结构误差。报告结果值得进一步研究，尤其是 OCR 与建筑细节。适合同时重视感知质量与结构合理性的场景，但应保留原图并核验重要细节。它没有消除幻觉、没有所有指标领先，也不是低成本实时方案。

@@ -1,0 +1,1036 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:04:52.312031+00:00",
+  "source_pdf": "../sources/paper.pdf",
+  "source_sha256": "e204e0c7f161e36bef828fbf6fb63c057bb419a98b7990311d5b77009c65e721",
+  "page_count": 21,
+  "render_dpi": 130,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 86991,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 4452,
+      "caption_count": 0
+    },
+    {
+      "page": 2,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 5056,
+      "caption_count": 0
+    },
+    {
+      "page": 3,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 5699,
+      "caption_count": 1
+    },
+    {
+      "page": 4,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 6855,
+      "caption_count": 1
+    },
+    {
+      "page": 5,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 4522,
+      "caption_count": 0
+    },
+    {
+      "page": 6,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 4238,
+      "caption_count": 1
+    },
+    {
+      "page": 7,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 5854,
+      "caption_count": 1
+    },
+    {
+      "page": 8,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 4710,
+      "caption_count": 0
+    },
+    {
+      "page": 9,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 4186,
+      "caption_count": 1
+    },
+    {
+      "page": 10,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 4473,
+      "caption_count": 0
+    },
+    {
+      "page": 11,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 2582,
+      "caption_count": 1
+    },
+    {
+      "page": 12,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-012.png",
+      "text": "text/pages/page-012.txt",
+      "text_characters": 4096,
+      "caption_count": 1
+    },
+    {
+      "page": 13,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-013.png",
+      "text": "text/pages/page-013.txt",
+      "text_characters": 3999,
+      "caption_count": 4
+    },
+    {
+      "page": 14,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-014.png",
+      "text": "text/pages/page-014.txt",
+      "text_characters": 4500,
+      "caption_count": 2
+    },
+    {
+      "page": 15,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-015.png",
+      "text": "text/pages/page-015.txt",
+      "text_characters": 2111,
+      "caption_count": 2
+    },
+    {
+      "page": 16,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-016.png",
+      "text": "text/pages/page-016.txt",
+      "text_characters": 481,
+      "caption_count": 0
+    },
+    {
+      "page": 17,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-017.png",
+      "text": "text/pages/page-017.txt",
+      "text_characters": 4512,
+      "caption_count": 0
+    },
+    {
+      "page": 18,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-018.png",
+      "text": "text/pages/page-018.txt",
+      "text_characters": 4714,
+      "caption_count": 0
+    },
+    {
+      "page": 19,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-019.png",
+      "text": "text/pages/page-019.txt",
+      "text_characters": 4585,
+      "caption_count": 0
+    },
+    {
+      "page": 20,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-020.png",
+      "text": "text/pages/page-020.txt",
+      "text_characters": 4745,
+      "caption_count": 0
+    },
+    {
+      "page": 21,
+      "width_pixels": 1105,
+      "height_pixels": 1430,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-021.png",
+      "text": "text/pages/page-021.txt",
+      "text_characters": 621,
+      "caption_count": 0
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p003",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 3,
+      "caption": "The KVQ scores, resolutions, and categories distributions of our Kwai UltraVision Dataset.",
+      "raw_text": "Figure 1 The KVQ scores, resolutions, and categories distributions of our Kwai UltraVision Dataset.",
+      "caption_bbox_points": [
+        104.203,
+        270.272,
+        507.814,
+        280.435
+      ],
+      "caption_bbox_pixels": [
+        188,
+        488,
+        917,
+        506
+      ],
+      "suggested_crop_bbox_points": [
+        78.696,
+        29.788,
+        537.25,
+        290.435
+      ],
+      "suggested_crop_bbox_pixels": [
+        142,
+        54,
+        970,
+        524
+      ],
+      "candidate_crop": "crops/figure-1-p003.png",
+      "selected_asset": "crops/figure-1-verified.png",
+      "candidate_crop_size_pixels": [
+        829,
+        472
+      ],
+      "source_page_image": "pages/page-003.png",
+      "source_page_text": "text/pages/page-003.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p003.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p004",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 4,
+      "caption": "Overview of the data construction pipeline.",
+      "raw_text": "Figure 2 Overview of the data construction pipeline.",
+      "caption_bbox_points": [
+        200.86,
+        335.282,
+        411.15,
+        345.445
+      ],
+      "caption_bbox_pixels": [
+        363,
+        605,
+        742,
+        624
+      ],
+      "suggested_crop_bbox_points": [
+        66.663,
+        44.575,
+        612.0,
+        355.445
+      ],
+      "suggested_crop_bbox_pixels": [
+        120,
+        80,
+        1105,
+        642
+      ],
+      "candidate_crop": "crops/figure-2-p004.png",
+      "selected_asset": "crops/figure-2-verified.png",
+      "candidate_crop_size_pixels": [
+        985,
+        562
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-2-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-1-p006",
+      "label": "Table 1",
+      "kind": "table",
+      "number": "1",
+      "page": 6,
+      "caption": "VAE reconstruction quality on a challenging internal benchmark. The best result in each column is highlighted.",
+      "raw_text": "Table 1 VAE reconstruction quality on a challenging internal benchmark. The best result in each column is highlighted.",
+      "caption_bbox_points": [
+        70.622,
+        55.488,
+        541.163,
+        65.651
+      ],
+      "caption_bbox_pixels": [
+        128,
+        100,
+        977,
+        119
+      ],
+      "suggested_crop_bbox_points": [
+        60.488,
+        45.488,
+        552.78,
+        432.678
+      ],
+      "suggested_crop_bbox_pixels": [
+        109,
+        82,
+        998,
+        781
+      ],
+      "candidate_crop": "crops/table-1-p006.png",
+      "selected_asset": "crops/table-1-verified.png",
+      "candidate_crop_size_pixels": [
+        890,
+        700
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-1-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-3-p007",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 7,
+      "caption": "Overview of LPM-Video and its temporal block. LPM-Video augments the spatial DiT blocks of LPM-Image with factorized temporal-attention blocks and employs mask-guided reference conditioning to propagate restored information across clips.",
+      "raw_text": "Figure 3 Overview of LPM-Video and its temporal block. LPM-Video augments the spatial DiT blocks of LPM-Image with factorized temporal-attention blocks and employs mask-guided reference conditioning to propagate restored information across clips.",
+      "caption_bbox_points": [
+        70.866,
+        240.325,
+        541.149,
+        272.277
+      ],
+      "caption_bbox_pixels": [
+        128,
+        434,
+        977,
+        492
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        48.894,
+        551.149,
+        282.277
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        88,
+        995,
+        510
+      ],
+      "candidate_crop": "crops/figure-3-p007.png",
+      "selected_asset": "crops/figure-3-verified.png",
+      "candidate_crop_size_pixels": [
+        887,
+        422
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-3-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-4-p009",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 9,
+      "caption": "Overview of the degradation and data construction pipeline for LPM-Video training. Image-level degradations are applied consistently within each clip and are followed by FFmpeg-based video compression under multiple bitrate settings.",
+      "raw_text": "Figure 4 Overview of the degradation and data construction pipeline for LPM-Video training. Image-level degradations are applied consistently within each clip and are followed by FFmpeg-based video compression under multiple bitrate settings.",
+      "caption_bbox_points": [
+        75.281,
+        231.318,
+        536.925,
+        263.27
+      ],
+      "caption_bbox_pixels": [
+        136,
+        418,
+        969,
+        475
+      ],
+      "suggested_crop_bbox_points": [
+        65.281,
+        57.473,
+        546.925,
+        273.27
+      ],
+      "suggested_crop_bbox_pixels": [
+        118,
+        104,
+        988,
+        493
+      ],
+      "candidate_crop": "crops/figure-4-p009.png",
+      "selected_asset": "crops/figure-4-verified.png",
+      "candidate_crop_size_pixels": [
+        871,
+        391
+      ],
+      "source_page_image": "pages/page-009.png",
+      "source_page_text": "text/pages/page-009.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-4-p009.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-5-p011",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 11,
+      "caption": "Temporal-pyramid inference. Restored shot-level keyframes provide long-range guidance, while overlapping frames maintain short-range continuity. Long shots are handled recursively.",
+      "raw_text": "Figure 5 Temporal-pyramid inference. Restored shot-level keyframes provide long-range guidance, while overlapping frames maintain short-range continuity. Long shots are handled recursively.",
+      "caption_bbox_points": [
+        72.242,
+        311.487,
+        539.756,
+        332.48
+      ],
+      "caption_bbox_pixels": [
+        130,
+        562,
+        975,
+        600
+      ],
+      "suggested_crop_bbox_points": [
+        62.242,
+        45.881,
+        549.756,
+        342.48
+      ],
+      "suggested_crop_bbox_pixels": [
+        112,
+        83,
+        993,
+        618
+      ],
+      "candidate_crop": "crops/figure-5-p011.png",
+      "selected_asset": "crops/figure-5-verified.png",
+      "candidate_crop_size_pixels": [
+        881,
+        537
+      ],
+      "source_page_image": "pages/page-011.png",
+      "source_page_text": "text/pages/page-011.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-5-p011.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-6-p012",
+      "label": "Figure 6",
+      "kind": "figure",
+      "number": "6",
+      "page": 12,
+      "caption": "Trajectory-based Distillation in LPM: (left) multi-step integration, (right) 3-stage TCM.",
+      "raw_text": "Figure 6 Trajectory-based Distillation in LPM: (left) multi-step integration, (right) 3-stage TCM.",
+      "caption_bbox_points": [
+        109.536,
+        260.831,
+        502.501,
+        270.994
+      ],
+      "caption_bbox_pixels": [
+        198,
+        471,
+        907,
+        489
+      ],
+      "suggested_crop_bbox_points": [
+        99.536,
+        30.788,
+        513.731,
+        280.994
+      ],
+      "suggested_crop_bbox_pixels": [
+        180,
+        56,
+        928,
+        507
+      ],
+      "candidate_crop": "crops/figure-6-p012.png",
+      "selected_asset": "crops/figure-6-verified.png",
+      "candidate_crop_size_pixels": [
+        749,
+        453
+      ],
+      "source_page_image": "pages/page-012.png",
+      "source_page_text": "text/pages/page-012.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-6-p012.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-2-p013",
+      "label": "Table 2",
+      "kind": "table",
+      "number": "2",
+      "page": 13,
+      "caption": "Cumulative end-to-end speedup as training-aware and training-free acceleration are layered on top of the 25-step baseline.",
+      "raw_text": "Table 2 Cumulative end-to-end speedup as training-aware and training-free acceleration are layered on top of the 25-step baseline.",
+      "caption_bbox_points": [
+        78.161,
+        55.488,
+        533.66,
+        76.481
+      ],
+      "caption_bbox_pixels": [
+        141,
+        100,
+        964,
+        138
+      ],
+      "suggested_crop_bbox_points": [
+        60.358,
+        45.488,
+        552.518,
+        361.826
+      ],
+      "suggested_crop_bbox_pixels": [
+        109,
+        82,
+        998,
+        653
+      ],
+      "candidate_crop": "crops/table-2-p013.png",
+      "selected_asset": "crops/table-2-verified.png",
+      "candidate_crop_size_pixels": [
+        890,
+        572
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-2-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-3-p013",
+      "label": "Table 3",
+      "kind": "table",
+      "number": "3",
+      "page": 13,
+      "caption": "compares LPM-Image with representative diffusion-based restoration methods, including StableSR [54], SeeSR [59], and DiT-SR [12], on the public RealSR and RealSet benchmarks. LPM-Image achieves the highest MUSIQ and KVQ scores on both datasets. On RealSR, SeeSR obtains a slightly higher PSNR (26.35 vs. 25.97 dB), whereas LPM-Image substantially improves KVQ from 3.23 to 3.98. This result reflects the perception\u2013distortion trade-off commonly observed in generative restoration: LPM-Image maintains competitive pixel-level fidelity while producing more natural and perceptually convincing details.",
+      "raw_text": "Table 3 compares LPM-Image with representative diffusion-based restoration methods, including StableSR [54], SeeSR [59], and DiT-SR [12], on the public RealSR and RealSet benchmarks. LPM-Image achieves the highest MUSIQ and KVQ scores on both datasets. On RealSR, SeeSR obtains a slightly higher PSNR (26.35 vs. 25.97 dB), whereas LPM-Image substantially improves KVQ from 3.23 to 3.98. This result reflects the perception\u2013distortion trade-off commonly observed in generative restoration: LPM-Image maintains competitive pixel-level fidelity while producing more natural and perceptually convincing details.",
+      "caption_bbox_points": [
+        69.701,
+        359.446,
+        542.524,
+        429.185
+      ],
+      "caption_bbox_pixels": [
+        126,
+        649,
+        980,
+        775
+      ],
+      "suggested_crop_bbox_points": [
+        59.701,
+        82.104,
+        552.524,
+        439.185
+      ],
+      "suggested_crop_bbox_pixels": [
+        108,
+        148,
+        998,
+        793
+      ],
+      "candidate_crop": "crops/table-3-p013.png",
+      "selected_asset": "crops/table-3-verified.png",
+      "candidate_crop_size_pixels": [
+        891,
+        645
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-3-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-5-p015",
+      "label": "Table 5",
+      "kind": "table",
+      "number": "5",
+      "page": 15,
+      "caption": "compares LPM-Video against SeedVR2 [55], FlashVSR [78], and Vivid-VR [4] on five datasets: SPMC, REDS, YouHQ, VideoLQ, and LPM-Benchmark. LPM-Video achieves the best score on every metric across all five. The margin is most pronounced on VideoLQ, where LPM-Video improves MUSIQ from 62.76 (FlashVSR)",
+      "raw_text": "Table 5 compares LPM-Video against SeedVR2 [55], FlashVSR [78], and Vivid-VR [4] on five datasets: SPMC, REDS, YouHQ, VideoLQ, and LPM-Benchmark. LPM-Video achieves the best score on every metric across all five. The margin is most pronounced on VideoLQ, where LPM-Video improves MUSIQ from 62.76 (FlashVSR)",
+      "caption_bbox_points": [
+        70.508,
+        683.244,
+        542.502,
+        717.117
+      ],
+      "caption_bbox_pixels": [
+        127,
+        1234,
+        980,
+        1295
+      ],
+      "suggested_crop_bbox_points": [
+        60.488,
+        456.349,
+        553.035,
+        727.117
+      ],
+      "suggested_crop_bbox_pixels": [
+        109,
+        824,
+        999,
+        1313
+      ],
+      "candidate_crop": "crops/table-5-p013.png",
+      "selected_asset": "crops/table-5-verified.png",
+      "candidate_crop_size_pixels": [
+        890,
+        490
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-5-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-4-p014",
+      "label": "Table 4",
+      "kind": "table",
+      "number": "4",
+      "page": 14,
+      "caption": "Quantitative comparison for image super-resolution on LPM-Benchmark.",
+      "raw_text": "Table 4 Quantitative comparison for image super-resolution on LPM-Benchmark.",
+      "caption_bbox_points": [
+        142.284,
+        55.488,
+        469.494,
+        65.651
+      ],
+      "caption_bbox_pixels": [
+        257,
+        100,
+        848,
+        119
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        45.488,
+        551.522,
+        282.261
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        82,
+        996,
+        510
+      ],
+      "candidate_crop": "crops/table-4-p014.png",
+      "selected_asset": "crops/table-4-verified.png",
+      "candidate_crop_size_pixels": [
+        887,
+        428
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-4-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-7-p015",
+      "label": "Figure 7",
+      "kind": "figure",
+      "number": "7",
+      "page": 15,
+      "caption": "qualitatively compares LPM-Video with representative open-source methods and commercial video- enhancement services from Tencent [49], Alibaba [2], and ByteDance [50]. For scenes containing complex foreground textures and architectural structures, SeedVR2 and FlashVSR tend to produce blurred boundaries or color bleeding, whereas LPM-Video recovers sharper edges and more coherent fine-scale details. The evaluated commercial services effectively suppress noise and compression artifacts, but their outputs are often over-smoothed, resulting in the loss of subtle facial features and textile patterns. In comparison, LPM-Video better balances artifact removal and detail reconstruction, preserving clearer facial structures, foreground textures, and background content.",
+      "raw_text": "Figure 7 qualitatively compares LPM-Video with representative open-source methods and commercial video- enhancement services from Tencent [49], Alibaba [2], and ByteDance [50]. For scenes containing complex foreground textures and architectural structures, SeedVR2 and FlashVSR tend to produce blurred boundaries or color bleeding, whereas LPM-Video recovers sharper edges and more coherent fine-scale details. The evaluated commercial services effectively suppress noise and compression artifacts, but their outputs are often over-smoothed, resulting in the loss of subtle facial features and textile patterns. In comparison, LPM-Video better balances artifact removal and detail reconstruction, preserving clearer facial structures, foreground textures, and background content.",
+      "caption_bbox_points": [
+        70.866,
+        279.883,
+        542.765,
+        373.532
+      ],
+      "caption_bbox_pixels": [
+        128,
+        505,
+        980,
+        674
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        163.608,
+        552.765,
+        383.532
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        295,
+        998,
+        692
+      ],
+      "candidate_crop": "crops/figure-7-p014.png",
+      "selected_asset": "crops/figure-7-verified.png",
+      "candidate_crop_size_pixels": [
+        890,
+        398
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-7-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    }
+  ],
+  "manual_inventory_note": "Removed false caption matches from prose and repeated captions; every actual numbered figure and table retained."
+}

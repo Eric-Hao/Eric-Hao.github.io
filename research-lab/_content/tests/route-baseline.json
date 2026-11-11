@@ -1,0 +1,29 @@
+{
+  "routes": {
+    "agentic_ttt": "articles/agentic-ttt/",
+    "mmg2skill": "articles/mmg2skill/",
+    "webcompass": "articles/webcompass/",
+    "color": "articles/color/",
+    "tta_flow": "articles/tta-flow/",
+    "shiftlut": "articles/shiftlut/",
+    "instantvir": "articles/instantvir/",
+    "varsr": "articles/varsr/",
+    "tinvblocks": "articles/tinvblocks/",
+    "oapt": "articles/oapt/",
+    "cpga": "articles/cpga/",
+    "xpsr": "articles/xpsr/",
+    "ptmvqa": "articles/ptmvqa/",
+    "cassr": "articles/cassr/",
+    "vortex-bursting": "articles/vortex-bursting/",
+    "magvortex": "articles/magvortex/",
+    "magknot": "articles/magknot/",
+    "vortex": "articles/vortex/",
+    "kat-v25-dev": "articles/kat-v25-dev/",
+    "kat-v25": "articles/kat-v25/",
+    "kat-v2": "articles/kat-v2/",
+    "lpm": "articles/lpm/"
+  },
+  "blocked_chapter_sha256": {
+    "vortex-bursting": "87778c692ca84fedb76271b0456e8f09270068e83d4c7be71ad0573e06c34dc2"
+  }
+}

@@ -4,8 +4,11 @@ from build_styles import build_styles
 build_styles()
 import json,html
 from model_components import benchmark_tables
+from deep_read_build import prepare as prepare_deep_reads, sync_metadata, source_gap
 r=Path(__file__).resolve().parents[1];e=html.escape
 papers=json.loads((r/'data.js').read_text().removeprefix('const papers = ').rstrip(';\n'))
+deep_reads=prepare_deep_reads()
+sync_metadata(papers,deep_reads)
 briefs=json.loads((r/'_content/research-briefs.json').read_text())
 content=json.loads((r/'_content/articles.json').read_text());translations=json.loads((r/'_content/zh.json').read_text());figures=json.loads((r/'_content/figures.json').read_text());benchmarks={d['id']:d for d in json.loads((r/'_content/kat-benchmarks.json').read_text())}
 models=json.loads((r/'_content/kat-models.json').read_text())
@@ -19,6 +22,10 @@ priority={'kat-v25-dev':-4,'kat-v25':-3,'kat-v2':-2,'lpm':-1}
 reading_order=sorted(papers,key=lambda p:(category_order.index(p['cats'][0]),priority.get(p['image'],0)))
 for p in papers:
  key=p['image'];c=content[key];z=translations[key];f=figures[key];folder=r/p['article'];folder.mkdir(parents=True,exist_ok=True)
+ deep=deep_reads.get(key)
+ if deep:
+  c={**c,'headline':deep['title']['en'],'dek':deep['dek']['en']}
+  z={**z,'headline':deep['title']['zh'],'dek':deep['dek']['zh']}
  native=json.loads((r/'_content/source-figures.json').read_text()).get(key,[])
  roles=author_roles.get(key,[])
  role_symbols={'Corresponding author':'*','Project leader':'†'}
@@ -49,8 +56,11 @@ for p in papers:
   if i==3 and len(native)>1:sections+=render_figure(native[1])
   if i==2 and key in models:sections+=benchmark_tables(models[key])
   if i==4 and len(native)>2:sections+=''.join(render_figure(fig) for fig in native[2:])
+ if deep:sections=deep['html']
+ else:sections=source_gap(key)+sections
  paper_label='Model card' if key=='kat-v25-dev' else 'Read the paper'
- paper_action=(f'<a class="primary-link" href="{e(p["url"])}">{paper_label}</a>' if p.get('url') else f'<span class="primary-link" aria-disabled="true">{paper_label}</span>')
+ primary_url=deep['source_url'] if deep else p.get('url')
+ paper_action=(f'<a class="primary-link" href="{e(primary_url)}">{paper_label}</a>' if primary_url else f'<span class="primary-link" aria-disabled="true">{paper_label}</span>')
  paper_title=(f'<a href="{e(p["url"])}">{e(p["title"])}</a>' if p.get('url') else e(p['title']))
  resources=''.join(f'<a href="{e(l["url"])}">{e(l["label"])}</a>' for l in p['links'])
  position=reading_order.index(p)
@@ -60,9 +70,10 @@ for p in papers:
  bib=(r/'citations'/f'{key}.bib').read_text();page_note=f' · PDF page {f["page"]}' if 'page' in f else ''
  caption=f'{f["label"]}{page_note}.'
  chart_note=''
+ math_css='<link rel="stylesheet" href="../../fonts/katex/katex.min.css">' if deep else ''
  write_page(folder/'index.html', f'''<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{e(c['dek'])}"><title>{e(c['headline'])} — Jinhua Hao</title><link rel="icon" href="../../../images/favicon.ico"><link rel="stylesheet" href="../../site.css"><script src="../../reader.js" defer></script><script src="../../brief-layout.js" defer></script><script src="../../physics-particles.js" defer></script></head>
-<body class="article-page{' model-article' if key in models else ''}"><a class="skip" href="#article">Skip to article</a><header><nav class="article-navigation" aria-label="Article navigation">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="{e(c['dek'])}"><title>{e(c['headline'])} — Jinhua Hao</title><link rel="icon" href="../../../images/favicon.ico"><link rel="stylesheet" href="../../site.css">{math_css}<script src="../../reader.js" defer></script><script src="../../brief-layout.js" defer></script><script src="../../physics-particles.js" defer></script></head>
+<body class="article-page{' model-article' if key in models else ''}{' deep-read' if deep else ''}"><a class="skip" href="#article">Skip to article</a><header><nav class="article-navigation" aria-label="Article navigation">
 <a class="icon-button" href="../../" aria-label="Research home / 研究主页" title="Research home / 研究主页"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg></a>
 <a class="icon-button" href="../../" data-history-back aria-label="Go back / 返回" title="Go back / 返回"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 5-7 7 7 7M5 12h14"/></svg></a>
 <a class="icon-button" href="../../{e(next_paper['article'])}" data-next-article aria-label="Next article / 下一篇" title="Next: {e(next_paper['headline'])}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 5 7 7-7 7M5 12h14"/></svg></a>

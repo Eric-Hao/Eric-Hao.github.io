@@ -1,0 +1,1910 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:07:32.388363+00:00",
+  "source_pdf": "sources/author-paper.pdf",
+  "source_sha256": "c4c4d64d6443632bdf66ac34caa7fae187cfd6c7be1f1cdb190610e1cb692d93",
+  "page_count": 27,
+  "render_dpi": 100,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 99958,
+  "automatic_crops_are_unverified": false,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 2860,
+      "caption_count": 0
+    },
+    {
+      "page": 2,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 4745,
+      "caption_count": 0
+    },
+    {
+      "page": 3,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 3904,
+      "caption_count": 0
+    },
+    {
+      "page": 4,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 4055,
+      "caption_count": 1
+    },
+    {
+      "page": 5,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 3865,
+      "caption_count": 0
+    },
+    {
+      "page": 6,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 4287,
+      "caption_count": 0
+    },
+    {
+      "page": 7,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 4468,
+      "caption_count": 1
+    },
+    {
+      "page": 8,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 2169,
+      "caption_count": 1
+    },
+    {
+      "page": 9,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 3699,
+      "caption_count": 3
+    },
+    {
+      "page": 10,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 3545,
+      "caption_count": 2
+    },
+    {
+      "page": 11,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 3417,
+      "caption_count": 3
+    },
+    {
+      "page": 12,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-012.png",
+      "text": "text/pages/page-012.txt",
+      "text_characters": 3426,
+      "caption_count": 2
+    },
+    {
+      "page": 13,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-013.png",
+      "text": "text/pages/page-013.txt",
+      "text_characters": 4411,
+      "caption_count": 2
+    },
+    {
+      "page": 14,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-014.png",
+      "text": "text/pages/page-014.txt",
+      "text_characters": 2566,
+      "caption_count": 2
+    },
+    {
+      "page": 15,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-015.png",
+      "text": "text/pages/page-015.txt",
+      "text_characters": 3989,
+      "caption_count": 1
+    },
+    {
+      "page": 16,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-016.png",
+      "text": "text/pages/page-016.txt",
+      "text_characters": 3642,
+      "caption_count": 1
+    },
+    {
+      "page": 17,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-017.png",
+      "text": "text/pages/page-017.txt",
+      "text_characters": 3258,
+      "caption_count": 2
+    },
+    {
+      "page": 18,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-018.png",
+      "text": "text/pages/page-018.txt",
+      "text_characters": 4530,
+      "caption_count": 1
+    },
+    {
+      "page": 19,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-019.png",
+      "text": "text/pages/page-019.txt",
+      "text_characters": 3960,
+      "caption_count": 1
+    },
+    {
+      "page": 20,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-020.png",
+      "text": "text/pages/page-020.txt",
+      "text_characters": 4310,
+      "caption_count": 1
+    },
+    {
+      "page": 21,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-021.png",
+      "text": "text/pages/page-021.txt",
+      "text_characters": 2770,
+      "caption_count": 2
+    },
+    {
+      "page": 22,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-022.png",
+      "text": "text/pages/page-022.txt",
+      "text_characters": 4486,
+      "caption_count": 2
+    },
+    {
+      "page": 23,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-023.png",
+      "text": "text/pages/page-023.txt",
+      "text_characters": 2424,
+      "caption_count": 2
+    },
+    {
+      "page": 24,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-024.png",
+      "text": "text/pages/page-024.txt",
+      "text_characters": 3873,
+      "caption_count": 1
+    },
+    {
+      "page": 25,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-025.png",
+      "text": "text/pages/page-025.txt",
+      "text_characters": 4917,
+      "caption_count": 0
+    },
+    {
+      "page": 26,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-026.png",
+      "text": "text/pages/page-026.txt",
+      "text_characters": 4963,
+      "caption_count": 0
+    },
+    {
+      "page": 27,
+      "width_pixels": 686,
+      "height_pixels": 973,
+      "width_points": 493.228,
+      "height_points": 700.157,
+      "image": "pages/page-027.png",
+      "text": "text/pages/page-027.txt",
+      "text_characters": 1419,
+      "caption_count": 0
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p004",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 4,
+      "caption": "Schematic diagram for the initial conﬁguration of ﬂux tubes T1 (red) and T2 (blue). (a) Perspective view with some ﬁeld lines attached on the ﬂux tubes. (b) Local cylindrical coordinates (r, θ1, z) for T1 and (r, θ2, y) for T2 on the tube cross-sections marked by grey slices in (a).",
+      "raw_text": "Figure 1. Schematic diagram for the initial conﬁguration of ﬂux tubes T1 (red) and T2 (blue). (a) Perspective view with some ﬁeld lines attached on the ﬂux tubes. (b) Local cylindrical coordinates (r, θ1, z) for T1 and (r, θ2, y) for T2 on the tube cross-sections marked by grey slices in (a).",
+      "caption_bbox_points": [
+        62.361,
+        214.355,
+        445.035,
+        244.86
+      ],
+      "caption_bbox_pixels": [
+        87,
+        298,
+        618,
+        340
+      ],
+      "suggested_crop_bbox_points": [
+        52.361,
+        60.865,
+        455.035,
+        254.86
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        85,
+        632,
+        354
+      ],
+      "candidate_crop": "crops/figure-1-verified.png",
+      "selected_asset": "crops/figure-1-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        270
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sequential-knots"
+      ],
+      "text_asset": "text/visuals/figure-1-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 4",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Schematic diagram for the initial conﬁguration of ﬂux tubes T1 (red) and T2 (blue). (a) Perspective view with some ﬁeld lines attached on the ﬂux tubes. (b) Local cylindrical coordinates (r, θ1, z) for T1 and (r, θ2, y) for T2 on the tube cross-sections marked by grey slices in (a).",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-2-p007",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 7,
+      "caption": "Temporal evolution of the volume-averaged (a) kinetic energy and its time derivative and (b) magnetic energy and its time derivative.",
+      "raw_text": "Figure 2. Temporal evolution of the volume-averaged (a) kinetic energy and its time derivative and (b) magnetic energy and its time derivative.",
+      "caption_bbox_points": [
+        59.886,
+        193.836,
+        419.15,
+        212.587
+      ],
+      "caption_bbox_pixels": [
+        83,
+        269,
+        582,
+        295
+      ],
+      "suggested_crop_bbox_points": [
+        49.886,
+        66.908,
+        429.15,
+        222.587
+      ],
+      "suggested_crop_bbox_pixels": [
+        69,
+        93,
+        596,
+        309
+      ],
+      "candidate_crop": "crops/figure-2-verified.png",
+      "selected_asset": "crops/figure-2-verified.png",
+      "candidate_crop_size_pixels": [
+        528,
+        218
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sequential-knots"
+      ],
+      "text_asset": "text/visuals/figure-2-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 7",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Temporal evolution of the volume-averaged (a) kinetic energy and its time derivative and (b) magnetic energy and its time derivative.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-3-p008",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 8,
+      "caption": "Temporal evolution of MSF isosurfaces of φb = ±0.01 at (a) t = 1, (b) t = 2, (c) t = 3 and (d) t = 4. Some ﬁeld lines are integrated and plotted on the isosurfaces colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "raw_text": "Figure 3. Temporal evolution of MSF isosurfaces of φb = ±0.01 at (a) t = 1, (b) t = 2, (c) t = 3 and (d) t = 4. Some ﬁeld lines are integrated and plotted on the isosurfaces colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "caption_bbox_points": [
+        62.36,
+        397.565,
+        445.033,
+        426.553
+      ],
+      "caption_bbox_pixels": [
+        87,
+        552,
+        618,
+        592
+      ],
+      "suggested_crop_bbox_points": [
+        52.36,
+        55.345,
+        455.033,
+        436.553
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        77,
+        632,
+        606
+      ],
+      "candidate_crop": "crops/figure-3-verified.png",
+      "selected_asset": "crops/figure-3-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        531
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sequential-knots"
+      ],
+      "text_asset": "text/visuals/figure-3-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 8",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Temporal evolution of MSF isosurfaces of φb = ±0.01 at (a) t = 1, (b) t = 2, (c) t = 3 and (d) t = 4. Some ﬁeld lines are integrated and plotted on the isosurfaces colour coded by −1 ⩽h∗⩽1 from blue to red.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-4-p009",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 9,
+      "caption": "MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 1 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "raw_text": "Figure 4. MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 1 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "caption_bbox_points": [
+        48.183,
+        238.562,
+        430.869,
+        277.513
+      ],
+      "caption_bbox_pixels": [
+        67,
+        331,
+        598,
+        385
+      ],
+      "suggested_crop_bbox_points": [
+        38.183,
+        60.625,
+        440.869,
+        287.513
+      ],
+      "suggested_crop_bbox_pixels": [
+        53,
+        84,
+        612,
+        399
+      ],
+      "candidate_crop": "crops/figure-4-verified.png",
+      "selected_asset": "crops/figure-4-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        316
+      ],
+      "source_page_image": "pages/page-009.png",
+      "source_page_text": "text/pages/page-009.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sequential-knots"
+      ],
+      "text_asset": "text/visuals/figure-4-p009.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 9",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 1 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-5-p010",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 10,
+      "caption": "Schematic diagram for the magnetic reconnection in ﬁgure 4. The typical ﬁeld lines are colour coded by red for h∗> 0 and blue for h∗< 0.",
+      "raw_text": "Figure 5. Schematic diagram for the magnetic reconnection in ﬁgure 4. The typical ﬁeld lines are colour coded by red for h∗> 0 and blue for h∗< 0.",
+      "caption_bbox_points": [
+        70.884,
+        158.922,
+        436.519,
+        177.586
+      ],
+      "caption_bbox_pixels": [
+        98,
+        221,
+        606,
+        247
+      ],
+      "suggested_crop_bbox_points": [
+        60.884,
+        50.905,
+        446.519,
+        187.586
+      ],
+      "suggested_crop_bbox_pixels": [
+        85,
+        71,
+        620,
+        261
+      ],
+      "candidate_crop": "crops/figure-5-verified.png",
+      "selected_asset": "crops/figure-5-verified.png",
+      "candidate_crop_size_pixels": [
+        537,
+        191
+      ],
+      "source_page_image": "pages/page-010.png",
+      "source_page_text": "text/pages/page-010.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sequential-knots"
+      ],
+      "text_asset": "text/visuals/figure-5-p010.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 10",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Schematic diagram for the magnetic reconnection in ﬁgure 4. The typical ﬁeld lines are colour coded by red for h∗> 0 and blue for h∗< 0.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-6-p011",
+      "label": "Figure 6",
+      "kind": "figure",
+      "number": "6",
+      "page": 11,
+      "caption": "Contour of | j| colour coded by 0 ⩽| j| ⩽30 from blue to red on the slice y = 7π/8 at t = 1, with MSF isolines and the projected Lorentz force (arrows). (a) The x–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at y = 7π/8. (b) Close-up view of the region marked by the green dashed box in (a).",
+      "raw_text": "Figure 6. Contour of | j| colour coded by 0 ⩽| j| ⩽30 from blue to red on the slice y = 7π/8 at t = 1, with MSF isolines and the projected Lorentz force (arrows). (a) The x–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at y = 7π/8. (b) Close-up view of the region marked by the green dashed box in (a).",
+      "caption_bbox_points": [
+        48.183,
+        234.353,
+        430.854,
+        263.554
+      ],
+      "caption_bbox_pixels": [
+        67,
+        325,
+        598,
+        366
+      ],
+      "suggested_crop_bbox_points": [
+        38.183,
+        58.225,
+        440.854,
+        273.554
+      ],
+      "suggested_crop_bbox_pixels": [
+        53,
+        81,
+        612,
+        380
+      ],
+      "candidate_crop": "crops/figure-6-verified.png",
+      "selected_asset": "crops/figure-6-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        300
+      ],
+      "source_page_image": "pages/page-011.png",
+      "source_page_text": "text/pages/page-011.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sequential-knots"
+      ],
+      "text_asset": "text/visuals/figure-6-p011.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 11",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Contour of | j| colour coded by 0 ⩽| j| ⩽30 from blue to red on the slice y = 7π/8 at t = 1, with MSF isolines and the projected Lorentz force (arrows). (a) The x–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at y = 7π/8. (b) Close-up view of the region marked by the green dashed box in (a).",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-7-p011",
+      "label": "Figure 7",
+      "kind": "figure",
+      "number": "7",
+      "page": 11,
+      "caption": "MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 1.75 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "raw_text": "Figure 7. MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 1.75 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "caption_bbox_points": [
+        48.183,
+        453.905,
+        430.869,
+        492.856
+      ],
+      "caption_bbox_pixels": [
+        67,
+        630,
+        598,
+        685
+      ],
+      "suggested_crop_bbox_points": [
+        38.183,
+        264.554,
+        440.869,
+        502.856
+      ],
+      "suggested_crop_bbox_pixels": [
+        53,
+        367,
+        612,
+        698
+      ],
+      "candidate_crop": "crops/figure-7-verified.png",
+      "selected_asset": "crops/figure-7-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        332
+      ],
+      "source_page_image": "pages/page-011.png",
+      "source_page_text": "text/pages/page-011.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sequential-knots"
+      ],
+      "text_asset": "text/visuals/figure-7-p011.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 11",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 1.75 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-8-p012",
+      "label": "Figure 8",
+      "kind": "figure",
+      "number": "8",
+      "page": 12,
+      "caption": "Schematic diagram for tying the overhand knot via the magnetic reconnection in ﬁgure 7. The typical ﬁeld lines are colour coded by red for h∗> 0 and blue for h∗< 0.",
+      "raw_text": "Figure 8. Schematic diagram for tying the overhand knot via the magnetic reconnection in ﬁgure 7. The typical ﬁeld lines are colour coded by red for h∗> 0 and blue for h∗< 0.",
+      "caption_bbox_points": [
+        71.919,
+        141.921,
+        435.484,
+        160.585
+      ],
+      "caption_bbox_pixels": [
+        100,
+        197,
+        605,
+        223
+      ],
+      "suggested_crop_bbox_points": [
+        61.919,
+        51.265,
+        445.484,
+        170.585
+      ],
+      "suggested_crop_bbox_pixels": [
+        86,
+        71,
+        619,
+        237
+      ],
+      "candidate_crop": "crops/figure-8-verified.png",
+      "selected_asset": "crops/figure-8-verified.png",
+      "candidate_crop_size_pixels": [
+        534,
+        166
+      ],
+      "source_page_image": "pages/page-012.png",
+      "source_page_text": "text/pages/page-012.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-8-p012.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 12",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Schematic diagram for tying the overhand knot via the magnetic reconnection in ﬁgure 7. The typical ﬁeld lines are colour coded by red for h∗> 0 and blue for h∗< 0.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-9-p012",
+      "label": "Figure 9",
+      "kind": "figure",
+      "number": "9",
+      "page": 12,
+      "caption": "Contour of | j| colour coded by 0 ⩽| j| ⩽30 from blue to red on the slice y = 7π/8 at t = 1.75, with MSF isolines and the projected Lorentz force (arrows). (a) The x–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at y = 7π/8. (b) Close-up view of the region marked by the green dashed box in (a).",
+      "raw_text": "Figure 9. Contour of | j| colour coded by 0 ⩽| j| ⩽30 from blue to red on the slice y = 7π/8 at t = 1.75, with MSF isolines and the projected Lorentz force (arrows). (a) The x–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at y = 7π/8. (b) Close-up view of the region marked by the green dashed box in (a).",
+      "caption_bbox_points": [
+        62.358,
+        353.72,
+        445.01,
+        382.921
+      ],
+      "caption_bbox_pixels": [
+        87,
+        491,
+        618,
+        532
+      ],
+      "suggested_crop_bbox_points": [
+        52.358,
+        161.585,
+        455.01,
+        392.921
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        224,
+        632,
+        546
+      ],
+      "candidate_crop": "crops/figure-9-verified.png",
+      "selected_asset": "crops/figure-9-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        322
+      ],
+      "source_page_image": "pages/page-012.png",
+      "source_page_text": "text/pages/page-012.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-9-p012.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 12",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Contour of | j| colour coded by 0 ⩽| j| ⩽30 from blue to red on the slice y = 7π/8 at t = 1.75, with MSF isolines and the projected Lorentz force (arrows). (a) The x–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at y = 7π/8. (b) Close-up view of the region marked by the green dashed box in (a).",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-10-p013",
+      "label": "Figure 10",
+      "kind": "figure",
+      "number": "10",
+      "page": 13,
+      "caption": "Temporal evolution of volume-averaged (a) kinetic energy and (b) normalized magnetic helicity within inner or outer ﬂux tubes.",
+      "raw_text": "Figure 10. Temporal evolution of volume-averaged (a) kinetic energy and (b) normalized magnetic helicity within inner or outer ﬂux tubes.",
+      "caption_bbox_points": [
+        52.218,
+        190.839,
+        426.806,
+        209.59
+      ],
+      "caption_bbox_pixels": [
+        73,
+        265,
+        593,
+        291
+      ],
+      "suggested_crop_bbox_points": [
+        42.218,
+        61.526,
+        436.806,
+        219.59
+      ],
+      "suggested_crop_bbox_pixels": [
+        59,
+        85,
+        607,
+        305
+      ],
+      "candidate_crop": "crops/figure-10-verified.png",
+      "selected_asset": "crops/figure-10-verified.png",
+      "candidate_crop_size_pixels": [
+        549,
+        220
+      ],
+      "source_page_image": "pages/page-013.png",
+      "source_page_text": "text/pages/page-013.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-10-p013.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 13",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Temporal evolution of volume-averaged (a) kinetic energy and (b) normalized magnetic helicity within inner or outer ﬂux tubes.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-11-p014",
+      "label": "Figure 11",
+      "kind": "figure",
+      "number": "11",
+      "page": 14,
+      "caption": "Magnetic ﬂuxes (3.3) through diagonal symmetric planes.",
+      "raw_text": "Figure 11. Magnetic ﬂuxes (3.3) through diagonal symmetric planes.",
+      "caption_bbox_points": [
+        132.579,
+        180.927,
+        374.802,
+        189.627
+      ],
+      "caption_bbox_pixels": [
+        184,
+        251,
+        521,
+        263
+      ],
+      "suggested_crop_bbox_points": [
+        82.508,
+        170.927,
+        432.608,
+        533.131
+      ],
+      "suggested_crop_bbox_pixels": [
+        115,
+        237,
+        601,
+        740
+      ],
+      "candidate_crop": "crops/figure-11-verified.png",
+      "selected_asset": "crops/figure-11-verified.png",
+      "candidate_crop_size_pixels": [
+        487,
+        504
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-11-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 14",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Magnetic ﬂuxes (3.3) through diagonal symmetric planes.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-12-p014",
+      "label": "Figure 12",
+      "kind": "figure",
+      "number": "12",
+      "page": 14,
+      "caption": "Contours of the ﬂux density of F1 on the diagonal symmetric plane y + z = 2π from two perspectives at (a,b) t = 1 and (c,d) t = 1.75 in the subdomain [3π/4, 5π/4] × [3π/4, 5π/4] × [3π/4, 5π/4], where the arrow denotes the normal n of the symmetric plane. Some ﬁeld lines are integrated on the MSF isosurface of φb = ±0.01 (translucent surface). Region S1 is enclosed by the intersection (yellow line) of the MSF isosurface and the diagonal plane.",
+      "raw_text": "Figure 12. Contours of the ﬂux density of F1 on the diagonal symmetric plane y + z = 2π from two perspectives at (a,b) t = 1 and (c,d) t = 1.75 in the subdomain [3π/4, 5π/4] × [3π/4, 5π/4] × [3π/4, 5π/4], where the arrow denotes the normal n of the symmetric plane. Some ﬁeld lines are integrated on the MSF isosurface of φb = ±0.01 (translucent surface). Region S1 is enclosed by the intersection (yellow line) of the MSF isosurface and the diagonal plane.",
+      "caption_bbox_points": [
+        62.358,
+        534.131,
+        445.046,
+        583.045
+      ],
+      "caption_bbox_pixels": [
+        87,
+        742,
+        618,
+        810
+      ],
+      "suggested_crop_bbox_points": [
+        52.358,
+        193.345,
+        455.046,
+        593.045
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        269,
+        632,
+        824
+      ],
+      "candidate_crop": "crops/figure-12-verified.png",
+      "selected_asset": "crops/figure-12-verified.png",
+      "candidate_crop_size_pixels": [
+        561,
+        556
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-12-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 14",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Contours of the ﬂux density of F1 on the diagonal symmetric plane y + z = 2π from two perspectives at (a,b) t = 1 and (c,d) t = 1.75 in the subdomain [3π/4, 5π/4] × [3π/4, 5π/4] × [3π/4, 5π/4], where the arrow denotes the normal n of the symmetric plane. Some ﬁeld lines are integrated on the MSF isosurface of φb = ±0.01 (translucent surface). Region S1 is enclosed by the intersection (yellow line) of the MSF isosurface and the diagonal plane.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-13-p015",
+      "label": "Figure 13",
+      "kind": "figure",
+      "number": "13",
+      "page": 15,
+      "caption": "MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 2 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "raw_text": "Figure 13. MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 2 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "caption_bbox_points": [
+        48.183,
+        228.563,
+        430.869,
+        267.514
+      ],
+      "caption_bbox_pixels": [
+        67,
+        317,
+        598,
+        372
+      ],
+      "suggested_crop_bbox_points": [
+        38.183,
+        56.185,
+        440.869,
+        277.514
+      ],
+      "suggested_crop_bbox_pixels": [
+        53,
+        78,
+        612,
+        385
+      ],
+      "candidate_crop": "crops/figure-13-verified.png",
+      "selected_asset": "crops/figure-13-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        308
+      ],
+      "source_page_image": "pages/page-015.png",
+      "source_page_text": "text/pages/page-015.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-13-p015.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 15",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "MSF isosurfaces of φb = ±0.01 (translucent surfaces) at t = 2 in the subdomain [π/2, 3π/2] × [π/2, 3π/2] × [π/2, 3π/2], with typical ﬁeld lines (a) before and (b) after the magnetic reconnection. The reconnection zone is highlighted by the yellow dashed circle. The ﬁeld lines are colour coded by −1 ⩽h∗⩽1 from blue to red.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-14-p016",
+      "label": "Figure 14",
+      "kind": "figure",
+      "number": "14",
+      "page": 16,
+      "caption": "The projected velocity (arrows) on the y–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at x = 7π/8, along with a set of knotted ﬁeld lines integrated from the reconnection regions and the isoline of φb = 0.01: (a) t = 1.75, (b) t = 2 and (c) t = 2.25.",
+      "raw_text": "Figure 14. The projected velocity (arrows) on the y–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at x = 7π/8, along with a set of knotted ﬁeld lines integrated from the reconnection regions and the isoline of φb = 0.01: (a) t = 1.75, (b) t = 2 and (c) t = 2.25.",
+      "caption_bbox_points": [
+        62.359,
+        223.568,
+        445.028,
+        252.556
+      ],
+      "caption_bbox_pixels": [
+        87,
+        311,
+        618,
+        351
+      ],
+      "suggested_crop_bbox_points": [
+        52.359,
+        63.0,
+        455.028,
+        262.556
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        88,
+        632,
+        365
+      ],
+      "candidate_crop": "crops/figure-14-verified.png",
+      "selected_asset": "crops/figure-14-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        278
+      ],
+      "source_page_image": "pages/page-016.png",
+      "source_page_text": "text/pages/page-016.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-14-p016.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 16",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "The projected velocity (arrows) on the y–z slice [3π/4, 5π/4] × [3π/4, 5π/4] at x = 7π/8, along with a set of knotted ﬁeld lines integrated from the reconnection regions and the isoline of φb = 0.01: (a) t = 1.75, (b) t = 2 and (c) t = 2.25.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-15-p017",
+      "label": "Figure 15",
+      "kind": "figure",
+      "number": "15",
+      "page": 17,
+      "caption": "(a–c) Cascade of tying magnetic knots in the plasmoid, with non-reducible crossings marked by thick ‘−’: (a) overhand knot (trefoil knot) at t = 1.75, (b) double overhand knot (cinquefoil knot) at t = 2.0, and (c) triple overhand knot (septafoil knot) at t = 2.25. (d–f) Corresponding reduced knot diagrams of torus knots (these knots are equivalent to those in the upper row): (d) trefoil knot, (e) cinquefoil knot, and ( f) septafoil knot.",
+      "raw_text": "Figure 15. (a–c) Cascade of tying magnetic knots in the plasmoid, with non-reducible crossings marked by thick ‘−’: (a) overhand knot (trefoil knot) at t = 1.75, (b) double overhand knot (cinquefoil knot) at t = 2.0, and (c) triple overhand knot (septafoil knot) at t = 2.25. (d–f) Corresponding reduced knot diagrams of torus knots (these knots are equivalent to those in the upper row): (d) trefoil knot, (e) cinquefoil knot, and ( f) septafoil knot.",
+      "caption_bbox_points": [
+        48.185,
+        279.84,
+        430.839,
+        328.48
+      ],
+      "caption_bbox_pixels": [
+        67,
+        389,
+        598,
+        456
+      ],
+      "suggested_crop_bbox_points": [
+        38.185,
+        54.745,
+        440.839,
+        338.48
+      ],
+      "suggested_crop_bbox_pixels": [
+        53,
+        76,
+        612,
+        470
+      ],
+      "candidate_crop": "crops/figure-15-verified.png",
+      "selected_asset": "crops/figure-15-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        395
+      ],
+      "source_page_image": "pages/page-017.png",
+      "source_page_text": "text/pages/page-017.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-15-p017.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 17",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "(a–c) Cascade of tying magnetic knots in the plasmoid, with non-reducible crossings marked by thick ‘−’: (a) overhand knot (trefoil knot) at t = 1.75, (b) double overhand knot (cinquefoil knot) at t = 2.0, and (c) triple overhand knot (septafoil knot) at t = 2.25. (d–f) Corresponding reduced knot diagrams of torus knots (these knots are equivalent to those in the upper row): (d) trefoil knot, (e) cinquefoil knot, and ( f) septafoil knot.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-16-p018",
+      "label": "Figure 16",
+      "kind": "figure",
+      "number": "16",
+      "page": 18,
+      "caption": "Complex knots in the plasmoid at t = 2.25. (a) MSF isosurfaces of φb = ±0.01 (translucent surfaces) with typical ﬁeld lines. (b) Close-up view of a triple overhand knot (red) and a highly coiled ﬁeld line (blue).",
+      "raw_text": "Figure 16. Complex knots in the plasmoid at t = 2.25. (a) MSF isosurfaces of φb = ±0.01 (translucent surfaces) with typical ﬁeld lines. (b) Close-up view of a triple overhand knot (red) and a highly coiled ﬁeld line (blue).",
+      "caption_bbox_points": [
+        62.361,
+        244.565,
+        445.025,
+        273.553
+      ],
+      "caption_bbox_pixels": [
+        87,
+        340,
+        618,
+        380
+      ],
+      "suggested_crop_bbox_points": [
+        52.361,
+        52.465,
+        455.025,
+        283.553
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        73,
+        632,
+        394
+      ],
+      "candidate_crop": "crops/figure-16-verified.png",
+      "selected_asset": "crops/figure-16-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        322
+      ],
+      "source_page_image": "pages/page-018.png",
+      "source_page_text": "text/pages/page-018.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-16-p018.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 18",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Complex knots in the plasmoid at t = 2.25. (a) MSF isosurfaces of φb = ±0.01 (translucent surfaces) with typical ﬁeld lines. (b) Close-up view of a triple overhand knot (red) and a highly coiled ﬁeld line (blue).",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-17-p019",
+      "label": "Figure 17",
+      "kind": "figure",
+      "number": "17",
+      "page": 19,
+      "caption": "The p.d.f. of magnetic knot types in terms of the Alexander–Briggs notation at t = 1.75, t = 2 and t = 2.25.",
+      "raw_text": "Figure 17. The p.d.f. of magnetic knot types in terms of the Alexander–Briggs notation at t = 1.75, t = 2 and t = 2.25.",
+      "caption_bbox_points": [
+        48.186,
+        215.567,
+        430.836,
+        234.592
+      ],
+      "caption_bbox_pixels": [
+        67,
+        299,
+        598,
+        326
+      ],
+      "suggested_crop_bbox_points": [
+        38.186,
+        6.271,
+        440.836,
+        244.592
+      ],
+      "suggested_crop_bbox_pixels": [
+        53,
+        9,
+        612,
+        340
+      ],
+      "candidate_crop": "crops/figure-17-verified.png",
+      "selected_asset": "crops/figure-17-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        332
+      ],
+      "source_page_image": "pages/page-019.png",
+      "source_page_text": "text/pages/page-019.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-17-p019.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 19",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "The p.d.f. of magnetic knot types in terms of the Alexander–Briggs notation at t = 1.75, t = 2 and t = 2.25.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-18-p021",
+      "label": "Figure 18",
+      "kind": "figure",
+      "number": "18",
+      "page": 21,
+      "caption": "Temporal evolution of MSF deviations for the MSF solution and the magnetic magnitude.",
+      "raw_text": "Figure 18. Temporal evolution of MSF deviations for the MSF solution and the magnetic magnitude.",
+      "caption_bbox_points": [
+        62.982,
+        204.921,
+        416.057,
+        213.621
+      ],
+      "caption_bbox_pixels": [
+        87,
+        285,
+        578,
+        297
+      ],
+      "suggested_crop_bbox_points": [
+        52.982,
+        55.81,
+        426.057,
+        223.621
+      ],
+      "suggested_crop_bbox_pixels": [
+        74,
+        78,
+        592,
+        311
+      ],
+      "candidate_crop": "crops/figure-18-verified.png",
+      "selected_asset": "crops/figure-18-verified.png",
+      "candidate_crop_size_pixels": [
+        519,
+        234
+      ],
+      "source_page_image": "pages/page-021.png",
+      "source_page_text": "text/pages/page-021.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-18-p021.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 21",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Temporal evolution of MSF deviations for the MSF solution and the magnetic magnitude.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-19-p021",
+      "label": "Figure 19",
+      "kind": "figure",
+      "number": "19",
+      "page": 21,
+      "caption": "Isosurfaces of |b| = 0.5|b|max at (a) t = 2 and (b) t = 4, where |b|max denotes the maximum |b| in Ω. Some ﬁeld lines are integrated on the surfaces.",
+      "raw_text": "Figure 19. Isosurfaces of |b| = 0.5|b|max at (a) t = 2 and (b) t = 4, where |b|max denotes the maximum |b| in Ω. Some ﬁeld lines are integrated on the surfaces.",
+      "caption_bbox_points": [
+        48.186,
+        396.278,
+        430.864,
+        415.303
+      ],
+      "caption_bbox_pixels": [
+        67,
+        550,
+        598,
+        577
+      ],
+      "suggested_crop_bbox_points": [
+        38.186,
+        214.621,
+        440.864,
+        425.303
+      ],
+      "suggested_crop_bbox_pixels": [
+        53,
+        298,
+        612,
+        591
+      ],
+      "candidate_crop": "crops/figure-19-verified.png",
+      "selected_asset": "crops/figure-19-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        293
+      ],
+      "source_page_image": "pages/page-021.png",
+      "source_page_text": "text/pages/page-021.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-19-p021.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 21",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Isosurfaces of |b| = 0.5|b|max at (a) t = 2 and (b) t = 4, where |b|max denotes the maximum |b| in Ω. Some ﬁeld lines are integrated on the surfaces.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-20-p022",
+      "label": "Figure 20",
+      "kind": "figure",
+      "number": "20",
+      "page": 22,
+      "caption": "Temporal evolution of the volume-averaged (a) kinetic energy and (b) normalized magnetic helicity within inner ﬂux tubes in the DNS cases with various q.",
+      "raw_text": "Figure 20. Temporal evolution of the volume-averaged (a) kinetic energy and (b) normalized magnetic helicity within inner ﬂux tubes in the DNS cases with various q.",
+      "caption_bbox_points": [
+        73.845,
+        190.839,
+        433.527,
+        209.59
+      ],
+      "caption_bbox_pixels": [
+        103,
+        265,
+        602,
+        291
+      ],
+      "suggested_crop_bbox_points": [
+        63.845,
+        58.578,
+        443.527,
+        219.59
+      ],
+      "suggested_crop_bbox_pixels": [
+        89,
+        81,
+        616,
+        305
+      ],
+      "candidate_crop": "crops/figure-20-verified.png",
+      "selected_asset": "crops/figure-20-verified.png",
+      "candidate_crop_size_pixels": [
+        529,
+        224
+      ],
+      "source_page_image": "pages/page-022.png",
+      "source_page_text": "text/pages/page-022.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-20-p022.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 22",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Temporal evolution of the volume-averaged (a) kinetic energy and (b) normalized magnetic helicity within inner ﬂux tubes in the DNS cases with various q.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-21-p023",
+      "label": "Figure 21",
+      "kind": "figure",
+      "number": "21",
+      "page": 23,
+      "caption": "Isosurfaces of φb = ±0.01 for cases with (a) q = 5 and (b) q = 15 at t = 1.75. Some ﬁeld lines are integrated and plotted on the isosurfaces colour coded by −1 ⩽h∗⩽1 from blue to red. Close-up views in the plasmoid for cases with (c) q = 5 and (d) q = 15 at t = 1.75, with some ﬁeld lines colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "raw_text": "Figure 21. Isosurfaces of φb = ±0.01 for cases with (a) q = 5 and (b) q = 15 at t = 1.75. Some ﬁeld lines are integrated and plotted on the isosurfaces colour coded by −1 ⩽h∗⩽1 from blue to red. Close-up views in the plasmoid for cases with (c) q = 5 and (d) q = 15 at t = 1.75, with some ﬁeld lines colour coded by −1 ⩽h∗⩽1 from blue to red.",
+      "caption_bbox_points": [
+        48.186,
+        402.56,
+        430.859,
+        441.511
+      ],
+      "caption_bbox_pixels": [
+        67,
+        559,
+        598,
+        613
+      ],
+      "suggested_crop_bbox_points": [
+        38.186,
+        59.305,
+        440.859,
+        451.511
+      ],
+      "suggested_crop_bbox_pixels": [
+        53,
+        82,
+        612,
+        627
+      ],
+      "candidate_crop": "crops/figure-21-verified.png",
+      "selected_asset": "crops/figure-21-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        546
+      ],
+      "source_page_image": "pages/page-023.png",
+      "source_page_text": "text/pages/page-023.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-21-p023.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 23",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Isosurfaces of φb = ±0.01 for cases with (a) q = 5 and (b) q = 15 at t = 1.75. Some ﬁeld lines are integrated and plotted on the isosurfaces colour coded by −1 ⩽h∗⩽1 from blue to red. Close-up views in the plasmoid for cases with (c) q = 5 and (d) q = 15 at t = 1.75, with some ﬁeld lines colour coded by −1 ⩽h∗⩽1 from blue to red.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-22-p023",
+      "label": "Figure 22",
+      "kind": "figure",
+      "number": "22",
+      "page": 23,
+      "caption": "Comparison of different initial magnetic distributions of (a) the axial component and (b) the circumferential component.",
+      "raw_text": "Figure 22. Comparison of different initial magnetic distributions of (a) the axial component and (b) the circumferential component.",
+      "caption_bbox_points": [
+        58.203,
+        622.641,
+        420.827,
+        641.392
+      ],
+      "caption_bbox_pixels": [
+        81,
+        865,
+        584,
+        891
+      ],
+      "suggested_crop_bbox_points": [
+        48.203,
+        442.511,
+        430.827,
+        651.392
+      ],
+      "suggested_crop_bbox_pixels": [
+        67,
+        615,
+        598,
+        905
+      ],
+      "candidate_crop": "crops/figure-22-verified.png",
+      "selected_asset": "crops/figure-22-verified.png",
+      "candidate_crop_size_pixels": [
+        533,
+        291
+      ],
+      "source_page_image": "pages/page-023.png",
+      "source_page_text": "text/pages/page-023.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-22-p023.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 23",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Comparison of different initial magnetic distributions of (a) the axial component and (b) the circumferential component.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    },
+    {
+      "id": "figure-23-p024",
+      "label": "Figure 23",
+      "kind": "figure",
+      "number": "23",
+      "page": 24,
+      "caption": "Cascade of tying magnetic knots in the plasmoid in the case with initial f2, which is visualized by typical ﬁeld lines: (a) overhand knot (trefoil knot) at t = 0.75, (b) double overhand knot (cinquefoil knot) at t = 1.0, and (c) triple overhand knot (septafoil knot) at t = 1.25.",
+      "raw_text": "Figure 23. Cascade of tying magnetic knots in the plasmoid in the case with initial f2, which is visualized by typical ﬁeld lines: (a) overhand knot (trefoil knot) at t = 0.75, (b) double overhand knot (cinquefoil knot) at t = 1.0, and (c) triple overhand knot (septafoil knot) at t = 1.25.",
+      "caption_bbox_points": [
+        62.361,
+        174.837,
+        445.036,
+        203.551
+      ],
+      "caption_bbox_pixels": [
+        87,
+        243,
+        618,
+        283
+      ],
+      "suggested_crop_bbox_points": [
+        52.361,
+        51.265,
+        455.036,
+        213.551
+      ],
+      "suggested_crop_bbox_pixels": [
+        73,
+        71,
+        632,
+        297
+      ],
+      "candidate_crop": "crops/figure-23-verified.png",
+      "selected_asset": "crops/figure-23-verified.png",
+      "candidate_crop_size_pixels": [
+        560,
+        226
+      ],
+      "source_page_image": "pages/page-024.png",
+      "source_page_text": "text/pages/page-024.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Directly inspected source page panels, axes, legends and captions; manually bounded figure with caption. 2026-11-11.",
+      "key": true,
+      "classification_reason": "Required to explain initial geometry, sequential reconnection, sampled topology, flux/surface diagnostics or negative controls.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Interpreted adjacent to verified source figure in the report.",
+      "claim_ids": [
+        "sampled-cascade"
+      ],
+      "text_asset": "text/visuals/figure-23-p024.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "complete",
+        "sources": [
+          "Full PDF page 24",
+          "Direct visual inspection of source page and manually bounded figure"
+        ],
+        "notes": "Cascade of tying magnetic knots in the plasmoid in the case with initial f2, which is visualized by typical ﬁeld lines: (a) overhand knot (trefoil knot) at t = 0.75, (b) double overhand knot (cinquefoil knot) at t = 1.0, and (c) triple overhand knot (septafoil knot) at t = 1.25.",
+        "limitations": "Figure is evidence for the stated numerical configuration; interpretation and boundaries appear adjacent in report."
+      }
+    }
+  ],
+  "inventory_review": "Manually removed body-reference false positives and restored missed captions. Complete main-paper and appendix inventory."
+}

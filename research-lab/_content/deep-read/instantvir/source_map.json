@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "InstantViR: Real-Time Video Inverse Problem Solver with Distilled Diffusion Prior",
+    "sources": [
+      "https://arxiv.org/abs/2511.14208v3"
+    ],
+    "page_convention": "Physical PDF pages, starting at 1; supplement included."
+  },
+  "claims": [
+    {
+      "id": "p4",
+      "claim": "**How to read:** Compare the upper training region and lower inference region separately.\n\n**Key observation:** Figure 2 (p. 4) separates training from deployment. The upper green region contains measurement consistency, a frozen bidirectional diffusion teacher, and an auxiliary score model. The red gradient path goes through the student decoder and, with LeanVAE, back into teacher latent space. The lower region processes consecutive frame blocks using cached keys and values; the teacher is absent. **Boundary:** This distinction explains why expensive distillation can still yield fast inference.\n\nThis supports the amortization of teacher computation into student training.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2511.14208v3",
+          "page": 4,
+          "asset": "assets/pages/page-004.png"
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "claim": "**How to read:** Compare FPS and task-wise FVD together, including the GPU description.\n\n**Key observation:** Table 1 (p. 6) reports 13.91 FPS with the original VAE and 35.56 FPS with LeanVAE, versus SVI 0.29 FPS: the fast variant is about 123× faster in this comparison. FVD is lower for InstantViR across tasks: 136.06/153.13/110.51 for inpainting/SR/deblur, versus SVI 219.90/176.60/154.38. LeanVAE gives 132.59/156.43/103.45, so SR FVD worsens slightly. FVD measures distributional video similarity, not exact recovery of each motion or object. The abstract names A100 for speed, whereas the evaluation setup specifies A800 80GB. **Boundary:** Hardware must be clarified before reproducing or advertising the throughput.\n\nThis supports large speed gains with task-dependent quality.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2511.14208v3",
+          "page": 6,
+          "asset": "assets/pages/page-006.png"
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "claim": "**How to read:** Compare the GT crops and contrasting text prompts.\n\n**Key observation:** Figures 3–4 (p. 7) demonstrate both restoration and ambiguity. Figure 3 compares masked measurements, baseline crops, the proposed result, and ground truth on Open-Sora and unseen REDS scenes. Sharper teeth or distant buildings are visible, but a still page cannot directly demonstrate absence of flicker. Figure 4 changes prompts to add a headband/glasses or open/close eyes. This proves useful controllability of plausible completions, while also showing why measurement consistency does not uniquely determine missing semantic detail.\n\nThis supports plausible restoration and controllable ambiguity.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2511.14208v3",
+          "page": 7,
+          "asset": "assets/pages/page-007.png"
+        }
+      ]
+    },
+    {
+      "id": "p8",
+      "claim": "**How to read:** Compare the SR PSNR rows before the selected temporal crops.\n\n**Key observation:** Table 2 and Figures 5–6 (p. 8) are essential to qualify the speed claim. Original-VAE SR PSNR is 34.91 dB, below VISION-XL 35.69; LeanVAE drops to 27.04, a 7.87 dB decline, while LPIPS changes 0.23→0.22. Calling this only a “slight” quality loss would hide a major fidelity trade-off. Inpainting PSNR improves 30.54→31.78 with LeanVAE, while deblur changes 31.85→31.16. Thus the effect is task-dependent. Figures 5–6 place methods in rows and time in columns, with ear and sleeve crops highlighting consistency. **Boundary:** They support visual comparison on selected frames, not a complete temporal-error measurement.\n\nThis supports a substantial LeanVAE SR fidelity cost.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2511.14208v3",
+          "page": 8,
+          "asset": "assets/pages/page-008.png"
+        }
+      ]
+    },
+    {
+      "id": "p12",
+      "claim": "**How to read:** Compare the measurement loss, latent bridge, and two model updates in order.\n\n**Key observation:** Algorithm 1 (p. 12) specifies the training order: synthesize measurements, predict student latents, decode for the data term, bridge to teacher space if necessary, noise the teacher-space representation, evaluate both scores, then update solver and auxiliary score model. The teacher and VAEs remain frozen. **Boundary:** The decoder–encoder bridge must stay differentiable for teacher-space supervision to reach the student.\n\nThis supports the training-time roles of consistency and prior distillation.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2511.14208v3",
+          "page": 12,
+          "asset": "assets/pages/page-012.png"
+        }
+      ]
+    },
+    {
+      "id": "p13",
+      "claim": "**How to read:** Compare cache concatenation and the keys each new query can access.\n\n**Key observation:** Algorithm 2 (p. 13) resets the cache, processes blocks, attends current queries to concatenated historical/current keys and values, decodes, and emits output. The cache grows with history. Although the appendix describes linear complexity, full-history attention still makes each new block attend to a growing past; total attention work is not linear in video length without a bounded window or equivalent mechanism. No such bound is specified in this pseudocode. **Boundary:** Long-stream memory and latency therefore require measurement rather than assuming “infinite streaming.”\n\nThis supports causality but also growing-history cost.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2511.14208v3",
+          "page": 13,
+          "asset": "assets/pages/page-013.png"
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "visual_coverage": {
+    "total_numbered": 14,
+    "key": 9,
+    "key_explained": 9
+  },
+  "reading_order": [
+    "Problem and prerequisites",
+    "Mechanism and equations",
+    "All main tables",
+    "Supplementary controls and limitations"
+  ],
+  "limitations": [
+    "Paper-reported results; no independent training or benchmark rerun.",
+    "Page facsimiles preserve context instead of presenting unverified extracted crops."
+  ]
+}

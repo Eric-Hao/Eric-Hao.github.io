@@ -1,0 +1,121 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "CasSR: use a cleaner reference, then return to the input",
+    "version": "arXiv:2403.11451v1, 18 March 2024, 18 pages",
+    "sources": [
+      "https://arxiv.org/pdf/2403.11451v1"
+    ],
+    "local_pdf": "paper.pdf",
+    "sha256": "af6a9099ba41713dddb56a14b042537255cf6a49ea46d46259735515fcd0f7a7",
+    "page_convention": "1-based PDF pages"
+  },
+  "reader_profile": {
+    "domain": "computer-science-ai",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "en + zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "computer-vision"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 9,
+    "key": 7,
+    "key_explained": 7
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "claims": [
+    {
+      "id": "figure-2-p006",
+      "claim": "The selected scene motivates the authors’ argument that a category-level prompt is too coarse for fine image structure. CasSR’s crop retains more plausible local detail, but a single favorable scene cannot establish that language guidance is generally inferior. Later prompt ablations in this same architecture are the relevant narrower test.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2403.11451v1",
+          "locator": "Figure 2, PDF p.6"
+        }
+      ]
+    },
+    {
+      "id": "figure-3-p007",
+      "claim": "The image activation module supplies a preliminary reference. Both images are encoded, and weight-shared ControlNet extracts their features. The U-Net receives feature additions plus multiple attention in its upsampling blocks. Reference attention encourages detailed reconstruction; original-image attention is intended to correct reference artifacts. Frozen and trainable symbols identify what is optimized. The architecture provides an opportunity to correct errors, not a mathematical projection onto the true image.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2403.11451v1",
+          "locator": "Figure 3, PDF p.7"
+        }
+      ]
+    },
+    {
+      "id": "table-1-p012",
+      "claim": "On DIV2K, CasSR gives MUSIQ 68.6242 and MANIQA 0.4927. The next-best listed values are DiffBIR’s 67.0657 and 0.4580, so table-derived relative gains are about 2.32% and 7.58%, not the prose’s 3.82% and 7.05%. CasSR’s LPIPS 0.3225 trails SeeSR 0.3050 and HAT 0.3175; NIQE 3.6026 trails DiffBIR 2.9574. Thus “best or second best across all metrics” is too broad. On RealSR, LPIPS worsens to 0.3822 versus SeeSR 0.3034, despite MUSIQ improving 69.7639→70.4224. These rows support a perceptual-quality trade-off, not general fidelity superiority.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2403.11451v1",
+          "locator": "Table 1, PDF p.12"
+        }
+      ]
+    },
+    {
+      "id": "figure-5-p011",
+      "claim": "The selected CasSR output better separates the wing from surrounding rocks and preserves an eye-like structure in the highlighted region. This illustrates why original-image attention might matter. It does not give the frequency of such successes, and the metric failures in Table 1 prevent extending this example to a universal content-preservation claim.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2403.11451v1",
+          "locator": "Figure 5, PDF p.11"
+        }
+      ]
+    },
+    {
+      "id": "table-2-p013",
+      "claim": "Using SCEdit rather than LR as reference changes DISTS 0.1797→0.1531 and MUSIQ 63.4204→68.6242. ControlNet is competitive and better on some metrics, supporting flexibility of the activation stage. However, this tests two alternatives, not arbitrary restoration modules. There is an internal reporting discrepancy: the SCEdit LPIPS here is 0.3175, whereas Tables 1 and 3 list 0.3225 for the full model. Without an explanation, these should not be silently merged into one definitive value.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2403.11451v1",
+          "locator": "Table 2, PDF p.13"
+        }
+      ]
+    },
+    {
+      "id": "figure-6-p012",
+      "claim": "Removing multiple attention visibly reduces detail in these examples, while adding a caption introduces questionable feather/fruit texture. This is direct qualitative evidence for the proposed mechanism but not a numerical isolation of its average gain: the paper provides no corresponding complete quantitative attention-ablation table. The text-related variations also interact with guidance, so one cannot attribute every change to language alone.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2403.11451v1",
+          "locator": "Figure 6, PDF p.12"
+        }
+      ]
+    },
+    {
+      "id": "table-3-p013",
+      "claim": "Adding a caption changes MANIQA 0.4927→0.5057 and FID 30.7808→30.6618, but worsens LPIPS 0.3225→0.3280 and MUSIQ 68.6242→68.2996. Thus the table does not support “captions never help”; it supports mixed effects. Removing both generic description and CFG gives much lower MUSIQ 57.3091, but changes two factors together. The paper’s image-first perspective is useful without turning it into a universal rejection of semantic guidance.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/pdf/2403.11451v1",
+          "locator": "Table 3, PDF p.13"
+        }
+      ]
+    }
+  ]
+}

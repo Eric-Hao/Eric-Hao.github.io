@@ -1,0 +1,106 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "LPM: Industrial-Scale Generative Video Restoration",
+    "sources": [
+      {
+        "url": "https://arxiv.org/abs/2607.13460v2",
+        "version": "v2, 2026-11-06",
+        "local_path": "sources/paper.pdf"
+      }
+    ],
+    "page_convention": "1-based PDF pages; model card uses named sections",
+    "version": "v2, 2026-11-06"
+  },
+  "reader_profile": {
+    "domain": "computer-science-ai",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "en+zh-CN",
+    "selected_lenses": [
+      "method-model",
+      "systems",
+      "computer-science-ai"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "Full primary-source text and original figure/table images"
+    ]
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "visual_coverage": {
+    "total_numbered": 12,
+    "key": 12,
+    "key_explained": 12
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "Image-first flow training uses a frozen 2D VAE and added temporal blocks.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.13460v2",
+          "anchor": "§2.2; Figures 3–4"
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "claim": "Temporal pyramids mitigate long-video drift.",
+      "status": "partial",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.13460v2",
+          "anchor": "§2.4; Figure 5; missing controlled temporal ablation"
+        }
+      ]
+    },
+    {
+      "id": "C3",
+      "claim": "LPM leads every public image metric.",
+      "status": "unsupported",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.13460v2",
+          "anchor": "Table 3"
+        }
+      ]
+    },
+    {
+      "id": "C4",
+      "claim": "Full acceleration is 39.5× total, not 12.4×39.5×.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.13460v2",
+          "anchor": "Table 2"
+        }
+      ]
+    },
+    {
+      "id": "C5",
+      "claim": "Production scale and savings are independently audited.",
+      "status": "unsupported",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2607.13460v2",
+          "anchor": "Abstract and §1 provide author reports only"
+        }
+      ]
+    }
+  ],
+  "scope_note": "Primary source: arXiv:2607.13460v2, updated November 6, 2026, full 21-page PDF. All seven figures and five tables visually verified. The PDF cover prints October 1, 2025; version identification follows the arXiv record, not that cover date. v1 is retained only as a historical source, not mixed into v2 results. Download statistics dated September 28, 2026 elsewhere remain a separate historical snapshot."
+}

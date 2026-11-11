@@ -1,0 +1,1046 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:04:03.018241+00:00",
+  "source_pdf": "../sources/paper.pdf",
+  "source_sha256": "abf54613ac6f18cc303f4af9ccc3f5731c028f6b64c615c3c7212d95c3a3da55",
+  "page_count": 22,
+  "render_dpi": 130,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 72731,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 1617,
+      "caption_count": 1
+    },
+    {
+      "page": 2,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 3944,
+      "caption_count": 0
+    },
+    {
+      "page": 3,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 3549,
+      "caption_count": 0
+    },
+    {
+      "page": 4,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 3247,
+      "caption_count": 1
+    },
+    {
+      "page": 5,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 2878,
+      "caption_count": 0
+    },
+    {
+      "page": 6,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 3191,
+      "caption_count": 1
+    },
+    {
+      "page": 7,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 4782,
+      "caption_count": 1
+    },
+    {
+      "page": 8,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 4179,
+      "caption_count": 1
+    },
+    {
+      "page": 9,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 3666,
+      "caption_count": 0
+    },
+    {
+      "page": 10,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 3616,
+      "caption_count": 0
+    },
+    {
+      "page": 11,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 3385,
+      "caption_count": 0
+    },
+    {
+      "page": 12,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-012.png",
+      "text": "text/pages/page-012.txt",
+      "text_characters": 3566,
+      "caption_count": 0
+    },
+    {
+      "page": 13,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-013.png",
+      "text": "text/pages/page-013.txt",
+      "text_characters": 3654,
+      "caption_count": 0
+    },
+    {
+      "page": 14,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-014.png",
+      "text": "text/pages/page-014.txt",
+      "text_characters": 3677,
+      "caption_count": 1
+    },
+    {
+      "page": 15,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-015.png",
+      "text": "text/pages/page-015.txt",
+      "text_characters": 4297,
+      "caption_count": 1
+    },
+    {
+      "page": 16,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-016.png",
+      "text": "text/pages/page-016.txt",
+      "text_characters": 3894,
+      "caption_count": 0
+    },
+    {
+      "page": 17,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-017.png",
+      "text": "text/pages/page-017.txt",
+      "text_characters": 3156,
+      "caption_count": 1
+    },
+    {
+      "page": 18,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-018.png",
+      "text": "text/pages/page-018.txt",
+      "text_characters": 2947,
+      "caption_count": 2
+    },
+    {
+      "page": 19,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-019.png",
+      "text": "text/pages/page-019.txt",
+      "text_characters": 1809,
+      "caption_count": 2
+    },
+    {
+      "page": 20,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-020.png",
+      "text": "text/pages/page-020.txt",
+      "text_characters": 1980,
+      "caption_count": 0
+    },
+    {
+      "page": 21,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-021.png",
+      "text": "text/pages/page-021.txt",
+      "text_characters": 3174,
+      "caption_count": 0
+    },
+    {
+      "page": 22,
+      "width_pixels": 1075,
+      "height_pixels": 1521,
+      "width_points": 595.276,
+      "height_points": 841.89,
+      "image": "pages/page-022.png",
+      "text": "text/pages/page-022.txt",
+      "text_characters": 2523,
+      "caption_count": 0
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p001",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 1,
+      "caption": "| Results of KAT-Coder-V2 and Claude Opus 4.6 across different scaffolds on various software engineering benchmarks.",
+      "raw_text": "Figure 1 | Results of KAT-Coder-V2 and Claude Opus 4.6 across different scaffolds on various software engineering benchmarks.",
+      "caption_bbox_points": [
+        72.738,
+        684.694,
+        522.542,
+        710.308
+      ],
+      "caption_bbox_pixels": [
+        131,
+        1236,
+        943,
+        1282
+      ],
+      "suggested_crop_bbox_points": [
+        20.835,
+        331.1,
+        574.441,
+        720.308
+      ],
+      "suggested_crop_bbox_pixels": [
+        38,
+        598,
+        1037,
+        1301
+      ],
+      "candidate_crop": "crops/figure-1-p001.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        1001,
+        704
+      ],
+      "source_page_image": "pages/page-001.png",
+      "source_page_text": "text/pages/page-001.txt",
+      "crop_confidence": "low",
+      "crop_review_required": true,
+      "visual_verification": "not-performed",
+      "review_notes": "",
+      "key": false,
+      "classification_reason": "Overview chart repeats main results table, which preserves all scores and source footnotes.",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p001.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p004",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 4,
+      "caption": "| KwaiEnv Workflow for SWE Tasks, Supporting Key Processes Including Data Synthesis, RL, and Evaluation",
+      "raw_text": "Figure 2 | KwaiEnv Workflow for SWE Tasks, Supporting Key Processes Including Data Synthesis, RL, and Evaluation",
+      "caption_bbox_points": [
+        87.018,
+        316.667,
+        508.262,
+        342.282
+      ],
+      "caption_bbox_pixels": [
+        157,
+        572,
+        918,
+        618
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        75.039,
+        534.41,
+        352.282
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        135,
+        965,
+        636
+      ],
+      "candidate_crop": "crops/figure-2-p004.png",
+      "selected_asset": "crops/figure-2-verified.png",
+      "candidate_crop_size_pixels": [
+        856,
+        502
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-2-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-1-p006",
+      "label": "Table 1",
+      "kind": "table",
+      "number": "1",
+      "page": 6,
+      "caption": "| Overview of the five expert domains in the SFT stage.",
+      "raw_text": "Table 1 | Overview of the five expert domains in the SFT stage.",
+      "caption_bbox_points": [
+        147.171,
+        85.545,
+        447.771,
+        97.61
+      ],
+      "caption_bbox_pixels": [
+        266,
+        154,
+        808,
+        176
+      ],
+      "suggested_crop_bbox_points": [
+        60.408,
+        75.545,
+        535.776,
+        528.297
+      ],
+      "suggested_crop_bbox_pixels": [
+        109,
+        136,
+        967,
+        954
+      ],
+      "candidate_crop": "crops/table-1-p006.png",
+      "selected_asset": "crops/table-1-verified.png",
+      "candidate_crop_size_pixels": [
+        859,
+        818
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-1-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-3-p007",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 7,
+      "caption": "| Overview of the Issue-PR data construction pipeline. Merged PRs serve as anchor points for bidirectional Issue\u2013PR mapping and code diff extraction, with merge status providing natural correctness supervision. The reconstructed engineering chains are decomposed into retrieval and editing tasks, then filtered through multi-stage quality control to yield over 2M training samples.",
+      "raw_text": "Figure 3 | Overview of the Issue-PR data construction pipeline. Merged PRs serve as anchor points for bidirectional Issue\u2013PR mapping and code diff extraction, with merge status providing natural correctness supervision. The reconstructed engineering chains are decomposed into retrieval and editing tasks, then filtered through multi-stage quality control to yield over 2M training samples.",
+      "caption_bbox_points": [
+        70.539,
+        197.636,
+        524.411,
+        263.898
+      ],
+      "caption_bbox_pixels": [
+        127,
+        357,
+        947,
+        476
+      ],
+      "suggested_crop_bbox_points": [
+        60.539,
+        75.039,
+        534.411,
+        273.898
+      ],
+      "suggested_crop_bbox_pixels": [
+        109,
+        135,
+        965,
+        495
+      ],
+      "candidate_crop": "crops/figure-3-p007.png",
+      "selected_asset": "crops/figure-3-verified.png",
+      "candidate_crop_size_pixels": [
+        856,
+        360
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-3-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-4-p008",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 8,
+      "caption": "| Overview of the AutoBuilder pipeline for automated SWE task synthesis from open-source repositories.",
+      "raw_text": "Figure 4 | Overview of the AutoBuilder pipeline for automated SWE task synthesis from open-source repositories.",
+      "caption_bbox_points": [
+        85.36,
+        297.133,
+        509.92,
+        322.747
+      ],
+      "caption_bbox_pixels": [
+        154,
+        536,
+        921,
+        583
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        75.04,
+        534.607,
+        332.747
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        135,
+        965,
+        601
+      ],
+      "candidate_crop": "crops/figure-4-p008.png",
+      "selected_asset": "crops/figure-4-verified.png",
+      "candidate_crop_size_pixels": [
+        857,
+        466
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-4-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-5-p014",
+      "label": "Figure 5",
+      "kind": "figure",
+      "number": "5",
+      "page": 14,
+      "caption": "| Overview of Tree Training in agentic RL.",
+      "raw_text": "Figure 5 | Overview of Tree Training in agentic RL.",
+      "caption_bbox_points": [
+        175.877,
+        259.38,
+        419.401,
+        271.445
+      ],
+      "caption_bbox_pixels": [
+        318,
+        468,
+        757,
+        490
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        75.042,
+        534.393,
+        281.445
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        135,
+        965,
+        508
+      ],
+      "candidate_crop": "crops/figure-5-p014.png",
+      "selected_asset": "crops/figure-5-verified.png",
+      "candidate_crop_size_pixels": [
+        856,
+        374
+      ],
+      "source_page_image": "pages/page-014.png",
+      "source_page_text": "text/pages/page-014.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-5-p014.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-6-p015",
+      "label": "Figure 6",
+      "kind": "figure",
+      "number": "6",
+      "page": 15,
+      "caption": "| Overview of the RL and sandbox framework.",
+      "raw_text": "Figure 6 | Overview of the RL and sandbox framework.",
+      "caption_bbox_points": [
+        164.401,
+        350.626,
+        430.877,
+        362.691
+      ],
+      "caption_bbox_pixels": [
+        297,
+        633,
+        778,
+        655
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        75.04,
+        534.408,
+        372.691
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        135,
+        965,
+        673
+      ],
+      "candidate_crop": "crops/figure-6-p015.png",
+      "selected_asset": "crops/figure-6-verified.png",
+      "candidate_crop_size_pixels": [
+        856,
+        538
+      ],
+      "source_page_image": "pages/page-015.png",
+      "source_page_text": "text/pages/page-015.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-6-p015.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-2-p017",
+      "label": "Table 2",
+      "kind": "table",
+      "number": "2",
+      "page": 17,
+      "caption": "| Evaluation Results on Software Engineering Tasks under Multiple Scaffolds. Data points marked with * are taken from https://www.anthropic.com/news/claude-opus-4-6. Other data points are evaluated on KwaiEnv.",
+      "raw_text": "Table 2 | Evaluation Results on Software Engineering Tasks under Multiple Scaffolds. Data points marked with * are taken from https://www.anthropic.com/news/claude-opus-4-6. Other data points are evaluated on KwaiEnv.",
+      "caption_bbox_points": [
+        79.682,
+        425.379,
+        516.28,
+        464.542
+      ],
+      "caption_bbox_pixels": [
+        144,
+        768,
+        932,
+        839
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        415.379,
+        534.692,
+        799.825
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        750,
+        965,
+        1444
+      ],
+      "candidate_crop": "crops/table-2-p017.png",
+      "selected_asset": "crops/table-2-verified.png",
+      "candidate_crop_size_pixels": [
+        857,
+        696
+      ],
+      "source_page_image": "pages/page-017.png",
+      "source_page_text": "text/pages/page-017.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-2-p017.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-3-p018",
+      "label": "Table 3",
+      "kind": "table",
+      "number": "3",
+      "page": 18,
+      "caption": "| Evaluation Results on Real-World Agent Benchmarks under OpenClaw. Data points of other models are taken from https://pinchbench.com/ and https://claw-eval.github.io/ (retrieved on March 25, 2026).",
+      "raw_text": "Table 3 | Evaluation Results on Real-World Agent Benchmarks under OpenClaw. Data points of other models are taken from https://pinchbench.com/ and https://claw-eval.github.io/ (retrieved on March 25, 2026).",
+      "caption_bbox_points": [
+        70.528,
+        152.183,
+        524.407,
+        191.346
+      ],
+      "caption_bbox_pixels": [
+        127,
+        275,
+        947,
+        345
+      ],
+      "suggested_crop_bbox_points": [
+        60.528,
+        142.183,
+        536.317,
+        564.885
+      ],
+      "suggested_crop_bbox_pixels": [
+        109,
+        257,
+        968,
+        1020
+      ],
+      "candidate_crop": "crops/table-3-p018.png",
+      "selected_asset": "crops/table-3-verified.png",
+      "candidate_crop_size_pixels": [
+        860,
+        764
+      ],
+      "source_page_image": "pages/page-018.png",
+      "source_page_text": "text/pages/page-018.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-3-p018.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-4-p018",
+      "label": "Table 4",
+      "kind": "table",
+      "number": "4",
+      "page": 18,
+      "caption": "| Evaluation Results on Frontend Generation Task.",
+      "raw_text": "Table 4 | Evaluation Results on Frontend Generation Task.",
+      "caption_bbox_points": [
+        158.189,
+        567.336,
+        436.753,
+        579.401
+      ],
+      "caption_bbox_pixels": [
+        286,
+        1024,
+        789,
+        1046
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        200.821,
+        536.317,
+        589.401
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        363,
+        968,
+        1064
+      ],
+      "candidate_crop": "crops/table-4-p018.png",
+      "selected_asset": "crops/table-4-verified.png",
+      "candidate_crop_size_pixels": [
+        860,
+        703
+      ],
+      "source_page_image": "pages/page-018.png",
+      "source_page_text": "text/pages/page-018.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-4-p018.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-7-p019",
+      "label": "Figure 7",
+      "kind": "figure",
+      "number": "7",
+      "page": 19,
+      "caption": "| Frontend Generation Results of KAT-Coder-V2.",
+      "raw_text": "Figure 7 | Frontend Generation Results of KAT-Coder-V2.",
+      "caption_bbox_points": [
+        160.398,
+        382.791,
+        436.791,
+        394.856
+      ],
+      "caption_bbox_pixels": [
+        290,
+        691,
+        789,
+        713
+      ],
+      "suggested_crop_bbox_points": [
+        60.213,
+        75.039,
+        536.037,
+        404.856
+      ],
+      "suggested_crop_bbox_pixels": [
+        109,
+        135,
+        968,
+        731
+      ],
+      "candidate_crop": "crops/figure-7-p019.png",
+      "selected_asset": "crops/figure-7-verified.png",
+      "candidate_crop_size_pixels": [
+        860,
+        596
+      ],
+      "source_page_image": "pages/page-019.png",
+      "source_page_text": "text/pages/page-019.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-7-p019.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "table-5-p019",
+      "label": "Table 5",
+      "kind": "table",
+      "number": "5",
+      "page": 19,
+      "caption": "| Evaluation Results on General Task. Data points of KAT-Coder-V2 are evaluated on KwaiEnv. Data points of other models are from https://artificialanalysis.ai/evaluations (retrieved on March 25, 2026).",
+      "raw_text": "Table 5 | Evaluation Results on General Task. Data points of KAT-Coder-V2 are evaluated on KwaiEnv. Data points of other models are from https://artificialanalysis.ai/evaluations (retrieved on March 25, 2026).",
+      "caption_bbox_points": [
+        75.106,
+        512.998,
+        519.837,
+        552.162
+      ],
+      "caption_bbox_pixels": [
+        136,
+        926,
+        939,
+        997
+      ],
+      "suggested_crop_bbox_points": [
+        60.866,
+        502.998,
+        534.408,
+        799.825
+      ],
+      "suggested_crop_bbox_pixels": [
+        110,
+        908,
+        965,
+        1444
+      ],
+      "candidate_crop": "crops/table-5-p019.png",
+      "selected_asset": "crops/table-5-verified.png",
+      "candidate_crop_size_pixels": [
+        856,
+        537
+      ],
+      "source_page_image": "pages/page-019.png",
+      "source_page_text": "text/pages/page-019.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Full source page visually inspected; selected crop preserves object, labels and caption; numbers cross-checked against full-text source.",
+      "key": true,
+      "classification_reason": "Explains a distinct mechanism, measurement, or limitation necessary to assess the report.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Embedded next to its interpretation and evidence limits.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-5-p019.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    }
+  ],
+  "manual_inventory_note": "Removed false caption matches from prose and repeated captions; every actual numbered figure and table retained."
+}

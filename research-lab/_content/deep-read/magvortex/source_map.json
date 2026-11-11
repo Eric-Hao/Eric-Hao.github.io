@@ -1,0 +1,120 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "Effects of magnetic–vortical interactions on magnetic splitting",
+    "doi": "10.1017/jfm.2025.263",
+    "sources": [
+      {
+        "type": "published PDF",
+        "url": "https://shiyingxiong.github.io/proj/MHDTube/MHDTube.pdf",
+        "local_path": "sources/paper.pdf",
+        "sha256": "d62281e09797e6866669c6eb140287a8f4b14eaf28ae83761e82bf24dc94507c",
+        "version": "Published version; title, authors, DOI and journal checked on first page",
+        "scope": "Full main text and appendices"
+      }
+    ],
+    "page_convention": "1-based PDF pages"
+  },
+  "reader_profile": {
+    "domain": "physics-mathematics",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "bilingual en/zh-CN",
+    "selected_lenses": [
+      "physics-mathematics",
+      "methods-and-numerical-physics"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "Full PDF text layer",
+      "Main-paper and appendix equations and captions"
+    ],
+    "date": "2026-11-11"
+  },
+  "visual_coverage": {
+    "total_numbered": 21,
+    "key": 21,
+    "key_explained": 21
+  },
+  "claims": [
+    {
+      "id": "curvature-source",
+      "claim": "Curvature and transverse magnetic-strength gradients generate a splitting vortex pair in the chosen initial field.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "§3.2; Eq.(3.21); Figures 5–7; PDF pp.10–13",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Early-time, restricted frame-field structure; zero-field and zero-curvature singularities."
+    },
+    {
+      "id": "vortex-inhibition",
+      "claim": "Comparable aligned vorticity inhibits dipole formation and tube splitting.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "§4.2; Figures 16–19; PDF pp.21–24",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Order-of-magnitude strength estimate, not universal threshold; partial initial splitting is reported."
+    },
+    {
+      "id": "quasi-lagrangian",
+      "claim": "Early magnetic/vortex line geometries approximately share material transport.",
+      "status": "partial",
+      "evidence": [
+        {
+          "anchor": "Corollary 1; Figure 8; PDF pp.13–15",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Neglect diffusion and require source alignment; not an exact general resistive-MHD theorem."
+    },
+    {
+      "id": "angle-sensitivity",
+      "claim": "Energy histories depend strongly on small angular changes.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "Figures 12–16; §4.1; PDF pp.19–22",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Figure 12 kinetic trend contradicts prose; no asserted exact optimum."
+    },
+    {
+      "id": "convergence",
+      "claim": "Energy curves approach convergence at high resolution in one low-diffusivity case.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "Appendix A; Figure 20; PDF pp.25–26",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Intermediate grid legend 736³ conflicts with text 768³; not topology convergence."
+    }
+  ],
+  "source_conflicts": [
+    "Figure 12 kinetic-gain plotted direction contradicts §4.1 prose.",
+    "Figure 8 caption 1722.8 versus §3.3 prose 103.6; recurring Reynolds-number convention inconsistency.",
+    "Figure 15 axis Gamma_k versus caption epsilon_k.",
+    "Figure 20 intermediate grid 736^3 versus Appendix A 768^3."
+  ]
+}

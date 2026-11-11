@@ -1,0 +1,908 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-11T12:07:23.858355+00:00",
+  "source_pdf": "sources/paper.pdf",
+  "source_sha256": "f700efbd76a40b8435b878bc5c31dafa103cb0153347342c498dc0dba372022c",
+  "page_count": 11,
+  "render_dpi": 150,
+  "selected_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "analysis_mode": "visual",
+  "text_layer_available": true,
+  "text_layer_characters": 69623,
+  "automatic_crops_are_unverified": true,
+  "selection_policy": "all-key-visuals-in-explain-and-audit",
+  "pages": [
+    {
+      "page": 1,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-001.png",
+      "text": "text/pages/page-001.txt",
+      "text_characters": 5023,
+      "caption_count": 1
+    },
+    {
+      "page": 2,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-002.png",
+      "text": "text/pages/page-002.txt",
+      "text_characters": 6171,
+      "caption_count": 0
+    },
+    {
+      "page": 3,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-003.png",
+      "text": "text/pages/page-003.txt",
+      "text_characters": 9503,
+      "caption_count": 1
+    },
+    {
+      "page": 4,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-004.png",
+      "text": "text/pages/page-004.txt",
+      "text_characters": 4668,
+      "caption_count": 1
+    },
+    {
+      "page": 5,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-005.png",
+      "text": "text/pages/page-005.txt",
+      "text_characters": 5723,
+      "caption_count": 1
+    },
+    {
+      "page": 6,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-006.png",
+      "text": "text/pages/page-006.txt",
+      "text_characters": 6933,
+      "caption_count": 1
+    },
+    {
+      "page": 7,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-007.png",
+      "text": "text/pages/page-007.txt",
+      "text_characters": 6579,
+      "caption_count": 2
+    },
+    {
+      "page": 8,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-008.png",
+      "text": "text/pages/page-008.txt",
+      "text_characters": 6921,
+      "caption_count": 4
+    },
+    {
+      "page": 9,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-009.png",
+      "text": "text/pages/page-009.txt",
+      "text_characters": 8307,
+      "caption_count": 0
+    },
+    {
+      "page": 10,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-010.png",
+      "text": "text/pages/page-010.txt",
+      "text_characters": 7071,
+      "caption_count": 0
+    },
+    {
+      "page": 11,
+      "width_pixels": 1275,
+      "height_pixels": 1650,
+      "width_points": 612.0,
+      "height_points": 792.0,
+      "image": "pages/page-011.png",
+      "text": "text/pages/page-011.txt",
+      "text_characters": 2724,
+      "caption_count": 0
+    }
+  ],
+  "visuals": [
+    {
+      "id": "figure-1-p001",
+      "label": "Figure 1",
+      "kind": "figure",
+      "number": "1",
+      "page": 1,
+      "caption": "The KoNViD-1k dataset provides video frames that demonstrate a correlation between content/motion patterns and video quality. To identify potential reasons for poor perceptual video quality, we have highlighted specific factors in italics that correspond to the labeled MOS.",
+      "raw_text": "Figure 1. The KoNViD-1k dataset provides video frames that demonstrate a correlation between content/motion patterns and video quality. To identify potential reasons for poor perceptual video quality, we have highlighted specific factors in italics that correspond to the labeled MOS.",
+      "caption_bbox_points": [
+        308.862,
+        361.127,
+        545.109,
+        413.928
+      ],
+      "caption_bbox_pixels": [
+        643,
+        752,
+        1136,
+        862
+      ],
+      "suggested_crop_bbox_points": [
+        38.406,
+        1.0,
+        573.594,
+        423.928
+      ],
+      "suggested_crop_bbox_pixels": [
+        80,
+        2,
+        1195,
+        883
+      ],
+      "candidate_crop": "crops/figure-1-p001.png",
+      "selected_asset": null,
+      "candidate_crop_size_pixels": [
+        1115,
+        882
+      ],
+      "source_page_image": "pages/page-001.png",
+      "source_page_text": "text/pages/page-001.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": true,
+      "visual_verification": "not-performed",
+      "review_notes": "",
+      "key": false,
+      "classification_reason": "Redundant conceptual or feature illustration; mechanisms and causal evidence are covered by the architecture and ablation objects.",
+      "selected_for_report": false,
+      "report_role": null,
+      "selection_reason": "Nonessential duplicate; recorded in inventory but not repeated in the explanation.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-1-p001.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      }
+    },
+    {
+      "id": "figure-2-p003",
+      "label": "Figure 2",
+      "kind": "figure",
+      "number": "2",
+      "page": 3,
+      "caption": "Visualization of clustering results of features extracted by different pretrained models using t-SNE [54]. Videos in KoNViD-1k [22] are used. The number of cluster centers is set to be 6 according to the range of MOS values. And DBI scores, which will be introduced in detail in Sec. 3.4, measure the divergence of clustering results (the smaller, the better).",
+      "raw_text": "Figure 2. Visualization of clustering results of features extracted by different pretrained models using t-SNE [54]. Videos in KoNViD-1k [22] are used. The number of cluster centers is set to be 6 according to the range of MOS values. And DBI scores, which will be introduced in detail in Sec. 3.4, measure the divergence of clustering results (the smaller, the better).",
+      "caption_bbox_points": [
+        50.112,
+        298.262,
+        545.111,
+        329.146
+      ],
+      "caption_bbox_pixels": [
+        104,
+        621,
+        1136,
+        686
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        61.999,
+        555.111,
+        339.146
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        129,
+        1156,
+        707
+      ],
+      "candidate_crop": "crops/figure-2-p003.png",
+      "selected_asset": "crops/figure-2-p003-verified.png",
+      "candidate_crop_size_pixels": [
+        1074,
+        578
+      ],
+      "source_page_image": "pages/page-003.png",
+      "source_page_text": "text/pages/page-003.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-2-p003.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        58,
+        550,
+        329
+      ]
+    },
+    {
+      "id": "figure-3-p004",
+      "label": "Figure 3",
+      "kind": "figure",
+      "number": "3",
+      "page": 4,
+      "caption": "The pipeline of the proposed PTM-VQA. Features of input videos are extracted by pretrained models with frozen weights, transformed to the same dimension, and integrated to generate the final representation. Expect for the ordinary smooth L1 loss for regression, we add an ICID loss to ensure model-wise consistency and sample-wise divisibility.",
+      "raw_text": "Figure 3. The pipeline of the proposed PTM-VQA. Features of input videos are extracted by pretrained models with frozen weights, transformed to the same dimension, and integrated to generate the final representation. Expect for the ordinary smooth L1 loss for regression, we add an ICID loss to ensure model-wise consistency and sample-wise divisibility.",
+      "caption_bbox_points": [
+        50.112,
+        276.333,
+        545.111,
+        307.217
+      ],
+      "caption_bbox_pixels": [
+        104,
+        576,
+        1136,
+        640
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        61.999,
+        555.111,
+        317.217
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        129,
+        1156,
+        661
+      ],
+      "candidate_crop": "crops/figure-3-p004.png",
+      "selected_asset": "crops/figure-3-p004-verified.png",
+      "candidate_crop_size_pixels": [
+        1074,
+        532
+      ],
+      "source_page_image": "pages/page-004.png",
+      "source_page_text": "text/pages/page-004.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-3-p004.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        64,
+        550,
+        309
+      ]
+    },
+    {
+      "id": "figure-4-p005",
+      "label": "Figure 4",
+      "kind": "figure",
+      "number": "4",
+      "page": 5,
+      "caption": "Illustration of ICID loss. The figure shows examples of several triplets of triplet loss; two sets of intra-consistency between features extracted by four pretrained models; and one sample (with two triplets) for inter-divisibility.",
+      "raw_text": "Figure 4. Illustration of ICID loss. The figure shows examples of several triplets of triplet loss; two sets of intra-consistency between features extracted by four pretrained models; and one sample (with two triplets) for inter-divisibility.",
+      "caption_bbox_points": [
+        50.112,
+        196.805,
+        545.111,
+        216.729
+      ],
+      "caption_bbox_pixels": [
+        104,
+        410,
+        1136,
+        452
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        62.0,
+        555.111,
+        226.729
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        129,
+        1156,
+        472
+      ],
+      "candidate_crop": "crops/figure-4-p005.png",
+      "selected_asset": "crops/figure-4-p005-verified.png",
+      "candidate_crop_size_pixels": [
+        1074,
+        344
+      ],
+      "source_page_image": "pages/page-005.png",
+      "source_page_text": "text/pages/page-005.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "mechanism",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/figure-4-p005.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text",
+        "body-references"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        44,
+        550,
+        218
+      ]
+    },
+    {
+      "id": "table-1-p006",
+      "label": "Table 1",
+      "kind": "table",
+      "number": "1",
+      "page": 6,
+      "caption": "Details of PTM-VQA for different datasets. Time1 is the training time. Time2 represents the inference time using a 1080P/30FPS/20s video. The overall computational cost is relatively small compared with existing SOTA methods.",
+      "raw_text": "Table 1. Details of PTM-VQA for different datasets. Time1 is the training time. Time2 represents the inference time using a 1080P/30FPS/20s video. The overall computational cost is relatively small compared with existing SOTA methods.",
+      "caption_bbox_points": [
+        50.112,
+        69.062,
+        545.108,
+        92.796
+      ],
+      "caption_bbox_pixels": [
+        104,
+        144,
+        1136,
+        193
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        59.062,
+        555.115,
+        452.956
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        123,
+        1156,
+        944
+      ],
+      "candidate_crop": "crops/table-1-p006.png",
+      "selected_asset": "crops/table-1-p006-verified.png",
+      "candidate_crop_size_pixels": [
+        1074,
+        821
+      ],
+      "source_page_image": "pages/page-006.png",
+      "source_page_text": "text/pages/page-006.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-1-p006.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        70,
+        550,
+        151
+      ]
+    },
+    {
+      "id": "table-2-p007",
+      "label": "Table 2",
+      "kind": "table",
+      "number": "2",
+      "page": 7,
+      "caption": "Comparisons with existing methods. The “-” is an unreported result. The “*” is using extra labeled data for training. The best and second best results are bolded and underlined. Average scores weighted by the size of datasets are also reported.",
+      "raw_text": "Table 2. Comparisons with existing methods. The “-” is an unreported result. The “*” is using extra labeled data for training. The best and second best results are bolded and underlined. Average scores weighted by the size of datasets are also reported.",
+      "caption_bbox_points": [
+        50.112,
+        72.871,
+        545.111,
+        92.796
+      ],
+      "caption_bbox_pixels": [
+        104,
+        152,
+        1136,
+        193
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        62.871,
+        555.111,
+        287.453
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        131,
+        1156,
+        599
+      ],
+      "candidate_crop": "crops/table-2-p007.png",
+      "selected_asset": "crops/table-2-p007-verified.png",
+      "candidate_crop_size_pixels": [
+        1074,
+        469
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-2-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        69,
+        550,
+        284
+      ]
+    },
+    {
+      "id": "table-3-p007",
+      "label": "Table 3",
+      "kind": "table",
+      "number": "3",
+      "page": 7,
+      "caption": "Comparisons on the largest LSVQ dataset.",
+      "raw_text": "Table 3. Comparisons on the largest LSVQ dataset.",
+      "caption_bbox_points": [
+        334.89,
+        301.675,
+        519.087,
+        310.641
+      ],
+      "caption_bbox_pixels": [
+        698,
+        628,
+        1081,
+        647
+      ],
+      "suggested_crop_bbox_points": [
+        58.368,
+        98.047,
+        536.856,
+        320.641
+      ],
+      "suggested_crop_bbox_pixels": [
+        122,
+        204,
+        1118,
+        668
+      ],
+      "candidate_crop": "crops/table-3-p007.png",
+      "selected_asset": "crops/table-3-p007-verified.png",
+      "candidate_crop_size_pixels": [
+        998,
+        465
+      ],
+      "source_page_image": "pages/page-007.png",
+      "source_page_text": "text/pages/page-007.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-3-p007.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        310,
+        299,
+        550,
+        435
+      ]
+    },
+    {
+      "id": "table-4-p008",
+      "label": "Table 4",
+      "kind": "table",
+      "number": "4",
+      "page": 8,
+      "caption": "Cross-database comparison using models trained on LSVQ, then evaluated on the entire KoNViD-1k and LIVQ-VQC datasets without fine-tuning.",
+      "raw_text": "Table 4. Cross-database comparison using models trained on LSVQ, then evaluated on the entire KoNViD-1k and LIVQ-VQC datasets without fine-tuning.",
+      "caption_bbox_points": [
+        50.112,
+        72.871,
+        286.359,
+        103.755
+      ],
+      "caption_bbox_pixels": [
+        104,
+        152,
+        597,
+        216
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        62.871,
+        296.359,
+        223.656
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        131,
+        617,
+        466
+      ],
+      "candidate_crop": "crops/table-4-p008.png",
+      "selected_asset": "crops/table-4-p008-verified.png",
+      "candidate_crop_size_pixels": [
+        535,
+        336
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-4-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        69,
+        293,
+        221
+      ]
+    },
+    {
+      "id": "table-5-p008",
+      "label": "Table 5",
+      "kind": "table",
+      "number": "5",
+      "page": 8,
+      "caption": "Ablation on the ICID loss in KoNViD-1k.",
+      "raw_text": "Table 5. Ablation on the ICID loss in KoNViD-1k.",
+      "caption_bbox_points": [
+        77.354,
+        231.311,
+        259.121,
+        240.277
+      ],
+      "caption_bbox_pixels": [
+        161,
+        482,
+        540,
+        501
+      ],
+      "suggested_crop_bbox_points": [
+        54.634,
+        100.502,
+        279.848,
+        250.277
+      ],
+      "suggested_crop_bbox_pixels": [
+        114,
+        209,
+        583,
+        521
+      ],
+      "candidate_crop": "crops/table-5-p008.png",
+      "selected_asset": "crops/table-5-p008-verified.png",
+      "candidate_crop_size_pixels": [
+        471,
+        313
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-5-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        62,
+        230,
+        280,
+        317
+      ]
+    },
+    {
+      "id": "table-6-p008",
+      "label": "Table 6",
+      "kind": "table",
+      "number": "6",
+      "page": 8,
+      "caption": "Ablation on cluster settings in KoNViD-1k.",
+      "raw_text": "Table 6. Ablation on cluster settings in KoNViD-1k.",
+      "caption_bbox_points": [
+        74.49,
+        329.975,
+        261.986,
+        338.941
+      ],
+      "caption_bbox_pixels": [
+        155,
+        687,
+        546,
+        706
+      ],
+      "suggested_crop_bbox_points": [
+        40.112,
+        319.975,
+        296.366,
+        723.407
+      ],
+      "suggested_crop_bbox_pixels": [
+        84,
+        667,
+        617,
+        1507
+      ],
+      "candidate_crop": "crops/table-6-p008.png",
+      "selected_asset": "crops/table-6-p008-verified.png",
+      "candidate_crop_size_pixels": [
+        535,
+        842
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-6-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        47,
+        326,
+        293,
+        423
+      ]
+    },
+    {
+      "id": "table-7-p008",
+      "label": "Table 7",
+      "kind": "table",
+      "number": "7",
+      "page": 8,
+      "caption": "Ablation on the effectiveness of DBI.",
+      "raw_text": "Table 7. Ablation on the effectiveness of DBI.",
+      "caption_bbox_points": [
+        344.322,
+        72.871,
+        509.653,
+        81.837
+      ],
+      "caption_bbox_pixels": [
+        717,
+        152,
+        1062,
+        170
+      ],
+      "suggested_crop_bbox_points": [
+        298.862,
+        62.871,
+        555.115,
+        251.976
+      ],
+      "suggested_crop_bbox_pixels": [
+        623,
+        131,
+        1156,
+        525
+      ],
+      "candidate_crop": "crops/table-7-p008.png",
+      "selected_asset": "crops/table-7-p008-verified.png",
+      "candidate_crop_size_pixels": [
+        535,
+        395
+      ],
+      "source_page_image": "pages/page-008.png",
+      "source_page_text": "text/pages/page-008.txt",
+      "crop_confidence": "medium",
+      "crop_review_required": false,
+      "visual_verification": "complete",
+      "review_notes": "Source page visually inspected, including diagram paths or table labels, values and footnotes. Cropped to include the full object and caption, then reviewed in a contact sheet.",
+      "key": true,
+      "classification_reason": "Required to understand the mechanism, its supporting evidence, or its measured limits.",
+      "selected_for_report": true,
+      "report_role": "evidence",
+      "selection_reason": "Preserve source labels and inspect the numerical or architectural comparison.",
+      "claim_ids": [],
+      "text_asset": "text/visuals/table-7-p008.md",
+      "available_text_sources": [
+        "caption",
+        "suggested-region-text"
+      ],
+      "text_extraction_status": "partial",
+      "text_review": {
+        "status": "pending",
+        "sources": [],
+        "notes": "",
+        "limitations": ""
+      },
+      "manual_crop_bbox_points": [
+        337,
+        69,
+        550,
+        175
+      ]
+    }
+  ]
+}

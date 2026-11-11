@@ -1,0 +1,118 @@
+{
+  "schema_version": 5,
+  "paper": {
+    "title": "Magnetic knot cascade via the stepwise reconnection of helical flux tubes",
+    "doi": "10.1017/jfm.2020.1145",
+    "sources": [
+      {
+        "type": "published PDF",
+        "url": "https://www.researchgate.net/profile/Yue-Yang-11/publication/349411681_Magnetic_knot_cascade_via_the_stepwise_reconnection_of_helical_flux_tubes/links/602f631392851c4ed58062be/Magnetic-knot-cascade-via-the-stepwise-reconnection-of-helical-flux-tubes.pdf",
+        "local_path": "sources/author-paper.pdf",
+        "sha256": "c4c4d64d6443632bdf66ac34caa7fae187cfd6c7be1f1cdb190610e1cb692d93",
+        "version": "Published version; title, authors, DOI and journal checked on first page",
+        "scope": "Full main text and appendices"
+      }
+    ],
+    "page_convention": "1-based PDF pages"
+  },
+  "reader_profile": {
+    "domain": "physics-mathematics",
+    "audience": "broad-to-expert",
+    "goal": "understand",
+    "depth": "deep",
+    "language": "bilingual en/zh-CN",
+    "selected_lenses": [
+      "physics-mathematics",
+      "methods-and-numerical-physics"
+    ],
+    "delivery": "explain",
+    "entry_level": "novice",
+    "technical_ceiling": "doctoral"
+  },
+  "explanation": {
+    "strategy": "intuition-to-precision",
+    "define_terms_on_first_use": true,
+    "report_structure": "six-section",
+    "key_visual_policy": "all-key-visuals"
+  },
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete",
+    "text_evidence_sources": [
+      "Full PDF text layer",
+      "Main-paper and appendix equations and captions"
+    ],
+    "date": "2026-11-11"
+  },
+  "visual_coverage": {
+    "total_numbered": 23,
+    "key": 23,
+    "key_explained": 23
+  },
+  "claims": [
+    {
+      "id": "sequential-knots",
+      "claim": "Representative closed field lines progress through trefoil, cinquefoil and septafoil examples.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "§3.2–3.4; Figures 4–15; PDF pp.9–17",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Artificial closure and representative instantaneous lines, not unique tracked line identities."
+    },
+    {
+      "id": "sampled-cascade",
+      "claim": "Sampled knot-type distributions shift toward higher crossing numbers.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "§3.5; Figure 17; PDF pp.18–19",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "3700 samples per time in a restricted plane; unknotted and 12.5% complex late samples omitted."
+    },
+    {
+      "id": "magnetic-feedback",
+      "claim": "Lorentz feedback rotates and stretches lines to enable repeated encounters.",
+      "status": "partial",
+      "evidence": [
+        {
+          "anchor": "Figures 6,9,14; §3.4; PDF pp.11–16",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "No isolated force-removal ablation; eventual stretching also ends cascade."
+    },
+    {
+      "id": "surface-accuracy",
+      "claim": "MSF tangency error is below 1% and lower than strength-isosurface error.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "Appendix A; Figures 18–19; PDF pp.20–21",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Tangency does not establish temporal uniqueness or classification convergence."
+    },
+    {
+      "id": "parameter-boundary",
+      "claim": "Weak twist, weak magnetic interaction and some profiles do not knot.",
+      "status": "strong",
+      "evidence": [
+        {
+          "anchor": "Appendix B; Figures 20–23; PDF pp.22–24",
+          "source": "paper PDF"
+        }
+      ],
+      "boundary": "Limited parameter samples; field profile and energy vary together."
+    }
+  ],
+  "source_conflicts": [
+    "Conclusion prints nc=5 at t=2.25; Figure 15 and §3.4 specify nc=7.",
+    "Conclusion inner/outer MSF interval wording conflicts with §3.3; main definitions used."
+  ]
+}

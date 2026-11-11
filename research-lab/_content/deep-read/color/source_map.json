@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "paper": {
+    "title": "Coloring the Noise: Adversarial Sobolev Alignment for Faithful Image Super Resolution",
+    "sources": [
+      "https://arxiv.org/abs/2605.23264v2"
+    ],
+    "page_convention": "Physical PDF pages, starting at 1; supplement included."
+  },
+  "claims": [
+    {
+      "id": "p3",
+      "claim": "**How to read:** Compare the separation between the three geometries, not the size of the drawn regions.\n\n**Key observation:** Figure 2 (p. 3) contrasts Euclidean alignment, adversarial negatives, and the proposed Sobolev geometry. Read its colored regions as an intuition about objectives, not measured image manifolds. A curved drawing does not prove that generated and real distributions coincide. **Boundary:** The actual evidence must come from residual definitions, ablations, and reconstruction tests.\n\nThis supports the motivation for changing the objective.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 3,
+          "asset": "assets/pages/page-003.png"
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "claim": "**How to read:** Compare the blue and red curves at high frequency on the logarithmic vertical axis.\n\n**Key observation:** Figure 3 (p. 4) plots power spectral density against spatial frequency on synthetic and real data. The logarithmic vertical scale matters: the red $L^2$ curve falls below the natural-image spectrum at higher frequencies; the blue Sobolev curve follows it more closely. The reported slope deviations are 0.06/0.02 versus 0.85/0.73. **Boundary:** Similar spectrum is evidence of frequency balance, not proof that a particular window or character was reconstructed correctly.\n\nThis supports improved spectral balance.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 4,
+          "asset": "assets/pages/page-004.png"
+        }
+      ]
+    },
+    {
+      "id": "p5",
+      "claim": "**How to read:** Compare paired building edges and character strokes.\n\n**Key observation:** Figure 4 (p. 5) pairs winner and loser images with architectural or text distortions. The negatives are near the correct content, unlike arbitrary random images. **Boundary:** These selected pairs motivate the design but do not establish that the learned adversary finds every worst-case error.\n\nThis supports content-aligned negative construction.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 5,
+          "asset": "assets/pages/page-005.png"
+        }
+      ]
+    },
+    {
+      "id": "p6",
+      "claim": "**How to read:** Compare reference metrics and downstream tasks separately, respecting each metric direction.\n\n**Key observation:** Tables 1–2 (p. 6) support a mixed, not universal, improvement. On DIV2K, ASASR reaches PSNR 20.60 and LPIPS 0.2784; Real-ESRGAN has higher PSNR 21.11, while SeeSR has lower DISTS 0.1986 than ASASR’s 0.2038. On RealSR, PSNR 24.09 is below SwinIR’s 24.44. Downstream OCR recall rises to 45.91 versus DP2O-SR 40.03, but ground truth reaches 50.32. Detection AP 35.62 and segmentation mIoU 43.33 remain below ground truth 48.32 and 49.39. **Boundary:** These are useful task-level checks, not guarantees for every text string.\n\nThis supports task-specific gains alongside fidelity trade-offs.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 6,
+          "asset": "assets/pages/page-006.png"
+        }
+      ]
+    },
+    {
+      "id": "p7",
+      "claim": "**How to read:** Compare the ground-truth columns in the first two rows before judging real images.\n\n**Key observation:** Figure 5 (p. 7) places methods in columns and four scenes in rows. The first two rows include ground truth; the real-world dog and ornament rows do not. Architectural line regularity and reduced face distortions are plausible visual benefits. Texture preferences in the reference-free rows cannot establish which fine details existed in the original scene.\n\nThis supports the qualitative structural benefit on selected scenes.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 7,
+          "asset": "assets/pages/page-007.png"
+        }
+      ]
+    },
+    {
+      "id": "p8",
+      "claim": "**How to read:** Compare the spectral example and objective-ablation rows as distinct evidence.\n\n**Key observation:** Figure 6 and Table 3 (p. 8) test mechanism more directly. The window example compares image details and spectra: ASASR’s log-spectral distance is 27.35 versus roughly 36–44 for the alternatives. In the ablation, replacing the Sobolev objective with Euclidean DPO drops PSNR 20.60→18.34 and worsens LPIPS 0.2784→0.3115; supervised DPO reaches 20.08/0.3109. The full system is best among these controlled variants, but Table 3 lists DISTS 0.2088 where Table 1 lists 0.2038. **Boundary:** The discrepancy is retained rather than silently reconciled.\n\nThis supports the importance of the frequency-weighted objective.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 8,
+          "asset": "assets/pages/page-008.png"
+        }
+      ]
+    },
+    {
+      "id": "p9",
+      "claim": "**How to read:** Compare the peaks of perceptual metrics as the Sobolev order increases.\n\n**Key observation:** Figure 7 (p. 9) sweeps the Sobolev order. LPIPS generally improves as high frequencies receive more weight, while MANIQA and MUSIQ peak around $s=1.5$ and then decline. **Boundary:** This is an empirical balance, not a theorem that more high-frequency emphasis is always better or that 1.5 transfers universally.\n\nThis supports an intermediate empirical operating point.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 9,
+          "asset": "assets/pages/page-009.png"
+        }
+      ]
+    },
+    {
+      "id": "p16",
+      "claim": "**How to read:** Compare rank saturation separately from latency and memory units.\n\n**Key observation:** Tables 4–5 (p. 16) expose capacity and cost. Increasing adversary LoRA rank 4→8→16 raises PSNR 19.43→20.54→20.60; ranks 32/64 largely plateau. This supports a sufficient-capacity regime but not the theorem’s approximation assumptions. Inference on A800 is reported as 19.60 seconds/image, 33.02 GB peak memory, and 2.85 PFLOPs, averaged over 100 runs after warm-up. **Boundary:** This is not a lightweight real-time restorer.\n\nThis supports diminishing capacity gains and substantial inference cost.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 16,
+          "asset": "assets/pages/page-016.png"
+        }
+      ]
+    },
+    {
+      "id": "p17",
+      "claim": "**How to read:** Compare within-backbone changes and lower-is-better NIQE.\n\n**Key observation:** Tables 6–7 (p. 17) extend the scope. PSNR improves from supervised fine-tuning to ASASR on SD1.5 (18.52→19.14), SDXL (19.31→19.92), and FLUX (19.96→20.60). On RealLQ250, MUSIQ 71.16 exceeds SeeSR 70.57, but NIQE 3.64 is worse than DreamClear 3.55 because lower is better. **Boundary:** Transfer evidence is encouraging without establishing all-metric dominance.\n\nThis supports partial transfer across backbones and domains.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 17,
+          "asset": "assets/pages/page-017.png"
+        }
+      ]
+    },
+    {
+      "id": "p18",
+      "claim": "**How to read:** Compare the old-film scores separately from top-K human rankings.\n\n**Key observation:** Table 8 and Figure 8 (p. 18) add old-film and human-preference evidence. Old-film MUSIQ/CLIPIQA are 54.42/0.6078 versus DiT4SR 52.67/0.5004. The study uses 50 participants and 64 images with anonymized randomized rankings; the plotted top-1 preference is 91.1%. **Boundary:** It measures preference within the presented alternatives, not factual fidelity, and does not supply an independent replication.\n\nThis supports appearance preference in the evaluated setting.",
+      "status": "strong",
+      "evidence": [
+        {
+          "source": "https://arxiv.org/abs/2605.23264v2",
+          "page": 18,
+          "asset": "assets/pages/page-018.png"
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "visual_mode": "visual",
+    "visual_verification": "complete"
+  },
+  "visual_coverage": {
+    "total_numbered": 21,
+    "key": 15,
+    "key_explained": 15
+  },
+  "reading_order": [
+    "Problem and prerequisites",
+    "Mechanism and equations",
+    "All main tables",
+    "Supplementary controls and limitations"
+  ],
+  "limitations": [
+    "Paper-reported results; no independent training or benchmark rerun.",
+    "Page facsimiles preserve context instead of presenting unverified extracted crops."
+  ]
+}
