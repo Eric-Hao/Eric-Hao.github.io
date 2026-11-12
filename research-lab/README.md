@@ -17,7 +17,9 @@ hero layouts.
 Measured features include responsive type sizes and leading, 32px desktop / 24px
 mobile gutters, list metadata columns, 32px list row padding, square panel images,
 24px horizontal / 80px vertical grid gaps, and the article reading column. The
-panel layout is three columns above 768px and one column below it. Default is list.
+panel layout uses four columns at 1200px and above, three at 768–1199px, two at 360–767px, and one below 360px. Default is panel; explicit list-view URLs and in-page switching remain available.
+Mobile panels use 16px gaps, 16px untruncated titles, wrapping 12px metadata, and whole-card links.
+The compact header contains Home and Blog text links, with no footer.
 
 Topic, year/type filtering, four sorting orders, and list/panel controls remain.
 State is reflected in the URL and survives reload and history navigation. Search
@@ -85,7 +87,7 @@ node --check research-lab/app.js
 JEKYLL_ENV=production bundle _2.2.19_ exec jekyll build --safe
 ```
 
-The current build passes 22 unit tests and 1,625 static checks across all 23
+The current build passes 25 unit tests and 1,626 static checks across all 23
 pages. Tests cover route preservation, figures, references, browsing controls,
 duplicate IDs, escaping, mathematical rendering, and editorial records.
 Browser review covers desktop, tablet-width, and narrow responsive viewports.

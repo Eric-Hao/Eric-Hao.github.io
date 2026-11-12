@@ -21,7 +21,7 @@
         years: [...new Set(params.getAll('year').filter(value => choicesFor('year').includes(value)))],
         types: [...new Set(params.getAll('type').filter(value => choicesFor('type').includes(value)))],
         sort: allowed(params.get('sort'), sorts.map(input => input.value), 'newest'),
-        view: allowed(params.get('display'), ['grid', 'list'], 'list')
+        view: allowed(params.get('display'), ['grid', 'list'], 'grid')
       };
       search.value = state.query;
     };
@@ -42,7 +42,7 @@
       state.years.forEach(value => url.searchParams.append('year', value));
       state.types.forEach(value => url.searchParams.append('type', value));
       if (state.sort !== 'newest') url.searchParams.set('sort', state.sort);
-      if (state.view !== 'list') url.searchParams.set('display', state.view);
+      if (state.view !== 'grid') url.searchParams.set('display', state.view);
       if (url.href !== location.href) history[mode === 'replace' ? 'replaceState' : 'pushState'](null, '', url);
     };
     const update = () => {

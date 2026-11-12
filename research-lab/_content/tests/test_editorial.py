@@ -54,20 +54,22 @@ class EditorialTests(unittest.TestCase):
   self.assertNotIn('<script>',b.card(paper,r,None))
 
 class RestoredPreviewTests(unittest.TestCase):
- def test_single_home_entry_in_header(self):
+ def test_text_only_home_and_blog_header(self):
   header=b.head('Research Notes','A research index').split('<header class="site-header">',1)[1].split('</header>',1)[0]
-  self.assertEqual(header.count('<a '),1)
+  self.assertEqual(header.count('<a '),2)
   self.assertIn('href="../"',header)
-  self.assertIn('<span>Home</span>',header)
+  self.assertIn('>Home</text>',header)
+  self.assertIn('>Blog</text>',header)
+  self.assertNotIn('<path',header)
   self.assertNotIn('>Jinhua Hao',header)
   self.assertNotIn('>Research',header)
  def test_article_home_returns_to_personal_site(self):
   header=b.head('Article','Description','../../','articles/vortex-bursting/').split('<header class="site-header">',1)[1].split('</header>',1)[0]
   self.assertIn('href="../../../"',header)
- def test_index_title_is_research_notes(self):
+ def test_index_title_is_research(self):
   source=(CONTENT/'build_editorial.py').read_text()
-  self.assertIn('<h1>Research Notes</h1>',source)
-  self.assertNotIn('<h1>Research</h1>',source)
+  self.assertIn('<h1>Research</h1>',source)
+  self.assertNotIn('<h1>Research Notes</h1>',source)
  def test_reviewed_vortex_scientific_qualifiers(self):
   record=json.loads((CONTENT/'editorial/vortex-bursting.json').read_text())
   prose=' '.join(p for section in record['sections'] for p in section['paragraphs'])
@@ -83,7 +85,23 @@ class RestoredPreviewTests(unittest.TestCase):
    self.assertFalse(f['sourceUrl'].lower().endswith('.pdf'))
  def test_home_touch_target(self):
   css=(CONTENT/'styles/research.css').read_text()
-  self.assertIn('.home-link{',css)
+  self.assertIn('.home-link,.blog-link{',css)
   self.assertIn('min-height:44px',css)
+
+class ResponsiveResearchTests(unittest.TestCase):
+ def test_panel_default_in_source_and_script(self):
+  source=(CONTENT/'build_editorial.py').read_text()
+  js=(CONTENT.parent/'app.js').read_text()
+  self.assertIn('class="research-results" data-layout="grid"',source)
+  self.assertIn("['grid', 'list'], 'grid'",js)
+  self.assertNotIn('localStorage',js)
+  self.assertIn("state.view !== 'grid'",js)
+ def test_no_footer(self):
+  self.assertEqual(b.footer(),'')
+  self.assertEqual(b.footer('../../'),'')
+ def test_panel_breakpoints(self):
+  css=(CONTENT/'styles/research.css').read_text()
+  for token in ('repeat(4,minmax(0,1fr))','min-width:768px) and (max-width:1199px','min-width:360px) and (max-width:767px','max-width:359px','repeat(2,minmax(0,1fr))','column-gap:16px','font-size:16px;line-height:1.35','font-size:12px;line-height:1.4'):
+   self.assertIn(token,css)
 
 if __name__=='__main__':unittest.main()

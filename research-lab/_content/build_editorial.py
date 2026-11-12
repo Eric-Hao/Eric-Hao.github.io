@@ -72,11 +72,11 @@ def head(title, description, prefix='', canonical=''):
 <link rel="canonical" href="{SITE}{e(canonical)}"><meta property="og:type" content="{'article' if canonical else 'website'}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{SITE}{e(canonical)}">
 <meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="{prefix}fonts/openai/openai-fonts.css"><link rel="stylesheet" href="{prefix}site.css?v={version('site.css')}"><script src="{prefix}app.js?v={version('app.js')}" defer></script></head>
 <body class="{'article-page' if canonical else 'index-page'}"><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="home-link" href="{prefix}../" aria-label="Home — Jinhua Hao">{icon('home')}<span>Home</span></a></header>'''
+<header class="site-header"><a class="home-link" href="{prefix}../" aria-label="Home"><svg class="nav-wordmark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true"><text x="0" y="21">Home</text></svg></a><a class="blog-link" href="{prefix or './'}" aria-label="Blog"><svg class="nav-wordmark" width="44" height="28" viewBox="0 0 44 28" aria-hidden="true"><text x="0" y="21">Blog</text></svg></a></header>'''
 
 
 def footer(prefix=''):
- return f'''<footer class="site-footer"><a class="footer-brand" href="{prefix or './'}">Research Lab</a><a href="{prefix}../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>'''
+ return ''
 
 
 def venue_label(paper):
@@ -118,11 +118,11 @@ def card(paper, record, cover):
 
 
 def build_index(records):
- parts = [head('Research Notes', 'Research on language models, generative vision, and fluid dynamics. Methods, results, and limitations from the original sources.')]
- parts.append('''<main id="main" class="index-main"><header class="index-intro"><h1>Research Notes</h1></header>
+ parts = [head('Research', 'Research on language models, generative vision, and fluid dynamics. Methods, results, and limitations from the original sources.')]
+ parts.append('''<main id="main" class="index-main"><header class="index-intro"><h1>Research</h1></header>
 <section class="research-browser" aria-label="Browse research"><div class="browse-bar"><div class="filters" role="group" aria-label="Filter by topic"><button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All</button>''')
  for label, key in CATEGORY.values(): parts.append(f'<button type="button" class="filter" data-filter="{key}" aria-pressed="false">{e(label)}</button>')
- parts.append(f'''</div><div class="browse-tools"><button class="tool-button" id="filter-toggle" type="button" aria-controls="filter-panel" aria-expanded="false" data-popover="filter-panel">Filter <span class="filter-count" hidden></span>{icon('filter')}</button><button class="tool-button" type="button" aria-controls="sort-panel" aria-expanded="false" data-popover="sort-panel">Sort {icon('chevron')}</button><div class="view-switch" role="group" aria-label="Research view"><button type="button" class="view-button" data-view="grid" aria-label="Panel view, show images" aria-pressed="false" title="Panel view">{icon('grid')}</button><button type="button" class="view-button is-active" data-view="list" aria-label="List view, hide images" aria-pressed="true" title="List view">{icon('list')}</button></div></div></div>
+ parts.append(f'''</div><div class="browse-tools"><button class="tool-button" id="filter-toggle" type="button" aria-controls="filter-panel" aria-expanded="false" data-popover="filter-panel">Filter <span class="filter-count" hidden></span>{icon('filter')}</button><button class="tool-button" type="button" aria-controls="sort-panel" aria-expanded="false" data-popover="sort-panel">Sort {icon('chevron')}</button><div class="view-switch" role="group" aria-label="Research view"><button type="button" class="view-button is-active" data-view="grid" aria-label="Panel view, show images" aria-pressed="true" title="Panel view">{icon('grid')}</button><button type="button" class="view-button" data-view="list" aria-label="List view, hide images" aria-pressed="false" title="List view">{icon('list')}</button></div></div></div>
 <input type="hidden" id="research-search" value="">
 <div class="filter-panel popover" id="filter-panel" hidden><div class="filter-columns"><fieldset><legend>Year</legend>''')
  for year in sorted({p['year'] for p in CATALOG if p.get('year')}, reverse=True):
@@ -133,7 +133,7 @@ def build_index(records):
  parts.append('</fieldset></div><div class="filter-panel-footer"><button type="button" id="clear-refinements">Clear filters</button><button type="button" data-close-popover>Cancel</button></div></div><div class="sort-panel popover" id="sort-panel" hidden><fieldset><legend class="sr-only">Sort research</legend>')
  for label, key in [('Newest first', 'newest'), ('Oldest first', 'oldest'), ('Title: A–Z', 'title'), ('Title: Z–A', 'title-desc')]:
   parts.append(f'<label><input type="radio" name="sort" value="{key}"{" checked" if key == "newest" else ""}><span>{label}</span></label>')
- parts.append('</fieldset></div><div class="results-bar sr-only"><p class="results-count" aria-live="polite" aria-atomic="true">22 entries</p><button type="button" id="clear-all" hidden>Clear all filters</button></div><div class="research-results" data-layout="list">')
+ parts.append('</fieldset></div><div class="results-bar sr-only"><p class="results-count" aria-live="polite" aria-atomic="true">22 entries</p><button type="button" id="clear-all" hidden>Clear all filters</button></div><div class="research-results" data-layout="grid">')
  for paper in sorted(CATALOG, key=lambda p: -(p.get('year') or 0)):
   parts.append(card(paper, records[paper['image']], COVERS.get(paper['image'])))
  parts.append('</div><div class="empty-state" hidden><h2>No matching research</h2><p>Try another title, author, or topic.</p><button type="button" id="reset-search">Clear filters</button></div><noscript><p class="no-script">All research is shown below. Enable JavaScript to filter, sort, or switch views.</p></noscript></section></main>')
