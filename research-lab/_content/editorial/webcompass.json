@@ -1,0 +1,162 @@
+{
+  "key": "webcompass",
+  "title": "WebCompass: evaluating web applications in the browser",
+  "standfirst": "WebCompass evaluates generation, editing, and repair with browser evidence, separating a page that runs from one that behaves and looks as requested.",
+  "thesis": "Web engineering evaluation needs task-specific evidence: working code, preserved interactions, and visual fidelity are related but distinct outcomes.",
+  "source": {
+    "label": "Original research paper",
+    "url": "https://arxiv.org/abs/2604.18224",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "acceptance",
+      "title": "Evaluating behavior and appearance",
+      "paragraphs": [
+        "A generated shopping page can look convincing while its quantity controls do nothing. A repaired page can preserve every button while leaving the original layout defect untouched. Conversely, a functional implementation can miss the requested visual design. These are different failures, and a single screenshot or compilation result cannot distinguish them.",
+        "WebCompass treats web coding as a lifecycle: build a new application, change an existing one, then diagnose and repair defects. The benchmark combines those activities with text, image, and video inputs. Its central methodological choice is to match the evaluator to the task. Open-ended generation receives an agent that can operate the site and write tests. Localized edits and repairs receive a checklist-based judge supplied with patches, logs, and before-and-after evidence.",
+        "The resulting scores distinguish three questions: can the artifact run, does it implement the requested behavior, and does its appearance match the brief? Evaluating the running application makes those acceptance criteria inspectable through browser actions, logs, and rendered output."
+      ],
+      "intro": true
+    },
+    {
+      "id": "coverage",
+      "title": "Seven workflows across 1,526 tasks",
+      "paragraphs": [
+        "The dataset contains 1,526 tasks. Generation accounts for 123 text-guided, 109 image-guided, and 94 video-guided examples. Editing and repair each have text and image variants with 300 tasks apiece. Video is used for generation, not for every task family. Across these categories, the taxonomy covers 15 application domains, 16 editing operations, and 11 repair defect types.",
+        "Text generation requests are expanded into design documents specifying content, interactions, and appearance. This reduces ambiguity for automated scoring, although it also makes the task more specified than many everyday requests. Image generation includes multi-page screenshots and keyframes showing state changes. Video generation uses recorded interaction sequences to expose behavior that static images cannot fully communicate.",
+        "For editing and repair, the authors curate 50 website prototypes and create single-page and multi-page variants. Editing requests specify intended changes without implementation details such as selectors or CSS values. Repair examples start from a clean site and inject an observable defect, retaining an exact inverse patch as a reference. That produces reproducible targets, but synthetic defect reversal remains a narrower problem than diagnosing an arbitrary production incident."
+      ]
+    },
+    {
+      "id": "judge",
+      "title": "Browser tests with fixed behavioral assertions",
+      "paragraphs": [
+        "The generation evaluator first builds a checklist containing actions, expected outcomes, and point values. It then launches the site in headless Chromium, operates controls, and collects screenshots, DOM states, and console logs. It can synthesize JavaScript tests to inspect behaviors that are awkward to establish visually, such as whether a state change actually occurred.",
+        "The subtle problem is that different correct implementations use different DOM structures. A test that expects a particular element ID can fail even when the feature works. WebCompass permits the evaluator to inspect code and adapt its selectors, but not its behavioral assertions. The checklist remains fixed. If a cart is required to update its total after a quantity change, the judge may find a different control; it may not redefine success as merely displaying a total.",
+        "Scores must be tied to auditable evidence. The reported infrastructure uses Claude Code 2.0.67 as orchestrator and Chrome DevTools MCP Server 0.19.0 for browser access. Editing and repair use a different route: apply the generated patch, discard blocks that do not apply, render the modified project, and give the judge the task, code, patch, logs, and screenshots. Repair additionally supplies the reference modification and fixed screenshot."
+      ],
+      "figure": {
+        "src": "images/source/webcompass-2.webp",
+        "alt": "A checklist-driven judge interacts with a browser and adapts code selectors while collecting test evidence.",
+        "caption": "Figure 6: the generation evaluator combines browser actions with JavaScript verification. The source artwork’s lower panel lists edit/repair labels; §3.2 defines generation scoring as Runnability, Spec Implementation, and Design Quality.",
+        "sourceLabel": "Paper, Figure 6 and §3.2",
+        "sourceUrl": "https://arxiv.org/abs/2604.18224"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "scores",
+      "title": "Score aggregation and judge validation",
+      "paragraphs": [
+        "Generation is scored on Runnability, Spec Implementation, and Design Quality. Editing instead asks whether the patch targets the instruction, preserves and implements features, and conforms to style. Repair asks whether the root cause is targeted, interactions remain intact, and the result matches the fixed reference. The axes are analogous, but their numerical values do not represent identical abilities across task families.",
+        "Within each dimension, normalized checklist scores are combined using a harmonic mean, which emphasizes weak items. The paper smooths zero-scored items before this aggregation and specifies separate rules for build failure, partial rendering, and runtime crashes. The main leaderboard’s Overall is then the arithmetic mean of nine dimension scores. These nested aggregation choices matter: Overall is neither a task success rate nor the fraction of websites that passed every requirement.",
+        "The judge was selected by comparison with human annotations on 200 samples. Claude-Opus-4.5 achieves Pearson correlations of 0.93 for generation, 0.94 for editing, and 0.96 for repair, with an estimated average API cost of $4.66 per evaluation. Strong correlation supports the evaluator’s usefulness, but does not make individual judgments infallible or eliminate model-family bias."
+      ]
+    },
+    {
+      "id": "findings",
+      "title": "Model performance by evaluation dimension",
+      "paragraphs": [
+        "Among the ten evaluated models, Claude-Opus-4.5 leads the main Overall score at 67.40, followed by Gemini-3-Pro-Preview at 66.68. The best tested open model, Qwen3-VL-235B-A22B-Instruct, scores 41.14. These are results for the paper’s model set and evaluation protocol; they are not a current claim about every open or proprietary model.",
+        "The dimension breakdown is more useful than that ordering alone. Claude-Opus-4.5 scores 77.18 on generation Runnability, 68.95 on Spec Implementation, and 62.26 on Design Quality. A site launching successfully leaves substantial room for missed requirements. Gemini-3-Pro-Preview leads generation Design Quality at 64.07, while scoring 55.76 on Spec Implementation. Visual and functional strengths do not necessarily move together.",
+        "Repair’s high Interaction Integrity scores need particular care. Gemini-3-Pro-Preview reaches 87.30 on that axis but only 54.16 on Root-Cause Targeting. Nine of the eleven defect categories are visual or semantic, so many tasks preserve interactions almost automatically. A high interaction score therefore cannot be read as a high repair success rate. The benchmark’s own task composition explains part of the apparent advantage."
+      ],
+      "table": {
+        "caption": "Selected dimension scores from the main benchmark, not pass rates.",
+        "headers": [
+          "Model",
+          "Generation: run",
+          "Generation: behavior",
+          "Generation: design",
+          "Overall"
+        ],
+        "rows": [
+          [
+            "Claude-Opus-4.5",
+            "77.18",
+            "68.95",
+            "62.26",
+            "67.40"
+          ],
+          [
+            "Gemini-3-Pro-Preview",
+            "74.05",
+            "55.76",
+            "64.07",
+            "66.68"
+          ],
+          [
+            "Qwen3-VL-235B-A22B-Instruct",
+            "61.26",
+            "42.14",
+            "47.06",
+            "41.14"
+          ]
+        ],
+        "note": "Table 3. Overall averages all nine generation, editing, and repair dimensions. Table 3 reports point estimates without uncertainty intervals, so the small Overall gap between the top two entries does not establish a statistically reliable ordering."
+      }
+    },
+    {
+      "id": "limits",
+      "title": "Framework effects and evaluation limits",
+      "paragraphs": [
+        "A framework analysis evaluates four models on a 180-task subset, with 60 tasks per family, across React, Vue, and plain HTML/CSS/JavaScript. Plain implementations generally fare better for generation and editing, while repair shows a less uniform pattern. Vue is often more difficult. The authors suggest syntax coordination and build complexity as explanations; the experiment establishes a performance pattern, not a causal attribution to one framework feature.",
+        "The paper also describes visual quality as a persistent bottleneck, but the table does not show it as the lowest generation axis for every model. Several models score lower on Spec Implementation than on Design Quality. The defensible conclusion is that appearance remains difficult and is not captured by executability, while the weakest axis depends on the model and task.",
+        "WebCompass supplies a structured way to inspect these failures, with browser evidence behind each score. Its coverage remains bounded by curated tasks and synthetic defects; its judgments depend on the selected evaluator and incur the cost of operating each application. The dimension scores are most useful when read alongside that task composition and the evidence collected for a particular result."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Read the paper",
+      "url": "https://arxiv.org/abs/2604.18224"
+    },
+    {
+      "label": "Benchmark code",
+      "url": "https://github.com/NJU-LINK/WebCompass"
+    },
+    {
+      "label": "Dataset",
+      "url": "https://huggingface.co/datasets/NJU-LINK/WebCompass"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "1,526 tasks and seven category counts",
+      "location": "§2.4, p.7",
+      "source": "https://arxiv.org/abs/2604.18224"
+    },
+    {
+      "claim": "Fifty prototypes and inverse repair annotations",
+      "location": "§2.2.4, pp.5–6",
+      "source": "https://arxiv.org/abs/2604.18224"
+    },
+    {
+      "claim": "Immutable checklist, selector-only adaptation and evidence requirement",
+      "location": "§3.2, p.10",
+      "source": "https://arxiv.org/abs/2604.18224"
+    },
+    {
+      "claim": "Harmonic dimension aggregation and failure handling",
+      "location": "§3.3, pp.10–11",
+      "source": "https://arxiv.org/abs/2604.18224"
+    },
+    {
+      "claim": "Main model and dimension results",
+      "location": "Table 3, p.11",
+      "source": "https://arxiv.org/abs/2604.18224"
+    },
+    {
+      "claim": "200-sample judge validation, correlation and cost",
+      "location": "§4.3.1; Table 4, p.12",
+      "source": "https://arxiv.org/abs/2604.18224"
+    },
+    {
+      "claim": "180-task framework experiment",
+      "location": "§4.3.2, pp.12–13",
+      "source": "https://arxiv.org/abs/2604.18224"
+    }
+  ],
+  "status": "complete"
+}

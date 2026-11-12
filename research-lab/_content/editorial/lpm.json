@@ -1,0 +1,168 @@
+{
+  "key": "lpm",
+  "title": "LPM: temporal anchors for long-video restoration",
+  "standfirst": "LPM combines an image restoration prior, temporal anchors, and a shortened sampling pipeline to address the constraints of large-scale video enhancement.",
+  "thesis": "Long-video restoration is a joint fidelity, temporal-consistency, and serving-cost problem; LPM addresses each with a different layer of the system.",
+  "source": {
+    "label": "Original research paper",
+    "url": "https://arxiv.org/abs/2607.13460v2",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "constraint",
+      "title": "Fidelity, temporal consistency, and processing cost",
+      "paragraphs": [
+        "A restoration model can improve every frame in isolation and still produce an unpleasant video. Fabric texture may shift between frames, foliage may shimmer, and a face may change subtly when processing crosses a clip boundary. Generating plausible detail is only one requirement. The detail must remain consistent over time and faithful to the degraded observation, at a cost that permits processing large volumes of video.",
+        "The LPM report treats these constraints as a system problem. It first trains an image restoration model, extends it with temporal processing, connects short inference windows through restored reference frames, and compresses a multi-step generation process for deployment. This article follows the November 2026 v2 source, whose architecture and benchmark descriptions are more specific than the broad production claims in its introduction.",
+        "The authors report deployment at Kuaishou on videos accounting for approximately 45% of total viewing time, and around 20% bitrate reduction at comparable perceptual quality relative to an in-house codec. Those are operational claims made by the team, not quantities independently established by the public benchmark tables. Their relevance is the scale of the engineering constraint, rather than a substitute for restoration-quality evidence."
+      ],
+      "intro": true
+    },
+    {
+      "id": "spatial",
+      "title": "Learning an input-conditioned image prior",
+      "paragraphs": [
+        "LPM-Image operates in a compressed latent representation produced by a variational autoencoder. Its diffusion-transformer backbone is trained with rectified flow: the model learns a velocity field connecting noise to a high-quality image representation. The low-quality image is encoded too, aligned spatially, and concatenated with the noisy latent along the channel dimension. This supplies a local correspondence to the observation without a separate conditioning branch.",
+        "The training curriculum first establishes broad restoration capability, then shifts toward higher-quality outputs, then explicitly refines fidelity. The report describes billion-scale image pre-training and a high-quality fine-tuning subset of approximately 48,000 images. Data filtering considers quality, texture richness, resolution, semantic balance, and near-duplicates. AI-generated images are excluded to reduce bias toward synthetic texture statistics.",
+        "A final refinement stage addresses a distinctive risk of generative restoration: changing information that was already correct. In annotated text and fine-texture regions, the pipeline sometimes leaves the high-quality content undegraded while degrading the rest of the image. The model must therefore learn an identity mapping in those regions. This is a practical way to teach restraint, although it is not a guarantee that unfamiliar text or identity-sensitive detail will always be preserved."
+      ]
+    },
+    {
+      "id": "temporal",
+      "title": "Factorized temporal attention and reference conditioning",
+      "paragraphs": [
+        "LPM-Video inserts temporal blocks after the inherited spatial transformer blocks. Spatial attention operates within each frame; temporal attention operates across frames at each spatial-token location. This factorization avoids attending jointly over every space-time token and retains the frame-wise two-dimensional autoencoder. The model can exchange information across frames while preserving the spatial restoration machinery learned on images.",
+        "Temporal attention has no explicit temporal positional embedding, a choice the paper calls NoPE. This removes a fixed positional-index range, but it does not make full-video attention free. Long inputs are still processed in clips because computation and memory remain finite. Variable-length support and an economical strategy for arbitrary-duration videos are separate requirements.",
+        "Training also exposes the model to restored reference frames. A mask marks which conditioning frame is a high-quality anchor rather than a degraded observation. During the relevant fine-tuning stage, an anchor condition is replaced with its high-quality counterpart with 50% probability. The remaining cases retain the low-quality condition, reducing dependence on an ideal reference. Mixed image-and-video training helps preserve spatial detail while temporal objectives encourage consistency."
+      ],
+      "figure": {
+        "src": "images/source/lpm-1.webp",
+        "alt": "LPM-Video alternates spatial and temporal processing and uses a mask to distinguish restored reference frames.",
+        "caption": "Figure 3: factorized temporal blocks extend the image backbone. Mask-guided conditioning prepares the model to use high-quality references during clip-wise inference.",
+        "sourceLabel": "LPM v2, Figure 3",
+        "sourceUrl": "https://arxiv.org/abs/2607.13460v2"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "anchors",
+      "title": "Temporal-pyramid inference across windows",
+      "paragraphs": [
+        "Ordinary overlapping-window inference passes restored frames from one window to the next. That improves local continuity, but creates a long dependency chain: a slight color or texture error can be copied and amplified through later windows. LPM adds a reference that does not move with the current window.",
+        "Temporal-pyramid inference first detects shots and jointly restores a sparse sequence of shot-level keyframes. Within each shot, a window receives both its fixed shot anchor and its already-restored local overlap. The fixed reference supplies a longer-range appearance constraint; the overlap supplies nearby continuity. For very long shots, intermediate anchors are restored recursively before the finer intervals are processed.",
+        "Imagine a static wall visible throughout a long camera take. The previous window helps match the wall at the immediate boundary, while the fixed anchor gives later windows a common reference for its texture and tone. This illustrates the intended mechanism, not a measured example from the benchmark. The method shortens the effective path through which errors propagate; it does not prove that drift is impossible for arbitrary content or duration."
+      ],
+      "figure": {
+        "src": "images/source/lpm-2.webp",
+        "alt": "Sparse anchor frames are restored first, then combined with overlapping restored frames to guide successive windows.",
+        "caption": "Figure 5: blue references provide longer-range anchors and red references carry local continuity. The hierarchy avoids relying solely on the immediately preceding window.",
+        "sourceLabel": "LPM v2, Figure 5",
+        "sourceUrl": "https://arxiv.org/abs/2607.13460v2"
+      }
+    },
+    {
+      "id": "speed",
+      "title": "One-step distillation and deployment acceleration",
+      "paragraphs": [
+        "The report distills a 25-step rectified-flow teacher into a one-step student using a consistency-model approach. A three-stage training sequence begins with consistency distillation, adds realism-oriented enhancement near the clean-image end of the trajectory, and finishes with fidelity refinement. The motivation is that a single step must reconcile removing degradation with generating detail, which can otherwise produce blurred high-frequency structure.",
+        "Distillation produces a reported 12.4× cumulative end-to-end speedup. FP8 transformer quantization, INT8 autoencoder quantization, tiled autoencoder inference, and a TensorRT-LLM deployment pipeline bring the cumulative figure to 39.5× relative to the original 25-step system. These are pipeline-relative measurements, not an absolute frames-per-second specification or a promise for arbitrary hardware.",
+        "The quoted PSNR above 43 dB and SSIM above 0.99 compare accelerated output with the unaccelerated model. They should not be confused with reconstruction quality against a clean ground-truth video. The report also offers an optional two-step configuration when preserving fine detail matters more than the lowest latency."
+      ]
+    },
+    {
+      "id": "evidence",
+      "title": "Restoration quality and measurement limits",
+      "paragraphs": [
+        "On RealSR, LPM-Image reports 25.97 dB PSNR versus 26.35 for SeeSR, while its KVQ perceptual score is 3.98 versus 3.23. The example makes the perception–distortion trade-off concrete: a result can receive a better perceptual-quality score without having the smallest pixel error. On video benchmarks, the report compares LPM with SeedVR2, FlashVSR, and Vivid-VR using matched input content, output resolutions, and metric implementations.",
+        "LPM-Video leads the reported Table 5 metrics across SPMCS, REDS, YouHQ, VideoLQ, and the 192-video internal LPM-Benchmark. On REDS it reaches 22.21 dB PSNR and 71.70 MUSIQ. On VideoLQ, where the table has no reference-based PSNR, it reaches 70.46 MUSIQ against 62.76 for FlashVSR. These results support improvements on the tested distributions, but frame-quality metrics alone are not direct measurements of every form of temporal stability.",
+        "The authors identify weaker generalization to long-tail content and smaller gains on already high-quality inputs. An additional evaluation concern is that KVQ helps select training data and also measures results, making the other metrics and visual comparisons important checks. The public tables support the reported restoration-quality gains on the evaluated datasets. A dedicated temporal-consistency measure would provide more direct evidence for the anchor mechanism, and the production-scale coverage and bitrate figures remain author-reported."
+      ],
+      "table": {
+        "caption": "Selected author-reported video results from Table 5.",
+        "headers": [
+          "Dataset",
+          "Method",
+          "PSNR",
+          "MUSIQ"
+        ],
+        "rows": [
+          [
+            "REDS",
+            "FlashVSR",
+            "20.76 dB",
+            "68.97"
+          ],
+          [
+            "REDS",
+            "LPM-Video",
+            "22.21 dB",
+            "71.70"
+          ],
+          [
+            "VideoLQ",
+            "FlashVSR",
+            "Not available",
+            "62.76"
+          ],
+          [
+            "VideoLQ",
+            "LPM-Video",
+            "Not available",
+            "70.46"
+          ]
+        ],
+        "note": "LPM v2, Table 5. VideoLQ uses no-reference quality assessment; these scores do not directly measure temporal flicker. Table 5 gives aggregate point estimates without uncertainty intervals or a dedicated temporal-consistency metric."
+      }
+    }
+  ],
+  "references": [
+    {
+      "label": "Read the paper",
+      "url": "https://arxiv.org/abs/2607.13460v2"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Source version is arXiv v2 dated 6 November 2026; report cover retains October 1, 2025",
+      "location": "PDF p.1 version stamp and cover",
+      "source": "https://arxiv.org/abs/2607.13460v2"
+    },
+    {
+      "claim": "45% viewing time and approximately 20% bitrate reduction are deployment claims",
+      "location": "Abstract, p.1; Conclusion, p.14",
+      "source": "https://arxiv.org/abs/2607.13460v2"
+    },
+    {
+      "claim": "Conditional flow and high-quality subset of approximately 48,000 images",
+      "location": "§2.2, pp.5–7",
+      "source": "https://arxiv.org/abs/2607.13460v2"
+    },
+    {
+      "claim": "Factorized attention, NoPE and 50% reference conditioning",
+      "location": "§2.3, pp.7–9",
+      "source": "https://arxiv.org/abs/2607.13460v2"
+    },
+    {
+      "claim": "Temporal-pyramid anchors and recursive processing",
+      "location": "§2.4, pp.10–11; Figure 5",
+      "source": "https://arxiv.org/abs/2607.13460v2"
+    },
+    {
+      "claim": "12.4× and 39.5× cumulative acceleration; similarity is to unaccelerated model",
+      "location": "§2.5, pp.11–13; Table 2",
+      "source": "https://arxiv.org/abs/2607.13460v2"
+    },
+    {
+      "claim": "Image perception–distortion comparison and video metrics",
+      "location": "Tables 3 and 5, pp.13,15",
+      "source": "https://arxiv.org/abs/2607.13460v2"
+    },
+    {
+      "claim": "Long-tail and high-quality-input limitations",
+      "location": "§4, p.14",
+      "source": "https://arxiv.org/abs/2607.13460v2"
+    }
+  ],
+  "status": "complete"
+}

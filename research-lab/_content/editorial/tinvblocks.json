@@ -1,0 +1,97 @@
+{
+  "key": "tinvblocks",
+  "title": "T-InvBlocks: separating luminance, color, and detail for image rescaling",
+  "standfirst": "A three-branch invertible block separates brightness, color, and fine detail to improve learned downscaling and reconstruction.",
+  "thesis": "Jointly designing the small image and its decoder changes what super-resolution can recover.",
+  "source": {
+    "label": "Plug-and-Play Tri-Branch Invertible Block for Image Rescaling",
+    "url": "https://arxiv.org/abs/2412.13508",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "Learning the downscaler and upscaler together",
+      "paragraphs": [
+        "An image service can reduce bandwidth by sending a smaller picture and enlarging it at the destination. If downscaling is fixed, the reconstruction model must infer whatever that operation discarded. Image rescaling offers another option: learn the downscaler and upscaler together, allowing the small image to retain information useful to its eventual decoder.",
+        "T-InvBlocks studies this jointly controlled setting. Its starting point is an invertible rescaling network, whose forward transformation produces a low-resolution image plus a latent representation of details. The reverse transformation reconstructs a high-resolution image from those components. The paper changes how information moves through this network and how the missing latent is supplied at reconstruction time.",
+        "That task definition matters before looking at the unusually high PSNR results. The decoder is paired with a learned encoder. These results cannot be transferred directly to enlarging arbitrary low-resolution images downloaded from the internet."
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "Three invertible streams",
+      "paragraphs": [
+        "A Haar wavelet transform first separates low-frequency image content from high-frequency components. Conventional invertible blocks process the low-frequency content in RGB and place the high-frequency content in a second branch. T-InvBlocks converts the low-frequency component to YCbCr, separating luminance, Y, from the two chrominance channels, Cb and Cr. Fine detail becomes the third branch.",
+        "The streams exchange information in an ordered sequence. The chrominance update uses the original high-frequency and luminance inputs. The luminance update then uses the updated chrominance and original high-frequency input. Finally, an affine transformation updates the high-frequency branch using both updated low-frequency branches. Its scale is expressed as an exponential, keeping it nonzero.",
+        "Figure 2 is useful because the arrows show why this remains invertible. At reversal, the updated color and luminance streams are available to undo the high-frequency affine transformation. The recovered high-frequency stream then allows the luminance addition to be subtracted, followed by the chrominance addition. The neural functions inside these updates need not themselves be invertible; the coupling arrangement makes the overall block reversible."
+      ],
+      "figure": {
+        "src": "images/source/tinvblocks-1.webp",
+        "alt": "The tri-branch invertible block",
+        "caption": "Figure 2. The three paths carry chrominance, luminance, and high-frequency features. The ordered additive and affine updates allow reversal even though the internal transformation networks are ordinary learned functions.",
+        "sourceLabel": "Original paper, Figure 2",
+        "sourceUrl": "https://arxiv.org/abs/2412.13508"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "section-3",
+      "title": "Reconstructing with a zero detail latent",
+      "paragraphs": [
+        "Invertible does not mean a smaller transmitted image can losslessly contain every possible larger image. The forward mapping preserves information in the pair consisting of the image and the detail latent. In practical rescaling, that latent is not transmitted. Reconstruction must choose something to replace it, so exact algebraic inversion no longer guarantees recovery of the original photograph.",
+        "IRN uses a case-independent Gaussian latent; SAIN uses a learned Gaussian mixture. The authors observe that replacing sampled detail with zeros can already work well, and that SAIN’s learned mixture is close to a zero-centered unimodal distribution. They therefore train reconstruction with an all-zero latent.",
+        "Consider a learned downscaler encoding a thin diagonal line. If the decoder receives an independently sampled latent, that sample cannot reliably specify the original line’s precise position. A fixed latent removes this source of variation and makes the encoder-decoder pair rely on the transmitted image. This is an explanatory example of the objective, not evidence that arbitrary high-frequency information can survive unlimited compression. The low-resolution image is also constrained to remain visually close to bicubic downsampling.",
+        "As the transmitted image shrinks, its information budget becomes tighter. The invertible block can improve how that budget is used, but discarding the detail latent still leaves ambiguity at reconstruction time."
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "Reconstruction gains at 2× and 4×",
+      "paragraphs": [
+        "On two-times rescaling, Table 1 gives T-IRN 45.46 dB on the DIV2K validation set, compared with IRN’s 44.32 dB. On Urban100, the corresponding values are 41.05 and 39.92 dB. The two-times model has 1.57 million parameters, versus 1.67 million for IRN. These gains support the proposed information organization in this particular encoder-decoder setting.",
+        "Four-times rescaling tells a more restrained story. DIV2K improves only from 35.07 to 35.10 dB, while Urban100 falls from 31.41 to 31.19 dB. The four-times T-IRN model also grows to 4.67 million parameters, compared with 4.35 million. A blanket claim of better reconstruction with fewer parameters would therefore be inaccurate.",
+        "The ablation is especially informative. Simply putting IRN’s low-frequency branch into YCbCr reduces Set14 performance from 40.79 to 40.47 dB. The all-zero strategy raises it to 41.37 dB, and the complete T-IRN reaches 41.70 dB. The useful intervention is the combination of branch-specific processing and training strategy, rather than color conversion by itself."
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Rescaling through JPEG compression",
+      "paragraphs": [
+        "The paper also integrates the block into SAIN, which models a more practical transmission pipeline: downscale, compress the small image, then reconstruct. JPEG creates a complication for learned rescaling because the very perturbations that encode reconstruction information may be damaged by quantization. T-SAIN retains the compression-aware framework while replacing its relevant invertible blocks.",
+        "Table 2 evaluates reconstruction on DIV2K after JPEG compression at several quality factors. For four-times rescaling and quality factor 50, T-SAIN reaches 29.43 dB versus SAIN’s 29.05 dB. At quality factor 90, the values are 30.92 and 30.31 dB. T-SAIN has 5.45 million parameters in this setting, compared with 6.49 million for SAIN.",
+        "These comparisons are more informative than comparing only against bicubic downscaling followed by a generic super-resolution model. SAIN already optimizes the transmission pipeline and accounts for compression. Improving that baseline indicates the block remains useful when an external codec interferes with the learned representation.",
+        "The practical limits follow from the same mechanism. Deployment needs the compatible downscaling pipeline; unknown edits, different codecs, or repeated recompression may alter the learned representation. The reported JPEG quality-factor sweep is evidence for those tested conditions, not a guarantee across every image-processing chain."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Original paper",
+      "url": "https://arxiv.org/abs/2412.13508"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Invertible three-branch updates and zero latent",
+      "location": "Sections 3.1–3.3; Equations 2–4",
+      "source": "https://arxiv.org/abs/2412.13508"
+    },
+    {
+      "claim": "Two-times gains and mixed four-times results",
+      "location": "Table 1",
+      "source": "https://arxiv.org/abs/2412.13508"
+    },
+    {
+      "claim": "Color-only and zero-latent ablations",
+      "location": "Table 3",
+      "source": "https://arxiv.org/abs/2412.13508"
+    },
+    {
+      "claim": "JPEG QF 50 and 90 results",
+      "location": "Table 2",
+      "source": "https://arxiv.org/abs/2412.13508"
+    }
+  ],
+  "status": "complete"
+}

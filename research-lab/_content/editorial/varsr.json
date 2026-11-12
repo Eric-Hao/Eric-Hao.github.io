@@ -1,0 +1,108 @@
+{
+  "key": "varsr",
+  "title": "VARSR: coarse-to-fine super-resolution with a diffusion refiner",
+  "standfirst": "VARSR adapts visual autoregression to super-resolution, using the input image as a prefix and diffusion only to repair quantization residuals.",
+  "thesis": "Coarse-to-fine token prediction offers an efficient generative backbone, but spatial alignment and continuous detail still require explicit treatment.",
+  "source": {
+    "label": "Visual Autoregressive Modeling for Image Super-Resolution",
+    "url": "https://arxiv.org/abs/2501.18993",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "Generating an image scale by scale",
+      "paragraphs": [
+        "A generative model can produce a plausible high-resolution photograph without reproducing the particular scene in a low-resolution input. Super-resolution needs both capabilities: a prior strong enough to fill missing detail and conditioning precise enough to preserve the observed structure. VARSR asks whether a visual autoregressive model can provide that combination with fewer expensive generation steps.",
+        "The basic unit of prediction is an entire scale of image tokens. The model first establishes a coarse representation, then predicts increasingly fine token maps conditioned on earlier scales. This differs from scanning through image patches one token at a time. Tokens within a scale can be predicted together, while the sequence of scales supplies coarse-to-fine context.",
+        "Applying this idea to restoration requires more than swapping the generator. The paper addresses three concrete representation problems: how to retain the low-resolution observation, how to align positions across differently sized token maps, and how to recover information that a discrete codebook cannot represent."
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "Conditioning across scales",
+      "paragraphs": [
+        "VARSR encodes the low-resolution image as prefix tokens placed before the generated scales. Every later scale can attend to that prefix as well as earlier predictions. The observation remains available throughout reconstruction instead of being compressed into a single global label or injected through a separate large control network.",
+        "The prefix is spatially structured: it has the token-map dimensions of the final scale. That makes its relationship to generated positions important. If a coarse token and a fine token describe the same part of the image, ordinary sequence indices do not automatically express that correspondence.",
+        "Figure 1 shows the full information path. The image encoder creates the conditional tokens, the autoregressive transformer predicts discrete scale maps, and a smaller diffusion branch estimates a continuous residual. Diffusion handles the correction after the autoregressive backbone has organized the image.",
+        "Scale-aligned rotary positional encoding gives horizontal and vertical positions a common reference across scales. Rotary embeddings modify attention’s query-key relationships using position-dependent rotations. VARSR normalizes each scale’s coordinates against a shared spatial extent and applies the same alignment to the conditional image tokens.",
+        "For an illustrative example, a location halfway across a four-column map and one halfway across an eight-column map should refer to the same horizontal region. Their raw column indices differ, but their normalized coordinates agree. This lets attention express cross-scale correspondence without confusing a change of sampling density with a change of scene position.",
+        "Table 4 reports RealSR SSIM increasing from 0.6992 without the tested alignment components to 0.7169 with alignment for both conditional and discrete tokens. LPIPS falls from 0.3654 to 0.3504. These ablations support better spatial conditioning in this model, although the improvement is not uniform across every metric."
+      ],
+      "figure": {
+        "src": "images/source/varsr-1.webp",
+        "alt": "The VARSR restoration pipeline",
+        "caption": "Figure 1. Low-resolution prefix tokens condition every predicted scale. The continuous branch corrects the codebook residual after the autoregressive transformer has generated the discrete image representation.",
+        "sourceLabel": "Original paper, Figure 1",
+        "sourceUrl": "https://arxiv.org/abs/2501.18993"
+      },
+      "figure_after": 2
+    },
+    {
+      "id": "section-4",
+      "title": "Correcting codebook quantization error",
+      "paragraphs": [
+        "A codebook replaces continuous image features with a finite collection of learned vectors. That makes prediction a classification problem, but even the correct discrete choices leave quantization error. VARSR defines the residual as the original continuous feature map minus the sum of reconstructed multiscale codebook features.",
+        "A lightweight diffusion MLP learns this residual distribution, conditioned on the final-scale transformer state. At inference, its predicted continuous correction is added to the discrete reconstruction. The design separates large-scale organization from details that fall between codebook entries.",
+        "Table 5 gives a measured view of the contribution. On RealSR, the refiner improves DISTS from 0.2503 to 0.2470 and MUSIQ from 70.74 to 71.26. On DRealSR, SSIM improves from 0.7583 to 0.7652, but LPIPS moves slightly in the wrong direction, from 0.3532 to 0.3541. The correction is useful across several measures without being an across-the-board improvement."
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Controlling the fidelity–realism trade-off",
+      "paragraphs": [
+        "VARSR also learns positive and negative quality embeddings from image examples. At inference, image-based classifier-free guidance pushes generation toward the high-quality condition and away from the low-quality condition. Unlike text-based negative prompting, this guidance learns its distinction from image quality categories.",
+        "The control exposes rather than removes the fidelity-realism trade-off. Table 6 reports RealSR SSIM decreasing from 0.7436 without guidance to 0.7169 with it, while MUSIQ increases from 66.32 to 71.26. That is a meaningful operating choice: the output is judged more attractive by a no-reference quality model while becoming less similar to the particular reference under SSIM.",
+        "The main benchmark reflects the same pattern. On RealSR, VARSR achieves MUSIQ 71.26 compared with SeeSR’s 69.56, but its PSNR is 24.61 dB versus 25.31 dB and LPIPS is 0.3504 versus 0.2993. The authors argue for the perceptual value of richer detail. The table supports that emphasis, not a claim of uniformly higher fidelity."
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "Runtime and semantic coverage",
+      "paragraphs": [
+        "Table 3 reports 0.59 seconds per image for VARSR, compared with 5.85 seconds for DiffBIR and 7.24 seconds for SeeSR. The listed generation step counts are ten, fifty, and fifty respectively. Table 3 does not separately itemize the diffusion refiner’s steps, so these counts should not be read as directly comparable units of computation. The experiment uses 128 × 128 low-resolution inputs and 512 × 512 targets. These reported timings demonstrate a substantial advantage in that setup; they are not measurements of every possible resolution or hardware platform.",
+        "The mechanism offers a sensible explanation. Early scales contain fewer tokens, so not every generation stage has the same cost. The model also predicts each scale in parallel and leaves only a lightweight residual task to diffusion. Its roughly 1.1-billion-parameter size nevertheless makes it a substantial model rather than a small-device solution.",
+        "The appendix identifies limited semantic coverage as a failure source despite pretraining on four million images. Rare content combined with severe degradation can still be reconstructed incorrectly. Coarse-to-fine generation may preserve a coherent interpretation once selected, but coherence does not establish that the interpretation is true. VARSR therefore provides an alternative quality-speed trade-off for generative restoration, with guidance strength and reference fidelity still requiring deliberate evaluation for the intended use."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Original paper",
+      "url": "https://arxiv.org/abs/2501.18993"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Prefix, aligned positions, residual diffusion",
+      "location": "Section 3.2; Figures 1–2",
+      "source": "https://arxiv.org/abs/2501.18993"
+    },
+    {
+      "claim": "Alignment and refiner measurements",
+      "location": "Tables 4–5",
+      "source": "https://arxiv.org/abs/2501.18993"
+    },
+    {
+      "claim": "Guidance fidelity-quality trade-off",
+      "location": "Table 6",
+      "source": "https://arxiv.org/abs/2501.18993"
+    },
+    {
+      "claim": "RealSR comparison and image dimensions",
+      "location": "Table 1; Section 4.1",
+      "source": "https://arxiv.org/abs/2501.18993"
+    },
+    {
+      "claim": "Timing comparison",
+      "location": "Table 3",
+      "source": "https://arxiv.org/abs/2501.18993"
+    },
+    {
+      "claim": "Rare-semantic failures",
+      "location": "Appendix B.4; Figure 14",
+      "source": "https://arxiv.org/abs/2501.18993"
+    }
+  ],
+  "status": "complete"
+}

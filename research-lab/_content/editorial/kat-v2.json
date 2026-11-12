@@ -1,0 +1,154 @@
+{
+  "key": "kat-v2",
+  "title": "KAT-Coder-V2: specialist training and on-policy expert fusion",
+  "standfirst": "KAT-Coder-V2 separates coding-agent skills during training, then distills them into a single model. Its results also show how much the surrounding agent software matters.",
+  "thesis": "Agentic coding is a collection of distinct skills; specialist training only becomes useful if those skills survive fusion and changes in the execution scaffold.",
+  "source": {
+    "label": "Original technical report",
+    "url": "https://arxiv.org/abs/2603.27703",
+    "kind": "technical-report"
+  },
+  "sections": [
+    {
+      "id": "different-jobs",
+      "title": "Five domains of agent training",
+      "paragraphs": [
+        "A coding assistant may be asked to fix a failing test, build a landing page from a vague description, or investigate a problem through a terminal. These requests share a language interface but reward different behavior. Repository repair needs localization and regression checks. Interface design needs choices about hierarchy, typography, and interaction. Terminal work requires tracking a changing environment. Training all of these behaviors together can create interference rather than a uniformly better agent.",
+        "KAT-Coder-V2 responds by specializing first. Starting from KAT-Coder-V1, the authors train five domain experts: software engineering, web coding, terminal use, web search, and general capabilities. Each receives supervised fine-tuning and reinforcement learning. A later distillation stage consolidates their behavior into one deployable model. The report is therefore as much about organizing post-training as about a new checkpoint: how can diverse, sometimes conflicting objectives share a final policy?"
+      ],
+      "intro": true
+    },
+    {
+      "id": "executable-lessons",
+      "title": "Executable supervision from repository history",
+      "paragraphs": [
+        "The software-engineering expert draws on three complementary sources. An Issue–PR pipeline reconstructs problem discovery, fault localization, and repair from merged changes across 11 programming languages, producing more than two million samples. Retrieval examples teach the model where to look; editing examples teach what to change. A merged pull request supplies useful supervision, but its acceptance is not equivalent to an exhaustive proof of correctness.",
+        "AutoBuilder adds a stronger, executable signal. Agents reconstruct dependencies, build configuration, and test commands in isolated environments. A task is retained only when the reference repair makes previously failing tests pass and preserves previously passing tests. These are the fail-to-pass and pass-to-pass checks. For example, fixing a parser that rejects an empty field should not break valid nonempty inputs. The report describes 30,000 verified tasks from more than 8,000 repositories.",
+        "The third source targets comprehension rather than editing: agents explore pinned repository versions to answer questions about structure, call chains, implementation, and possible changes. This distinction matters. A model can learn to imitate a patch without learning how to gather the evidence that makes a patch appropriate. Interactive comprehension trajectories expose that missing part of the work."
+      ]
+    },
+    {
+      "id": "shared-infrastructure",
+      "title": "KwaiEnv: interchangeable scaffolds and sandboxes",
+      "paragraphs": [
+        "All of these tasks need a place to run. KwaiEnv separates datasets, verifiers, scaffolds, sandboxes, and trajectory management. Here a scaffold means the surrounding agent program: it chooses tools, formats prompts, organizes context, and controls the interaction loop. A network proxy records model requests while the selected scaffold runs inside an isolated environment. The same collected interaction can support supervised training, reinforcement learning, or evaluation.",
+        "This separation is consequential because a better model under one scaffold may be a worse practical choice under another. Tool names, context compression, and stopping conditions all alter what the model observes. KwaiEnv supports black-box integration of API-based scaffolds and reports capacity for tens of thousands of concurrent sandboxes. The architecture makes changing a scaffold an experimental variable rather than a wholesale rewrite of the training system."
+      ],
+      "figure": {
+        "src": "images/source/kat-v2-1.webp",
+        "alt": "KwaiEnv connects configurable models, datasets and scaffolds through a proxy to sandbox rollouts, training trajectories and verification.",
+        "caption": "KwaiEnv routes the same execution traces toward data synthesis, reinforcement learning, and evaluation. The verifier judges the resulting patch separately from the trajectory manager.",
+        "sourceLabel": "KAT-Coder-V2, Figure 2",
+        "sourceUrl": "https://arxiv.org/abs/2603.27703"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "fusion",
+      "title": "On-policy distillation from domain experts",
+      "paragraphs": [
+        "Distillation transfers an expert’s behavior to a student. Ordinary offline imitation trains on trajectories the teacher generated, but deployment exposes the student to the consequences of its own decisions. KAT-Coder-V2 instead uses on-policy distillation: the student generates a trajectory, the appropriate expert evaluates that trajectory through its log-probabilities, and an environmental reward anchors the outcome. Dense expert feedback and sparse test feedback serve different roles.",
+        "The report’s introduction describes fusion as lossless, but Section 3.4 explicitly acknowledges a slight degradation relative to isolated experts. The narrower reading is more useful: the procedure aims to minimize interference, not establish that a single student reproduces every specialist without cost. The report does not provide a comprehensive per-domain before-and-after fusion ablation."
+      ]
+    },
+    {
+      "id": "training-efficiency",
+      "title": "Shared-prefix training and probability estimation",
+      "paragraphs": [
+        "Long agent trajectories also increase training cost. Several branches may share a long repository description or earlier interaction. Tree Training represents those shared prefixes once, with attention restricted to each token’s ancestral path, restored position IDs, and loss weights that preserve the independent-path gradient. The authors report up to 6.2× training speedup.",
+        "Monte-Carlo Log-probability Averaging uses eight forward estimates to reduce noisy probability estimates during mixture-of-experts reinforcement learning; it is combined with mismatch clipping rather than presented as a stand-alone cure."
+      ]
+    },
+    {
+      "id": "scaffold-results",
+      "title": "Performance across agent scaffolds",
+      "paragraphs": [
+        "On SWE-bench Verified, KAT-Coder-V2 scores 79.6 with Claude Code, 74.8 with OpenCode, and 72.8 with OpenClaw. That 6.8-point span is a practical reminder that an agent benchmark measures a model inside a system. The corresponding Claude Opus 4.6 values are 80.8, 75.0, and 75.7, but the 80.8 value is taken from Anthropic’s report while the latter two are evaluated through KwaiEnv. These are not three identically sourced head-to-head comparisons.",
+        "The model also scores 75.4 on SWE-bench Multilingual with Claude Code and 71.2 with OpenCode. Its reference-free frontend evaluation uses ordinary-user prompts and blind assessment by professional designers; the reported scores are 59.8 for landing pages, 57.6 for slides, and 67.6 for data visualization. Those results support the authors’ aesthetic-training direction within their evaluation, not a universal ranking across all website-generation tasks."
+      ],
+      "table": {
+        "caption": "Software-engineering results reported in Table 2",
+        "headers": [
+          "Benchmark / scaffold",
+          "KAT-Coder-V2",
+          "Claude Opus 4.6"
+        ],
+        "rows": [
+          [
+            "SWE-bench Verified / Claude Code",
+            "79.6",
+            "80.8*"
+          ],
+          [
+            "SWE-bench Verified / OpenCode",
+            "74.8",
+            "75.0"
+          ],
+          [
+            "SWE-bench Verified / OpenClaw",
+            "72.8",
+            "75.7"
+          ],
+          [
+            "SWE-bench Multilingual / OpenCode",
+            "71.2",
+            "70.2"
+          ]
+        ],
+        "note": "* Published Anthropic result; other rows shown here were evaluated using KwaiEnv. Scores are percentages. Table 2 reports point estimates without run-to-run uncertainty, so small score differences should not be treated as established performance separations."
+      }
+    },
+    {
+      "id": "takeaway",
+      "title": "General-agent results and fusion limits",
+      "paragraphs": [
+        "The general-agent results are similarly mixed. PinchBench reports a best score of 88.7 and an average of 81.9; those two quantities should not be interchanged. On Claw-Eval, the reported average is 73.4, below several comparison models. The Terminal-Bench Hard result is 46.8, while the cited GPT-5.4 result is 57.6. Comparator values in these tables are drawn from external sources dated March 25, 2026, introducing another reason to avoid collapsing the results into a single league table.",
+        "The report brings executable supervision, domain specialization, and student-generated distillation into one training system. Its results do not isolate how much each component contributes. In particular, the acknowledged degradation after fusion remains unquantified across all expert domains, while the multi-scaffold results show that the final model’s measured performance still depends on the surrounding agent program."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Original source",
+      "url": "https://arxiv.org/abs/2603.27703"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Five expert domains and specialize-then-unify training",
+      "location": "Sections 3.1–3.2, pp. 5–6",
+      "source": "https://arxiv.org/abs/2603.27703"
+    },
+    {
+      "claim": "Two million Issue–PR samples and 30,000 AutoBuilder tasks",
+      "location": "Section 3.2.1, pp. 7–9",
+      "source": "https://arxiv.org/abs/2603.27703"
+    },
+    {
+      "claim": "Eight-pass MCLA and up to 6.2× Tree Training speedup",
+      "location": "Sections 3.3.1–3.3.2, pp. 13–15",
+      "source": "https://arxiv.org/abs/2603.27703"
+    },
+    {
+      "claim": "Fusion incurs slight expert-relative degradation",
+      "location": "Section 3.4, p. 16",
+      "source": "https://arxiv.org/abs/2603.27703"
+    },
+    {
+      "claim": "Multi-scaffold benchmark scores and external-source caveat",
+      "location": "Table 2, p. 17",
+      "source": "https://arxiv.org/abs/2603.27703"
+    },
+    {
+      "claim": "PinchBench, Claw-Eval and aesthetics scores",
+      "location": "Tables 3–4, p. 18",
+      "source": "https://arxiv.org/abs/2603.27703"
+    },
+    {
+      "claim": "Terminal-Bench Hard comparison",
+      "location": "Table 5, p. 19",
+      "source": "https://arxiv.org/abs/2603.27703"
+    }
+  ],
+  "status": "complete"
+}

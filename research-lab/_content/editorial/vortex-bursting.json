@@ -1,0 +1,31 @@
+{
+  "key": "vortex-bursting",
+  "title": "Vortex bursting in twisted magnetic flux tubes with opposite chiralities",
+  "standfirst": "The original manuscript is needed before a research analysis can be published.",
+  "thesis": "A title and an unverified catalog entry are not enough to reconstruct the methods or findings of a paper.",
+  "source": {
+    "label": "Original manuscript not available",
+    "url": null,
+    "kind": "Source unavailable"
+  },
+  "sections": [
+    {
+      "id": "availability",
+      "title": "Source availability",
+      "paragraphs": [
+        "This catalog entry lists Yanru Wang, Anda Xiong, Jinhua Hao, and Shiying Xiong as authors. It does not provide a publication year, DOI, or manuscript link. Those bibliographic details have not been independently verified.",
+        "An original manuscript matching this title and author list was not available for this rewrite. Searches for the title and author combination did not locate a matching primary source. Related papers on vortex bursting have different titles and authors and cannot be substituted.",
+        "A complete PDF, an author manuscript, or a verified publisher link is needed to establish the governing equations, initial conditions, reported results, and figure provenance. Until then, this page makes no claims about the paper’s scientific findings."
+      ]
+    }
+  ],
+  "references": [],
+  "evidence": [
+    {
+      "claim": "Title and author list are recorded in the local catalog; publication year and URL are absent",
+      "location": "Catalog entry vortex-bursting",
+      "source": "Local publication catalog; not independently verified"
+    }
+  ],
+  "status": "source-unavailable"
+}

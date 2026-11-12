@@ -1,0 +1,142 @@
+{
+  "key": "agentic_ttt",
+  "title": "aTTT: adapting agents with repetition-weighted updates",
+  "standfirst": "Updating an agent during a task can reinforce the very behavior that made it stall. aTTT reduces the training weight of repeated text while retaining new evidence.",
+  "thesis": "Episode-local adaptation can help a capable agent maintain progress when repeated trajectory text receives less training weight.",
+  "source": {
+    "label": "Original research paper",
+    "url": "https://arxiv.org/abs/2607.03441",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "loop",
+      "title": "Learning inside an action loop",
+      "paragraphs": [
+        "An agent finds two bars of soap, picks up one, and then tries to pick up the other. The environment rejects that action. Instead of delivering the first bar to the garbage can, the agent puts it down, picks up the second, and repeats. In the paper’s ALFWorld case study, this loop consumes the remaining action budget. The information needed to finish the task was already available; the agent failed to keep using it.",
+        "This is the problem Agentic Test-Time Training, or aTTT, addresses. Test-time training means changing a model’s parameters while it handles a new input. Here, the input is a growing interaction with an environment. Each action helps create the data for the next update, and each update changes the actions that follow. That coupling can reinforce useful discoveries. It can also teach the model to become more committed to its own failed routine.",
+        "The authors frame the goal narrowly: preserve competence during a long episode, rather than acquire an unfamiliar capability from scratch. Their experiments support that distinction. A model that barely understands the action interface has little useful behavior to stabilize, while a strong model completing a short task may not need adaptation at all."
+      ],
+      "intro": true
+    },
+    {
+      "id": "update",
+      "title": "An episode-private adapter",
+      "paragraphs": [
+        "aTTT leaves the base model shared and gives each active episode its own low-rank adapter, a small trainable addition to the model’s weights. By default, the system updates this adapter every five agent steps, using two gradient steps. It retains the adapter during the episode and resets it before the next task. Consequently, the reported gains do not depend on carrying knowledge from earlier benchmark instances into later ones.",
+        "The paper compares three sources of update text. Self uses the agent’s latest reasoning and action. Env uses the latest environment observation. Summary uses a separate model call to compress the trajectory into a progress note. Self and Env train only on the newest step, not the entire history. This avoids repeatedly replaying the early trajectory, although similar actions or observations can still recur.",
+        "All three sources use next-token prediction rather than a reward for solving the task. This is an important limitation and an important practical advantage: no hidden answer or successful demonstration is needed, but predicting the trajectory accurately is not the same objective as making progress. The method therefore needs a way to limit harmful self-reinforcement."
+      ],
+      "figure": {
+        "src": "images/source/agentic_ttt-1.webp",
+        "alt": "An episode produces text, which is repetition-weighted before updating a private adapter.",
+        "caption": "Figure 2: the adapter sits inside the interaction loop. New observations can affect later actions through weight updates, not just through the prompt.",
+        "sourceLabel": "Paper, Figure 2",
+        "sourceUrl": "https://arxiv.org/abs/2607.03441"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "weights",
+      "title": "Token weights from prior exposure",
+      "paragraphs": [
+        "A simple safeguard would discard any update that resembles an earlier one. That is the paper’s sequence-filter baseline. Its weakness is granularity: a mostly repetitive observation can still contain a new object, location, or test result. Throwing away the whole update loses that information along with the redundant material.",
+        "aTTT instead counts how often short token sequences have occurred in previous updates from this episode. For each token, it finds the largest prior count among the n-grams containing that token. Its loss weight becomes one divided by one plus that count, with a minimum of 0.05. Previously unseen spans retain weight one. The default uses three-token sequences.",
+        "For example, a span encountered three times previously receives weight 0.25, while a newly observed filename can retain full weight if its surrounding n-grams are new. This is an illustration of the weighting rule, not a claim that the filter understands filenames or detects factual correctness. It measures textual exposure. It neither verifies that new information is useful nor guarantees that repeated information is unimportant."
+      ],
+      "equation": "w_{k,j}=\\max\\left(0.05,\\frac{1}{1+f_k(j)}\\right)"
+    },
+    {
+      "id": "results",
+      "title": "Success rates across models and task horizons",
+      "paragraphs": [
+        "The evaluation uses 140 ALFWorld household tasks with a 50-step budget, and a 150-instance SWE-bench Lite subset with a mini-swe-agent scaffold and up to 150 bash calls per issue. Results are means over three seeds, reported with standard errors. The software results therefore describe this subset and scaffold, not an unrestricted evaluation of every SWE-bench Lite instance.",
+        "On ALFWorld, Qwen3.5-9B rises from 50.7% success without adaptation to 55.7% with Self-based aTTT. Unfiltered Self training reaches 53.1%, while filtering entire updates reaches 53.8%. The comparison isolates a useful contribution from token weighting beyond simply adding online training. Gemma-3-12B benefits most from Summary, reaching 26.7% against a 22.4% baseline. There is no single best update source across models.",
+        "On SWE-bench Lite, Summary-based aTTT raises Qwen3.5-27B from 57.8% to 62.7%. The same model gains little on the shorter ALFWorld episodes, where the authors describe it as already relatively stable. Qwen3.5-9B rises from 35.6% to 38.4% on the software subset. The paper labels that gain 2.9 points; the displayed rounded values differ by 2.8, so the rates are the less ambiguous quantities to report."
+      ],
+      "table": {
+        "caption": "Selected author-reported success rates, mean ± standard error over three seeds.",
+        "headers": [
+          "Benchmark and model",
+          "No adaptation",
+          "aTTT"
+        ],
+        "rows": [
+          [
+            "ALFWorld · Qwen3.5-9B",
+            "50.7 ± 0.8%",
+            "55.7 ± 1.4% · Self"
+          ],
+          [
+            "ALFWorld · Gemma-3-12B",
+            "22.4 ± 0.6%",
+            "26.7 ± 0.6% · Summary"
+          ],
+          [
+            "SWE-bench Lite subset · Qwen3.5-27B",
+            "57.8 ± 0.6%",
+            "62.7 ± 1.0% · Summary"
+          ]
+        ],
+        "note": "Tables 1–2. Update sources differ; these are selected settings, not one universal configuration."
+      }
+    },
+    {
+      "id": "diagnostics",
+      "title": "Policy drift and repeated actions",
+      "paragraphs": [
+        "The diagnostics are consistent with the proposed mechanism. On failed episodes, unrestricted online training moves the adapted policy much farther from the base model. Token reweighting holds the reported divergence below 0.5 in the plotted diagnostic, while unfiltered training eventually exceeds 2.0. In paired cases where aTTT rescues a failure under the same seed, repetition separates later in the episode and the successful runs finish sooner.",
+        "These are informative subsets, not a causal proof that repetition itself creates every failure. Selecting rescued trajectories naturally highlights cases favorable to the intervention. Repetition can also be legitimate: running the same test after a code change may be exactly the right action. The stronger evidence is the controlled comparison between identical update schedules with different loss weighting, coupled with the domain-dependent results."
+      ],
+      "figure": {
+        "src": "images/source/agentic_ttt-2.webp",
+        "alt": "Two plots compare adapter drift and repeated text under filtered and unfiltered adaptation.",
+        "caption": "Figure 6: unfiltered updates drift farther from the base policy on failed episodes. The rescued-pair plot is a diagnostic subset, not an average over all tasks.",
+        "sourceLabel": "Paper, Figure 6",
+        "sourceUrl": "https://arxiv.org/abs/2607.03441"
+      }
+    },
+    {
+      "id": "deployment",
+      "title": "Concurrent adaptation and serving cost",
+      "paragraphs": [
+        "The serving implementation runs 16 episodes concurrently, shares the frozen base model, and hot-swaps private adapters through vLLM’s runtime LoRA API. On the reported Qwen3.5-9B ALFWorld workload, 140 episodes take 28.3 minutes with concurrent aTTT, compared with 14.6 minutes without it and 186 minutes with sequential adaptation. The 1.9× wall-clock figure is therefore a measured configuration, not a general cost multiplier for every model or workload.",
+        "The remaining choices are specific to the adaptation loop: which text to train on, how to distinguish useful repetition from a stalled routine, and when the success gain justifies the extra serving cost. The weighting rule measures exposure rather than task progress, so it cannot resolve those choices by itself. Within the tested settings, it provides a simple safeguard that helps selective weight updates stabilize an already-capable agent."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Read the paper",
+      "url": "https://arxiv.org/abs/2607.03441"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Episode-private rank-8 LoRA, K=5, two gradient steps, trigram weighting and floor 0.05",
+      "location": "§3.3; Appendix C, p.14",
+      "source": "https://arxiv.org/abs/2607.03441"
+    },
+    {
+      "claim": "ALFWorld results and three-seed standard errors",
+      "location": "Table 1, p.7",
+      "source": "https://arxiv.org/abs/2607.03441"
+    },
+    {
+      "claim": "150-instance SWE-bench Lite subset and 150-call budget",
+      "location": "Appendix B, p.13; Table 2, p.7",
+      "source": "https://arxiv.org/abs/2607.03441"
+    },
+    {
+      "claim": "28.3 versus 14.6 and 186 minutes",
+      "location": "Appendix A, Table 5, p.13",
+      "source": "https://arxiv.org/abs/2607.03441"
+    },
+    {
+      "claim": "Soapbar failure loop versus 14-step completion",
+      "location": "Appendix G, Figure 10, p.15",
+      "source": "https://arxiv.org/abs/2607.03441"
+    }
+  ],
+  "status": "complete"
+}

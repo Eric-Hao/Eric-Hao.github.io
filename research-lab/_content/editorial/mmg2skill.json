@@ -1,0 +1,148 @@
+{
+  "key": "mmg2skill",
+  "title": "MMG2Skill: revising agent procedures from execution",
+  "standfirst": "MMG2Skill separates access to instructions from the harder work of grounding, revising, and knowing when to stop following them.",
+  "thesis": "MMG2Skill turns public tutorials into editable procedures with applicability conditions, visible state cues, and completion checks.",
+  "source": {
+    "label": "Original research paper",
+    "url": "https://arxiv.org/abs/2606.01993",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "gap",
+      "title": "Applying a guide to the current state",
+      "paragraphs": [
+        "A Minecraft agent is asked to craft sticks with bamboo available. It searches for wood instead, following a familiar wooden-plank recipe until its step budget runs out. The relevant guide describes the bamboo route, but the agent’s existing task prior pulls it elsewhere. This example from MMG2Skill captures a recurring problem: knowing that instructions exist does not ensure that an agent applies the right procedure to its current state.",
+        "Human tutorials leave considerable work to their readers. They assume prerequisites, omit checks that seem obvious, mix related tasks, and describe recovery steps that may cease to apply after a mistake. A screenshot can show where a button was, without specifying how to recognize the equivalent state now. The paper asks whether agents can turn this material into procedures that remain useful during execution and improve after observed failures.",
+        "The proposed system keeps the underlying vision-language model fixed. What changes is a written skill: procedural context supplied to the agent. The distinction matters because “self-evolving” here refers to editing an external artifact across attempts, not continually training model weights or demonstrating autonomous improvement across arbitrary new tasks."
+      ],
+      "intro": true
+    },
+    {
+      "id": "artifact",
+      "title": "Constructing and revising SKILL.md",
+      "paragraphs": [
+        "MMG2Skill begins with a task-relevant public guide, represented primarily as HTML plus images. A construction step turns it into an editable SKILL.md document. Conceptually, each skill contains a reusable procedure, applicability conditions, expected-state cues, and recovery knowledge. These are organizational requirements rather than a rigid four-field file format.",
+        "The resulting document accompanies the task and recent observation–action history throughout execution. It can tell the agent not only what action usually comes next, but what must already be true and what visible result should follow. For a crop-and-save workflow, for example, completing the visual edit and verifying the output file are different obligations. The paper’s GIMP case shows revision adding the missing file-verification requirement after a failed rollout.",
+        "After an attempt, an analyzer reads the task and agent-visible trajectory. It identifies what worked, where execution diverged, and whether the visible evidence suggests success. A refiner then edits the skill using that diagnosis, earlier diagnoses, and the original guide. Keeping the guide available lets the system recover details lost during extraction; retaining earlier diagnoses helps avoid undoing previous fixes."
+      ],
+      "figure": {
+        "src": "images/source/mmg2skill-1.webp",
+        "alt": "A three-stage pipeline extracts guides into skills, executes with them, and revises them from observed trajectories.",
+        "caption": "Figure 3: construction, execution, and revision modify the skill cache while keeping the model fixed. The feedback channel is the observed trajectory, not the benchmark score.",
+        "sourceLabel": "Paper, Figure 3",
+        "sourceUrl": "https://arxiv.org/abs/2606.01993"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "boundary",
+      "title": "Evaluation with agent-visible feedback",
+      "paragraphs": [
+        "The benchmark contains 130 tasks: 40 desktop GUI tasks based on OSWorld, 30 Minecraft tasks based on OpenHA in MineStudio, and 60 strategy tasks in Doudizhu and Mahjong using RLCard. All main tasks are selected so that success can be inferred from the visible trajectory or public final state. Guides are task-relevant, but exclude gold action sequences, benchmark scores, and environment-specific solution traces.",
+        "This boundary is central to the method. The offline evaluator can measure success, but neither the analyzer nor the refiner receives that score. The six tested backbones each handle their own construction, execution, analysis, and refinement, without a separately stronger model supplying diagnoses. Main results allow up to five attempts and return the first attempt judged likely successful, or the fifth if none triggers.",
+        "A separate No-Limit Hold’em diagnostic is excluded from the main strategy evaluation because payoff can depend on unseen opponent cards. That is a useful limit on the claim: observable confidence is not a substitute for a hidden outcome. A deployment using this approach must determine whether the available evidence actually supports its stopping decision."
+      ]
+    },
+    {
+      "id": "ablation",
+      "title": "Contributions of extraction and revision",
+      "paragraphs": [
+        "The headline comparison is positive in all 18 model–domain combinations. Across the three domains, macro-average improvements over vanilla agents range from 12.8 to 25.3 percentage points. These are domain-macro averages, not a task-count-weighted score, and the five-attempt revision procedure has additional computation beyond a vanilla rollout.",
+        "The ablation explains why simply attaching a guide is insufficient. Averaged across models, raw-guide prompting scores 42.79 on GUI against 42.74 for vanilla, but falls from 43.89 to 42.22 on Game and from 46.67 to 45.14 on Strategy. Structured extraction without revision reaches 51.08 on GUI, yet only matches vanilla at 43.89 on Game. Full MMG2Skill reaches 55.67, 66.11, and 61.67 respectively.",
+        "This pattern suggests different bottlenecks. Many GUI instructions become useful once organized into actionable steps. Recipes and strategy advice require more adaptation to inventory, spatial state, or the current hand. In the latter domains, most of the improvement appears only after execution exposes a mismatch. The interpretation is plausible, but the domain averages should not be mistaken for proof that every individual task needs the same stage."
+      ],
+      "table": {
+        "caption": "Domain scores averaged across six backbones; higher is better.",
+        "headers": [
+          "Domain",
+          "Vanilla",
+          "Raw guide",
+          "Extraction only",
+          "Full loop"
+        ],
+        "rows": [
+          [
+            "GUI",
+            "42.74",
+            "42.79",
+            "51.08",
+            "55.67"
+          ],
+          [
+            "Game",
+            "43.89",
+            "42.22",
+            "43.89",
+            "66.11"
+          ],
+          [
+            "Strategy",
+            "46.67",
+            "45.14",
+            "47.92",
+            "61.67"
+          ]
+        ],
+        "note": "Table 2. Extraction-only is attempt 1; the full loop uses analyzer-selected early stopping within five attempts. The table reports point estimates without uncertainty intervals; the gains combine skill revision with additional attempts, rather than isolating revision under a single-rollout budget."
+      }
+    },
+    {
+      "id": "stop",
+      "title": "Early stopping and the reliability of revision",
+      "paragraphs": [
+        "A skill editor can make a correct procedure worse. It may diagnose an ambiguous failure incorrectly, overfit to a particular game state, or replace useful guidance with a vague rule. Accordingly, the paper distinguishes always taking the latest attempt from stopping when the analyzer first sees convincing completion evidence. For the offline comparison, both policies are replayed on the same traces, which continue beyond would-be stopping points.",
+        "At five attempts, the six-model Game average is 66.1 under early stopping but 47.8 when always taking the final attempt. GUI is approximately 55.7 under both views. Retaining a successful outcome is therefore part of the algorithm. These traces provide no evidence that continued revision will converge to a better procedure.",
+        "The analyzer is also imperfect. Its early-stop precision is 74.16% on GUI, 87.02% on Game, and 84.56% on Strategy. A signal with roughly three-quarter precision still produces false declarations of completion. Strategy recall is 70.79%, so some successful attempts are missed. The authors report 25.44–52.92% fewer attempts and 23.60–41.77% fewer model calls relative to always running all five MMG2Skill attempts, not relative to vanilla agents.",
+        "The remaining failures include incorrect screen grounding, exhausted interaction budgets, wrong diagnoses, and failure to follow a revised decision rule. A well-written procedure does not remove the need for reliable perception and action. Nor does this evaluation establish that task-specific edits transfer safely to unrelated tasks or that an unbounded skill collection remains coherent.",
+        "The GIMP example makes the scope of repair concrete: a missing output-file check can be added to the procedure after a failed attempt. An incorrect screen interpretation or a wrong completion judgment can still defeat that improved procedure. The reported gains depend on both editing the skill and deciding which execution result to retain."
+      ],
+      "figure": {
+        "src": "images/source/mmg2skill-2.webp",
+        "alt": "Per-attempt scores and cumulative success-trigger rates for two backbones across GUI, Game, and Strategy.",
+        "caption": "Figure 4: stronger initial performance and gains from revision vary by domain. Score curves and cumulative trigger bars measure different quantities and use separate axes.",
+        "sourceLabel": "Paper, Figure 4",
+        "sourceUrl": "https://arxiv.org/abs/2606.01993"
+      }
+    }
+  ],
+  "references": [
+    {
+      "label": "Read the paper",
+      "url": "https://arxiv.org/abs/2606.01993"
+    },
+    {
+      "label": "Code and benchmark",
+      "url": "https://github.com/NJU-LINK/MMG2Skill"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "130 tasks, success-inferable restriction, public guide controls",
+      "location": "§2, pp.2–3; Figure 2",
+      "source": "https://arxiv.org/abs/2606.01993"
+    },
+    {
+      "claim": "Fixed model, trajectory-only analyzer, history-aware refiner",
+      "location": "§3.1–3.2, pp.3–5",
+      "source": "https://arxiv.org/abs/2606.01993"
+    },
+    {
+      "claim": "All 18 model–domain improvements and macro averages",
+      "location": "Table 1, p.6",
+      "source": "https://arxiv.org/abs/2606.01993"
+    },
+    {
+      "claim": "Raw-guide/extraction/revision ablation",
+      "location": "Table 2, p.6",
+      "source": "https://arxiv.org/abs/2606.01993"
+    },
+    {
+      "claim": "Early-stop precision, recall and cost savings",
+      "location": "§4.5; Table 3, p.7; Figure 5, p.8",
+      "source": "https://arxiv.org/abs/2606.01993"
+    }
+  ],
+  "status": "complete"
+}

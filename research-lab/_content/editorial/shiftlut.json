@@ -1,0 +1,98 @@
+{
+  "key": "shiftlut",
+  "title": "ShiftLUT: wider restoration context with compact lookup tables",
+  "standfirst": "ShiftLUT learns where to gather image features, then turns that spatial knowledge into cheap, fixed shifts for deployment.",
+  "thesis": "Moving features can expand restoration context without making each table higher-dimensional.",
+  "source": {
+    "label": "ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration",
+    "url": "https://arxiv.org/abs/2603.00906",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "The storage cost of spatial context",
+      "paragraphs": [
+        "A restoration model needs neighboring pixels to decide whether a dark line is an edge, texture, or noise. On a phone CPU, reading that wider neighborhood can be expensive. Lookup-table models offer a practical shortcut: train a small neural network, evaluate its possible inputs in advance, and store the answers. At deployment, retrieve those answers instead of repeating the network’s arithmetic.",
+        "The difficulty is that a table indexed jointly by several pixels grows exponentially with the number of inputs. Adding context can therefore destroy the storage advantage that made the table useful. ShiftLUT approaches this problem through the layout of intermediate features. It learns spatial displacements during training, then removes the machinery that learned them. The deployed model keeps the resulting shifts, small one-dimensional tables, and a deliberately uneven allocation of computation."
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "Learning static spatial shifts",
+      "paragraphs": [
+        "A feature map contains several channels, each describing different aspects of an image. ShiftLUT moves each channel by its own horizontal and vertical offset before mixing the channels. A pointwise operation that previously saw only one position can now combine information collected from several positions. Subsequent depthwise operations add local processing without requiring one enormous joint lookup table.",
+        "For a small illustrative example, imagine three channels sampled from one pixel left, the current pixel, and one pixel above. Mixing those channels at a common output location combines three spatial observations even though the mixing operation itself has no spatial extent. Repeating this pattern across blocks extends the effective context.",
+        "The lower-left panel of Figure 2 explains an important deployment detail. Initially an offset network predicts continuous displacements, implemented with interpolation so they can be trained. Later, the model replaces them with rounded average offsets and discards the predictor. These are learned static shifts at inference, not image-dependent deformation. Section 3.2 reports low variation in the learned offsets, supporting that simplification."
+      ],
+      "figure": {
+        "src": "images/source/shiftlut-1.webp",
+        "alt": "ShiftLUT architecture and spatial shifts",
+        "caption": "Figure 2. The offset predictor exists during the first training stage; deployed shifts are rounded constants. The right-hand panels show table compression and cached interpolation, which are separate contributors to efficiency.",
+        "sourceLabel": "Original paper, Figure 2",
+        "sourceUrl": "https://arxiv.org/abs/2603.00906"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "section-3",
+      "title": "Allocating computation across pixel bits",
+      "paragraphs": [
+        "ShiftLUT also revisits how an eight-bit pixel is divided for efficient lookup. It separates six most significant bits from two least significant bits. The former carry the coarse intensity structure; the latter encode the remaining small intensity changes. For example, the value 173 can be decomposed into 172 plus 1. This is an illustration of the bit split, not a claim that the remainder is always unimportant.",
+        "Earlier symmetric designs process both branches with similar depth. The authors find that activations in the least-significant-bit branch become increasingly sparse deeper in the network. Their architecture therefore extracts shallow features from both parts, fuses them, and concentrates the deep processing on the combined representation. It does not discard the two-bit remainder.",
+        "The complete architecture combines wider spatial sampling with less redundant branch computation. Both changes contribute to making the additional context affordable."
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "Compressing tables and caching interpolation",
+      "paragraphs": [
+        "Error-bounded Adaptive Sampling addresses the remaining storage cost. Instead of imposing the same sampling interval on every table, it searches for a sufficiently coarse interval whose reconstruction error remains below a chosen tolerance. Smooth table mappings can tolerate fewer stored samples; more variable mappings retain denser samples.",
+        "Compression usually creates another problem: a missing table entry has to be interpolated every time a pixel requests it. ShiftLUT instead expands the current layer’s compact table into a reusable buffer before querying pixels. In Figure 2’s example, stored values 7 and 3 at indices 2 and 4 yield the interpolated value 5 at index 3. That calculation is cached, rather than repeated throughout the image.",
+        "The distinction between storage and working memory is important. A small serialized model does not mean computation needs no buffer. The method reuses the buffer across sequential layers. Its practical benefit comes from moving interpolation outside the per-pixel loop while retaining compressed persistent tables."
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Quality, storage, and latency on a phone CPU",
+      "paragraphs": [
+        "Table 1 evaluates four-times super-resolution on Set5, Set14, BSDS100, Urban100, and Manga109. ShiftLUT-L averages 28.19 dB PSNR, compared with 28.01 dB for TinyLUT-F. Its reported table storage is 104 KB versus 171 KB, and runtime is 84 ms versus 146 ms. The paper measures runtime on a Xiaomi 11 with a Snapdragon 888 CPU, using 320 × 180 low-resolution inputs for all methods. These are deployment-specific comparisons, not universal latency guarantees.",
+        "The listed receptive fields are 65 × 65 and 33 × 33. Their area ratio is about 3.88, which explains the roughly 3.8-times enlargement language. It does not mean either side length is 3.8 times larger. Likewise, the table’s five-dataset average improves by 0.18 dB; the abstract’s broader improvement statement should not replace this directly inspectable comparison.",
+        "A smaller option illustrates the range of trade-offs: ShiftLUT-S uses 24 KB and takes 22 ms, with average PSNR 27.39 dB. That is useful when storage and latency dominate, but it should not be confused with the accuracy of the large variant."
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "Transfer to other lookup-table models",
+      "paragraphs": [
+        "The supplementary experiments help identify when shifting is useful. Adding the module to TinyLUT improves Urban100 from 24.92 to 25.05 dB at unchanged listed storage. Adding it to SPLUT gives smaller and mixed changes: BSDS100 moves from 26.68 to 26.65 dB. The paper links the stronger gains to TinyLUT’s larger number of feature channels, which gives the shifts more independent observations to combine.",
+        "The results also do not close the quality gap to large restoration networks. For example, supplementary grayscale denoising at noise level 25 gives ShiftLUT-F 29.98 dB on Set12, while SwinIR reaches 31.01 dB. That comparison puts the contribution in context: ShiftLUT improves what can be done with compact tables rather than establishing tables as the highest-quality solution at any cost.",
+        "At deployment, the offset predictor is gone. What remains is the spatial pattern learned during training, the reduced branch computation, and the table-buffer strategy. Those choices determine the method’s storage and runtime advantage."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Original paper",
+      "url": "https://arxiv.org/abs/2603.00906"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Static integer shifts replace predictor",
+      "location": "Section 3.2; Figure 2",
+      "source": "https://arxiv.org/abs/2603.00906"
+    },
+    {
+      "claim": "104 KB, 84 ms, 28.19 average versus 171 KB, 146 ms, 28.01",
+      "location": "Table 1; Section 4.2",
+      "source": "https://arxiv.org/abs/2603.00906"
+    },
+    {
+      "claim": "Mixed SPLUT transfer and denoising gap",
+      "location": "Supplementary Tables 6 and 8",
+      "source": "https://arxiv.org/abs/2603.00906"
+    }
+  ],
+  "status": "complete"
+}

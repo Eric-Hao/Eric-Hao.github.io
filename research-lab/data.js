@@ -10,9 +10,8 @@ const papers = [
     "links": [],
     "year": 2026,
     "venue": "arXiv 2026",
-    "headline": "RSI: Learning during the task, without losing the way",
     "article": "articles/agentic-ttt/",
-    "headlineZh": "RSI：在任务中学习，而不迷失方向"
+    "headline": "aTTT: adapting agents with repetition-weighted updates"
   },
   {
     "title": "MMG2Skill: Can Agents Distill In-the-Wild Guides into Self-Evolving Skills?",
@@ -25,9 +24,8 @@ const papers = [
     "links": [],
     "year": 2026,
     "venue": "arXiv 2026",
-    "headline": "RSI: From human guides to self-evolving skills",
     "article": "articles/mmg2skill/",
-    "headlineZh": "RSI：从人类指南到自我演化的技能"
+    "headline": "MMG2Skill: revising agent procedures from execution"
   },
   {
     "title": "WebCompass: Towards Multimodal Web Coding Evaluation for Code Language Models",
@@ -45,9 +43,8 @@ const papers = [
     ],
     "year": 2026,
     "venue": "arXiv 2026",
-    "headline": "Evaluating the whole web-coding workflow",
     "article": "articles/webcompass/",
-    "headlineZh": "评估完整的网页编程工作流"
+    "headline": "WebCompass: evaluating web applications in the browser"
   },
   {
     "title": "Coloring the Noise: Adversarial Sobolev Alignment for Faithful Image Super Resolution",
@@ -65,9 +62,8 @@ const papers = [
       "Generative AI"
     ],
     "image": "color",
-    "headline": "Aligning generative detail with image structure",
     "article": "articles/color/",
-    "headlineZh": "让生成细节与真实图像结构对齐"
+    "headline": "ASASR: frequency-aware preference learning for faithful super-resolution"
   },
   {
     "title": "Tuning Real-World Image Restoration at Inference: A Test-Time Scaling Paradigm for Flow Matching Models",
@@ -80,9 +76,8 @@ const papers = [
       "Generative AI"
     ],
     "image": "tta_flow",
-    "headline": "Using inference-time feedback for image restoration",
     "article": "articles/tta-flow/",
-    "headlineZh": "利用推理阶段的反馈改善图像恢复"
+    "headline": "ResFlow-Tuner: searching flow trajectories for image restoration"
   },
   {
     "title": "ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration",
@@ -100,9 +95,8 @@ const papers = [
       "Restoration & Super-Resolution"
     ],
     "image": "shiftlut",
-    "headline": "A wider view for efficient image restoration",
     "article": "articles/shiftlut/",
-    "headlineZh": "让高效图像恢复看得更远"
+    "headline": "ShiftLUT: wider restoration context with compact lookup tables"
   },
   {
     "title": "InstantViR: Real-Time Video Inverse Problem Solver with Distilled Diffusion Prior",
@@ -120,9 +114,8 @@ const papers = [
       "Generative AI"
     ],
     "image": "instantvir",
-    "headline": "Bringing diffusion-based video restoration to real time",
     "article": "articles/instantvir/",
-    "headlineZh": "让扩散式视频恢复走向实时"
+    "headline": "InstantViR: distilling video restoration into a streaming solver"
   },
   {
     "title": "Visual Autoregressive Modeling for Image Super-Resolution",
@@ -144,9 +137,8 @@ const papers = [
       "Generative AI"
     ],
     "image": "varsr",
-    "headline": "Restoring images one scale at a time",
     "article": "articles/varsr/",
-    "headlineZh": "逐尺度恢复图像细节"
+    "headline": "VARSR: coarse-to-fine super-resolution with a diffusion refiner"
   },
   {
     "title": "Plug-and-Play Tri-Branch Invertible Block for Image Rescaling",
@@ -168,9 +160,8 @@ const papers = [
       "Restoration & Super-Resolution"
     ],
     "image": "tinvblocks",
-    "headline": "Rethinking the information kept in a smaller image",
     "article": "articles/tinvblocks/",
-    "headlineZh": "重新思考小图像应当保留的信息"
+    "headline": "T-InvBlocks: separating luminance, color, and detail for image rescaling"
   },
   {
     "title": "OAPT: Offset-Aware Partition Transformer for Double JPEG Artifacts Removal",
@@ -188,9 +179,8 @@ const papers = [
       "Restoration & Super-Resolution"
     ],
     "image": "oapt",
-    "headline": "Restoring images after a second JPEG compression",
     "article": "articles/oapt/",
-    "headlineZh": "恢复经过二次 JPEG 压缩的图像"
+    "headline": "OAPT: offset-aware attention for double JPEG restoration"
   },
   {
     "title": "CPGA: Coding Priors-Guided Aggregation Network for Compressed Video Quality Enhancement",
@@ -212,9 +202,8 @@ const papers = [
       "Restoration & Super-Resolution"
     ],
     "image": "cpga",
-    "headline": "Recovering video detail from the codec’s own clues",
     "article": "articles/cpga/",
-    "headlineZh": "利用编解码器自身的线索恢复视频"
+    "headline": "CPGA: reusing codec motion and residuals for video enhancement"
   },
   {
     "title": "XPSR: Cross-modal Priors for Diffusion-based Image Super-Resolution",
@@ -236,9 +225,8 @@ const papers = [
       "Restoration & Super-Resolution"
     ],
     "image": "xpsr",
-    "headline": "Using language to guide faithful super-resolution",
     "article": "articles/xpsr/",
-    "headlineZh": "利用语言引导忠实的超分辨率重建"
+    "headline": "XPSR: scene and degradation prompts for diffusion super-resolution"
   },
   {
     "title": "PTM-VQA: Efficient Video Quality Assessment Leveraging Diverse PreTrained Models from the Wild",
@@ -251,9 +239,8 @@ const papers = [
       "Restoration & Super-Resolution"
     ],
     "image": "ptmvqa",
-    "headline": "Learning video quality from diverse pretrained models",
     "article": "articles/ptmvqa/",
-    "headlineZh": "从多种预训练模型中学习视频质量"
+    "headline": "PTM-VQA: aligning frozen visual features for video quality prediction"
   },
   {
     "title": "CasSR: Activating Image Power for Real-World Image Super-Resolution",
@@ -266,13 +253,12 @@ const papers = [
       "Restoration & Super-Resolution"
     ],
     "image": "cassr",
-    "headline": "A clearer reference for generative super-resolution",
     "article": "articles/cassr/",
-    "headlineZh": "为生成式超分辨率提供更清晰的参考"
+    "headline": "CasSR: generated visual references for diffusion super-resolution"
   },
   {
     "title": "Vortex bursting in twisted magnetic flux tubes with opposite chiralities",
-    "venue": "J. Fluid Mech.",
+    "venue": "Manuscript unavailable",
     "year": null,
     "authors": "Yanru Wang, Anda Xiong, Jinhua Hao, Shiying Xiong",
     "url": null,
@@ -281,9 +267,8 @@ const papers = [
       "Physics & Fluid Dynamics"
     ],
     "image": "vortex-bursting",
-    "headline": "How opposite magnetic twists trigger vortex bursting",
     "article": "articles/vortex-bursting/",
-    "headlineZh": "相反的磁扭转如何触发涡爆裂"
+    "headline": "Vortex bursting in twisted magnetic flux tubes with opposite chiralities"
   },
   {
     "title": "Effects of magnetic–vortical interactions on magnetic splitting",
@@ -296,9 +281,8 @@ const papers = [
       "Physics & Fluid Dynamics"
     ],
     "image": "magvortex",
-    "headline": "How vortices change the splitting of magnetic tubes",
     "article": "articles/magvortex/",
-    "headlineZh": "涡旋如何改变磁通管的分裂"
+    "headline": "How magnetic curvature generates vortex dipoles that split flux tubes"
   },
   {
     "title": "Magnetic knot cascade via the stepwise reconnection of helical flux tubes",
@@ -316,9 +300,8 @@ const papers = [
       "Physics & Fluid Dynamics"
     ],
     "image": "magknot",
-    "headline": "Watching magnetic field lines tie themselves into knots",
     "article": "articles/magknot/",
-    "headlineZh": "观察磁力线如何自行打结"
+    "headline": "A magnetic knot cascade driven by successive flux-tube reconnections"
   },
   {
     "title": "Tracking vortex surfaces frozen in the virtual velocity in non-ideal flows",
@@ -336,9 +319,8 @@ const papers = [
       "Physics & Fluid Dynamics"
     ],
     "image": "vortex",
-    "headline": "Following vortex surfaces beyond ideal flow",
     "article": "articles/vortex/",
-    "headlineZh": "在非理想流动中追踪涡面"
+    "headline": "Tracking vortex surfaces with a virtual transport velocity"
   },
   {
     "image": "kat-v25-dev",
@@ -351,9 +333,8 @@ const papers = [
     "links": [],
     "year": 2026,
     "venue": "Model release 2026",
-    "headline": "KAT-Coder V2.5-Dev",
-    "headlineZh": "开放权重的智能体编程模型",
-    "article": "articles/kat-v25-dev/"
+    "article": "articles/kat-v25-dev/",
+    "headline": "KAT-Coder-V2.5-Dev: reward shaping for reliable tool use"
   },
   {
     "image": "kat-v25",
@@ -366,9 +347,8 @@ const papers = [
     "links": [],
     "year": 2026,
     "venue": "Technical report 2026",
-    "headline": "KAT-Coder V2.5",
-    "headlineZh": "面向真实软件工程的智能体训练",
-    "article": "articles/kat-v25/"
+    "article": "articles/kat-v25/",
+    "headline": "KAT-Coder-V2.5: verified environments and hindsight-assisted learning"
   },
   {
     "image": "kat-v2",
@@ -381,9 +361,8 @@ const papers = [
     "links": [],
     "year": 2026,
     "venue": "Technical report 2026",
-    "headline": "KAT-Coder V2",
-    "headlineZh": "从领域专家到统一编程智能体",
-    "article": "articles/kat-v2/"
+    "article": "articles/kat-v2/",
+    "headline": "KAT-Coder-V2: specialist training and on-policy expert fusion"
   },
   {
     "image": "lpm",
@@ -396,8 +375,7 @@ const papers = [
     "links": [],
     "year": 2026,
     "venue": "Technical report 2026",
-    "headline": "LPM: Generative video restoration at scale",
-    "headlineZh": "走向工业规模的生成式视频恢复",
-    "article": "articles/lpm/"
+    "article": "articles/lpm/",
+    "headline": "LPM: temporal anchors for long-video restoration"
   }
 ];

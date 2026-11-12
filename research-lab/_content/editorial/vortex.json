@@ -1,0 +1,119 @@
+{
+  "key": "vortex",
+  "title": "Tracking vortex surfaces with a virtual transport velocity",
+  "standfirst": "A virtual transport velocity separates the motion of vortex surfaces from the motion of fluid particles, revealing when dissipation can coexist with preserved topology and when a visualization is following the wrong structure.",
+  "thesis": "Vortex tracking in a non-ideal flow is a transport problem, not merely a surface-extraction problem: the right carrier velocity can preserve vortex identity, but only under explicit mathematical conditions.",
+  "source": {
+    "label": "Hao, Xiong and Yang · Journal of Fluid Mechanics 863, 513–544 (2019)",
+    "url": "https://doi.org/10.1017/jfm.2018.1014",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "fluid-is-not-vortex",
+      "title": "When fluid motion stops preserving vortex surfaces",
+      "paragraphs": [
+        "Imagine drawing a loop around a bundle of vortex lines and letting the fluid carry it. In an ideal flow, the loop keeps enclosing the same vorticity flux. This is the useful promise behind Kelvin’s circulation theorem and Helmholtz’s frozen-in picture: following fluid particles also follows vortex structure. Viscosity, pressure and density gradients that are not aligned, or non-conservative forces can break that correspondence. The fluid still moves, but a surface carried by it need not remain the same vortex surface.",
+        "Hao, Xiong and Yang ask whether a different velocity can restore this correspondence. Their answer has two parts. Some non-ideal flows admit an exact, smooth “virtual velocity” that transports vorticity as if it were frozen in. Other flows do not, but a suitable approximation can still make vortex tracking more faithful. The distinction matters: this is neither a claim that real-fluid reconnection disappears nor a new universal definition of a vortex."
+      ]
+    },
+    {
+      "id": "change-the-carrier",
+      "title": "Absorbing non-ideal forcing into a drift velocity",
+      "paragraphs": [
+        "Vorticity, ω, is the curl of the physical velocity u. Its evolution contains transport by u and a source term given by the curl of the non-ideal force F. The authors seek a velocity v that absorbs that source into transport. In the equation below, the physical vorticity remains the quantity being tracked. Only the velocity carrying its lines and surfaces changes.",
+        "The difference v − u is a drift velocity. Where the force component parallel to vorticity can be absorbed into a smooth scalar potential, the perpendicular drift is ω × F⊥ divided by |ω|². A force acting across vortex lines can therefore be represented as motion of those lines relative to the fluid. Motion parallel to a line does not change the line’s geometry, leaving a freedom that the authors fix when choosing a particular velocity.",
+        "This construction has a sharp boundary. A sufficient condition is that the vorticity-parallel force be irrotational and that vorticity remain nonzero throughout the region swept out by the tracked structure. The resulting velocity must be globally smooth there. These are sufficient conditions, not a complete classification of possible flows. At a vorticity null, division by |ω|² can become singular; more generally, a globally suitable scalar potential may not exist."
+      ],
+      "equation": "\\partial_t\\boldsymbol{\\omega}=\\nabla\\times(\\mathbf{u}\\times\\boldsymbol{\\omega}+\\mathbf{F})=\\nabla\\times(\\mathbf{v}\\times\\boldsymbol{\\omega})",
+      "figure": {
+        "src": "images/deep-read/vortex/c021dcc97eba20c8881b.png",
+        "alt": "Vector diagram decomposing non-ideal force and drift velocity parallel and perpendicular to vorticity.",
+        "caption": "Figure 1 separates the force and drift into components parallel and perpendicular to vorticity. The perpendicular drift changes the geometry of a vortex line; a component along the line does not. The smoothness and existence conditions discussed below are needed to extend this local construction to a transported structure.",
+        "sourceLabel": "Hao, Xiong and Yang (2019), Figure 1 and equations 2.21–2.26, p. 519",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2018.1014"
+      },
+      "figure_after": 2
+    },
+    {
+      "id": "surface-identity",
+      "title": "Tangency alone cannot establish surface identity",
+      "paragraphs": [
+        "To turn this idea into a tracking method, the paper uses a vortex-surface field: a scalar φ whose constant-value surfaces are tangent everywhere to vorticity. Its defining condition is ω · ∇φ = 0. Rather than store every vortex line individually, the method transports this scalar and extracts its level sets. With an exact smooth virtual velocity, transporting φ with v preserves the tangency condition.",
+        "Why not simply transport with u and correct any errors? Because many different surfaces can satisfy the same tangency constraint. A numerical correction can move from one valid surface to another without preserving its identity through time. The paper makes this failure concrete with a reduced magnetohydrodynamic Taylor–Green case: vorticity decays in amplitude while its lines retain their geometry, yet physical-velocity-based tracking produces surfaces that deform, collide and appear to merge. Their average tangency deviation is still below 1%. A small geometric constraint error does not establish temporal fidelity.",
+        "In the inviscid, non-resistive limit of this example, the drift is exactly −u. The virtual velocity is therefore zero, correctly leaving the vortex surfaces stationary even though the fluid itself moves."
+      ]
+    },
+    {
+      "id": "dissipation-without-reconnection",
+      "title": "A modified viscous flow preserves connectivity",
+      "paragraphs": [
+        "The first numerical test deliberately changes the governing dynamics. The authors remove the vorticity-parallel part of the viscous force, creating an artificial modified Navier–Stokes flow. The remaining term still dissipates enstrophy, but less strongly than ordinary viscosity. It also permits an explicit virtual velocity, with numerical smoothing near vorticity nulls. This is a controlled theoretical construction, not a replacement model validated for ordinary fluids.",
+        "At Reynolds number 100, the modified Taylor–Green flow preserves vortex-line connectivity while the ordinary flow reconnects. Figure 6 makes the difference visible near the onset of reconnection: at t = 3.65, the ordinary case has changed connections inside the highlighted region, while oppositely directed lines in the modified case remain nearly parallel. Apparent surface contact alone is not decisive. The authors warn that a shrinking gap between the modified-flow surfaces is below their visualization grid’s resolution.",
+        "The quantitative checks reinforce that distinction. Through t = 4, average vortex-surface deviation stays below 0.1% in the modified case. Flux through the two orthogonal diagnostic cross-sections remains conserved, unlike the exchange seen in the ordinary flow. The result isolates an important point: energy loss and topology change are not interchangeable descriptions of non-ideal dynamics."
+      ],
+      "figure": {
+        "src": "images/deep-read/vortex/d3f694532743edfec05f.png",
+        "alt": "Three close-ups of vortex lines: ordinary flow before and during reconnection, and modified flow retaining nearly parallel lines.",
+        "caption": "Figure 6: ordinary Taylor–Green flow at t = 3.6 and 3.65, followed by modified flow at t = 3.65. Red circles mark the contrasting line connectivity. A visually closed gap does not by itself prove reconnection.",
+        "sourceLabel": "Hao, Xiong and Yang (2019), Figure 6, p. 530",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2018.1014"
+      }
+    },
+    {
+      "id": "approximation-in-mhd",
+      "title": "Lorentz-force drift improves tracking in MHD",
+      "paragraphs": [
+        "The second test keeps the magnetohydrodynamic flow and changes how its surfaces are tracked. In the insulating Taylor–Green case at Reynolds number 100, the Lorentz force is, on average, at least an order of magnitude stronger than the viscous term over 0 ≤ t ≤ 2. Its alignment with vorticity is predominantly perpendicular: the mean absolute normalized dot product remains below 0.25. That motivates an approximate drift built from the Lorentz force alone.",
+        "Both physical- and virtual-velocity calculations maintain average surface-tangency deviations below 1%, but their histories differ. The virtual calculation removes the long protrusions generated by physical-velocity tracking and nearly conserves the diagnostic vorticity flux before t = 1. After that, flux drops rapidly as the surfaces encounter vorticity nulls and reconnection develops. Better tracking here means preserving flux when appropriate and exposing its breakdown, not forcing conservation forever."
+      ]
+    },
+    {
+      "id": "what-survives",
+      "title": "Conditions for reliable vortex tracking",
+      "paragraphs": [
+        "This work supplies an exact construction for a restricted class of non-ideal flows and a useful approximation in specific low-Reynolds-number simulations. It does not establish a smooth global virtual velocity for general three-dimensional turbulence. Strong parallel forcing, vorticity nulls and unresolved small scales remain consequential limitations.",
+        "Reliable tracking requires checking the transport law and diagnostic flux alongside surface tangency. In these examples, the flux history distinguishes preserved vortex identity from spurious deformation and from genuine breakdown near vorticity nulls."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Original paper and supplementary material",
+      "url": "https://doi.org/10.1017/jfm.2018.1014"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Exact virtual transport requires a smooth carrier; stated sufficient conditions are irrotational parallel force and nonzero vorticity in swept region.",
+      "location": "Sections 2.3–2.4, equations (2.21)–(2.32), Remark 1; pp. 519–520",
+      "source": "https://doi.org/10.1017/jfm.2018.1014"
+    },
+    {
+      "claim": "Modified flow is artificial, dissipative and permits explicit virtual velocity.",
+      "location": "Section 2.5, equations (2.35)–(2.42), pp. 521–522",
+      "source": "https://doi.org/10.1017/jfm.2018.1014"
+    },
+    {
+      "claim": "Modified-flow surface deviation below 0.1%; reconnection comparison and unresolved gap caveat.",
+      "location": "Sections 5.1–5.2, Figures 4, 6 and 7, pp. 527–531",
+      "source": "https://doi.org/10.1017/jfm.2018.1014"
+    },
+    {
+      "claim": "Physical tracking gives spurious deformation despite less than 1% deviation; inviscid reduced example has zero virtual velocity.",
+      "location": "Section 6.1, equation (6.1), Figure 8, pp. 531–532",
+      "source": "https://doi.org/10.1017/jfm.2018.1014"
+    },
+    {
+      "claim": "MHD Lorentz force dominance, alignment below 0.25 and near-conservation before t = 1.",
+      "location": "Sections 6.2–6.3, Figures 9–12, pp. 533–536",
+      "source": "https://doi.org/10.1017/jfm.2018.1014"
+    },
+    {
+      "claim": "Force and drift decompose into components parallel and perpendicular to vorticity; the parallel drift is arbitrary because its cross product with vorticity vanishes.",
+      "location": "Figure 1, §2.3, equations 2.21–2.26, p. 519",
+      "source": "https://doi.org/10.1017/jfm.2018.1014"
+    }
+  ],
+  "status": "complete"
+}

@@ -1,0 +1,102 @@
+{
+  "key": "cassr",
+  "title": "CasSR: generated visual references for diffusion super-resolution",
+  "standfirst": "CasSR first builds a cleaner reference image, then lets a diffusion model consult both that reference and the original observation.",
+  "thesis": "A preliminary reconstruction can strengthen image conditioning, provided the final model retains a separate route back to the original pixels.",
+  "source": {
+    "label": "CasSR: Activating Image Power for Real-World Image Super-Resolution",
+    "url": "https://arxiv.org/abs/2403.11451",
+    "kind": "Original research paper"
+  },
+  "sections": [
+    {
+      "id": "reference",
+      "title": "Why a caption cannot specify a feather",
+      "paragraphs": [
+        "A caption can identify a penguin on rocks without describing the exact boundary of its wing, the placement of its eye, or the texture of the surrounding stone. Those details are central to image restoration. CasSR starts from the premise that a text-to-image model needs stronger visual guidance when reconstructing a particular degraded photograph.",
+        "The paper proposes a cascade. A first model reduces degradation and generates a reference image. A second diffusion model restores the image while consulting that reference alongside the original low-quality input. The reference is a provisional reconstruction of the same scene, not an unrelated exemplar retrieved from a database. Keeping both inputs is the key to the design."
+      ]
+    },
+    {
+      "id": "activation",
+      "title": "SCEdit builds a provisional visual reference",
+      "paragraphs": [
+        "The first stage is called image activation. In the main configuration, it uses SCEdit, a lightweight controllable diffusion approach, to denoise and enlarge the input. Its purpose is to make structure easier for the next model to use. The paper does not require this initial output to be a finished restoration, and its ablation also tests a ControlNet-based reference generator.",
+        "Imagine a roof whose repeated tiles have merged into a blurred band. A preliminary restoration can make the likely direction and spacing of those tiles more explicit. That can help the next model generate consistent detail. It can also introduce the wrong spacing, so the reference must remain a suggestion rather than an unquestioned target.",
+        "The authors’ language of activating information should be read in this conditional sense. The first stage does not create new measurements of the original scene. It combines the observed image with learned priors to produce a more usable estimate. Any additional detail remains an inference whose reliability must be checked."
+      ]
+    },
+    {
+      "id": "two-routes",
+      "title": "Reference attention followed by original-input attention",
+      "paragraphs": [
+        "CasSR uses a shared-weight ControlNet to extract features from the original image and the generated reference. These features condition a pretrained Stable Diffusion backbone. The main addition is a multiple-attention module in the U-Net’s upsampling blocks, where the developing image can directly consult both sources.",
+        "First, reference attention uses the U-Net features as queries and reference features as keys and values. The resulting representation then passes through self-attention. Finally, low-resolution attention queries the original-input features. This ordering lets the reference provide more explicit structure while the observed image supplies a later constraint on fidelity.",
+        "The original input bypasses the first-stage reconstruction and remains available to the final network. In the paper’s explanation, this path is necessary because the reference generator can introduce artifacts. It gives the model a learned way to correct them, though their removal is not mathematically guaranteed."
+      ],
+      "figure": {
+        "src": "images/source/cassr-1.webp",
+        "alt": "CasSR architecture with an image activation module, two shared ControlNet paths, and reference, self, and low-resolution attention.",
+        "caption": "Figure 3 keeps the original and reference images on separate conditioning paths. The attention block reads reference features before returning to low-resolution features, an explicit attempt to balance detail generation with fidelity.",
+        "sourceLabel": "Original paper, Figure 3, p. 7",
+        "sourceUrl": "https://arxiv.org/abs/2403.11451"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "training",
+      "title": "Training the controller and attention modules",
+      "paragraphs": [
+        "The second-stage training freezes the pretrained Stable Diffusion parameters and learns ControlNet together with the added attention modules. Its objective is diffusion noise prediction conditioned on the low-resolution image, reference, timestep, and a generic text embedding. Rather than designing a detailed caption for every image, the main setup uses a short quality-oriented description such as “clean, high-resolution.”",
+        "Training images come from DIV2K, DIV8K, Flickr2K, OST, and the first 10,000 FFHQ images, with synthetic degradation based on the Real-ESRGAN pipeline. The authors evaluate synthetic DIV2K validation images and paired real-image benchmarks DRealSR and RealSR. This is the March 2024 arXiv manuscript; its experimental claims should be understood in that version’s context.",
+        "The evaluation emphasizes perceptual metrics and omits PSNR and SSIM. That choice makes the paper informative about visual quality, but leaves pixel-level accuracy less directly characterized. Learned no-reference measures such as MUSIQ judge appearance without comparing the output to the particular original photograph."
+      ]
+    },
+    {
+      "id": "comparison",
+      "title": "Reference generation helps, but perceptual metrics disagree",
+      "paragraphs": [
+        "On DIV2K-Val, Table 1 reports DISTS 0.1531 for CasSR compared with 0.1601 for SeeSR, where lower is better. MUSIQ rises from SeeSR’s 66.3587 to 68.6242. However, SeeSR has better FID, 28.5568 versus 30.7808, and better LPIPS, 0.3050 versus 0.3225. Even within perceptual metrics, the preference depends on what is being measured.",
+        "The distinction becomes clearer on DRealSR. CasSR achieves MUSIQ 67.3450, ahead of SeeSR’s 64.7460, but its DISTS is 0.2868 versus 0.2342. An output can therefore receive a higher standalone quality rating while diverging more from the reference under another learned perceptual measure. This is a material limitation of the strongest fidelity language in the manuscript.",
+        "The activation ablation supports the narrower mechanism. Using the low-quality image itself as the reference gives DISTS 0.1797 and MUSIQ 63.4204. Using SCEdit improves these to 0.1531 and 68.6242. ControlNet references are also competitive, suggesting that the gain does not depend on one unique first-stage model. The paper has an LPIPS inconsistency between Tables 1 and 2 for the SCEdit configuration, so those cells should not be treated as interchangeable."
+      ]
+    },
+    {
+      "id": "captions",
+      "title": "Caption conditioning has mixed effects",
+      "paragraphs": [
+        "Caption conditioning produces mixed results in the paper’s own ablation. Adding a caption slightly improves FID and MANIQA, while worsening DISTS, LPIPS, and MUSIQ. Selected images show unwanted details, but these findings support a configuration-dependent trade-off rather than a general conclusion that captions cannot help super-resolution.",
+        "The extra restoration stage adds both visual guidance and potential errors. For applications that need exact scene recovery, the critical test is whether the final low-resolution attention rejects misleading reference details. The reported quality scores alone cannot answer that question."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "CasSR: Activating Image Power for Real-World Image Super-Resolution",
+      "url": "https://arxiv.org/abs/2403.11451"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Two-stage architecture and ordered reference/self/LR attention",
+      "location": "Sections 3.1–3.4, pp. 6–9",
+      "source": "https://arxiv.org/abs/2403.11451"
+    },
+    {
+      "claim": "Dataset and frozen-backbone training setup",
+      "location": "Section 4.1, p. 9",
+      "source": "https://arxiv.org/abs/2403.11451"
+    },
+    {
+      "claim": "DIV2K and DRealSR results are mixed across metrics",
+      "location": "Table 1, p. 12",
+      "source": "https://arxiv.org/abs/2403.11451"
+    },
+    {
+      "claim": "Reference-generator and caption ablations",
+      "location": "Tables 2–3, p. 13",
+      "source": "https://arxiv.org/abs/2403.11451"
+    }
+  ],
+  "status": "complete"
+}

@@ -1,0 +1,99 @@
+{
+  "key": "cpga",
+  "title": "CPGA: reusing codec motion and residuals for video enhancement",
+  "standfirst": "CPGA uses motion vectors, predictions, and residuals already produced by a video codec to recover detail after compression.",
+  "thesis": "Codec metadata supplies useful temporal and spatial evidence, but the measured improvement is incremental and depends on access to the compressed representation.",
+  "source": {
+    "label": "CPGA: Coding Priors-Guided Aggregation Network for Compressed Video Quality Enhancement",
+    "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_CPGA_Coding_Priors-Guided_Aggregation_Network_for_Compressed_Video_Quality_Enhancement_CVPR_2024_paper.pdf",
+    "kind": "Original research paper"
+  },
+  "sections": [
+    {
+      "id": "discarded-evidence",
+      "title": "What the decoded frame leaves out",
+      "paragraphs": [
+        "A video decoder produces an image, but that image is only one product of a much richer computation. To compress a moving scene, a codec predicts blocks from other frames, records where those blocks came from, and stores a residual correction. A conventional enhancement network usually receives the decoded pixels. It must then infer motion and structure again from images already damaged by quantization.",
+        "CPGA asks whether restoration can reuse that earlier work. Its inputs include motion vectors, predictive frames, and residual frames extracted from the compressed bitstream. These are not measurements of the missing original image. They are evidence about how the codec represented it. The distinction matters: a motion vector is selected for coding efficiency and need not equal the physical motion of an object."
+      ]
+    },
+    {
+      "id": "three-signals",
+      "title": "Motion vectors and predictions guide temporal alignment",
+      "paragraphs": [
+        "Consider a camera following a cyclist past a fence. Motion vectors indicate where the codec found useful matching blocks. The predictive frame shows the resulting motion-compensated estimate. The residual records what this estimate failed to explain, often emphasizing boundaries, newly exposed regions, and fine structure. CPGA assigns these signals different roles instead of concatenating them indiscriminately.",
+        "The inter-frame temporal aggregation module processes a window of seven decoded frames. It extracts features from the frames and their predictions, then warps frame features using motion vectors. The current frame is compared with both the predicted-frame features and the warped features. Their responses determine how neighboring information is weighted before fusion and deformable convolution. Codec motion therefore provides an initial alignment cue, while learned aggregation retains room to correct it.",
+        "This is important around occlusions. A block prediction can look plausible while pointing to content that is no longer visible. The architecture does not assume that every codec correspondence deserves equal trust. Its learned weighting and subsequent deformable aggregation can use evidence from multiple representations."
+      ],
+      "figure": {
+        "src": "images/source/cpga-editorial-architecture.webp",
+        "alt": "CPGA architecture with motion vectors, predictive frames, a three-scale residual branch, and an output skip connection.",
+        "caption": "Figure 3 separates codec-guided temporal aggregation on the left from residual-guided spatial aggregation on the right. The two routes reuse different products of decoding; the final network predicts a correction to the current frame.",
+        "sourceLabel": "Original paper, Figure 3, p. 2967",
+        "sourceUrl": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_CPGA_Coding_Priors-Guided_Aggregation_Network_for_Compressed_Video_Quality_Enhancement_CVPR_2024_paper.pdf"
+      }
+    },
+    {
+      "id": "residual-guide",
+      "title": "Residual-guided spatial aggregation at three scales",
+      "paragraphs": [
+        "After temporal fusion, CPGA introduces the residual of the current frame through a multi-scale non-local aggregation module. Non-local means that the representation can combine information across distant spatial positions rather than only adjacent pixels. Residual features guide that aggregation at three resolutions, followed by coarse-to-fine upsampling and fusion.",
+        "The intuition is practical. In the cyclist example, the codec residual may highlight the outline of the rider and repeated fence edges more strongly than a smooth patch of sky. The network can direct its spatial aggregation toward these informative regions. A final quality-enhancement module uses channel attention and horizontal and vertical feature shifts to broaden the receptive field before producing an image correction.",
+        "A residual is not a perfect importance map. It also reflects prediction decisions and quantization, and weak residual values do not prove that a region is fully reconstructed. The method learns how to exploit this imperfect cue rather than treating it as ground truth."
+      ]
+    },
+    {
+      "id": "dataset",
+      "title": "VCP exposes HEVC coding priors for 300 clips",
+      "paragraphs": [
+        "The accompanying VCP dataset is a substantial part of the contribution. It contains 300 source clips, each with 48 frames, with content spanning everyday scenes, cities, nature, and sports. The authors encode them with HEVC HM 16.25 under Low Delay B and Random Access configurations at quantization parameters 22, 27, 32, and 37. Larger quantization parameters generally imply stronger compression and more lost detail.",
+        "Providing aligned raw videos, decoded videos, and coding priors makes it possible to study restoration in the compressed domain directly. It also makes the experimental setting specific. These results concern defined HEVC configurations, not arbitrary online videos after an unknown chain of transcodes. Deploying the method requires a decoder or extraction path that exposes the relevant side information."
+      ]
+    },
+    {
+      "id": "measurements",
+      "title": "A 0.03 dB gain over STDR at QP 37",
+      "paragraphs": [
+        "The authors retrain competing methods on VCP and evaluate 18 standard sequences. At QP 37 under Low Delay B, CPGA improves luminance PSNR by 0.82 dB over the compressed input, compared with 0.79 dB for STDR and 0.69 dB for STDF-R3L. The gain over the strongest of these baselines is therefore 0.03 dB, not 0.82 dB. PSNR measures pixel reconstruction error; it does not directly measure viewer preference.",
+        "The ablation is more informative about the central mechanism. Removing all coding priors gives a 0.69 dB gain. Motion vectors and predictive frames together raise it to 0.77 dB; the full three-prior system reaches 0.82 dB. Model size also increases from 1.242 million to 1.386 million parameters, so the comparison is not a perfectly fixed-capacity isolation of the input signals.",
+        "Average gains do not imply a win on every sequence. In Table 2, CPGA is slightly below STDR on PartyScene and BlowingBubbles at QP 37, while matching it on several others. The paper also shows smaller PSNR fluctuations on BasketballPass, useful evidence for temporal stability but not a broad human study of flicker."
+      ]
+    },
+    {
+      "id": "deployment",
+      "title": "Integration costs and future-frame buffering",
+      "paragraphs": [
+        "The deployment question is whether the modest quality improvement survives the full integration cost. The reported network-speed comparison does not by itself establish end-to-end savings once prior extraction, buffering, and memory traffic are included. The seven-frame window also uses future frames, which matters for live playback. For a codec-aware enhancement pipeline, the paper offers a concrete design; for a pixels-only restoration service, its required inputs may be the main obstacle."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "CPGA: Coding Priors-Guided Aggregation Network for Compressed Video Quality Enhancement",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_CPGA_Coding_Priors-Guided_Aggregation_Network_for_Compressed_Video_Quality_Enhancement_CVPR_2024_paper.pdf"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "VCP comprises 300 clips of 48 frames with HEVC LDB/RA and four QPs",
+      "location": "Section 3, pp. 2966–2967",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_CPGA_Coding_Priors-Guided_Aggregation_Network_for_Compressed_Video_Quality_Enhancement_CVPR_2024_paper.pdf"
+    },
+    {
+      "claim": "Seven-frame temporal aggregation and residual-guided three-scale spatial aggregation",
+      "location": "Sections 4.2–4.4, Figures 3–5",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_CPGA_Coding_Priors-Guided_Aggregation_Network_for_Compressed_Video_Quality_Enhancement_CVPR_2024_paper.pdf"
+    },
+    {
+      "claim": "QP37 LDB gains: CPGA 0.82 dB, STDR 0.79 dB",
+      "location": "Table 2, p. 2970",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_CPGA_Coding_Priors-Guided_Aggregation_Network_for_Compressed_Video_Quality_Enhancement_CVPR_2024_paper.pdf"
+    },
+    {
+      "claim": "No-prior baseline 0.69 dB versus complete model 0.82 dB",
+      "location": "Table 5, p. 2970",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_CPGA_Coding_Priors-Guided_Aggregation_Network_for_Compressed_Video_Quality_Enhancement_CVPR_2024_paper.pdf"
+    }
+  ],
+  "status": "complete"
+}

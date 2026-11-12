@@ -1,0 +1,91 @@
+{
+  "key": "xpsr",
+  "title": "XPSR: scene and degradation prompts for diffusion super-resolution",
+  "standfirst": "XPSR gives a diffusion restorer two kinds of language guidance: a description of the scene and a diagnosis of its degradation.",
+  "thesis": "Richer language conditioning improves learned perceptual-quality scores, while the paper’s reference-based metrics expose a substantial fidelity trade-off.",
+  "source": {
+    "label": "XPSR: Cross-modal Priors for Diffusion-based Image Super-Resolution",
+    "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf",
+    "kind": "Original research paper"
+  },
+  "sections": [
+    {
+      "id": "ambiguity",
+      "title": "A blurry texture can have several explanations",
+      "paragraphs": [
+        "A low-resolution photograph of red fabric might depict knitted wool or smooth nylon. Both explanations can fit the same blurry pixels, yet they imply very different high-resolution textures. A diffusion model can generate either convincingly. Super-resolution becomes difficult when the model must select the texture that belongs to this particular photograph rather than merely a plausible one.",
+        "XPSR approaches that ambiguity through language. The authors use a multimodal large language model to describe both scene content and image quality, then feed those descriptions into a controlled diffusion model. Their proposal is that object tags alone leave out useful information: relationships, material cues, spatial arrangement, and the kinds of corruption that need to be removed."
+      ],
+      "intro": true
+    },
+    {
+      "id": "two-descriptions",
+      "title": "LLaVA describes scene content and degradation",
+      "paragraphs": [
+        "The first stage asks LLaVA for a descriptive summary of the image. A second instruction asks it to evaluate clarity, color, noise, and lighting. The resulting texts pass through a CLIP text encoder to produce separate high-level and low-level embeddings. High-level guidance might identify a white tower with trees around it. Low-level guidance might describe the same photograph as blurry and out of focus.",
+        "The distinction is more than terminology. A model told that the background is already clear may preserve blur that it should remove. Conversely, an erroneous diagnosis of corruption can encourage unnecessary changes. Figure 1 demonstrates that changing these prompts changes the reconstruction. These examples establish sensitivity to guidance; they do not establish that the language model always supplies the correct guidance.",
+        "The two descriptions are also imperfectly separated in practice. The examples contain judgments about composition and attractiveness alongside technical degradation. That is a useful reminder that natural-language diagnosis is a learned interpretation of the input, not a calibrated measurement of its blur kernel or noise distribution."
+      ]
+    },
+    {
+      "id": "attention",
+      "title": "Attention fusion and clean-target supervision",
+      "paragraphs": [
+        "The restoration stage starts from Stable Diffusion and a trainable ControlNet initialized from its U-Net encoder. ControlNet reads the low-resolution image and supplies image-conditioned features to the generator. XPSR introduces Semantic-Fusion Attention to combine the two text embeddings with those features.",
+        "Two parallel attention branches first process scene and degradation information separately. A fusion attention then uses the scene-conditioned result as its query and the degradation-conditioned result as its keys and values. This arrangement is intended to avoid having the second prompt overwrite information introduced by the first, a risk the authors associate with serial attention.",
+        "The diagram makes another design choice visible: low-level descriptions enter the image-conditioning branch, while the main U-Net receives high-level text guidance. The authors argue that degradation information is chiefly relevant when interpreting the observed image. Additional conditional attention lets the U-Net incorporate the resulting image features.",
+        "Language guidance alone cannot prevent the image encoder from copying compression blocks or blur into its representation. XPSR therefore adds a Degradation-Free Constraint during training. At three encoder scales, projected image features are compared with downsampled clean target images using an absolute-error loss. A corresponding constraint compares latent features with clean target latents.",
+        "These auxiliary losses encourage the controller to preserve content while dropping degradation in both pixel and latent representations. They are added to the usual diffusion noise-prediction objective. At inference, the clean target is unavailable and these constraints disappear; only what the controller learned from them remains."
+      ],
+      "figure": {
+        "src": "images/source/xpsr-1.webp",
+        "alt": "XPSR architecture showing LLaVA descriptions, separate high- and low-level embeddings, semantic-fusion attention, and degradation-free supervision.",
+        "caption": "Figure 2 shows the two text streams entering parallel attention branches. The dashed degradation-free route comes from the training target; it is not an extra high-resolution input available at inference.",
+        "sourceLabel": "Original paper, Figure 2, p. 6",
+        "sourceUrl": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf"
+      },
+      "figure_after": 2
+    },
+    {
+      "id": "results",
+      "title": "Higher quality scores, lower reference fidelity",
+      "paragraphs": [
+        "Table 1 reports strong no-reference quality scores across DIV2K-Val, RealSR, and DRealSR. On RealSR, XPSR reaches MUSIQ 70.23 and MANIQA 0.6059, compared with 69.56 and 0.5370 for SeeSR. These models judge the apparent quality of an output without comparing every detail with the corresponding target. The gains support the authors’ argument that the outputs look convincing to learned quality assessors.",
+        "The same table tells a different story about fidelity. On RealSR, XPSR has PSNR 24.19 dB versus SeeSR’s 25.31 dB, and LPIPS 0.3517 versus 0.2993, where lower is better. DISTS and FID also favor SeeSR in that comparison. The result is not an across-the-board improvement, and the disagreement extends beyond pixel-wise metrics to reference-based perceptual measures.",
+        "The paper argues that reference metrics can penalize perceptually attractive reconstructions, illustrating the point with selected crops. That is a reasonable concern, but it does not make lower fidelity irrelevant. Without an independent human evaluation that separates realism from faithfulness, the safest reading is that XPSR changes the quality–fidelity balance rather than resolving it."
+      ]
+    },
+    {
+      "id": "scope",
+      "title": "Checking detail inferred from language",
+      "paragraphs": [
+        "For creative enlargement, richer scene descriptions may be valuable. For a historical photograph, a small sign, or a scientific image, an incorrect but fluent description can introduce a consequential error. The fabric example is instructive: language can select a coherent texture, but the original low-resolution observation may not contain enough evidence to verify that selection.",
+        "Evaluation therefore needs to separate supported detail from plausible invention. Task-specific checks must establish whether the recovered texture, lettering, or structure agrees with the scene; a high no-reference quality score cannot establish that agreement."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "XPSR: Cross-modal Priors for Diffusion-based Image Super-Resolution",
+      "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Two LLaVA instructions generate high- and low-level descriptions",
+      "location": "Sections 3.2–3.3, pp. 5–7",
+      "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf"
+    },
+    {
+      "claim": "Parallel semantic attention and pixel/latent degradation-free constraints",
+      "location": "Sections 3.4–3.6, pp. 7–8",
+      "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf"
+    },
+    {
+      "claim": "RealSR MUSIQ, MANIQA, PSNR and LPIPS comparison",
+      "location": "Table 1, p. 10",
+      "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf"
+    }
+  ],
+  "status": "complete"
+}

@@ -1,0 +1,108 @@
+{
+  "key": "ptmvqa",
+  "title": "PTM-VQA: aligning frozen visual features for video quality prediction",
+  "standfirst": "PTM-VQA combines frozen visual models and learns a small shared representation for predicting how people rate a video.",
+  "thesis": "Pretrained features can support efficient quality prediction, but aligning their meaning is as important as collecting more of them.",
+  "source": {
+    "label": "PTM-VQA: Efficient Video Quality Assessment Leveraging Diverse PreTrained Models from the Wild",
+    "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf",
+    "kind": "Original research paper"
+  },
+  "sections": [
+    {
+      "id": "labels",
+      "title": "Learning video quality from limited human ratings",
+      "paragraphs": [
+        "A video-quality model predicts how viewers will rate a clip without necessarily having an undistorted original for comparison. This no-reference setting matters for user-generated video, where the original scene is usually unavailable. The model must judge blur, compression, camera motion, and other distortions while avoiding a simple confusion between interesting content and good visual quality.",
+        "Collecting labels is expensive because quality is subjective. Datasets typically aggregate ratings from many viewers into a mean opinion score, or MOS. PTM-VQA asks whether models already trained on much larger classification, action-recognition, and image–text datasets contain enough useful information to reduce the amount of task-specific learning."
+      ]
+    },
+    {
+      "id": "diversity",
+      "title": "Complementary cues from image and video pretraining",
+      "paragraphs": [
+        "The authors examine features from models including ConvNeXt, CLIP, ir-CSN-152, TimeSformer, and other visual backbones. Their pretraining objectives differ. A frame classifier can encode objects and textures; an action-recognition model can encode movement; an image–text model can organize scenes through broader semantic associations. These capabilities may indirectly capture cues relevant to perceptual quality.",
+        "For example, a shaky handheld sports clip may still have recognizable objects in each frame, while its temporal representation reveals unstable motion. A static but heavily compressed scene has the opposite emphasis. Combining image and video features gives the predictor multiple ways to detect a quality problem.",
+        "The paper’s feature visualizations suggest that some frozen representations already separate videos with different MOS ranges better than others. This is evidence of useful structure, not proof that pretraining has learned a universal concept of quality. The downstream task still needs labels and a mechanism for reconciling incompatible feature spaces."
+      ]
+    },
+    {
+      "id": "projection",
+      "title": "Projecting frozen features into a shared space",
+      "paragraphs": [
+        "PTM-VQA keeps the pretrained backbones frozen. Clip-based models receive temporally sampled frames; frame-based models process individual frames and average their features. Each backbone then has a small trainable transformation consisting of two fully connected layers with normalization and GELU activations. These transformations map different feature dimensions into a common space.",
+        "The transformed vectors are combined through a weighted average, and a regression head predicts the score. Freezing the feature extractors avoids updating every large model for a relatively small quality dataset. It does not remove their inference cost: extracting several representations still requires running the selected backbones.",
+        "Fusion happens before the final regression head, with training constraints operating across representations. This lets the model learn a shared quality-aware description of each video before predicting its score."
+      ],
+      "figure": {
+        "src": "images/source/ptmvqa-1.webp",
+        "alt": "PTM-VQA pipeline showing frame and clip models, transformation modules, weighted integration, quality regression, and ICID losses.",
+        "caption": "Figure 3 places the trainable transformation between frozen feature extractors and weighted fusion. The lower constraints align model outputs for one video and organize different videos by quality.",
+        "sourceLabel": "Original paper, Figure 3",
+        "sourceUrl": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "geometry",
+      "title": "Aligning models within videos and separating quality groups",
+      "paragraphs": [
+        "The Intra-Consistency and Inter-Divisibility loss addresses two distinct alignment problems. Intra-consistency encourages the transformed features from different models to point in similar directions for the same video, using cosine similarity. Without it, averaging vectors from unrelated representation spaces may discard useful information.",
+        "Inter-divisibility organizes different videos by quality. Because MOS is continuous rather than a category label, the authors divide score ranges into pseudo-clusters. A triplet-style objective encourages a video’s fused representation to be closer to its own quality-cluster center than to another cluster’s center. The centers provide a more stable target than arbitrary individual comparison clips.",
+        "Imagine a blurred landscape and a blurred indoor scene with similar ratings. A content classifier may place them far apart. The quality loss encourages the transformed features to recognize their comparable perceptual quality despite that semantic difference. At the same time, a sharp landscape should remain distinguishable from the blurred one. The binning is an approximation to a continuous judgment, and the paper finds that the choice of bins affects performance."
+      ]
+    },
+    {
+      "id": "selection",
+      "title": "Selecting and weighting backbones with the Davies–Bouldin Index",
+      "paragraphs": [
+        "The authors use the Davies–Bouldin Index, or DBI, to assess how well features separate quality groups. A lower value indicates more compact, better-separated clusters. DBI helps select pretrained models, and inverse-DBI weighting gives more influence to models with better quality separation.",
+        "The selected ensemble varies by dataset. KoNViD-1k uses ConvNeXt, ir-CSN-152, and CLIP, with 0.66 million trainable parameters. LIVE-VQC uses CLIP and TimeSformer, with 0.30 million. YouTube-UGC uses four backbones and 0.86 million trainable parameters. Table 1 reports roughly two hours of training on a single GPU for these settings. These counts describe learned task-specific parameters, not the total size of all frozen models.",
+        "This dataset-specific selection is useful but also limits the claim of universality. A deployment with a different content or distortion distribution may need to revisit which features are most reliable."
+      ]
+    },
+    {
+      "id": "evidence",
+      "title": "Benchmark correlations and dataset-specific limits",
+      "paragraphs": [
+        "On KoNViD-1k, PTM-VQA reports Pearson correlation 0.8718 and Spearman rank correlation 0.8568. Pearson measures agreement in the score relationship; Spearman measures agreement in ordering. On YouTube-UGC, the corresponding values are 0.8570 and 0.8578. The first three dataset experiments use repeated random 80/20 train–test splits, with averages over ten runs.",
+        "The results are less strong on LIVE-VQC: 0.8198 Pearson and 0.8110 Spearman, below Fast-VQA’s reported 0.844 and 0.823. The method therefore leads the paper’s dataset-size-weighted average without winning every dataset. Inverse-DBI weighting also helps unevenly: its LIVE-VQC Pearson result is slightly below equal weighting, while the YouTube-UGC improvement is clearer.",
+        "The approach is attractive when labels and training resources are limited and pretrained features are accessible. Its evidence supports a well-designed frozen-feature baseline with learned alignment. It does not establish that more backbones always help, that frozen features cover every distortion, or that a good benchmark correlation alone is sufficient for decisions about individual videos."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "PTM-VQA: Efficient Video Quality Assessment Leveraging Diverse PreTrained Models from the Wild",
+      "url": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Frozen backbones, learned projections, weighted feature integration",
+      "location": "Sections 3.1–3.2, Figure 3",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf"
+    },
+    {
+      "claim": "Intra-consistency, quality pseudo-clusters, inverse DBI weighting",
+      "location": "Sections 3.3–3.4",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf"
+    },
+    {
+      "claim": "Dataset-specific models and training costs",
+      "location": "Table 1",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf"
+    },
+    {
+      "claim": "Correlation results and split protocol",
+      "location": "Section 4.1, Table 2",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf"
+    },
+    {
+      "claim": "DBI gains differ by dataset",
+      "location": "Table 7",
+      "source": "https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf"
+    }
+  ],
+  "status": "complete"
+}

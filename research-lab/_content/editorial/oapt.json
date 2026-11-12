@@ -1,0 +1,96 @@
+{
+  "key": "oapt",
+  "title": "OAPT: offset-aware attention for double JPEG restoration",
+  "standfirst": "OAPT uses the offset between successive JPEG compressions to decide which image regions should attend to one another.",
+  "thesis": "Compression history can inform attention geometry, but estimating that history is itself an uncertain inverse problem.",
+  "source": {
+    "label": "OAPT: Offset-Aware Partition Transformer for Double JPEG Artifacts Removal",
+    "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "How cropping creates two JPEG grids",
+      "paragraphs": [
+        "A photograph saved as JPEG has already been quantized on an eight-by-eight pixel grid. Crop a few pixels from its top and left edges, then save it again, and the next JPEG encoder starts a different grid. The new blocks overlap pieces of the old ones. A restoration model now has to handle two interacting compression patterns rather than a single set of block boundaries.",
+        "This everyday sequence is the motivation for OAPT, the Offset-Aware Partition Transformer. It estimates how the first grid was displaced relative to the second and uses that estimate to rearrange features before attention. The proposal is narrowly targeted: the spatial grouping inside the network should reflect how the corruption was produced.",
+        "The problem is not captured by a single JPEG quality factor. Two images with the same final quality factor can have different damage depending on the earlier compression and the crop offset. OAPT makes that hidden spatial history an explicit modeling variable."
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "Grouping regions with shared compression patterns",
+      "paragraphs": [
+        "When both grid directions are misaligned, a block from the second compression intersects up to four blocks from the first. Its four pieces therefore have different relationships to the original boundaries. Pieces in the same relative position across many second-pass blocks share a compression pattern, even when they are far apart in the image.",
+        "For a simple example, shift the original grid by two pixels horizontally and vertically. Each new eight-by-eight block divides into rectangles with side lengths two and six. The four areas are 2 × 2, 2 × 6, 6 × 2, and 6 × 6, up to the chosen coordinate orientation. OAPT groups the corresponding pieces across blocks, letting attention compare regions with a common compression history.",
+        "Figure 2 separates the two jobs. A small predictor estimates the row and column offsets; the larger reconstructor receives those offsets at its hybrid attention blocks. The grouping is based on a predicted degradation pattern, not on a learned semantic label such as sky or skin. That difference explains why it can complement ordinary local attention."
+      ],
+      "figure": {
+        "src": "images/source/oapt-1.webp",
+        "alt": "Offset-aware partition transformer",
+        "caption": "Figure 2. A compact offset predictor controls the larger image reconstructor. Within each hybrid block, conventional spatial windows alternate with attention over regrouped compression patterns, followed by an inverse rearrangement.",
+        "sourceLabel": "Original paper, Figure 2",
+        "sourceUrl": "https://arxiv.org/abs/2408.11480"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "section-3",
+      "title": "Combining local and pattern-clustered attention",
+      "paragraphs": [
+        "The reconstructor alternates conventional window-based attention with pattern-clustered attention. Ordinary windows preserve contiguous spatial context, which helps interpret edges and textures. Pattern clustering rearranges features so that regions with matching positions within the double-compression grid are processed together. After attention, the inverse rearrangement restores their original locations.",
+        "Both views are needed. Grouping distant pieces by artifact type makes their degradation more comparable, but breaks the original locality of image content. A block that used only these regrouped features would lose an easy way to distinguish a real object boundary from a compression boundary. The hybrid block preserves local processing alongside the specialized sparse grouping.",
+        "The predictor is a lightweight, modified ResNet-18 using depthwise separable convolutions. It reads a 44 × 44 patch from the top-left corner, where the JPEG grid begins, and produces two rounded integers between zero and seven. The small input keeps prediction overhead low. It also means that confidence depends on whether that particular patch retains enough evidence of the earlier grid."
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "Results across compression histories",
+      "paragraphs": [
+        "Table 1 reports grayscale restoration across datasets and explicitly specified double-compression settings. On LIVE1 with first and second quality factors 30 and 50, and offset (4, 4), OAPT reaches 32.86 dB PSNR. FBCNN reaches 32.64 dB, while SwinIR reaches 32.77 dB. The gain is therefore 0.22 dB over FBCNN and 0.09 dB over SwinIR for this condition.",
+        "Changing the order of compression changes the comparison. On LIVE1 at quality factors 50 and 30 with the same offset, OAPT scores 32.80 dB, SwinIR 32.78 dB, and ART 32.83 dB. The specialized architecture is competitive but does not win every row. Table 1 provides point estimates without uncertainty intervals, so these small differences do not establish statistical significance. Quoting only a general improvement over prior work would hide this dependence on compression history.",
+        "The complete model also has overhead. Table 1 lists 12.96 million parameters and 293.60 billion multiply-accumulate operations for OAPT, compared with 11.49 million and 293.42 billion for SwinIR under the paper’s measurement setup. The claim that pattern clustering can be inserted without added parameters applies to the rearrangement mechanism, not to an entire blind system with an offset predictor."
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Restoration with uncertain offsets",
+      "paragraphs": [
+        "The strongest limitation appears in Table 4. On LIVE1 with quality factors 10 and 90 and offset (0, 2), the predictor’s reported accuracy is 97%. At quality factors 90 and 10 with offset (2, 0), it is 0%. Heavy second-pass compression can erase the evidence needed to locate the first-pass grid. The model cannot infer a boundary that the measurement no longer clearly records.",
+        "Yet zero exact-offset accuracy does not imply zero restoration benefit. In that latter condition, OAPT achieves 29.57 dB, compared with SwinIR’s 29.54 dB. A version fine-tuned with ground-truth offsets reaches 29.62 dB. The authors interpret this as two sources of benefit: correct grouping aligns artifact patterns, while even imperfect grouping can expand the receptive field through nonlocal interactions.",
+        "An improved reconstruction therefore does not necessarily mean the predictor recovered the true compression history. With an incorrect offset, part of the gain may come from the broader attention pattern. OAPT commits to a hard integer partition; representing uncertainty in that estimate is a possible extension motivated by these failures, not a capability of the published model.",
+        "Its assumptions should remain visible. The main analysis concerns two JPEG encodings with a pixel-level crop offset. Arbitrary resizing, rotation, several recompression stages, or a mixed-codec history can produce more complicated patterns than a single pair of shifted grids. Those cases require additional evidence before the same grouping logic can be assumed to apply."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Original paper",
+      "url": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Four-pattern geometry and hybrid attention",
+      "location": "Sections 3.1–3.2; Figures 1–3",
+      "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf"
+    },
+    {
+      "claim": "LIVE1 comparisons and model costs",
+      "location": "Table 1",
+      "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf"
+    },
+    {
+      "claim": "Offset accuracy 97% to 0% and oracle results",
+      "location": "Table 4; Section 4.3",
+      "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf"
+    },
+    {
+      "claim": "Predictor reliability limitation",
+      "location": "Section 5",
+      "source": "https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf"
+    }
+  ],
+  "status": "complete"
+}

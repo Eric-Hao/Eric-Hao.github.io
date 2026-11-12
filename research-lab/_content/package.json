@@ -1,18 +1,16 @@
 {
-  "name": "paper-deep-reader-render-check",
-  "version": "4.0.1",
+  "name": "research-lab-editorial",
+  "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=20" },
-  "scripts": { "test": "node --test tests/*.test.mjs" },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "python3 build_editorial.py",
+    "test": "python3 -m unittest discover -s tests -p test_editorial.py && python3 verify_editorial.py"
+  },
   "dependencies": {
-    "hast-util-from-html": "2.0.3",
-    "katex": "0.18.5",
-    "rehype-stringify": "10.0.1",
-    "remark-gfm": "4.0.1",
-    "remark-math": "6.0.0",
-    "remark-parse": "11.0.0",
-    "remark-rehype": "11.1.2",
-    "unified": "11.0.5"
+    "katex": "0.18.5"
   }
 }

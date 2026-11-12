@@ -1,0 +1,129 @@
+{
+  "key": "kat-v25-dev",
+  "title": "KAT-Coder-V2.5-Dev: reward shaping for reliable tool use",
+  "standfirst": "The open-weight, 35B-parameter mixture-of-experts model adapts the V2.5 training recipe with penalties for excessive tool calls, failed calls, and repetition.",
+  "thesis": "Behavior-specific rewards stabilize the reported Dev training run; benchmark results remain sensitive to the execution harness and tool compatibility.",
+  "source": {
+    "label": "Official model card",
+    "url": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev",
+    "kind": "model-card"
+  },
+  "sections": [
+    {
+      "id": "release-boundary",
+      "title": "The open-weight, text-only release",
+      "paragraphs": [
+        "A coding model can produce a correct-looking answer while failing to interact reliably with its tools. The KAT-Coder-V2.5-Dev model card makes that distinction concrete: early reinforcement learning encouraged bursts of parallel tool calls that destabilized training. The release is a useful case study in adapting a general model to an agent loop, where malformed actions and repeated content consume context and prevent otherwise plausible plans from executing.",
+        "Dev is an open-weight, text-only model built on Qwen3.6-35B-A3B, with 35 billion total parameters and three billion activated parameters. The card identifies an Apache-2.0 license and distributes language-model weights and configuration in Transformers format. It explicitly excludes vision and multimodal components. This is therefore not an open-weight copy of every capability associated with the broader KAT-Coder-V2.5 service, and the activated parameter count should not be mistaken for the total memory needed to host its weights."
+      ]
+    },
+    {
+      "id": "training-collapse",
+      "title": "Stabilizing reinforcement learning with tool-use penalties",
+      "paragraphs": [
+        "The recipe begins with supervised fine-tuning on 127,000 examples, followed by reinforcement learning. The authors say that a simple binary reward caused collapse as early as the second epoch. Inspection found increasing numbers of parallel tool calls within one turn, occasionally exceeding 70. This expanded context rapidly and produced invalid trajectories and execution errors. A final pass/fail signal did not adequately constrain the path used to pursue success.",
+        "The adapted reward penalizes excessive parallelism, failed calls, empty tool-call blocks, and substantial repetition. The authors report stable training for ten epochs after these changes. Abnormal tool labels fall from 9.34% to 0.28%, while single-turn continuous repetition falls from 0.34% to zero in their reported measurements. Those are behavior-specific observations, not evidence that every failure mode or repetitive response has been eliminated."
+      ]
+    },
+    {
+      "id": "inherited-recipe",
+      "title": "Inherited rollout and verifier infrastructure",
+      "paragraphs": [
+        "Four inherited design choices support this adaptation. Token-in/token-out consistency keeps rollout tokens identical to training tokens. Truncated importance sampling limits extreme weights arising when asynchronous rollouts use older policies. Sandbox and verifier validation prevents infrastructure failures from becoming false negative rewards. Hierarchical execution rewards give partial credit for meaningful progress rather than treating every unfinished attempt as equally uninformative.",
+        "The figure shows the broader V2.5 infrastructure that the Dev card says it retains. The gateway connects harnesses, rollout workers, environments, and the training buffer. It is not a Dev-specific training curve or a direct measurement of this checkpoint. That distinction is important because the card describes a reused recipe with additional behavior-specific adaptations, rather than publishing a fully isolated experiment for every component."
+      ],
+      "figure": {
+        "src": "images/source/kat-rl-infra.webp",
+        "alt": "V2.5 reinforcement-learning infrastructure linking agent harnesses, gateway, sandboxes, rollout engine and trainer.",
+        "caption": "Infrastructure from the V2.5 technical report, Figure 4, whose key designs the Dev model card says it retains. This is not a Dev-specific reward curve.",
+        "sourceLabel": "KAT-Coder-V2.5 technical report, Figure 4",
+        "sourceUrl": "https://arxiv.org/html/2607.05471v1"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "benchmark-context",
+      "title": "Benchmark results and harness sensitivity",
+      "paragraphs": [
+        "The card reports 69.40 on SWE-bench Verified, 63.00 on SWE-bench Multilingual, and 45.96 on SWE-bench Pro. The corresponding base-model scores in its table are 64.40, 57.00, and 40.63. All entries were reproduced in-house from public checkpoints, rather than copied from each model’s official report. These software-engineering evaluations use Claude Code 2.1.195, pass@1, temperature 1.0, top-p 0.95, and a 256K context budget.",
+        "Terminal-Bench 2.1 illustrates how sensitive the result remains to agent software. Dev scores 32.60 with Terminus-2 and 49.44 with Claude Code; the highlighted 41.02 is their average. Reporting only that average hides a substantial deployment choice. PinchBench uses OpenClaw 2026.3.13 and reports 93.43; SciCode reports 44.20 under a separate decoding configuration.",
+        "The authors explicitly flag that their base-model SWE results differ from official results by approximately ten percentage points, which they attribute to harness versions and evaluation differences. They also identify unsupported MultiEdit calls and context overflow as problems for some comparison models. These disclosures narrow the meaning of the ranking: it measures compatibility and performance in this particular pipeline, not an intrinsic ordering independent of tools.",
+        "Each model was evaluated once per dataset, except for retesting obvious errors, so the card does not establish run-to-run uncertainty. The reported gains over the base model apply to this in-house setup. The tool-call measurements provide a complementary view of the adaptation: they track behaviors targeted by the reward changes, while the benchmark table measures task outcomes inside specific harnesses."
+      ],
+      "table": {
+        "caption": "In-house results reported in the official Dev model card",
+        "headers": [
+          "Benchmark",
+          "Dev",
+          "Qwen3.6-35B-A3B"
+        ],
+        "rows": [
+          [
+            "SWE-bench Verified",
+            "69.40",
+            "64.40"
+          ],
+          [
+            "SWE-bench Multilingual",
+            "63.00",
+            "57.00"
+          ],
+          [
+            "SWE-bench Pro",
+            "45.96",
+            "40.63"
+          ],
+          [
+            "Terminal-Bench 2.1, two-harness mean",
+            "41.02",
+            "32.02"
+          ]
+        ],
+        "note": "Single evaluations per model and benchmark, with retests only for obvious errors. SWE rows use Claude Code 2.1.195; Terminal-Bench averages Terminus-2 and Claude Code."
+      }
+    }
+  ],
+  "references": [
+    {
+      "label": "Original source",
+      "url": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev"
+    },
+    {
+      "label": "Related V2.5 technical report",
+      "url": "https://arxiv.org/abs/2607.05471"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Text-only release, base model, parameter counts and license",
+      "location": "Model-card front matter and release introduction",
+      "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev"
+    },
+    {
+      "claim": "127K SFT examples; collapse by epoch two; over 70 parallel calls; ten stable epochs",
+      "location": "Post-training section",
+      "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev"
+    },
+    {
+      "claim": "Abnormal tool labels and repetition measurements",
+      "location": "KAT-Coder-V2.5-Dev Highlights",
+      "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev"
+    },
+    {
+      "claim": "Benchmark scores, single-run protocol and exact harness settings",
+      "location": "Benchmark performance table and evaluation notes",
+      "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev"
+    },
+    {
+      "claim": "Approximately ten-point base-model discrepancy and tool mismatch caveats",
+      "location": "Evaluation notes: Anomaly description",
+      "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev"
+    },
+    {
+      "claim": "Inherited architecture illustration",
+      "location": "V2.5 technical report, Figure 4; card Post-training components",
+      "source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev"
+    }
+  ],
+  "status": "complete"
+}

@@ -1,0 +1,121 @@
+{
+  "key": "color",
+  "title": "ASASR: frequency-aware preference learning for faithful super-resolution",
+  "standfirst": "ASASR combines frequency-aware preference learning with targeted negative examples to reduce structural artifacts in generative super-resolution.",
+  "thesis": "Faithfulness depends on the geometry of the training error and on whether the model sees informative examples of its own plausible mistakes.",
+  "source": {
+    "label": "Coloring the Noise: Adversarial Sobolev Alignment for Faithful Image Super Resolution",
+    "url": "https://arxiv.org/abs/2605.23264",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "When plausible detail changes the scene",
+      "paragraphs": [
+        "A restored sign can look crisp while containing the wrong letter. A building facade can have convincing texture while its window edges bend. These errors matter because generative super-resolution is asked to recover a particular image, not merely produce a plausible member of the same visual category.",
+        "ASASR examines this problem through frequency-aware preference learning. Its premise is that an ordinary squared-error geometry does not sufficiently distinguish the structural mistakes that matter in restoration. The method changes how errors at different spatial frequencies are weighted and supplies negative examples designed to resemble realistic model failures.",
+        "The authors describe this as aligning restoration with a natural-image manifold. In training, a flow-based restorer learns to prefer a reference-consistent image over a closely related, structurally damaged alternative. The comparison is particularly sensitive to fine-scale discrepancies."
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "Colored noise defines a frequency-weighted loss",
+      "paragraphs": [
+        "White Gaussian noise has equal power across spatial frequencies. The paper replaces the identity covariance in the transition-likelihood construction with a covariance whose spectral power decreases with frequency. “Colored” refers to that frequency distribution, not to RGB color channels.",
+        "A Gaussian likelihood penalizes errors using the inverse covariance, also called the precision matrix. If noise variance is smaller at high frequencies, a high-frequency discrepancy becomes more costly under that likelihood. The resulting squared error is a Sobolev norm: a frequency-weighted measure that accounts for signal regularity rather than treating all Fourier components equally.",
+        "As a small illustrative calculation, suppose two residuals have the same ordinary squared magnitude but one lies at a frequency whose weight is four times larger. Its contribution to the new objective is four times larger. The method does not simply blur the reconstruction because its noise covariance is low-pass; the inverse covariance used in the loss emphasizes fine-scale error.",
+        "Figure 2 depicts this change as a move from isotropic to anisotropic geometry. The drawn manifolds are a conceptual explanation, not measured evidence that generated images exactly occupy the ground-truth manifold."
+      ],
+      "figure": {
+        "src": "images/source/color-1.webp",
+        "alt": "Spectral misalignment and the ASASR formulation",
+        "caption": "Figure 2. The authors contrast ordinary isotropic error geometry with a spectrally weighted alternative and an adversary trained on plausible restoration failures. The manifold picture illustrates the proposed mechanism; the benchmark tables provide the empirical test.",
+        "sourceLabel": "Original paper, Figure 2",
+        "sourceUrl": "https://arxiv.org/abs/2605.23264"
+      },
+      "figure_after": 2
+    },
+    {
+      "id": "section-3",
+      "title": "Building aligned preference pairs",
+      "paragraphs": [
+        "Direct preference optimization compares a preferred outcome with a rejected outcome relative to a reference model. For restoration, arbitrary generated image pairs can be unhelpful: if the scene layout changes, the learning signal may rank different semantics rather than discriminate a subtle restoration error.",
+        "ASASR trains a parametric adversary using restoration failures from existing models. It then generates an imperfect estimate from an intermediate preferred trajectory and reconstructs a corresponding rejected state using the same noise realization and time. This coupled sampling is intended to hold content alignment steady while exposing artifact differences.",
+        "The adversary is therefore more specific than random corruption. The paper illustrates deformed text and architectural distortions as negatives, where the image remains plausible enough that a simple model confidence score may not strongly reject it. The training target becomes a relative judgment about two related reconstructions rather than a generic instruction to increase sharpness.",
+        "The implementation uses FLUX.1-dev with low-rank adaptation for both the restorer and adversarial network. The adversary’s training examples include outputs of Real-ESRGAN, SeeSR, and SUPSR on a random 25% subset of DIV2K, LSDIR, RealSR, and DRealSR. Because those dataset names also appear in evaluation, image-level train–test separation needs to be verified before treating the real-world results as fully held-out generalization. That choice makes the learned failure distribution relevant to contemporary restoration methods, while also making its coverage dependent on those source errors."
+      ]
+    },
+    {
+      "id": "section-4",
+      "title": "The local geometry of adversarial perturbations",
+      "paragraphs": [
+        "The paper connects its adversarial direction to the Riesz representation theorem: a gradient depends on the inner product used to define direction and length. Under the Sobolev metric, the steepest local direction is a spectrally preconditioned version of the ordinary gradient. A bounded perturbation can therefore target a different kind of failure than an unconstrained pixel-space perturbation.",
+        "Propositions 4.1 and 4.2 formalize this connection under the stated trust-region and model-capacity assumptions. The trained adversary is meant to approximate the resulting direction efficiently. The argument should not be expanded into a guarantee that a finite network finds every meaningful hallucination or that the global training problem reaches an ideal solution.",
+        "This distinction also clarifies the role of the spectral prior. Natural-image frequency statistics are useful aggregate regularities. Matching them cannot establish that a specific letter, face, or edge is correct. The paired evidence and downstream experiments are needed to evaluate that stronger notion of faithfulness."
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Perceptual, structural, and recognition results",
+      "paragraphs": [
+        "Table 1 evaluates four-times super-resolution with 128 × 128 inputs and 512 × 512 targets. On the synthetic DIV2K validation benchmark, ASASR reports LPIPS 0.2784 compared with 0.3130 for DP2O-SR, and SSIM 0.6171 compared with 0.5064. Real-ESRGAN still has higher PSNR, at 21.11 dB versus 20.60 dB. On RealSR, ASASR’s LPIPS is 0.2497 versus SwinIR-GAN’s 0.2535, but its PSNR is 24.09 versus 24.44 dB.",
+        "The ablation provides more direct evidence for the proposed geometry. Table 3 reports LPIPS 0.2784 with Sobolev guidance versus 0.3115 with Euclidean guidance. Replacing adversarial preference alignment with supervised-data preference alignment yields 0.3109. These experiments support both parts of the method in the reported setup, rather than attributing all improvement to a larger backbone.",
+        "Downstream recognition adds a useful check beyond appearance metrics. Table 2 reports COCO object-detection AP of 35.62 after ASASR, versus 33.51 after DP2O-SR and 48.32 on ground truth. The improvement indicates that recovered structure helps the evaluated detector, while the remaining gap makes clear that restoration has not recovered all original information."
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "Inference cost and unresolved failure modes",
+      "paragraphs": [
+        "The approach still has a substantial inference cost. Appendix Table 5 reports 19.60 seconds per image and 33.02 GB peak VRAM on an NVIDIA A800, averaged over one hundred runs excluding warm-up. The training improvement does not turn the FLUX-based system into a lightweight real-time restorer.",
+        "Its central limitation is also a familiar one for generative reconstruction: neither natural spectral statistics nor a learned adversary can resolve information absent from the measurement. The negative generator may underrepresent failure modes outside its training examples. Broader corruption shifts and rare structures therefore need separate testing rather than being covered by the mathematical framing.",
+        "Stronger evidence of faithfulness would require targeted tests of exact identities and geometry, particularly where a plausible mistake has a high practical cost. The reported perceptual, structural, and detection results support the training approach, but do not settle those questions."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Original paper",
+      "url": "https://arxiv.org/abs/2605.23264"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Colored covariance induces Sobolev metric",
+      "location": "Sections 3.1–3.2; Equations 12–15",
+      "source": "https://arxiv.org/abs/2605.23264"
+    },
+    {
+      "claim": "Shared-noise adversarial negative generation",
+      "location": "Section 4.1; Equations 16–18",
+      "source": "https://arxiv.org/abs/2605.23264"
+    },
+    {
+      "claim": "Local theoretical assumptions",
+      "location": "Section 4.2; Propositions 4.1–4.2",
+      "source": "https://arxiv.org/abs/2605.23264"
+    },
+    {
+      "claim": "DIV2K and RealSR comparisons",
+      "location": "Table 1; Section 5.1",
+      "source": "https://arxiv.org/abs/2605.23264"
+    },
+    {
+      "claim": "Geometry and adversary ablations",
+      "location": "Table 3",
+      "source": "https://arxiv.org/abs/2605.23264"
+    },
+    {
+      "claim": "COCO detection results",
+      "location": "Table 2; Section 5.2",
+      "source": "https://arxiv.org/abs/2605.23264"
+    },
+    {
+      "claim": "Latency and peak VRAM",
+      "location": "Appendix C.1; Table 5",
+      "source": "https://arxiv.org/abs/2605.23264"
+    }
+  ],
+  "status": "complete"
+}

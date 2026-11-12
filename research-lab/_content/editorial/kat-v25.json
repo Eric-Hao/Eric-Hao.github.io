@@ -1,0 +1,159 @@
+{
+  "key": "kat-v25",
+  "title": "KAT-Coder-V2.5: verified environments and hindsight-assisted learning",
+  "standfirst": "KAT-Coder-V2.5 combines environment verification, trajectory recovery, and an asymmetric actor–critic objective to improve the feedback used to train coding agents.",
+  "thesis": "Reliable execution feedback is part of the learning algorithm: a coding policy cannot improve consistently when the environment labels its actions incorrectly.",
+  "source": {
+    "label": "Original technical report",
+    "url": "https://arxiv.org/abs/2607.05471",
+    "kind": "technical-report"
+  },
+  "sections": [
+    {
+      "id": "reward-corruption",
+      "title": "Sandbox failures as corrupted feedback",
+      "paragraphs": [
+        "A coding agent writes a plausible repair, runs the tests, and receives a failure. That feedback is valuable only if the tests actually ran in the intended environment. A timeout, an incorrect environment variable, or a broken container can turn successful reasoning into a negative training example. Repeated across reinforcement-learning rollouts, these infrastructure faults change the training signal.",
+        "The KAT-Coder-V2.5 report starts from this practical bottleneck. In an audit of early rollouts, the authors found that roughly 16% of trajectories contained a sandbox-attributable failure. After infrastructure repairs, they report a feedback error rate below 2% and approximately an order-of-magnitude reduction in training-collapse frequency. These are engineering observations from their system, not controlled proof that infrastructure explains every model improvement. They nevertheless frame the report’s central idea: agent learning depends on the quality of the entire execution loop."
+      ],
+      "intro": true
+    },
+    {
+      "id": "environment-construction",
+      "title": "AutoBuilder’s environment acceptance checks",
+      "paragraphs": [
+        "AutoBuilder reconstructs runnable tasks from repository changes. The task description is regenerated from the code and test patches, with separate statements of the problem, required behavior, and interface constraints. That matters because an issue may describe an earlier understanding of a bug rather than the change that eventually fixed it. The regenerated description must be self-contained and consistent with the tests.",
+        "A build agent prepares dependencies and commands; a verification agent executes them from a clean checkout. Acceptance requires structured test-framework output, collection of more than 90% of expected tests, and reproducible outcomes. A zero exit status alone is insufficient: a misconfigured test command can succeed while collecting nothing. The authors report raising construction success from 16.5% to 57.2%, producing more than 100,000 verifiable environments across 12 languages.",
+        "The pipeline also removes solution-revealing traces such as git history and commit metadata. Dependency and environment changes that are not part of the intended coding challenge are applied beforehand. The aim is to measure and train repair behavior, rather than accidentally rewarding environment archaeology or recovery of a reference patch."
+      ],
+      "figure": {
+        "src": "images/source/kat-v25-1.webp",
+        "alt": "The V2.5 pipeline builds verified environments from repository artifacts and recovers, filters and diversifies agent trajectories.",
+        "caption": "The report separates environment construction from trajectory improvement. Verification checks that tests run; hint-free replay and process filtering determine which successful traces are suitable supervision.",
+        "sourceLabel": "KAT-Coder-V2.5, software-engineering pipeline",
+        "sourceUrl": "https://arxiv.org/abs/2607.05471"
+      },
+      "figure_after": 2
+    },
+    {
+      "id": "near-misses",
+      "title": "Hint-assisted recovery and hint-free supervision",
+      "paragraphs": [
+        "A failed trajectory can contain useful work. The agent may have found the right file but missed an exact schema requirement or stopped before inspecting a decisive assertion. V2.5 introduces process hints to recover such near misses, reporting that roughly 20% of previously zero-pass tasks become solvable through this intervention. The number describes this selected recovery setting, not a 20-point improvement on a public benchmark.",
+        "Keeping the hinted transcript would create a training-distribution problem: a future user will not necessarily supply that assistance. The authors therefore retain the verified patch and regenerate a hint-free trajectory from the original context, accepting only verified, consistent samples without hint leakage. They also filter successful trajectories for shortcuts, test tampering, weak validation, and poor adherence to repository conventions. A passing test suite is a gate, not the complete definition of a desirable engineering process.",
+        "KwaiClawEnv extends the same philosophy beyond repositories. Executable services, seeded tasks, and multi-stage validation provide tool-use environments. The report describes more than 100,000 retained high-quality task instances, with an average of 15 tool calls and some trajectories exceeding 100 steps. Service availability, task schemas, fixture consistency, and scoring correctness are checked before these interactions become training data."
+      ]
+    },
+    {
+      "id": "credit-assignment",
+      "title": "Hindsight-assisted credit assignment",
+      "paragraphs": [
+        "Long tasks make credit assignment difficult: a final failed test does not identify which earlier action caused the failure. V2.5 uses an asymmetric actor–critic formulation of proximal policy optimization. The actor, which chooses actions, sees ordinary interaction history. During training, the critic additionally sees hindsight information such as final outcomes, test results, patch differences, and later turns. That extra information is intended to improve estimates of an action’s value. The critic and its privileged context are discarded at deployment.",
+        "The reward has three layers. Full task credit requires both fixing defect-revealing tests and preserving regression tests. Behavioral penalties address repetition, malformed tool calls, and excessive parallel calls. Partial credit rewards useful progress in failed attempts, including relevant-file retrieval and partial test success. A separately trained model judge evaluates contextual process failures that rigid rules cannot reliably detect. The resulting objective is broader than a binary pass/fail label, although its quality remains dependent on the verifiers and judge."
+      ]
+    },
+    {
+      "id": "interface-robustness",
+      "title": "Token consistency, interface variation, and expert fusion",
+      "paragraphs": [
+        "The implementation preserves exact rollout tokens instead of reconstructing them through a chat template during training. At approximately 200 turns, the authors observed retokenization drift in around 40% of samples. Their gateway uses the backend generation endpoint to maintain token identity. This is a different problem from an agent choosing a bad action: the learner must first receive an accurate record of the action that was actually sampled.",
+        "A tool interface can become an unintended shortcut. V2.5 varies tool protocols, history handling, and control flow so that a policy cannot depend entirely on one harness’s conventions. Simple white-box harnesses provide relatively clean trajectories; production-style black-box harnesses expose compression, context reorganization, and richer tool use. The report presents this as domain randomization over the agent’s operating interface.",
+        "Five expert policies are subsequently combined through multi-teacher on-policy distillation. The student generates trajectories, and the relevant domain teacher supplies token-level supervision. Long student-generated histories can drift outside the teacher’s reliable operating distribution, so the method starts from teacher trajectories and then downweights or truncates supervision when the two models’ top-token predictions diverge persistently. This limits the supervision supplied on histories where teacher and student predictions persistently disagree."
+      ]
+    },
+    {
+      "id": "capability-profile",
+      "title": "Benchmark profile and attribution limits",
+      "paragraphs": [
+        "In the report’s comparison, V2.5 scores 65.2 on SWE-Bench Pro and 53.1 on the internal KAT Code Bench, behind Opus 4.8 at 69.2 and 57.3. Its PinchBench average is 94.9, versus 93.5 for Opus 4.8. However, the PinchBench row is explicitly sourced from the public leaderboard on July 2, 2026; it is an exception to the report’s otherwise unified-harness evaluation description.",
+        "The broader capability profile is less uniformly strong. V2.5 records 60.7 on Terminal-Bench 2.1, below all four comparison entries in the table, and 50.3 on SciCode. On the internal KAT Claw Bench, its 85.5 trails GLM-5.2 at 86.8 and Opus 4.8 at 90.7. These results support a repository-focused and tool-use-oriented model, not across-the-board leadership.",
+        "The report does not provide a complete factorial ablation separating environment repairs, data recovery, reward shaping, asymmetric PPO, and distillation. Internal benchmarks also require independent scrutiny of task selection and scoring. The measurements establish the combined system’s reported performance, while the sandbox audit supplies more direct evidence about feedback quality. They leave the contribution of each training component unresolved."
+      ],
+      "table": {
+        "caption": "Selected scores from the report’s Table 4",
+        "headers": [
+          "Benchmark",
+          "KAT-Coder-V2.5",
+          "Opus 4.8"
+        ],
+        "rows": [
+          [
+            "SWE-Bench Pro",
+            "65.2",
+            "69.2"
+          ],
+          [
+            "KAT Code Bench (internal)",
+            "53.1",
+            "57.3"
+          ],
+          [
+            "PinchBench average*",
+            "94.9",
+            "93.5"
+          ],
+          [
+            "KAT Claw Bench (internal)",
+            "85.5",
+            "90.7"
+          ],
+          [
+            "Terminal-Bench 2.1",
+            "60.7",
+            "84.6"
+          ],
+          [
+            "SciCode",
+            "50.3",
+            "53.5"
+          ]
+        ],
+        "note": "* Public leaderboard values retrieved July 2, 2026. The report describes Claude Code as the default unified evaluation harness, with exceptions noted. Table 4 gives point estimates without uncertainty intervals; close rankings should not be read as statistically established differences."
+      }
+    }
+  ],
+  "references": [
+    {
+      "label": "Original source",
+      "url": "https://arxiv.org/abs/2607.05471"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "AutoBuilder test-collection gate, scale and construction success",
+      "location": "Section 2.1, p. 4",
+      "source": "https://arxiv.org/abs/2607.05471"
+    },
+    {
+      "claim": "Hint recovery reaches roughly 20% of previously zero-pass tasks",
+      "location": "Section 2.2, p. 5",
+      "source": "https://arxiv.org/abs/2607.05471"
+    },
+    {
+      "claim": "KwaiClawEnv task counts and lengths",
+      "location": "Section 3.3.2, p. 8",
+      "source": "https://arxiv.org/abs/2607.05471"
+    },
+    {
+      "claim": "Retokenization drift and sandbox error reduction",
+      "location": "Sections 4.2.1–4.2.2, pp. 10–12",
+      "source": "https://arxiv.org/abs/2607.05471"
+    },
+    {
+      "claim": "Asymmetric critic and three-tier rewards",
+      "location": "Sections 4.3–4.4, pp. 12–15",
+      "source": "https://arxiv.org/abs/2607.05471"
+    },
+    {
+      "claim": "Five-teacher fusion and drift-aware truncation",
+      "location": "Section 5, pp. 15–17",
+      "source": "https://arxiv.org/abs/2607.05471"
+    },
+    {
+      "claim": "Benchmark values and PinchBench exception",
+      "location": "Table 4, p. 19",
+      "source": "https://arxiv.org/abs/2607.05471"
+    }
+  ],
+  "status": "complete"
+}

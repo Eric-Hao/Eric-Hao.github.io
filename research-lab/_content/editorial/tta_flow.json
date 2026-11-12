@@ -1,0 +1,103 @@
+{
+  "key": "tta_flow",
+  "title": "ResFlow-Tuner: searching flow trajectories for image restoration",
+  "standfirst": "ResFlow-Tuner explores alternative trajectories inside a flow model and uses an ensemble of image-quality rewards to choose which ones to continue.",
+  "thesis": "Extra inference computation can improve perceptual restoration, but the verifier defines what improvement means.",
+  "source": {
+    "label": "Tuning Real-World Image Restoration at Inference: A Test-Time Scaling Paradigm for Flow Matching Models",
+    "url": "https://arxiv.org/abs/2603.22027",
+    "kind": "paper"
+  },
+  "sections": [
+    {
+      "id": "section-1",
+      "title": "Allocating more inference compute to difficult images",
+      "paragraphs": [
+        "A restoration model trained once must handle many different corruptions. At inference, however, some images may deserve a larger computation budget than others. ResFlow-Tuner explores this possibility with a FLUX-based restoration model: generate alternative intermediate states, preview their likely outputs, and continue the candidates that receive better quality scores.",
+        "The restoration model remains fixed during this process. “Test-time scaling” means additional search and evaluation for each image, with different deployment costs from adapting weights that will later process many images.",
+        "The paper couples this search with a restoration-specific conditioning architecture. It should therefore be read as two related interventions: adapting a large generative prior to an observed image, and deciding how much additional inference work to spend on that adapted model."
+      ]
+    },
+    {
+      "id": "section-2",
+      "title": "Conditioning on image tokens and a caption",
+      "paragraphs": [
+        "The conditioning pipeline first applies SwinIR to obtain a cleaner reference image. A vision-language model then describes that reference. Cleaning before captioning is intended to reduce semantic mistakes caused by severe degradation, although it cannot guarantee a correct description of information that is genuinely missing.",
+        "The restoration model receives tokens for the current generative latent, the low-quality image, and the text caption in a unified sequence. Its multimodal attention can directly exchange information among these tokens. The image supplies spatial evidence while the caption supplies a weaker semantic description. Position and modality encodings distinguish their roles.",
+        "Figure 2 makes the architecture and the search procedure visible together. The left side provides the conditions used throughout generation; the right side shows interventions at selected denoising steps. A caption describing a windmill, for example, can guide coherent structure, but it can also reinforce an incorrect interpretation. The image-conditioning pathway remains essential to keeping this a restoration task rather than unconstrained illustration."
+      ],
+      "figure": {
+        "src": "images/source/tta_flow-1.webp",
+        "alt": "ResFlow-Tuner architecture",
+        "caption": "Figure 2. The left panels describe multimodal restoration and the multi-step preview estimator. On the right, candidate trajectories branch only at selected interventions; reward-based filtering determines which states continue.",
+        "sourceLabel": "Original paper, Figure 2",
+        "sourceUrl": "https://arxiv.org/abs/2603.22027"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "section-3",
+      "title": "Perturbing and ranking candidate trajectories",
+      "paragraphs": [
+        "An ordinary flow-model trajectory is deterministic once its initial noise and conditions are fixed. Repeating the same step does not produce a new candidate. ResFlow-Tuner therefore injects noise at selected intermediate states, creating alternatives that can be explored before committing further computation.",
+        "Each candidate undergoes several partial denoising steps. A lookahead estimator then predicts a cleaner endpoint for decoding and scoring. This Multi-Step Partial Denoising Estimator is more expensive than evaluating a raw noisy state or a one-step approximation, but aims to give the verifier a more representative preview of the eventual result.",
+        "An ensemble combines an aesthetic predictor, CLIPScore, and ImageReward. Because their raw score ranges differ, the method averages candidate ranks rather than raw values. For illustration, a candidate ranked first, second, and second has an average rank of 1.67, beating one ranked third, first, and third at 2.33. The algorithm keeps the top candidates for subsequent search, rather than assuming one verifier’s scale is comparable with another’s.",
+        "The paper motivates intermediate perturbations through the relationship between deterministic ordinary differential equations and stochastic differential equations. With appropriately matched drift and noise terms, stochastic dynamics can share marginal distributions with an associated deterministic flow. This provides a starting point for thinking about alternative trajectories.",
+        "The implemented procedure is more selective. It adds discrete noise, performs deterministic partial rollouts, and uses task-specific rewards to keep a subset of candidates. Section 3.2 explicitly says the method omits a score-related correction term and does not strictly follow the continuous SDE formalism. Reward selection also intentionally favors some outcomes over others.",
+        "Consequently, the deployed search should not be presented as an exact distribution-preserving sampler. Its evidence is empirical: does the altered search produce useful restorations under the chosen metrics and budget? The theoretical connection explains why perturbing flow trajectories is worth considering, but it does not prove that arbitrary rewarded outputs preserve the original scene or the model’s unmodified distribution."
+      ]
+    },
+    {
+      "id": "section-5",
+      "title": "Quality gains at 15× and 40× compute",
+      "paragraphs": [
+        "The cleanest comparison is the LSDIR-Val ablation in Table 4. Without test-time scaling, LPIPS is 0.4015, FID is 22.91, and MUSIQ is 71.47. With four intervention rounds and seven candidates, those become 0.3721, 19.82, and 74.21. Lower LPIPS and FID and higher MUSIQ are preferred in these comparisons.",
+        "The same table lists an inference-computation increase from 0.025 × 10⁴ to 0.375 × 10⁴; Section 5.3 describes this as fifteen times the baseline number of function evaluations. Increasing to ten rounds and fifteen candidates gives LPIPS 0.3675 and MUSIQ 76.33 at 1.0 × 10⁴, or forty times the baseline. The gains continue in these tested settings, but their marginal return diminishes.",
+        "Whether this additional search is economical depends on image volume, hardware utilization, and the cost of alternative training investments. The paper establishes a quality-budget curve for the tested settings."
+      ]
+    },
+    {
+      "id": "section-6",
+      "title": "What the reward ensemble can verify",
+      "paragraphs": [
+        "The main benchmarks also distinguish perceptual quality from reference agreement. On mildly degraded DIV2K-Val, Table 1 reports MUSIQ 75.54 for ResFlow-Tuner versus 66.53 for FaithDiff, but PSNR is 23.11 dB versus BSRGAN’s 27.63 dB. These measure different properties. Aesthetic and semantic rewards can favor a pleasing reconstruction without verifying that its new fine detail existed in the original image.",
+        "Rank aggregation solves a calibration issue among reward scales; it does not make their errors independent or remove shared preferences. The three verifiers can agree on a polished but inaccurate interpretation. Spending more compute searching their objective may strengthen that preference rather than recover missing evidence.",
+        "Perceptual restoration with a variable per-image budget is the clearest fit for this approach. Documentary recovery and strict low-latency workloads need different evidence. In particular, evaluation should track which details change as search expands and whether users prefer those changes when they can compare them with the original reference."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Original paper",
+      "url": "https://arxiv.org/abs/2603.22027"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Unified conditioning",
+      "location": "Section 3.1; Figure 2",
+      "source": "https://arxiv.org/abs/2603.22027"
+    },
+    {
+      "claim": "Perturbation, rollout, ranking, top-M selection",
+      "location": "Section 3.2; Equations 11–13; Algorithm",
+      "source": "https://arxiv.org/abs/2603.22027"
+    },
+    {
+      "claim": "Omitted correction and approximation caveat",
+      "location": "Section 3.2, PDF page 9",
+      "source": "https://arxiv.org/abs/2603.22027"
+    },
+    {
+      "claim": "LSDIR-Val scaling and compute",
+      "location": "Table 4; Section 5.3",
+      "source": "https://arxiv.org/abs/2603.22027"
+    },
+    {
+      "claim": "DIV2K-Val-I quality versus PSNR",
+      "location": "Table 1",
+      "source": "https://arxiv.org/abs/2603.22027"
+    }
+  ],
+  "status": "complete"
+}

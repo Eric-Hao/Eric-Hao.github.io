@@ -1,0 +1,107 @@
+{
+  "key": "magknot",
+  "title": "A magnetic knot cascade driven by successive flux-tube reconnections",
+  "standfirst": "Simulations follow a pair of unknotted helical flux tubes through successive reconnections, revealing a temporary increase in topological complexity.",
+  "thesis": "Reconnection can build knots as well as undo them when magnetic forces generate the motion that brings field lines together again.",
+  "source": {
+    "label": "Magnetic knot cascade via the stepwise reconnection of helical flux tubes",
+    "url": "https://doi.org/10.1017/jfm.2020.1145",
+    "kind": "Original research paper"
+  },
+  "sections": [
+    {
+      "id": "direction",
+      "title": "Reconnection creates knots in initially unknotted tubes",
+      "paragraphs": [
+        "If a tangled structure loses energy, it is tempting to expect its geometry to become simpler at every moment. Magnetic reconnection complicates that picture. Reconnection changes which parts of a magnetic field are connected, allowing structures to reorganize in ways that smooth deformation alone cannot accomplish. It can untie an existing knot, but it can also create one.",
+        "Hao and Yang demonstrate the second possibility in a controlled magnetohydrodynamic simulation. Two initially unknotted, mutually perpendicular helical flux tubes approach one another. Their field lines twist with opposite handedness. Successive reconnections first form simple knots and then more complex ones before dissipation eventually stops the process."
+      ]
+    },
+    {
+      "id": "initial",
+      "title": "Orthogonal tubes with opposite helical twist",
+      "paragraphs": [
+        "The initial velocity field pushes the tubes toward contact near the center of a periodic domain. The main case uses opposite twist parameters of plus and minus 10, a 512-cubed grid, and equal viscosity and magnetic diffusivity of 0.005. Equal initial kinetic and magnetic energies set up substantial two-way coupling between field and flow.",
+        "This is a deliberately structured encounter. The symmetry, prescribed initial flow, and absence of initial perturbation modes help make the sequence interpretable. They also distinguish the study from generic turbulent reconnection, where many structures interact and tracing a single causal chain is harder.",
+        "To track the tubes, the authors develop a magnetic-surface field: a scalar whose level surfaces approximately follow magnetic field lines. This provides a geometric envelope on which selected field lines can be examined. A contour of magnetic-field strength alone can change shape or disappear as the field weakens, without clearly revealing how the underlying connections have changed."
+      ]
+    },
+    {
+      "id": "sequence",
+      "title": "Lorentz-force feedback drives successive reconnections",
+      "paragraphs": [
+        "Around dimensionless time 1, an initial X-type reconnection creates antiparallel U-shaped field lines that move away from the central magnetic structure, or plasmoid. The authors diagnose this stage using magnetic flux through diagonal symmetry planes as well as surface visualizations. The change in connectivity creates the geometry needed for subsequent knotting.",
+        "Around time 1.75, a second reconnection joins a U-shaped helical line wrapping around the central region with a helical line in a straighter tube. This forms an overhand knot. The event coincides with an increase in kinetic energy and changes in helicity within the inner tubes, indicating active conversion of magnetic energy into fluid motion.",
+        "The newly distorted magnetic field then exerts a Lorentz force that drives local rotating and stretching motion. That motion brings parts of the field together again. A third reconnection around time 2 produces double overhand knots, followed by further reconnections and triple overhand knots around time 2.25. The magnetic field helps create the flow that enables its next topological transformation."
+      ]
+    },
+    {
+      "id": "counting",
+      "title": "Classifying knots with 3, 5, and 7 crossings",
+      "paragraphs": [
+        "A curve can look tangled in a projection even when it is topologically simple. The authors therefore reduce field-line diagrams using Reidemeister moves, transformations that change a drawing without cutting the curve. The minimum crossing number counts crossings that cannot be removed this way.",
+        "Figure 15 identifies representative overhand, double-overhand, and triple-overhand configurations with the trefoil, cinquefoil, and septafoil knots. Their reduced crossing numbers are 3, 5, and 7. The third value is explicitly supported by the figure and its surrounding analysis; the conclusion section repeats 5 for the last example, an apparent inconsistency in the manuscript.",
+        "The field lines in the computational box are not necessarily closed loops. For knot classification, the authors connect their ends outside the domain using an additional unknotted, unlinked segment. The resulting knot labels therefore rely on this stated closure convention. They are more precise than visual impressions, but they are not independent of how open field lines are made into closed curves."
+      ],
+      "figure": {
+        "src": "images/source/magknot-editorial-knots.webp",
+        "alt": "Three field-line knot diagrams above reduced trefoil, cinquefoil, and septafoil diagrams.",
+        "caption": "Figure 15 pairs extracted field-line configurations with simplified knot diagrams. The lower row makes the topological progression clearer than the increasingly coiled upper row: trefoil, cinquefoil, and septafoil.",
+        "sourceLabel": "Original paper, Figure 15, p. A48-17",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2020.1145"
+      },
+      "figure_after": 1
+    },
+    {
+      "id": "statistics",
+      "title": "Knot distributions across 3,700 sampled field lines",
+      "paragraphs": [
+        "To move beyond a few illustrative curves, the authors integrate 3,700 field lines from a specified region near the plasmoid at each of three times. They close the curves and classify them using a knot-analysis toolkit based on Alexander polynomials. The distribution shifts from trefoil-dominated to cinquefoil-dominated and then septafoil-dominated, while also broadening.",
+        "The reported fraction of knotted sampled lines rises from less than 4 percent at time 1.75 to about 20 percent at time 2.25. These are statistics for the selected sampling region and procedure, not the fraction of every field line in the full simulation. At the last time, 12.5 percent of extracted lines are sufficiently convoluted that their types may not be reliably identified; those cases are omitted from the displayed distributions.",
+        "That limitation is central to interpreting the cascade. The evidence is strong for increasing complexity among identifiable sampled lines, but the method does not fully catalogue the most complicated part of the field. Nor does it follow one uniquely identified field line throughout every reconnection: line identity itself is problematic in a resistive flow."
+      ]
+    },
+    {
+      "id": "ending",
+      "title": "Dissipation ends the transient knot cascade",
+      "paragraphs": [
+        "The increase in complexity lasts for a finite interval. As the U-shaped tubes separate and the central structure stretches, subsequent reconnections sever highly coiled lines. Viscous and resistive dissipation weaken the structures, and the central knots gradually disappear at later times. The paper therefore describes a transient knotting cascade, not indefinite growth of topological complexity.",
+        "The broader insight is that decreasing total energy does not require monotonic simplification of every geometric diagnostic. Nonlinear coupling can temporarily convert available magnetic energy into motions that generate more intricate connections. Establishing how often this happens in less symmetric, higher-Reynolds-number flows remains a separate problem, requiring better ways to identify reconnections and classify complex field-line geometry."
+      ]
+    }
+  ],
+  "references": [
+    {
+      "label": "Magnetic knot cascade via the stepwise reconnection of helical flux tubes",
+      "url": "https://doi.org/10.1017/jfm.2020.1145"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Initial orthogonal counter-helical tubes, q ±10, numerical parameters",
+      "location": "Section 2.1, pp. A48-3–A48-5",
+      "source": "https://doi.org/10.1017/jfm.2020.1145"
+    },
+    {
+      "claim": "Primary, secondary, and later reconnection sequence",
+      "location": "Sections 3.1–3.4, Figures 4–14",
+      "source": "https://doi.org/10.1017/jfm.2020.1145"
+    },
+    {
+      "claim": "3, 5, 7 reduced crossing sequence; conclusion contains an apparent final-value typo",
+      "location": "Figure 15 and adjacent text, pp. A48-16–A48-17; conclusion p. A48-20",
+      "source": "https://doi.org/10.1017/jfm.2020.1145"
+    },
+    {
+      "claim": "3700 sampled lines; knot fraction and 12.5 percent omitted complex lines",
+      "location": "Section 3.5, pp. A48-18–A48-19, Figure 17",
+      "source": "https://doi.org/10.1017/jfm.2020.1145"
+    },
+    {
+      "claim": "Finite-duration cascade ends with dissipation",
+      "location": "Sections 3.4 and 4",
+      "source": "https://doi.org/10.1017/jfm.2020.1145"
+    }
+  ],
+  "status": "complete"
+}
