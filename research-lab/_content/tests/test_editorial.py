@@ -165,4 +165,21 @@ class CoverTypographyTests(unittest.TestCase):
   for formula in ('draw.textbbox','(SIZE-(bottom-top))/2-top','(SIZE-(b[2]-b[0]))/2-b[0]'):
    self.assertIn(formula,source)
 
+
+class ContinueReadingTests(unittest.TestCase):
+ def test_real_recommendations_keep_category_and_catalog_order(self):
+  import re
+  for paper in b.CATALOG:
+   html=(CONTENT.parent/paper['article']/'index.html').read_text()
+   section=html.split('<div class="related-grid">',1)[1].split('</div></section>',1)[0]
+   actual=re.findall(r'<a href="../../(articles/[^"]+)">',section)
+   expected=[p['article'] for p in b.CATALOG if p['image']!=paper['image'] and p['cats'][0]==paper['cats'][0]][:4]
+   self.assertEqual(actual,expected)
+   self.assertEqual(len(actual),len(set(actual)))
+   self.assertNotIn(paper['article'],actual)
+ def test_four_desktop_two_mobile_columns(self):
+  css=(CONTENT/'styles/research.css').read_text()
+  self.assertIn('.related-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))',css)
+  self.assertIn('@media(min-width:360px) and (max-width:767px){.related-grid{grid-template-columns:repeat(2,minmax(0,1fr))',css)
+
 if __name__=='__main__':unittest.main()

@@ -87,7 +87,7 @@ node --check research-lab/app.js
 JEKYLL_ENV=production bundle _2.2.19_ exec jekyll build --safe
 ```
 
-The current build passes 35 unit tests and 1,630 static checks across all 23
+The current build passes 37 unit tests and 1,684 static checks across all 23
 pages. Tests cover route preservation, figures, references, browsing controls,
 duplicate IDs, escaping, mathematical rendering, and editorial records.
 Browser review covers desktop, tablet-width, and narrow responsive viewports.
@@ -116,3 +116,7 @@ npm test --prefix research-lab/_content
 ```
 
 All four covers use OpenAI Sans Bold on a 1254px square canvas, with 190px line advance. KAT covers use 170px type; LPM uses the separately approved larger 240px type. Individual lines are centered by their rendered glyph bounding boxes; the combined glyph block is centered vertically. The command regenerates full-size WebP files and 640px thumbnails and updates the shared typography metadata in covers.json.
+
+## Continue reading
+
+Article recommendations show up to four other articles from the same topic, in the existing catalog order. Current-article links and duplicates are excluded; physics articles have three eligible peers and are not padded with unrelated items. The layout uses four columns at desktop widths, two at 360–1023px, and one below 360px.

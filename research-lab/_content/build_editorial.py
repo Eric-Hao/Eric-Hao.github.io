@@ -219,7 +219,7 @@ def build_article(paper, record, records):
  parts.append('<h3>Sources & reading</h3><ol class="references">')
  for reference in record.get('references', []): parts.append(f'<li><a href="{safe_url(reference["url"])}" target="_blank" rel="noopener noreferrer">{e(reference["label"])} <span class="arrow-icon" aria-hidden="true"></span></a></li>')
  parts.append('</ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>')
- related = [p for p in CATALOG if p['image'] != key and p['cats'][0] == paper['cats'][0]][:3]
+ related = [p for p in CATALOG if p['image'] != key and p['cats'][0] == paper['cats'][0]][:4]
  if related:
   parts.append('<section class="related"><div class="collection-heading"><h2>Continue reading</h2><a href="../../">All research <span class="arrow-icon" aria-hidden="true"></span></a></div><div class="related-grid">')
   for p in related:
