@@ -315,7 +315,12 @@
     "links": [],
     "year": 2026,
     "venue": "Model release 2026",
-    "article": "articles/kat-v25-dev/"
+    "article": "articles/kat-v25-dev/",
+    "content_type": "models",
+    "date": "2026-07-23",
+    "date_kind": "repository",
+    "date_source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/commits/main",
+    "featured_rank": 1
   },
   {
     "image": "kat-v25",
@@ -328,7 +333,12 @@
     "links": [],
     "year": 2026,
     "venue": "Technical report 2026",
-    "article": "articles/kat-v25/"
+    "article": "articles/kat-v25/",
+    "content_type": "models",
+    "date": "2026-07-07",
+    "date_kind": "release",
+    "date_source": "https://www.streamlake.com/document/WANQING/mdptas54hptu5uvllco",
+    "featured_rank": 0
   },
   {
     "image": "kat-v2",
@@ -341,7 +351,12 @@
     "links": [],
     "year": 2026,
     "venue": "Technical report 2026",
-    "article": "articles/kat-v2/"
+    "article": "articles/kat-v2/",
+    "content_type": "models",
+    "date": "2026-03-25",
+    "date_kind": "release",
+    "date_source": "https://www.streamlake.com/document/WANQING/mdptas54hptu5uvllco",
+    "featured_rank": 2
   },
   {
     "image": "lpm",
@@ -354,6 +369,11 @@
     "links": [],
     "year": 2026,
     "venue": "Technical report 2026",
-    "article": "articles/lpm/"
+    "article": "articles/lpm/",
+    "content_type": "models",
+    "date": "2026-07-15",
+    "date_kind": "report",
+    "date_source": "https://arxiv.org/abs/2607.13460",
+    "featured_rank": 3
   }
 ]

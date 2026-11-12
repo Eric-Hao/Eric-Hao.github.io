@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KAT-Coder-V2.5: verified environments and hindsight-assisted learning · Research Lab</title><meta name="description" content="KAT-Coder-V2.5 combines environment verification, trajectory recovery, and an asymmetric actor–critic objective to improve the feedback used to train coding agents.">
-<link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/kat-v25/"><meta property="og:type" content="article"><meta property="og:title" content="KAT-Coder-V2.5: verified environments and hindsight-assisted learning"><meta property="og:description" content="KAT-Coder-V2.5 combines environment verification, trajectory recovery, and an asymmetric actor–critic objective to improve the feedback used to train coding agents."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/kat-v25/">
-<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=ad43732949cc"><script src="../../app.js?v=b7e16b809479" defer></script></head>
+<title>Introducing KAT-Coder-V2.5 · Research Lab</title><meta name="description" content="KAT-Coder-V2.5 combines environment verification, trajectory recovery, and an asymmetric actor–critic objective to improve the feedback used to train coding agents.">
+<link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/kat-v25/"><meta property="og:type" content="article"><meta property="og:title" content="Introducing KAT-Coder-V2.5"><meta property="og:description" content="KAT-Coder-V2.5 combines environment verification, trajectory recovery, and an asymmetric actor–critic objective to improve the feedback used to train coding agents."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/kat-v25/">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=a77556e24a3b"><script src="../../app.js?v=a32fcd288e42" defer></script></head>
 <body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="home-link" href="../../../" aria-label="Home"><svg class="nav-wordmark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true"><text x="0" y="21">Home</text></svg></a><a class="blog-link" href="../../" aria-label="Blog"><svg class="nav-wordmark" width="44" height="28" viewBox="0 0 44 28" aria-hidden="true"><text x="0" y="21">Blog</text></svg></a></header>
-<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#dce8dc">
+<main id="main" class="article-main"><section class="article-hero model-hero" style="--hero-bg:#fff">
 <div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/kat-v25.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
-<header class="article-header"><p class="eyebrow"><span>Technical report 2026</span><span>Language &amp; agents</span></p><h1>KAT-Coder-V2.5: verified environments and hindsight-assisted learning</h1><p class="standfirst">KAT-Coder-V2.5 combines environment verification, trajectory recovery, and an asymmetric actor–critic objective to improve the feedback used to train coding agents.</p></header></section>
+<header class="article-header"><p class="eyebrow"><span>Released Jul 7, 2026</span><span>Models</span></p><h1>Introducing KAT-Coder-V2.5</h1><p class="standfirst">KAT-Coder-V2.5 combines environment verification, trajectory recovery, and an asymmetric actor–critic objective to improve the feedback used to train coding agents.</p></header></section>
 <div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#environment-construction">AutoBuilder’s environment acceptance checks</a>
 <a href="#near-misses">Hint-assisted recovery and hint-free supervision</a>
@@ -22,6 +22,7 @@
 <a href="#capability-profile">Benchmark profile and attribution limits</a>
 </nav></details></aside><article class="article-body">
 <section id="reward-corruption" class="essay-section essay-intro">
+<p>Introduced on July 7, 2026, KAT-Coder-V2.5 brought environment verification, trajectory recovery, and hindsight-assisted credit assignment into the training of coding agents. This article examines the technical report and its reported results.</p>
 <p>A coding agent writes a plausible repair, runs the tests, and receives a failure. That feedback is valuable only if the tests actually ran in the intended environment. A timeout, an incorrect environment variable, or a broken container can turn successful reasoning into a negative training example. Repeated across reinforcement-learning rollouts, these infrastructure faults change the training signal.</p>
 <p>The KAT-Coder-V2.5 report starts from this practical bottleneck. In an audit of early rollouts, the authors found that roughly 16% of trajectories contained a sandbox-attributable failure. After infrastructure repairs, they report a feedback error rate below 2% and approximately an order-of-magnitude reduction in training-collapse frequency. These are engineering observations from their system, not controlled proof that infrastructure explains every model improvement. They nevertheless frame the report’s central idea: agent learning depends on the quality of the entire execution loop.</p>
 </section>
@@ -158,6 +159,7 @@
   url = {https://arxiv.org/abs/2607.05471}
 }
 </pre><span class="copy-status" role="status"></span></details>
+<p class="date-provenance">Released Jul 7, 2026 · <a href="https://www.streamlake.com/document/WANQING/mdptas54hptu5uvllco" target="_blank" rel="noopener noreferrer">Date source</a></p>
 <h3>Sources & reading</h3><ol class="references">
 <li><a href="https://arxiv.org/abs/2607.05471" target="_blank" rel="noopener noreferrer">Original source <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>

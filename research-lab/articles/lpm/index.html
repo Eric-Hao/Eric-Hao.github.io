@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LPM: temporal anchors for long-video restoration · Research Lab</title><meta name="description" content="LPM combines an image restoration prior, temporal anchors, and a shortened sampling pipeline to address the constraints of large-scale video enhancement.">
-<link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/lpm/"><meta property="og:type" content="article"><meta property="og:title" content="LPM: temporal anchors for long-video restoration"><meta property="og:description" content="LPM combines an image restoration prior, temporal anchors, and a shortened sampling pipeline to address the constraints of large-scale video enhancement."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/lpm/">
-<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=ad43732949cc"><script src="../../app.js?v=b7e16b809479" defer></script></head>
+<title>Introducing LPM · Research Lab</title><meta name="description" content="LPM combines an image restoration prior, temporal anchors, and a shortened sampling pipeline to address the constraints of large-scale video enhancement.">
+<link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/lpm/"><meta property="og:type" content="article"><meta property="og:title" content="Introducing LPM"><meta property="og:description" content="LPM combines an image restoration prior, temporal anchors, and a shortened sampling pipeline to address the constraints of large-scale video enhancement."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/lpm/">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=a77556e24a3b"><script src="../../app.js?v=a32fcd288e42" defer></script></head>
 <body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="home-link" href="../../../" aria-label="Home"><svg class="nav-wordmark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true"><text x="0" y="21">Home</text></svg></a><a class="blog-link" href="../../" aria-label="Blog"><svg class="nav-wordmark" width="44" height="28" viewBox="0 0 44 28" aria-hidden="true"><text x="0" y="21">Blog</text></svg></a></header>
-<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#e0e3e2">
+<main id="main" class="article-main"><section class="article-hero model-hero" style="--hero-bg:#fff">
 <div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/lpm.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
-<header class="article-header"><p class="eyebrow"><span>Technical report 2026</span><span>Generative models</span></p><h1>LPM: temporal anchors for long-video restoration</h1><p class="standfirst">LPM combines an image restoration prior, temporal anchors, and a shortened sampling pipeline to address the constraints of large-scale video enhancement.</p></header></section>
+<header class="article-header"><p class="eyebrow"><span>Report Jul 15, 2026</span><span>Models</span></p><h1>Introducing LPM</h1><p class="standfirst">LPM combines an image restoration prior, temporal anchors, and a shortened sampling pipeline to address the constraints of large-scale video enhancement.</p></header></section>
 <div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#spatial">Learning an input-conditioned image prior</a>
 <a href="#temporal">Factorized temporal attention and reference conditioning</a>
@@ -22,6 +22,7 @@
 <a href="#evidence">Restoration quality and measurement limits</a>
 </nav></details></aside><article class="article-body">
 <section id="constraint" class="essay-section essay-intro">
+<p>The LPM report first appeared on July 15, 2026, introducing a system for large-scale image and video enhancement. This article follows the revised report from November 6, 2026; the revision date is distinct from the report’s first publication.</p>
 <p>A restoration model can improve every frame in isolation and still produce an unpleasant video. Fabric texture may shift between frames, foliage may shimmer, and a face may change subtly when processing crosses a clip boundary. Generating plausible detail is only one requirement. The detail must remain consistent over time and faithful to the degraded observation, at a cost that permits processing large volumes of video.</p>
 <p>The LPM report treats these constraints as a system problem. It first trains an image restoration model, extends it with temporal processing, connects short inference windows through restored reference frames, and compresses a multi-step generation process for deployment. This article follows the November 2026 v2 source, whose architecture and benchmark descriptions are more specific than the broad production claims in its introduction.</p>
 <p>The authors report deployment at Kuaishou on videos accounting for approximately 45% of total viewing time, and around 20% bitrate reduction at comparable perceptual quality relative to an in-house codec. Those are operational claims made by the team, not quantities independently established by the public benchmark tables. Their relevance is the scale of the engineering constraint, rather than a substitute for restoration-quality evidence.</p>
@@ -120,6 +121,7 @@
   url = {https://arxiv.org/abs/2607.13460}
 }
 </pre><span class="copy-status" role="status"></span></details>
+<p class="date-provenance">Report Jul 15, 2026 · <a href="https://arxiv.org/abs/2607.13460" target="_blank" rel="noopener noreferrer">Date source</a></p>
 <h3>Sources & reading</h3><ol class="references">
 <li><a href="https://arxiv.org/abs/2607.13460v2" target="_blank" rel="noopener noreferrer">Read the paper <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>

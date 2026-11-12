@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KAT-Coder-V2: specialist training and on-policy expert fusion · Research Lab</title><meta name="description" content="KAT-Coder-V2 separates coding-agent skills during training, then distills them into a single model. Its results also show how much the surrounding agent software matters.">
-<link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/kat-v2/"><meta property="og:type" content="article"><meta property="og:title" content="KAT-Coder-V2: specialist training and on-policy expert fusion"><meta property="og:description" content="KAT-Coder-V2 separates coding-agent skills during training, then distills them into a single model. Its results also show how much the surrounding agent software matters."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/kat-v2/">
-<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=ad43732949cc"><script src="../../app.js?v=b7e16b809479" defer></script></head>
+<title>Introducing KAT-Coder-V2 · Research Lab</title><meta name="description" content="KAT-Coder-V2 separates coding-agent skills during training, then distills them into a single model. Its results also show how much the surrounding agent software matters.">
+<link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/kat-v2/"><meta property="og:type" content="article"><meta property="og:title" content="Introducing KAT-Coder-V2"><meta property="og:description" content="KAT-Coder-V2 separates coding-agent skills during training, then distills them into a single model. Its results also show how much the surrounding agent software matters."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/kat-v2/">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=a77556e24a3b"><script src="../../app.js?v=a32fcd288e42" defer></script></head>
 <body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="home-link" href="../../../" aria-label="Home"><svg class="nav-wordmark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true"><text x="0" y="21">Home</text></svg></a><a class="blog-link" href="../../" aria-label="Blog"><svg class="nav-wordmark" width="44" height="28" viewBox="0 0 44 28" aria-hidden="true"><text x="0" y="21">Blog</text></svg></a></header>
-<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#f1eee4">
+<main id="main" class="article-main"><section class="article-hero model-hero" style="--hero-bg:#fff">
 <div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/kat-v2.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
-<header class="article-header"><p class="eyebrow"><span>Technical report 2026</span><span>Language &amp; agents</span></p><h1>KAT-Coder-V2: specialist training and on-policy expert fusion</h1><p class="standfirst">KAT-Coder-V2 separates coding-agent skills during training, then distills them into a single model. Its results also show how much the surrounding agent software matters.</p></header></section>
+<header class="article-header"><p class="eyebrow"><span>Released Mar 25, 2026</span><span>Models</span></p><h1>Introducing KAT-Coder-V2</h1><p class="standfirst">KAT-Coder-V2 separates coding-agent skills during training, then distills them into a single model. Its results also show how much the surrounding agent software matters.</p></header></section>
 <div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#executable-lessons">Executable supervision from repository history</a>
 <a href="#shared-infrastructure">KwaiEnv: interchangeable scaffolds and sandboxes</a>
@@ -24,6 +24,7 @@
 <a href="#takeaway">General-agent results and fusion limits</a>
 </nav></details></aside><article class="article-body">
 <section id="different-jobs" class="essay-section essay-intro">
+<p>Introduced on March 25, 2026, KAT-Coder-V2 organized agent training around specialist skills and on-policy expert fusion. This article examines that training system and the results reported across different agent scaffolds.</p>
 <p>A coding assistant may be asked to fix a failing test, build a landing page from a vague description, or investigate a problem through a terminal. These requests share a language interface but reward different behavior. Repository repair needs localization and regression checks. Interface design needs choices about hierarchy, typography, and interaction. Terminal work requires tracking a changing environment. Training all of these behaviors together can create interference rather than a uniformly better agent.</p>
 <p>KAT-Coder-V2 responds by specializing first. Starting from KAT-Coder-V1, the authors train five domain experts: software engineering, web coding, terminal use, web search, and general capabilities. Each receives supervised fine-tuning and reinforcement learning. A later distillation stage consolidates their behavior into one deployable model. The report is therefore as much about organizing post-training as about a new checkpoint: how can diverse, sometimes conflicting objectives share a final policy?</p>
 </section>
@@ -145,6 +146,7 @@
   url = {https://arxiv.org/abs/2603.27703}
 }
 </pre><span class="copy-status" role="status"></span></details>
+<p class="date-provenance">Released Mar 25, 2026 · <a href="https://www.streamlake.com/document/WANQING/mdptas54hptu5uvllco" target="_blank" rel="noopener noreferrer">Date source</a></p>
 <h3>Sources & reading</h3><ol class="references">
 <li><a href="https://arxiv.org/abs/2603.27703" target="_blank" rel="noopener noreferrer">Original source <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>

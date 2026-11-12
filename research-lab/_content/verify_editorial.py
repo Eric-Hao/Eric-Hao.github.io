@@ -66,7 +66,7 @@ def verify():
  check(sum(a.get('class')=='research-card' for t,a in index.tags)==22,'Unified index should have all 22 entries')
  check(len(build.COVERS)==22,'All 22 entries must have new illustrations')
  check(sum('data-view' in a for t,a in index.tags)==2,'Grid/list controls missing')
- check(sum(a.get('name')=='sort' for t,a in index.tags)==4,'Expected four sort choices')
+ check(sum(a.get('name')=='sort' for t,a in index.tags)==5,'Expected five sort choices')
  for control in ('filter-panel','sort-panel','research-search','clear-all'):
   check(control in index.ids,f'Index control missing: {control}')
  for p in catalog:

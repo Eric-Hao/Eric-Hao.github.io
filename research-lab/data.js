@@ -334,7 +334,12 @@ const papers = [
     "year": 2026,
     "venue": "Model release 2026",
     "article": "articles/kat-v25-dev/",
-    "headline": "KAT-Coder-V2.5-Dev: reward shaping for reliable tool use"
+    "content_type": "models",
+    "date": "2026-07-23",
+    "date_kind": "repository",
+    "date_source": "https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/commits/main",
+    "featured_rank": 1,
+    "headline": "Introducing KAT-Coder-V2.5-Dev"
   },
   {
     "image": "kat-v25",
@@ -348,7 +353,12 @@ const papers = [
     "year": 2026,
     "venue": "Technical report 2026",
     "article": "articles/kat-v25/",
-    "headline": "KAT-Coder-V2.5: verified environments and hindsight-assisted learning"
+    "content_type": "models",
+    "date": "2026-07-07",
+    "date_kind": "release",
+    "date_source": "https://www.streamlake.com/document/WANQING/mdptas54hptu5uvllco",
+    "featured_rank": 0,
+    "headline": "Introducing KAT-Coder-V2.5"
   },
   {
     "image": "kat-v2",
@@ -362,7 +372,12 @@ const papers = [
     "year": 2026,
     "venue": "Technical report 2026",
     "article": "articles/kat-v2/",
-    "headline": "KAT-Coder-V2: specialist training and on-policy expert fusion"
+    "content_type": "models",
+    "date": "2026-03-25",
+    "date_kind": "release",
+    "date_source": "https://www.streamlake.com/document/WANQING/mdptas54hptu5uvllco",
+    "featured_rank": 2,
+    "headline": "Introducing KAT-Coder-V2"
   },
   {
     "image": "lpm",
@@ -376,6 +391,11 @@ const papers = [
     "year": 2026,
     "venue": "Technical report 2026",
     "article": "articles/lpm/",
-    "headline": "LPM: temporal anchors for long-video restoration"
+    "content_type": "models",
+    "date": "2026-07-15",
+    "date_kind": "report",
+    "date_source": "https://arxiv.org/abs/2607.13460",
+    "featured_rank": 3,
+    "headline": "Introducing LPM"
   }
 ];

@@ -1,13 +1,13 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>KAT-Coder-V2.5-Dev: reward shaping for reliable tool use · Research Lab</title><meta name="description" content="The open-weight, 35B-parameter mixture-of-experts model adapts the V2.5 training recipe with penalties for excessive tool calls, failed calls, and repetition.">
-<link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/kat-v25-dev/"><meta property="og:type" content="article"><meta property="og:title" content="KAT-Coder-V2.5-Dev: reward shaping for reliable tool use"><meta property="og:description" content="The open-weight, 35B-parameter mixture-of-experts model adapts the V2.5 training recipe with penalties for excessive tool calls, failed calls, and repetition."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/kat-v25-dev/">
-<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=ad43732949cc"><script src="../../app.js?v=b7e16b809479" defer></script></head>
+<title>Introducing KAT-Coder-V2.5-Dev · Research Lab</title><meta name="description" content="The open-weight, 35B-parameter mixture-of-experts model adapts the V2.5 training recipe with penalties for excessive tool calls, failed calls, and repetition.">
+<link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/kat-v25-dev/"><meta property="og:type" content="article"><meta property="og:title" content="Introducing KAT-Coder-V2.5-Dev"><meta property="og:description" content="The open-weight, 35B-parameter mixture-of-experts model adapts the V2.5 training recipe with penalties for excessive tool calls, failed calls, and repetition."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/kat-v25-dev/">
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=a77556e24a3b"><script src="../../app.js?v=a32fcd288e42" defer></script></head>
 <body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><a class="home-link" href="../../../" aria-label="Home"><svg class="nav-wordmark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true"><text x="0" y="21">Home</text></svg></a><a class="blog-link" href="../../" aria-label="Blog"><svg class="nav-wordmark" width="44" height="28" viewBox="0 0 44 28" aria-hidden="true"><text x="0" y="21">Blog</text></svg></a></header>
-<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#f3dfa6">
+<main id="main" class="article-main"><section class="article-hero model-hero" style="--hero-bg:#fff">
 <div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/kat-v25-dev.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
-<header class="article-header"><p class="eyebrow"><span>Model release 2026</span><span>Language &amp; agents</span></p><h1>KAT-Coder-V2.5-Dev: reward shaping for reliable tool use</h1><p class="standfirst">The open-weight, 35B-parameter mixture-of-experts model adapts the V2.5 training recipe with penalties for excessive tool calls, failed calls, and repetition.</p></header></section>
+<header class="article-header"><p class="eyebrow"><span>Repository Jul 23, 2026</span><span>Models</span></p><h1>Introducing KAT-Coder-V2.5-Dev</h1><p class="standfirst">The open-weight, 35B-parameter mixture-of-experts model adapts the V2.5 training recipe with penalties for excessive tool calls, failed calls, and repetition.</p></header></section>
 <div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#release-boundary">The open-weight, text-only release</a>
 <a href="#training-collapse">Stabilizing reinforcement learning with tool-use penalties</a>
@@ -21,6 +21,7 @@
 </nav></details></aside><article class="article-body">
 <section id="release-boundary" class="essay-section">
 <h2>The open-weight, text-only release</h2>
+<p>KAT-Coder-V2.5-Dev adapted the V2.5 training recipe to an open-weight, text-only model. Its repository history begins on July 23, 2026; that date identifies the repository record, not a separately confirmed release announcement.</p>
 <p>A coding model can produce a correct-looking answer while failing to interact reliably with its tools. The KAT-Coder-V2.5-Dev model card makes that distinction concrete: early reinforcement learning encouraged bursts of parallel tool calls that destabilized training. The release is a useful case study in adapting a general model to an agent loop, where malformed actions and repeated content consume context and prevent otherwise plausible plans from executing.</p>
 <p>Dev is an open-weight, text-only model built on Qwen3.6-35B-A3B, with 35 billion total parameters and three billion activated parameters. The card identifies an Apache-2.0 license and distributes language-model weights and configuration in Transformers format. It explicitly excludes vision and multimodal components. This is therefore not an open-weight copy of every capability associated with the broader KAT-Coder-V2.5 service, and the activated parameter count should not be mistaken for the total memory needed to host its weights.</p>
 </section>
@@ -144,6 +145,7 @@
   url = {https://arxiv.org/abs/2607.05471}
 }
 </pre><span class="copy-status" role="status"></span></details>
+<p class="date-provenance">Repository Jul 23, 2026 · <a href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev/commits/main" target="_blank" rel="noopener noreferrer">Date source</a></p>
 <h3>Sources & reading</h3><ol class="references">
 <li><a href="https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev" target="_blank" rel="noopener noreferrer">Original source <span class="arrow-icon" aria-hidden="true"></span></a></li>
 <li><a href="https://arxiv.org/abs/2607.05471" target="_blank" rel="noopener noreferrer">Related V2.5 technical report <span class="arrow-icon" aria-hidden="true"></span></a></li>

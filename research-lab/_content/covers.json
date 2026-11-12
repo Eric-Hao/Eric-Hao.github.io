@@ -222,10 +222,22 @@
     "height": 640,
     "label": "Original AI-generated conceptual illustration; not experimental data or a model output",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Contemporary textile woodblock print",
+    "visualStyle": "Amber and silver curved horizon with orbiting code particles and bold white model typography",
     "fullWidth": 1254,
     "fullHeight": 1254,
-    "background": "#f1eee4"
+    "background": "#ffffff",
+    "typography": {
+      "family": "OpenAI Sans",
+      "style": "Bold",
+      "fontSize": 170,
+      "canvasSize": 1254,
+      "lineAdvance": 190,
+      "align": "center",
+      "blockCenter": [
+        0.5,
+        0.5
+      ]
+    }
   },
   "kat-v25": {
     "full": "images/covers-index-2026/kat-v25.webp",
@@ -234,10 +246,22 @@
     "height": 640,
     "label": "Original AI-generated conceptual illustration; not experimental data or a model output",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Copperplate technical engraving",
+    "visualStyle": "Black and amber diagonal horizon with sparse code glyphs and white model typography",
     "fullWidth": 1254,
     "fullHeight": 1254,
-    "background": "#dce8dc"
+    "background": "#ffffff",
+    "typography": {
+      "family": "OpenAI Sans",
+      "style": "Bold",
+      "fontSize": 170,
+      "canvasSize": 1254,
+      "lineAdvance": 190,
+      "align": "center",
+      "blockCenter": [
+        0.5,
+        0.5
+      ]
+    }
   },
   "kat-v25-dev": {
     "full": "images/covers-index-2026/kat-v25-dev.webp",
@@ -246,10 +270,22 @@
     "height": 640,
     "label": "Original AI-generated conceptual illustration; not experimental data or a model output",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Geometric editorial silkscreen",
+    "visualStyle": "Teal-black and amber horizon with white three-line model typography",
     "fullWidth": 1254,
     "fullHeight": 1254,
-    "background": "#f3dfa6"
+    "background": "#ffffff",
+    "typography": {
+      "family": "OpenAI Sans",
+      "style": "Bold",
+      "fontSize": 170,
+      "canvasSize": 1254,
+      "lineAdvance": 190,
+      "align": "center",
+      "blockCenter": [
+        0.5,
+        0.5
+      ]
+    }
   },
   "lpm": {
     "full": "images/covers-index-2026/lpm.webp",
@@ -258,9 +294,21 @@
     "height": 640,
     "label": "Original AI-generated conceptual illustration; not experimental data or a model output",
     "generationMode": "Codex built-in image_gen",
-    "visualStyle": "Cinematic temporal photo collage",
+    "visualStyle": "Blue and periwinkle iridescent light ribbons with large white LPM typography",
     "fullWidth": 1254,
     "fullHeight": 1254,
-    "background": "#e0e3e2"
+    "background": "#ffffff",
+    "typography": {
+      "family": "OpenAI Sans",
+      "style": "Bold",
+      "fontSize": 240,
+      "canvasSize": 1254,
+      "lineAdvance": 190,
+      "align": "center",
+      "blockCenter": [
+        0.5,
+        0.5
+      ]
+    }
   }
 }

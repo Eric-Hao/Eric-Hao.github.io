@@ -42,7 +42,7 @@ class EditorialTests(unittest.TestCase):
   self.assertEqual(b.venue_label(paper),'J. Fluid Mech. 2026')
   self.assertEqual(json.loads((CONTENT/'editorial/vortex-bursting.json').read_text())['status'],'complete')
  def test_type_classification(self):
-  expected={'kat-v25-dev':'release','kat-v25':'report','color':'publication'}
+  expected={'kat-v25-dev':'models','kat-v25':'models','lpm':'models','kat-v2':'models','color':'publication'}
   for key,kind in expected.items():
    self.assertEqual(b.publication_type(next(p for p in b.CATALOG if p['image']==key))[1],kind)
  def test_venue_does_not_invent_dates(self):
@@ -103,5 +103,66 @@ class ResponsiveResearchTests(unittest.TestCase):
   css=(CONTENT/'styles/research.css').read_text()
   for token in ('repeat(4,minmax(0,1fr))','min-width:768px) and (max-width:1199px','min-width:360px) and (max-width:767px','max-width:359px','repeat(2,minmax(0,1fr))','column-gap:16px','font-size:16px;line-height:1.35','font-size:12px;line-height:1.4'):
    self.assertIn(token,css)
+
+class FeaturedModelsTests(unittest.TestCase):
+ def test_featured_order(self):
+  self.assertEqual([p['image'] for p in sorted(b.CATALOG,key=b.featured_order)][:4],['kat-v25','kat-v25-dev','kat-v2','lpm'])
+ def test_chronological_order_ignores_featured(self):
+  models=[p for p in b.CATALOG if p.get('content_type')=='models']
+  self.assertEqual([p['image'] for p in sorted(models,key=b.chronological_value,reverse=True)],['kat-v25-dev','lpm','kat-v25','kat-v2'])
+ def test_model_dates_and_titles(self):
+  expected={'kat-v25':('2026-07-07','release'),'kat-v2':('2026-03-25','release'),'lpm':('2026-07-15','report'),'kat-v25-dev':('2026-07-23','repository')}
+  for key,(stamp,kind) in expected.items():
+   p=next(p for p in b.CATALOG if p['image']==key)
+   self.assertEqual((p['date'],p['date_kind']),(stamp,kind))
+   self.assertTrue(p['date_source'].startswith('https://'))
+   self.assertEqual(b.card_label(p),'Models')
+   d=json.loads((CONTENT/f'editorial/{key}.json').read_text())
+   self.assertTrue(d['title'].startswith('Introducing '))
+ def test_repository_date_is_not_release(self):
+  p=next(p for p in b.CATALOG if p['image']=='kat-v25-dev')
+  self.assertEqual(b.venue_label(p),'Repository Jul 23, 2026')
+ def test_year_only_dates_not_fabricated(self):
+  self.assertEqual(b.chronological_value({'year':2026}),20260000)
+ def test_featured_js_default(self):
+  js=(CONTENT.parent/'app.js').read_text()
+  self.assertIn("sorts.map(input => input.value), 'featured'",js)
+  self.assertIn("if (state.sort === 'featured')",js)
+  self.assertIn('Number(a.dataset.date)',js)
+
+ def test_actual_javascript_date_sort(self):
+  import subprocess,re
+  js=(CONTENT.parent/'app.js').read_text()
+  body=js.split('const sorted = [...cards].sort((a, b) => {',1)[1].split('\n      });',1)[0]
+  cards=[{'dataset':{'title':p['title'],'date':str(b.chronological_value(p)),'featured':str(p.get('featured_rank',999)),'order':str(i),'key':p['image']}} for i,p in enumerate(b.CATALOG) if p.get('content_type')=='models']
+  script='const cards='+json.dumps(cards)+';const out={};for(const mode of ["featured","newest","oldest"]){const state={sort:mode};out[mode]=[...cards].sort((a,b)=>{'+body+'}).map(c=>c.dataset.key)};console.log(JSON.stringify(out))'
+  out=json.loads(subprocess.check_output(['node','-e',script],text=True))
+  self.assertEqual(out['featured'],['kat-v25','kat-v25-dev','kat-v2','lpm'])
+  self.assertEqual(out['newest'],['kat-v25-dev','lpm','kat-v25','kat-v2'])
+  self.assertEqual(out['oldest'],list(reversed(out['newest'])))
+ def test_model_hero_is_selective(self):
+  for p in b.CATALOG:
+   html=(CONTENT.parent/p['article']/'index.html').read_text()
+   self.assertEqual('article-hero model-hero' in html,p.get('content_type')=='models')
+
+class CoverTypographyTests(unittest.TestCase):
+ def test_model_covers_share_typography_with_approved_lpm_size(self):
+  expected={'family':'OpenAI Sans','style':'Bold','fontSize':170,'canvasSize':1254,'lineAdvance':190,'align':'center','blockCenter':[0.5,0.5]}
+  covers=json.loads((CONTENT/'covers.json').read_text())
+  for key in ('kat-v25','kat-v25-dev','kat-v2','lpm'):
+   self.assertEqual(covers[key]['typography'],dict(expected,fontSize=240 if key=='lpm' else 170))
+ def test_renderer_uses_real_font_without_fallback_and_glyph_centering(self):
+  import ast
+  source=(CONTENT/'render_cover_type.py').read_text()
+  tree=ast.parse(source)
+  constants={n.targets[0].id:ast.literal_eval(n.value) for n in tree.body if isinstance(n,ast.Assign) and isinstance(n.targets[0],ast.Name) and n.targets[0].id in ('SIZE','FONT_SIZE','LINE_ADVANCE')}
+  self.assertEqual(constants,{'SIZE':1254,'FONT_SIZE':170,'LINE_ADVANCE':190})
+  self.assertIn("'kat-v25-dev': ['KAT-Coder', 'V2.5 Dev']",source)
+  self.assertIn("TTFont(ROOT / 'fonts/openai/OpenAISans-Bold.woff2')",source)
+  self.assertIn('ImageFont.truetype(BytesIO(buf.getvalue()), font_size)',source)
+  self.assertNotIn('load_default',source)
+  self.assertFalse(any(isinstance(n,ast.Try) for n in ast.walk(tree)))
+  for formula in ('draw.textbbox','(SIZE-(bottom-top))/2-top','(SIZE-(b[2]-b[0]))/2-b[0]'):
+   self.assertIn(formula,source)
 
 if __name__=='__main__':unittest.main()

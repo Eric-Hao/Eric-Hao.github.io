@@ -20,7 +20,7 @@
         query: params.get('q') || '',
         years: [...new Set(params.getAll('year').filter(value => choicesFor('year').includes(value)))],
         types: [...new Set(params.getAll('type').filter(value => choicesFor('type').includes(value)))],
-        sort: allowed(params.get('sort'), sorts.map(input => input.value), 'newest'),
+        sort: allowed(params.get('sort'), sorts.map(input => input.value), 'featured'),
         view: allowed(params.get('display'), ['grid', 'list'], 'grid')
       };
       search.value = state.query;
@@ -41,7 +41,7 @@
       if (state.query.trim()) url.searchParams.set('q', state.query.trim());
       state.years.forEach(value => url.searchParams.append('year', value));
       state.types.forEach(value => url.searchParams.append('type', value));
-      if (state.sort !== 'newest') url.searchParams.set('sort', state.sort);
+      if (state.sort !== 'featured') url.searchParams.set('sort', state.sort);
       if (state.view !== 'grid') url.searchParams.set('display', state.view);
       if (url.href !== location.href) history[mode === 'replace' ? 'replaceState' : 'pushState'](null, '', url);
     };
@@ -58,10 +58,14 @@
       }
       const sorted = [...cards].sort((a, b) => {
         if (state.sort.startsWith('title')) return a.dataset.title.localeCompare(b.dataset.title, 'en', {sensitivity: 'base', numeric: true}) * (state.sort === 'title' ? 1 : -1);
-        const ay = Number(a.dataset.year), by = Number(b.dataset.year);
-        if (!ay && by) return 1;
-        if (ay && !by) return -1;
-        return (state.sort === 'oldest' ? ay - by : by - ay) || Number(a.dataset.order) - Number(b.dataset.order);
+        if (state.sort === 'featured') {
+          const featured = Number(a.dataset.featured) - Number(b.dataset.featured);
+          if (featured) return featured;
+        }
+        const ad = Number(a.dataset.date), bd = Number(b.dataset.date);
+        if (!ad && bd) return 1;
+        if (ad && !bd) return -1;
+        return (state.sort === 'oldest' ? ad - bd : bd - ad) || Number(a.dataset.order) - Number(b.dataset.order);
       });
       const fragment = document.createDocumentFragment();
       sorted.forEach(card => fragment.append(card));

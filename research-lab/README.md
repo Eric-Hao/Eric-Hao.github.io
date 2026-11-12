@@ -21,7 +21,7 @@ panel layout uses four columns at 1200px and above, three at 768–1199px, two a
 Mobile panels use 16px gaps, 16px untruncated titles, wrapping 12px metadata, and whole-card links.
 The compact header contains Home and Blog text links, with no footer.
 
-Topic, year/type filtering, four sorting orders, and list/panel controls remain.
+Topic, year/type filtering, five sorting orders, and list/panel controls remain.
 State is reflected in the URL and survives reload and history navigation. Search
 UI, visible result count, article breadcrumb, reading-time/author strip, separate
 banner caption, and contents heading were removed. Accessible live count and
@@ -87,7 +87,7 @@ node --check research-lab/app.js
 JEKYLL_ENV=production bundle _2.2.19_ exec jekyll build --safe
 ```
 
-The current build passes 25 unit tests and 1,626 static checks across all 23
+The current build passes 35 unit tests and 1,630 static checks across all 23
 pages. Tests cover route preservation, figures, references, browsing controls,
 duplicate IDs, escaping, mathematical rendering, and editorial records.
 Browser review covers desktop, tablet-width, and narrow responsive viewports.
@@ -95,3 +95,24 @@ These are desktop-browser responsive checks, not real-device tests.
 
 The supplied private manuscript PDF is not a publishing asset. Only its
 authorized figure excerpts and the source-based explanation are included.
+
+## Model introductions and ordering
+
+KAT-Coder-V2.5, KAT-Coder-V2.5-Dev, KAT-Coder-V2, and LPM are classified as Models and lead the default Featured ordering, in that order. The three KAT introductions appear together before LPM. Newest and Oldest use date values only, without featured pinning. Records with only a year retain year-level precision rather than invented month/day values. Model metadata stores date, date_kind, and date_source: release dates for V2 and V2.5, report-first-publication for LPM, and repository-history date for Dev. These are historical introductions, not statements of current service availability. The four model pages use centered headings on white and a separate banner; other articles retain their layouts.
+
+Within the same year, records without month/day precision keep catalog order; exact-day records sort by their documented dates. No January 1 date is displayed or claimed for year-only entries.
+
+## Reproduce model-cover typography
+
+Install Python dependencies `Pillow`, `fontTools`, and `Brotli` in your build environment. The four background-only WebP assets live in `images/covers-index-2026/backgrounds/`; the renderer loads `fonts/openai/OpenAISans-Bold.woff2` directly, decodes it through fontTools, and uses that font in Pillow. There is no system-font or bitmap-font fallback: a missing font or dependency fails the render.
+
+From the repository root:
+
+```sh
+python3 -m pip install Pillow fontTools Brotli
+python3 research-lab/_content/render_cover_type.py
+python3 research-lab/_content/build_editorial.py
+npm test --prefix research-lab/_content
+```
+
+All four covers use OpenAI Sans Bold on a 1254px square canvas, with 190px line advance. KAT covers use 170px type; LPM uses the separately approved larger 240px type. Individual lines are centered by their rendered glyph bounding boxes; the combined glyph block is centered vertically. The command regenerates full-size WebP files and 640px thumbnails and updates the shared typography metadata in covers.json.

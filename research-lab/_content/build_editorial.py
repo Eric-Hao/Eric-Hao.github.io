@@ -6,6 +6,7 @@ from pathlib import Path
 from html import escape
 from urllib.parse import urlparse
 import hashlib, json, re, subprocess
+from datetime import date
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / '_content' / 'editorial'
@@ -80,6 +81,10 @@ def footer(prefix=''):
 
 
 def venue_label(paper):
+ if paper.get('date'):
+  stamp = date.fromisoformat(paper['date'])
+  label = {'release': 'Released', 'report': 'Report', 'repository': 'Repository'}[paper['date_kind']]
+  return f"{label} {stamp.strftime('%b')} {stamp.day}, {stamp.year}"
  venue = paper['venue']
  year = str(paper.get('year') or '')
  return venue + (' ' + year if year and year not in venue else '')
@@ -90,10 +95,24 @@ def meta(paper):
 
 
 def publication_type(paper):
+ if paper.get('content_type') == 'models': return ('Models', 'models')
  venue = paper['venue'].lower()
  if 'model release' in venue: return ('Model release', 'release')
  if 'arxiv' in venue or 'technical report' in venue: return ('Preprint & report', 'report')
  return ('Publication', 'publication')
+
+
+def card_label(paper):
+ return 'Models' if publication_type(paper)[1] == 'models' else CATEGORY[paper['cats'][0]][0]
+
+
+def chronological_value(paper):
+ # A year-only record keeps its known precision; no month/day is invented.
+ return int(paper['date'].replace('-', '')) if paper.get('date') else (paper.get('year') or 0) * 10000
+
+
+def featured_order(paper):
+ return (paper.get('featured_rank', 999), -chronological_value(paper), CATALOG.index(paper))
 
 
 def icon(name):
@@ -112,9 +131,9 @@ def card(paper, record, cover):
  key = paper['image']; category = CATEGORY[paper['cats'][0]][1]
  search = ' '.join([paper['title'], record['title'], record['standfirst'], paper['authors'], paper['venue'], paper['cats'][0]])
  kind, kind_key = publication_type(paper)
- attrs = f'data-category="{category}" data-search="{e(search.lower())}" data-year="{paper.get("year") or "unknown"}" data-type="{kind_key}" data-title="{e(record["title"])}" data-order="{CATALOG.index(paper)}"'
+ attrs = f'data-category="{category}" data-search="{e(search.lower())}" data-year="{paper.get("year") or "unknown"}" data-type="{kind_key}" data-title="{e(record["title"])}" data-order="{CATALOG.index(paper)}" data-date="{chronological_value(paper)}" data-featured="{paper.get("featured_rank", 999)}"'
  image = f'<div class="cover"><img src="{e(cover["thumbnail"])}" width="{cover["width"]}" height="{cover["height"]}" alt="" loading="lazy" decoding="async"></div>' if cover else ''
- return f'''<article class="research-card" {attrs}><a href="{e(paper['article'])}" class="card-link">{image}<div class="card-meta"><span class="card-category">{e(CATEGORY[paper['cats'][0]][0])}</span><span class="card-venue">{e(venue_label(paper))}</span></div><div class="card-copy"><h2>{e(record['title'])}</h2><p>{e(record['standfirst'])}</p></div></a></article>'''
+ return f'''<article class="research-card" {attrs}><a href="{e(paper['article'])}" class="card-link">{image}<div class="card-meta"><span class="card-category">{e(card_label(paper))}</span><span class="card-venue">{e(venue_label(paper))}</span></div><div class="card-copy"><h2>{e(record['title'])}</h2><p>{e(record['standfirst'])}</p></div></a></article>'''
 
 
 def build_index(records):
@@ -128,13 +147,13 @@ def build_index(records):
  for year in sorted({p['year'] for p in CATALOG if p.get('year')}, reverse=True):
   parts.append(f'<label><input type="checkbox" name="year" value="{year}"><span>{year}</span></label>')
  parts.append('</fieldset><fieldset><legend>Type</legend>')
- for label, key in [('Publication', 'publication'), ('Preprint & report', 'report'), ('Model release', 'release')]:
+ for label, key in [('Publication', 'publication'), ('Preprint & report', 'report'), ('Models', 'models')]:
   parts.append(f'<label><input type="checkbox" name="type" value="{key}"><span>{e(label)}</span></label>')
  parts.append('</fieldset></div><div class="filter-panel-footer"><button type="button" id="clear-refinements">Clear filters</button><button type="button" data-close-popover>Cancel</button></div></div><div class="sort-panel popover" id="sort-panel" hidden><fieldset><legend class="sr-only">Sort research</legend>')
- for label, key in [('Newest first', 'newest'), ('Oldest first', 'oldest'), ('Title: A–Z', 'title'), ('Title: Z–A', 'title-desc')]:
-  parts.append(f'<label><input type="radio" name="sort" value="{key}"{" checked" if key == "newest" else ""}><span>{label}</span></label>')
+ for label, key in [('Featured', 'featured'), ('Newest first', 'newest'), ('Oldest first', 'oldest'), ('Title: A–Z', 'title'), ('Title: Z–A', 'title-desc')]:
+  parts.append(f'<label><input type="radio" name="sort" value="{key}"{" checked" if key == "featured" else ""}><span>{label}</span></label>')
  parts.append('</fieldset></div><div class="results-bar sr-only"><p class="results-count" aria-live="polite" aria-atomic="true">22 entries</p><button type="button" id="clear-all" hidden>Clear all filters</button></div><div class="research-results" data-layout="grid">')
- for paper in sorted(CATALOG, key=lambda p: -(p.get('year') or 0)):
+ for paper in sorted(CATALOG, key=featured_order):
   parts.append(card(paper, records[paper['image']], COVERS.get(paper['image'])))
  parts.append('</div><div class="empty-state" hidden><h2>No matching research</h2><p>Try another title, author, or topic.</p><button type="button" id="reset-search">Clear filters</button></div><noscript><p class="no-script">All research is shown below. Enable JavaScript to filter, sort, or switch views.</p></noscript></section></main>')
  parts.append(footer()); parts.append('</body></html>')
@@ -149,11 +168,12 @@ def build_article(paper, record, records):
  prefix = '../../'; key = paper['image']
  parts = [head(record['title'], record['standfirst'], prefix, paper['article'])]
  cover = COVERS.get(key)
- background = cover.get('background', '#f1f1ed') if cover else '#f1f1ed'
- parts.append(f'''<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:{e(background)}">''')
+ is_model = publication_type(paper)[1] == 'models'
+ background = '#fff' if is_model else (cover.get('background', '#f1f1ed') if cover else '#f1f1ed')
+ parts.append(f'''<main id="main" class="article-main"><section class="article-hero{' model-hero' if is_model else ''}" style="--hero-bg:{e(background)}">''')
  if cover:
   parts.append(f'<div class="article-banner" aria-hidden="true"><img src="../../{e(cover.get("full", cover["thumbnail"]))}" width="{cover.get("fullWidth", cover["width"])}" height="{cover.get("fullHeight", cover["height"])}" alt="" fetchpriority="high"></div>')
- parts.append(f'<header class="article-header"><p class="eyebrow"><span>{e(venue_label(paper))}</span><span>{e(CATEGORY[paper["cats"][0]][0])}</span></p><h1>{e(record["title"])}</h1><p class="standfirst">{rich(record["standfirst"])}</p></header></section>')
+ parts.append(f'<header class="article-header"><p class="eyebrow"><span>{e(venue_label(paper))}</span><span>{e(card_label(paper))}</span></p><h1>{e(record["title"])}</h1><p class="standfirst">{rich(record["standfirst"])}</p></header></section>')
  parts.append('<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">')
  for section in record['sections']:
   if not section.get('intro'): parts.append(f'<a href="#{e(section["id"])}">{e(section["title"])}</a>')
@@ -194,6 +214,8 @@ def build_article(paper, record, records):
  bib_path = ROOT / 'citations' / f'{key}.bib'
  if bib_path.exists() and record['status'] == 'complete':
   parts.append(f'<details class="citation"><summary>BibTeX citation</summary><button type="button" class="copy-citation">Copy citation</button><pre>{e(bib_path.read_text())}</pre><span class="copy-status" role="status"></span></details>')
+ if paper.get('date_source'):
+  parts.append(f'<p class="date-provenance">{e(venue_label(paper))} · <a href="{safe_url(paper["date_source"])}" target="_blank" rel="noopener noreferrer">Date source</a></p>')
  parts.append('<h3>Sources & reading</h3><ol class="references">')
  for reference in record.get('references', []): parts.append(f'<li><a href="{safe_url(reference["url"])}" target="_blank" rel="noopener noreferrer">{e(reference["label"])} <span class="arrow-icon" aria-hidden="true"></span></a></li>')
  parts.append('</ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>')

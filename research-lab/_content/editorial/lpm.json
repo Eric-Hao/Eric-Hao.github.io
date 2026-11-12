@@ -1,6 +1,6 @@
 {
   "key": "lpm",
-  "title": "LPM: temporal anchors for long-video restoration",
+  "title": "Introducing LPM",
   "standfirst": "LPM combines an image restoration prior, temporal anchors, and a shortened sampling pipeline to address the constraints of large-scale video enhancement.",
   "thesis": "Long-video restoration is a joint fidelity, temporal-consistency, and serving-cost problem; LPM addresses each with a different layer of the system.",
   "source": {
@@ -13,6 +13,7 @@
       "id": "constraint",
       "title": "Fidelity, temporal consistency, and processing cost",
       "paragraphs": [
+        "The LPM report first appeared on July 15, 2026, introducing a system for large-scale image and video enhancement. This article follows the revised report from November 6, 2026; the revision date is distinct from the report’s first publication.",
         "A restoration model can improve every frame in isolation and still produce an unpleasant video. Fabric texture may shift between frames, foliage may shimmer, and a face may change subtly when processing crosses a clip boundary. Generating plausible detail is only one requirement. The detail must remain consistent over time and faithful to the degraded observation, at a cost that permits processing large volumes of video.",
         "The LPM report treats these constraints as a system problem. It first trains an image restoration model, extends it with temporal processing, connects short inference windows through restored reference frames, and compresses a multi-step generation process for deployment. This article follows the November 2026 v2 source, whose architecture and benchmark descriptions are more specific than the broad production claims in its introduction.",
         "The authors report deployment at Kuaishou on videos accounting for approximately 45% of total viewing time, and around 20% bitrate reduction at comparable perceptual quality relative to an in-house codec. Those are operational claims made by the team, not quantities independently established by the public benchmark tables. Their relevance is the scale of the engineering constraint, rather than a substitute for restoration-quality evidence."

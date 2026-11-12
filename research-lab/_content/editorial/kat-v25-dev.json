@@ -1,6 +1,6 @@
 {
   "key": "kat-v25-dev",
-  "title": "KAT-Coder-V2.5-Dev: reward shaping for reliable tool use",
+  "title": "Introducing KAT-Coder-V2.5-Dev",
   "standfirst": "The open-weight, 35B-parameter mixture-of-experts model adapts the V2.5 training recipe with penalties for excessive tool calls, failed calls, and repetition.",
   "thesis": "Behavior-specific rewards stabilize the reported Dev training run; benchmark results remain sensitive to the execution harness and tool compatibility.",
   "source": {
@@ -13,6 +13,7 @@
       "id": "release-boundary",
       "title": "The open-weight, text-only release",
       "paragraphs": [
+        "KAT-Coder-V2.5-Dev adapted the V2.5 training recipe to an open-weight, text-only model. Its repository history begins on July 23, 2026; that date identifies the repository record, not a separately confirmed release announcement.",
         "A coding model can produce a correct-looking answer while failing to interact reliably with its tools. The KAT-Coder-V2.5-Dev model card makes that distinction concrete: early reinforcement learning encouraged bursts of parallel tool calls that destabilized training. The release is a useful case study in adapting a general model to an agent loop, where malformed actions and repeated content consume context and prevent otherwise plausible plans from executing.",
         "Dev is an open-weight, text-only model built on Qwen3.6-35B-A3B, with 35 billion total parameters and three billion activated parameters. The card identifies an Apache-2.0 license and distributes language-model weights and configuration in Transformers format. It explicitly excludes vision and multimodal components. This is therefore not an open-weight copy of every capability associated with the broader KAT-Coder-V2.5 service, and the activated parameter count should not be mistaken for the total memory needed to host its weights."
       ]

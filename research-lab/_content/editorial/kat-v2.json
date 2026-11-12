@@ -1,6 +1,6 @@
 {
   "key": "kat-v2",
-  "title": "KAT-Coder-V2: specialist training and on-policy expert fusion",
+  "title": "Introducing KAT-Coder-V2",
   "standfirst": "KAT-Coder-V2 separates coding-agent skills during training, then distills them into a single model. Its results also show how much the surrounding agent software matters.",
   "thesis": "Agentic coding is a collection of distinct skills; specialist training only becomes useful if those skills survive fusion and changes in the execution scaffold.",
   "source": {
@@ -13,6 +13,7 @@
       "id": "different-jobs",
       "title": "Five domains of agent training",
       "paragraphs": [
+        "Introduced on March 25, 2026, KAT-Coder-V2 organized agent training around specialist skills and on-policy expert fusion. This article examines that training system and the results reported across different agent scaffolds.",
         "A coding assistant may be asked to fix a failing test, build a landing page from a vague description, or investigate a problem through a terminal. These requests share a language interface but reward different behavior. Repository repair needs localization and regression checks. Interface design needs choices about hierarchy, typography, and interaction. Terminal work requires tracking a changing environment. Training all of these behaviors together can create interference rather than a uniformly better agent.",
         "KAT-Coder-V2 responds by specializing first. Starting from KAT-Coder-V1, the authors train five domain experts: software engineering, web coding, terminal use, web search, and general capabilities. Each receives supervised fine-tuning and reinforcement learning. A later distillation stage consolidates their behavior into one deployable model. The report is therefore as much about organizing post-training as about a new checkpoint: how can diverse, sometimes conflicting objectives share a final policy?"
       ],
