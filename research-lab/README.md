@@ -1,85 +1,95 @@
-# Research Lab
+# Research Notes
 
-An English-only research journal at `/research-lab/`, covering language models,
-generative vision, restoration, and fluid dynamics. All 22 established article
-URLs are preserved.
+An independent English-language research journal at `/research-lab/`.
+The 22 established article URLs are preserved.
 
-## Editorial rebuild
+## Measured layout references
 
-The current edition contains 21 newly written explanations based directly on
-original papers or the release's model card, approximately 19,400 words in total.
-No previous article prose is used by the authoring pipeline. The remaining route,
-`vortex-bursting`, is a short source-availability page: a matching original
-manuscript could not be located, so its previous scientific narrative is not
-republished. An original PDF or verified publisher/author link is needed.
+- Index: https://openai.com/zh-Hans-CN/research/index/
+- Panel view: https://openai.com/zh-Hans-CN/research/index/?display=grid
+- Selected article template: https://openai.com/zh-Hans-CN/index/measuring-how-ai-agents-handle-wet-lab-science/
 
-Each article uses four to seven sections suited to its argument rather than a fixed chapter template:
-research question, mechanism, evidence, and limits. The selected source figures
-are explained where they support the argument. Numerical comparisons retain
-benchmark settings and distinguish reported results from independent replication.
-Source inconsistencies are identified rather than silently corrected.
+This implementation follows the selected template rather than combining different
+OpenAI article templates. The page has an illustrated full-bleed hero, lower-left
+headline, and centered reading column. Other OpenAI articles can use different
+hero layouts.
 
-The visual design uses an off-white canvas, restrained rules, serif titles,
-compact topic filters, and a narrow reading column. Full paper identity and author credit appear near the title; an accessible collapsible contents panel remains available on narrow screens. At widths of 1100px and above,
-the illustrated index contains five cards per row, with compact 4:3 thumbnails on desktop. Coverless entries use two
-columns on desktop. Narrow layouts use two illustrated columns and one text
-column. There is no animated or black hero. Existing conceptual cover artwork is
-retained as illustration; article figures come from the original research.
+Measured features include responsive type sizes and leading, 32px desktop / 24px
+mobile gutters, list metadata columns, 32px list row padding, square panel images,
+24px horizontal / 80px vertical grid gaps, and the article reading column. The
+panel layout is three columns above 768px and one column below it. Default is list.
+
+Topic, year/type filtering, four sorting orders, and list/panel controls remain.
+State is reflected in the URL and survives reload and history navigation. Search
+UI, visible result count, article breadcrumb, reading-time/author strip, separate
+banner caption, and contents heading were removed. Accessible live count and
+legacy `q` URL handling remain without visible controls. Article source figures,
+provenance, citations, and related research are retained.
+
+The independent Research Notes identity, topic names, article text, and illustrations are
+not replaced with OpenAI branding or content. Consequently, differences in text
+length and illustration composition produce different line wraps and hero
+heights even where the layout measurements are equal. This is not a claim of
+whole-page screenshot identity or an OpenAI affiliation.
+
+## Fonts and artwork
+
+Typography uses OpenAI Sans and OpenAI Sans SC. Font files, original notices,
+source/version information, and checksums are retained in `fonts/openai/`.
+This project does not grant permission to reuse these fonts elsewhere.
+The font-enabled rendering was checked for both English and Chinese. System
+Latin/CJK fallbacks remain available if a font request fails.
+
+All 22 conceptual covers were generated for this project. Their media vary by
+subject: ink illustration, paper collage, engraving, photographic concepts, and
+scientific field-line imagery. Full 1254px-square WebP images and 640px thumbnails live in `images/covers-index-2026/`; `_content/covers.json` and
+`_content/cover-prompts-2026.json` document the assets. These are conceptual art,
+not experimental figures, real photographs, or model evaluation outputs. Original paper figures remain separately attributed.
+
+## Editorial content
+
+All 22 entries now have complete English explanations with source evidence.
+`vortex-bursting` was integrated from the supplied manuscript and reviewed source
+record. Its DOI, 10.1017/jfm.2026.12259, is transcribed from the supplied PDF; the
+DOI and final publication metadata have not been independently verified. No final
+volume or article number has been invented. That qualification appears in the
+article, bibliography, and source reference.
+
+The existing 21 other article records and scientific claims are unchanged.
+Publication years, not invented day-level dates, drive chronological sorting.
+Within a year the original catalog order is preserved.
 
 ## Source of truth
 
-- `_content/editorial/catalog.json`: bibliographic metadata and established routes.
-- `_content/editorial/<key>.json`: independent English article, figure provenance,
-  primary-source references, and claim-level page/table/section evidence pointers.
-- `_content/build_editorial.py`: the only page builder. The old `build_home.py`
-  and `build_articles.py` commands are compatibility entry points to this builder.
-- `_content/styles/research.css`: all page styles. `site.css` is generated.
-- `_content/render_math.mjs`: a small KaTeX-only build step. It does not use the
-  previous paper-reading skill or its renderer.
-- `app.js`: accessible filtering, search, figure dialogs, citation copying, and
-  reading-section highlighting. No external JavaScript is loaded.
-- `citations/`: original BibTeX entries. The source-unavailable entry does not
-  offer an unverified citation for copying.
-- `_content/source-figures.json`: retained source-asset provenance. Original
-  source PDFs and extracted text are local research inputs, not required to build.
+- `_content/editorial/catalog.json`: bibliography and established routes.
+- `_content/editorial/<key>.json`: article prose and evidence pointers.
+- `_content/build_editorial.py`: page builder; compatibility entry points call it.
+- `_content/styles/research.css`: CSS source; `site.css` is generated.
+- `_content/covers.json`: illustration paths and provenance.
+- `app.js`: browsing controls, history state, figure viewer, citation copying.
+- `_content/render_math.mjs`: KaTeX build step with trust disabled.
+- `citations/`: BibTeX records.
 
-Obsolete bilingual prose, template builders, and the previous vendored renderer
-have been retired from the active pipeline. Git history retains earlier versions.
-Source figures can be positioned between the paragraphs that explain them, and selected opening sections can appear as unboxed introductory prose. All writing is safely escaped; optional inline emphasis and mathematics are the
-only supported prose formatting. Links are limited to HTTP(S), image paths stay
-inside the site, and all formulas are compiled with KaTeX trust disabled.
+Prose is escaped. Only controlled inline emphasis and mathematics are supported;
+links are limited to HTTP(S) and image paths stay local.
 
-## Build and test
+## Build and verify
 
-From the repository root, with Python 3.9+ and Node 20+:
+From the repository root, with Python 3.12+ and Node 20+:
 
 ```sh
 npm ci --ignore-scripts --prefix research-lab/_content
 python3 research-lab/_content/build_editorial.py
 npm test --prefix research-lab/_content
-```
-
-The test command runs eleven authoring/security unit tests and the static site
-checker. It verifies all 23 pages, 22 preserved routes, English-only text, figure
-paths, references, anchors, duplicate IDs, math compilation, source notices, and
-index completeness. The verified rebuild passes 1,310 static checks.
-
-The full site's production build uses its existing locked Ruby/Jekyll environment:
-
-```sh
-source /workspace/scratch/b7ea28637fb3/cloud-ruby/activate.sh
+node --check research-lab/app.js
 JEKYLL_ENV=production bundle _2.2.19_ exec jekyll build --safe
 ```
 
-Browser QA uses the supported internal managed preview, not a public deployment.
-Desktop (1168 CSS pixels) and narrow (389 CSS pixels using browser zoom) reviews
-cover all article routes, page overflow, loaded images, math, and source notices.
-The index's five/two-column desktop layout, topic/search/reset controls, repeated
-figure opening, Escape/close, focus restoration, and citation copying are checked.
-The narrow review is responsive desktop-browser testing, not real-device testing.
+The current build passes 22 unit tests and 1,625 static checks across all 23
+pages. Tests cover route preservation, figures, references, browsing controls,
+duplicate IDs, escaping, mathematical rendering, and editorial records.
+Browser review covers desktop, tablet-width, and narrow responsive viewports.
+These are desktop-browser responsive checks, not real-device tests.
 
-## Publishing
-
-Keep changes local until the owner approves publication. A local preview does not
-change GitHub Pages. When publication is approved, build and verify the final tree
-again, then confirm the exact remote commit and deployment outcome.
+The supplied private manuscript PDF is not a publishing asset. Only its
+authorized figure excerpts and the source-based explanation are included.

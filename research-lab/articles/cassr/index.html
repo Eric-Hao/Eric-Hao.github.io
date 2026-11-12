@@ -2,14 +2,13 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CasSR: generated visual references for diffusion super-resolution · Research Lab</title><meta name="description" content="CasSR first builds a cleaner reference image, then lets a diffusion model consult both that reference and the original observation.">
 <link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/cassr/"><meta property="og:type" content="article"><meta property="og:title" content="CasSR: generated visual references for diffusion super-resolution"><meta property="og:description" content="CasSR first builds a cleaner reference image, then lets a diffusion model consult both that reference and the original observation."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/cassr/">
-<meta name="theme-color" content="#f9f8f4"><link rel="stylesheet" href="../../site.css?v=61420c89531a"><script src="../../app.js?v=8e7cb70a6af1" defer></script></head>
-<body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="wordmark" href="../../" aria-label="Research Lab home"><span class="brand-mark" aria-hidden="true"></span>Research Lab<span class="wordmark-by">by Jinhua Hao</span></a><nav aria-label="Main navigation"><a href="../../">Research</a><a href="../../../">About the author <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></nav></header>
-<main id="main" class="article-main"><div class="article-breadcrumb"><a href="../../">All research</a><span aria-hidden="true">/</span><span>Vision &amp; restoration</span></div><header class="article-header"><p class="eyebrow">arXiv 2024 <span aria-hidden="true">/</span> 4 min read</p><h1>CasSR: generated visual references for diffusion super-resolution</h1><p class="standfirst">CasSR first builds a cleaner reference image, then lets a diffusion model consult both that reference and the original observation.</p><div class="article-actions">
-<a class="source-button" href="https://arxiv.org/abs/2403.11451" target="_blank" rel="noopener noreferrer">Read the original <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="#citation">Cite this paper</a></div>
-<div class="publication-line"><p class="publication-title">CasSR: Activating Image Power for Real-World Image Super-Resolution</p><p class="publication-authors">Haolan Chen, Jinhua Hao, Kai Zhao, et al. <a href="#citation">Publication details</a></p></div></header>
-<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article"><p class="eyebrow">In this article</p>
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=5fe03be1d6c1"><script src="../../app.js?v=5ea4dcc66129" defer></script></head>
+<body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="home-link" href="../../../" aria-label="Home — Jinhua Hao"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a></header>
+<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#f1e9e1">
+<div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/cassr.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
+<header class="article-header"><p class="eyebrow"><span>arXiv 2024</span><span>Vision &amp; restoration</span></p><h1>CasSR: generated visual references for diffusion super-resolution</h1><p class="standfirst">CasSR first builds a cleaner reference image, then lets a diffusion model consult both that reference and the original observation.</p></header></section>
+<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#reference">Why a caption cannot specify a feather</a>
 <a href="#activation">SCEdit builds a provisional visual reference</a>
 <a href="#two-routes">Reference attention followed by original-input attention</a>
@@ -23,9 +22,7 @@
 <a href="#training">Training the controller and attention modules</a>
 <a href="#comparison">Reference generation helps, but perceptual metrics disagree</a>
 <a href="#captions">Caption conditioning has mixed effects</a>
-</nav></details><div class="aside-source"><span class="eyebrow">Source</span><p>
-<a href="https://arxiv.org/abs/2403.11451">CasSR: Activating Image Power for Real-World Image Super-Resolution <span class="arrow-icon" aria-hidden="true"></span></a>
-</p></div></aside><article class="article-body">
+</nav></details></aside><article class="article-body">
 <section id="reference" class="essay-section">
 <h2>Why a caption cannot specify a feather</h2>
 <p>A caption can identify a penguin on rocks without describing the exact boundary of its wing, the placement of its eye, or the texture of the surrounding stone. Those details are central to image restoration. CasSR starts from the premise that a text-to-image model needs stronger visual guidance when reconstructing a particular degraded photograph.</p>
@@ -40,7 +37,7 @@
 <section id="two-routes" class="essay-section">
 <h2>Reference attention followed by original-input attention</h2>
 <p>CasSR uses a shared-weight ControlNet to extract features from the original image and the generated reference. These features condition a pretrained Stable Diffusion backbone. The main addition is a multiple-attention module in the U-Net’s upsampling blocks, where the developing image can directly consult both sources.</p>
-<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/cassr-1.webp" data-caption="Figure 3 keeps the original and reference images on separate conditioning paths. The attention block reads reference features before returning to low-resolution features, an explicit attempt to balance detail generation with fidelity." type="button" aria-label="Enlarge figure: CasSR architecture with an image activation module, two shared ControlNet paths, and reference, self, and low-resolution attention."><img src="../../images/source/cassr-1.webp" alt="CasSR architecture with an image activation module, two shared ControlNet paths, and reference, self, and low-resolution attention." loading="lazy"><span class="figure-zoom" aria-hidden="true">View larger <span class="arrow-icon" aria-hidden="true"></span></span></button><figcaption>Figure 3 keeps the original and reference images on separate conditioning paths. The attention block reads reference features before returning to low-resolution features, an explicit attempt to balance detail generation with fidelity.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2403.11451" target="_blank" rel="noopener noreferrer">Original paper, Figure 3, p. 7 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
+<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/cassr-1.webp" data-caption="Figure 3 keeps the original and reference images on separate conditioning paths. The attention block reads reference features before returning to low-resolution features, an explicit attempt to balance detail generation with fidelity." type="button" aria-label="Enlarge figure: CasSR architecture with an image activation module, two shared ControlNet paths, and reference, self, and low-resolution attention."><img src="../../images/source/cassr-1.webp" alt="CasSR architecture with an image activation module, two shared ControlNet paths, and reference, self, and low-resolution attention." loading="lazy"></button><figcaption>Figure 3 keeps the original and reference images on separate conditioning paths. The attention block reads reference features before returning to low-resolution features, an explicit attempt to balance detail generation with fidelity.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2403.11451" target="_blank" rel="noopener noreferrer">Original paper, Figure 3, p. 7 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
 <p>First, reference attention uses the U-Net features as queries and reference features as keys and values. The resulting representation then passes through self-attention. Finally, low-resolution attention queries the original-input features. This ordering lets the reference provide more explicit structure while the observed image supplies a later constraint on fidelity.</p>
 <p>The original input bypasses the first-stage reconstruction and remains available to the final network. In the paper’s explanation, this path is necessary because the reference generator can introduce artifacts. It gives the model a learned way to correct them, though their removal is not mathematically guaranteed.</p>
 </section>
@@ -62,6 +59,9 @@
 <p>The extra restoration stage adds both visual guidance and potential errors. For applications that need exact scene recovery, the critical test is whether the final low-resolution attention rejects misleading reference details. The reported quality scores alone cannot answer that question.</p>
 </section>
 <section class="paper-details" id="citation"><p class="eyebrow">Original publication</p><h2>CasSR: Activating Image Power for Real-World Image Super-Resolution</h2><p class="paper-authors">Haolan Chen, Jinhua Hao, Kai Zhao, Kun Yuan, Ming Sun, Chao Zhou, Wei Hu</p><p>arXiv 2024</p>
+<div class="article-actions">
+<a href="https://arxiv.org/abs/2403.11451" target="_blank" rel="noopener noreferrer">Read the original paper <span class="arrow-icon" aria-hidden="true"></span></a>
+</div>
 <details class="citation"><summary>BibTeX citation</summary><button type="button" class="copy-citation">Copy citation</button><pre>@misc{chen2024cassractivatingimagepower,
   title = {CasSR: Activating Image Power for Real-World Image Super-Resolution},
   author = {Haolan Chen
@@ -82,10 +82,10 @@
 <li><a href="https://arxiv.org/abs/2403.11451" target="_blank" rel="noopener noreferrer">CasSR: Activating Image Power for Real-World Image Super-Resolution <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>
 <section class="related"><div class="collection-heading"><h2>Continue reading</h2><a href="../../">All research <span class="arrow-icon" aria-hidden="true"></span></a></div><div class="related-grid">
-<a href="../../articles/shiftlut/"><span class="card-meta">CVPR 2026</span><h3>ShiftLUT: wider restoration context with compact lookup tables</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/tinvblocks/"><span class="card-meta">AAAI 2025</span><h3>T-InvBlocks: separating luminance, color, and detail for image rescaling</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/oapt/"><span class="card-meta">ECCV 2024</span><h3>OAPT: offset-aware attention for double JPEG restoration</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
+<a href="../../articles/shiftlut/"><div class="related-cover"><img src="../../images/covers-index-2026/shiftlut-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>ShiftLUT: wider restoration context with compact lookup tables</h3><span class="card-meta">CVPR 2026</span></a>
+<a href="../../articles/tinvblocks/"><div class="related-cover"><img src="../../images/covers-index-2026/tinvblocks-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>T-InvBlocks: separating luminance, color, and detail for image rescaling</h3><span class="card-meta">AAAI 2025</span></a>
+<a href="../../articles/oapt/"><div class="related-cover"><img src="../../images/covers-index-2026/oapt-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>OAPT: offset-aware attention for double JPEG restoration</h3><span class="card-meta">ECCV 2024</span></a>
 </div></section>
 </main>
-<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><p>Research explained through its methods, results, and open questions.</p><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
+<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
 <dialog class="image-viewer" aria-label="Research figure viewer"><button type="button" class="viewer-close" aria-label="Close figure">Close ×</button><div class="viewer-content"><img alt=""><p></p></div></dialog></body></html>

@@ -1,31 +1,220 @@
 {
   "key": "vortex-bursting",
-  "title": "Vortex bursting in twisted magnetic flux tubes with opposite chiralities",
-  "standfirst": "The original manuscript is needed before a research analysis can be published.",
-  "thesis": "A title and an unverified catalog entry are not enough to reconstruct the methods or findings of a paper.",
+  "title": "How opposite magnetic twists set a still fluid in motion",
+  "standfirst": "A twisted magnetic ring generates its own vortices and counter-propagating waves, opening a route from stored magnetic energy to local bursting.",
+  "thesis": "In this idealized simulation, a reversal of magnetic twist organizes both the initial rotational forcing and the wave interaction that turns a quiet fluid into an expanding, fragmenting vortex structure.",
   "source": {
-    "label": "Original manuscript not available",
-    "url": null,
-    "kind": "Source unavailable"
+    "label": "Wang et al., Vortex bursting in twisted magnetic flux tubes with opposite chiralities (supplied manuscript)",
+    "url": "https://doi.org/10.1017/jfm.2026.12259",
+    "kind": "Original research manuscript"
   },
   "sections": [
     {
-      "id": "availability",
-      "title": "Source availability",
+      "id": "a-ring-at-rest",
+      "title": "A ring at rest",
+      "intro": true,
       "paragraphs": [
-        "This catalog entry lists Yanru Wang, Anda Xiong, Jinhua Hao, and Shiying Xiong as authors. It does not provide a publication year, DOI, or manuscript link. Those bibliographic details have not been independently verified.",
-        "An original manuscript matching this title and author list was not available for this rewrite. Searches for the title and author combination did not locate a matching primary source. Related papers on vortex bursting have different titles and authors and cannot be substituted.",
-        "A complete PDF, an author manuscript, or a verified publisher link is needed to establish the governing equations, initial conditions, reported results, and figure provenance. Until then, this page makes no claims about the paper’s scientific findings."
+        "The fluid starts perfectly still. There is no imposed vortex, incoming disturbance, or external strain. All the structure is in the magnetic field: a circular flux tube whose field lines wind one way around one half of the ring and the opposite way around the other. Can that geometry generate a flow strong enough to burst the tube locally?",
+        "The simulations in this paper trace a complete sequence. Magnetic forces first generate vorticity, the local rotation of the fluid. Alfvénic disturbances travel along the tube and meet near the places where its twist changes sign. A compact vortex develops into a disk, spreads radially, and eventually fragments. The contribution is a magnetic origin for vortex bursting in an initially quiescent fluid, with the initiating forces, evolving geometry, and energy budget examined together."
+      ]
+    },
+    {
+      "id": "opposite-twists",
+      "title": "Put the twist reversal inside the tube",
+      "paragraphs": [
+        "A magnetic flux tube is a bundle of magnetic field lines. Here its centerline is a circle of radius one, while its axial magnetic field has a Gaussian radial profile. The field combines a component along the ring with a component winding around its cross-section. The latter changes sign according to the prescribed twist rate $T_w(s)=20\\cos s$, where $s$ measures distance along the circular centerline.",
+        "At two diametrically opposite locations, the twist passes through zero. These are the chirality-inversion regions: the junctions between opposite handedness. They lie in the plane $x=\\pi$. The greatest twist magnitude occurs a quarter-turn away, in the plane $y=\\pi$. Keeping those locations distinct is essential to the mechanism. The strongest initial vorticity source and the launch of the traveling disturbances occur in different parts of the ring.",
+        "The authors solve incompressible, viscous and resistive magnetohydrodynamics in a periodic cube of side $2\\pi$. All three principal simulations use $1024^3$ grid points and magnetic Prandtl number $Pr_m=\\nu/\\eta=1$, so viscosity and magnetic diffusivity are equal. A Fourier pseudo-spectral solver uses two-thirds dealiasing and second-order Runge–Kutta time integration, with the Courant number kept below 0.5. The initial magnetic field, rather than an initial velocity field, supplies the energy for everything that follows."
+      ],
+      "figure": {
+        "src": "images/source/vortex-bursting-figure-02.webp",
+        "alt": "The initial magnetic ring has oppositely colored halves and two gray disks marking twist reversal, with a local cross-section coordinate system shown to the right.",
+        "caption": "The initial condition. The red and blue halves indicate opposite signs of current helicity, which measures the local alignment of current density and magnetic field. The gray disks mark the two chirality-inversion regions. The circle is initially a magnetic structure, not a pre-existing vortex.",
+        "sourceLabel": "Supplied manuscript, Figure 2, p. A1-5; original panels cropped without redrawing",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2026.12259"
+      },
+      "figure_after": 2
+    },
+    {
+      "id": "make-a-vortex",
+      "title": "The magnetic field makes the first vortices",
+      "paragraphs": [
+        "A magnetic field acts on a conducting fluid through the Lorentz force, $\\mathbf F_L=\\mathbf j\\times\\mathbf b$. Its curl measures the part of that force that can start local rotation. Taking the curl of the momentum equation gives a particularly clean result at the initial instant: because both velocity and vorticity vanish, the only surviving vorticity source is $\\partial_t\\boldsymbol\\omega=\\rho^{-1}\\nabla\\times\\mathbf F_L$. The initial ring is therefore not a force-balanced equilibrium: the calculation follows how its built-in magnetic stresses develop, rather than measuring the linear stability of an equilibrium tube.",
+        "This connects the starting geometry to the first motion. The paper separates the source into changes in field-line geometry and changes in field strength. For the chosen ring, the dominant term combines the gradient of magnetic intensity with field-line curvature: $\\nabla b^2\\times(\\kappa_m\\mathbf N)$, where $\\kappa_m$ is curvature and $\\mathbf N$ points toward the local bend. Variation of magnetic strength across the bent tube therefore supplies rotational forcing even though the fluid has no vorticity to stretch initially.",
+        "Figure 4 locates the dominant contribution near the chirality-inversion regions and resolves opposing source directions within the cross-section. Those directions deform the tube as the induced flow develops. The claim is specific to this field configuration and its early evolution: the decomposition identifies which term dominates here, rather than establishing a universal hierarchy for every magnetic tube."
+      ],
+      "figure": {
+        "src": "images/source/vortex-bursting-figure-04.webp",
+        "alt": "Four components of the initial Lorentz-force curl are compared on the magnetic ring; panel d shows the strongest component and enlarged arrows with opposing directions.",
+        "caption": "The source of the first rotation. Panel d isolates the field-strength-gradient and curvature contribution that dominates this initial condition. The enlarged arrows show opposing vorticity sources. These are source terms at the initial time, not a picture of an already developed vortex.",
+        "sourceLabel": "Supplied manuscript, Figure 4, p. A1-9; original panels cropped without redrawing",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2026.12259"
+      }
+    },
+    {
+      "id": "waves-meet",
+      "title": "Two traveling disturbances meet at the reversal",
+      "paragraphs": [
+        "Generating vorticity is only the first step. The authors also follow Alfvén waves, coupled disturbances of velocity and magnetic field that propagate along magnetic field lines under magnetic tension. In the paper's normalized variables, the combinations $\\mathbf z^+=\\mathbf u+\\mathbf b$ and $\\mathbf z^-=\\mathbf u-\\mathbf b$ describe the two propagation directions.",
+        "Cross helicity provides a way to track their local imbalance. Its density, $h_c=\\mathbf u\\cdot\\mathbf b=(|\\mathbf z^+|^2-|\\mathbf z^-|^2)/4$, is positive where velocity tends to align with the field and negative where it tends to oppose it. The paper derives an initial source $\\partial_t h_c=-\\rho^{-1}\\mathbf b\\cdot\\nabla p$. The pressure gradient enforces incompressibility and can accelerate fluid along the field, even though the Lorentz force itself is perpendicular to it.",
+        "At the maximally twisted cross-sections, that pressure contribution has opposite signs on opposite sides. Figure 6 then follows positive and negative cross-helicity regions moving along the tube toward the chirality-inversion plane. The authors interpret this evolution as counter-propagating Alfvén waves interacting with the vorticity generated there. The meeting concentrates deformation and leads into bursting.",
+        "The colors in Figure 6 are a diagnostic of velocity–field alignment, not a direct measurement of wave speed. Read alongside the source analysis and the curvature histories, they support the proposed sequence from wave launch to interaction. The paper does not derive a general instability threshold or a universal collision time for arbitrary flux tubes."
+      ],
+      "figure": {
+        "src": "images/source/vortex-bursting-figure-06.webp",
+        "alt": "A magnetic field line at simulation times 0.05, 0.15, and 0.35 is colored by cross helicity, showing positive and negative regions moving along the ring.",
+        "caption": "Follow the red and blue regions along the same evolving field line. Their motion toward the twist-reversal region is the paper's evidence for oppositely traveling Alfvénic disturbances. The sequence is for Lu = 800; time is dimensionless.",
+        "sourceLabel": "Supplied manuscript, Figure 6, p. A1-11; original panels cropped without redrawing",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2026.12259"
+      },
+      "figure_after": 3
+    },
+    {
+      "id": "three-stages",
+      "title": "A disk forms, expands, and breaks apart",
+      "paragraphs": [
+        "**Formation, approximately $t=0$ to $0.35$.** Initially diffuse vorticity concentrates into a disk-like structure near the reversal. Vortex lines are squeezed and reoriented. A complementary view in Figure 9 develops a distinctive spiral, while the current density in Figure 11 rolls into thin spiral sheets. Bursting has a localized structure, rather than appearing as uniform swelling of the entire ring.",
+        "**Expansion, approximately $t=0.35$ to $0.65$.** The disk spreads outward and its vortex lines stretch and bend. The authors connect radial outflow to local slowing of the axial flow during wave interaction: in an incompressible fluid, the displaced fluid must go somewhere. The cross-section becomes asymmetric, with an elongated outer lobe and a more compact inner lobe. Both magnetic-line and vortex-line curvature rise sharply, documenting increasing deformation.",
+        "**Breakdown, approximately $t=0.65$ to $0.8$.** The organized vortex structure fragments, and the paper visualizes vortex reconnection producing smaller secondary rings. The ordered current sheet also breaks into small regions of intense current. Curvature and the signed cross- and kinetic-helicity amplitudes decline as the coherent structure is lost. The later snapshots at $t=0.9$ and $1.1$ show continuing distortion rather than a return to the original ring.",
+        "These boundaries summarize the reference case at Lu = 800. Appendix A finds approximately the same transition times at Lu = 1600, with larger curvature amplitudes. That comparison supports the three-stage description over those two dissipation levels; it does not make the numerical times independent of field strength, tube geometry, or twist."
+      ],
+      "figure": {
+        "src": "images/source/vortex-bursting-figure-08.webp",
+        "alt": "A reference view identifies a slice through the bursting region; nine vorticity cross-sections show concentration, radial stretching, and fragmentation in three rows.",
+        "caption": "Read the three rows in order: concentrated vorticity forms, stretches into a narrow spine, and then fragments. Color shows the signed z-component of vorticity, not magnetic-field strength. The section is asymmetric because the inner and outer sides of the curved ring evolve differently.",
+        "sourceLabel": "Supplied manuscript, Figure 8, p. A1-13; original panels cropped without redrawing",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2026.12259"
+      },
+      "figure_after": 3
+    },
+    {
+      "id": "change-diffusion",
+      "title": "Less diffusion lets the burst spread farther",
+      "paragraphs": [
+        "The simulations vary the Lundquist number, $Lu=L U_A/\\eta$, which compares the resistive diffusion time with the Alfvén travel time. The three values are 800, 1600, and 2670. Increasing Lu here lowers magnetic diffusivity while preserving the initial field; because $Pr_m=1$, viscosity decreases alongside it. The comparison therefore changes both dissipative processes, rather than isolating magnetic diffusion alone.",
+        "To measure expansion, the paper defines an effective disk radius $R_d$: the root-mean-square distance from the instantaneous vortex centroid, weighted by the magnitude of the local axial vorticity. It measures how widely the concentrated vorticity is distributed. It is not the outer edge of the visible disk.",
+        "Figure 12 shows that this radius increases during the expansion stage and is larger for the higher-Lu cases. The result fits the physical picture: weaker diffusion allows finer structure and stronger deformation to survive while the magnetic and vortical fields evolve together. It is a trend across three simulations, not an established scaling law for astrophysical Lundquist numbers."
+      ],
+      "figure": {
+        "src": "images/source/vortex-bursting-figure-12.webp",
+        "alt": "Effective vortex radius increases with time for three Lundquist numbers; higher-Lundquist curves lie above lower ones. Adjacent views show expanded vortex and magnetic structures.",
+        "caption": "A quantitative measure of spreading accompanies the visual expansion. Panel a plots the vorticity-weighted radius, with higher curves at higher Lu. Panel b shows the reference case at t = 0.45: vortex lines above and magnetic lines below. The two rows use different helicity colorings.",
+        "sourceLabel": "Supplied manuscript, Figure 12, p. A1-16; original panels cropped without redrawing",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2026.12259"
+      }
+    },
+    {
+      "id": "energy-and-dissipation",
+      "title": "Energy transfer begins before the most dramatic deformation",
+      "paragraphs": [
+        "The energy history distinguishes starting the flow from dissipating the structures it creates. For Lu = 800, Figure 14 places the fastest magnetic-energy decrease and fastest kinetic-energy growth around $t\\approx0.1$, well inside the formation stage. Magnetic energy continues to decrease, while kinetic energy approaches saturation later. The visually intense expansion is therefore not the start of magnetic-to-kinetic transfer.",
+        "The dissipation rates tell a different part of the story. In the lowest-Lu case, magnetic dissipation starts high and initially falls as diffusion smooths the field. Bursting interrupts that decline with a modest rebound. In the higher-Lu cases, stretching and folding build magnetic gradients, and magnetic dissipation rises toward a local peak around $t\\approx0.6$.",
+        "Kinetic dissipation also accelerates during expansion, reaching a higher peak in the higher-Lu cases. Smaller viscosity does not guarantee a smaller instantaneous loss rate, because the evolving flow can develop stronger gradients. During breakdown, both dissipation rates decline. The normalized magnetic dissipation rate, dissipation divided by remaining magnetic energy, is generally larger in the lower-Lu cases, so stronger bursting should not be paraphrased as greater dissipation under every normalization.",
+        "These curves quantify conversion and loss of magnetic and kinetic energy in the simulated system. They do not measure a coronal temperature rise: the model has no thermodynamic energy equation. Nor does the paper report a magnetic reconnection-rate scaling. Fragmenting current sheets motivate a connection to reconnection and heating, but those broader consequences need their own tests."
+      ],
+      "figure": {
+        "src": "images/source/vortex-bursting-figure-15.webp",
+        "alt": "Magnetic and kinetic dissipation histories for Lu 800, 1600, and 2670 show distinct early behavior, enhanced loss around the expansion stage, and later decline.",
+        "caption": "Separate transfer from dissipation. These panels show resistive magnetic-energy loss and viscous kinetic-energy loss, not the rate of conversion between the two reservoirs. Solid, dashed, and dash-dotted curves correspond to Lu = 800, 1600, and 2670. Higher-Lu cases develop a later magnetic-dissipation rise and a larger kinetic-dissipation peak.",
+        "sourceLabel": "Supplied manuscript, Figure 15, p. A1-18; original panels cropped without redrawing",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2026.12259"
+      },
+      "figure_after": 3
+    },
+    {
+      "id": "zero-total-helicity",
+      "title": "Zero total helicity can hide a vigorous local process",
+      "paragraphs": [
+        "Symmetry makes the volume-integrated magnetic, cross, and kinetic helicities remain zero in these simulations. That cancellation can obscure the dynamics: equal contributions of opposite sign can grow substantially while their sum stays zero. The paper therefore tracks the positive and negative parts separately.",
+        "The cross-helicity components first grow as the oppositely traveling disturbances develop. Cross and kinetic components grow again during expansion, then fall as the structure breaks down. The magnetic-helicity components decay throughout. Figure 17 makes those different histories visible despite the flat global totals. Its higher-Lu curves show larger surviving signed components.",
+        "These diagnostics describe alignment and helical structure within the simulated configuration. This positive-and-negative decomposition is a diagnostic, not a new conserved quantity. Its evolution should not be read as proof that magnetic helicity is converted one-for-one into kinetic helicity. The useful observation is that a global signed total can miss substantial local organization, and that following both signs helps distinguish formation, expansion, and breakdown."
+      ],
+      "figure": {
+        "src": "images/source/vortex-bursting-figure-17.webp",
+        "alt": "Three panels show cross, magnetic, and kinetic helicities. Red positive and blue negative components evolve while the black total remains at zero.",
+        "caption": "Cancellation is not inactivity. The black totals remain zero while red and blue components develop opposing amplitudes. Cross and kinetic components follow the growth and loss of the bursting structures; magnetic components decay. The panels use separate vertical scales.",
+        "sourceLabel": "Supplied manuscript, Figure 17, p. A1-19; original panels cropped without redrawing",
+        "sourceUrl": "https://doi.org/10.1017/jfm.2026.12259"
+      }
+    },
+    {
+      "id": "what-this-establishes",
+      "title": "A mechanism to test beyond the idealized ring",
+      "paragraphs": [
+        "The main result is a self-generated sequence: a prescribed magnetic geometry starts a flow, launches disturbances, concentrates their interaction, and develops a localized burst. This gives a concrete magnetic starting point for a phenomenon previously investigated in already existing vortex tubes. It also suggests what to look for in more complex settings: a twist reversal, localized rotational forcing, traveling disturbances, and their subsequent concentration.",
+        "The numerical checks support that sequence within a defined scope. Appendix A compares $512^3$, $768^3$, and $1024^3$ grids for the highest-Lu case and reports convergence of the magnetic and kinetic energy histories at the adopted resolution. The study does not establish a universal twist threshold, systematically map all geometries, or demonstrate convergence of every local small-scale diagnostic.",
+        "The connection to solar eruptions remains a physical hypothesis. The simulated ring is closed and periodic, rather than anchored to the photosphere; the fluid is incompressible, the magnetic Prandtl number is fixed at one, and the Lundquist numbers are far below coronal values. The solar image and schematic in the paper motivate the question, but do not validate this mechanism for that observed flare. Compressibility, density variation, and a broader parameter study remain future work. Within those limits, the paper shows how opposite magnetic twists can organize the onset of a burst without an externally imposed vortex."
       ]
     }
   ],
-  "references": [],
-  "evidence": [
+  "references": [
     {
-      "claim": "Title and author list are recorded in the local catalog; publication year and URL are absent",
-      "location": "Catalog entry vortex-bursting",
-      "source": "Local publication catalog; not independently verified"
+      "label": "Wang, Y., Xiong, A., Hao, J. & Xiong, S. (2026). Vortex bursting in twisted magnetic flux tubes with opposite chiralities. DOI printed in the supplied manuscript; final publication metadata not independently verified.",
+      "url": "https://doi.org/10.1017/jfm.2026.12259"
     }
   ],
-  "status": "source-unavailable"
+  "evidence": [
+    {
+      "claim": "Initially quiescent fluid and self-generated magnetic pathway",
+      "location": "Abstract, pp. A1-1; Sections 2 and 6, pp. A1-4–7 and A1-20–21",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Circular centerline, Gaussian cross-section, Tw = 20 sin(s + pi/2) = 20 cos(s), inversion and maximal-twist planes",
+      "location": "Section 2.2, equation (2.3), Figure 2, pp. A1-4–6",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Periodic 2pi cube, 1024 cubed grids, unit magnetic Prandtl number, Fourier pseudo-spectral method, two-thirds truncation, RK2, CFL below 0.5",
+      "location": "Section 2.1, p. A1-4; Table 1, p. A1-8",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Initial Lorentz-force curl is sole vorticity source and field-intensity/curvature contribution dominates",
+      "location": "Section 3.1, equations (3.1)–(3.4), Figures 3–4, pp. A1-7–9",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Cross-helicity identity, initial pressure-gradient source, and propagation of signed regions toward inversion plane",
+      "location": "Section 3.2, equations (3.5)–(3.10), Figures 5–6, pp. A1-9–11",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Approximate stages 0–0.35, 0.35–0.65, and 0.65–0.8; spiral, disk, asymmetry, breakdown and secondary rings",
+      "location": "Sections 3.3 and 4, Figures 7–13, pp. A1-11–17. Stage intervals use the prose summary on p. A1-14, not the narrower plotting windows in Figure 7.",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Lu = 800, 1600, 2670; Pr_m = 1 couples changes of viscosity and magnetic diffusivity",
+      "location": "Section 2.1 and Table 1, pp. A1-4 and A1-8",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Vorticity-weighted disk radius is not an outer radius; radius grows and is larger at higher Lu",
+      "location": "Section 4.2, equations (4.1)–(4.2), Figure 12, pp. A1-15–16",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Fastest energy transfer near t = 0.1 in reference case; dissipation behavior and peaks near t = 0.6; lower-Lu normalized magnetic dissipation generally larger",
+      "location": "Section 5.1, Figures 14–16, pp. A1-17–19",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Zero integrated helicities and nonzero positive/negative parts; magnetic components decay; cross and kinetic components follow burst stages",
+      "location": "Section 2.3, p. A1-7; Section 5.2, Figure 17, pp. A1-18–19",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Energy-history convergence across 512 cubed, 768 cubed and 1024 cubed; two-case stage comparison; late-time snapshots at 0.9 and 1.1",
+      "location": "Appendix A, Figures 19–21, pp. A1-21–23",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    },
+    {
+      "claim": "Scope limits: incompressible closed ring, unit Pr_m, below-coronal Lu, no temperature evolution or reconnection-rate scaling demonstrated; compressible extension and wider parameter study left open",
+      "location": "Equations (2.1)–(2.2), Section 6, Appendix A, pp. A1-4, A1-20–22. Scope statements distinguish modeled equations and demonstrated diagnostics from suggested applications.",
+      "source": "Supplied PDF FLM-S0022112026122599.pdf"
+    }
+  ],
+  "status": "complete",
+  "publicationNote": "DOI and journal metadata are transcribed from the supplied manuscript. The DOI, final volume, and article number have not been independently verified."
 }

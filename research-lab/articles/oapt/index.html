@@ -2,15 +2,13 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>OAPT: offset-aware attention for double JPEG restoration · Research Lab</title><meta name="description" content="OAPT uses the offset between successive JPEG compressions to decide which image regions should attend to one another.">
 <link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/oapt/"><meta property="og:type" content="article"><meta property="og:title" content="OAPT: offset-aware attention for double JPEG restoration"><meta property="og:description" content="OAPT uses the offset between successive JPEG compressions to decide which image regions should attend to one another."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/oapt/">
-<meta name="theme-color" content="#f9f8f4"><link rel="stylesheet" href="../../site.css?v=61420c89531a"><script src="../../app.js?v=8e7cb70a6af1" defer></script></head>
-<body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="wordmark" href="../../" aria-label="Research Lab home"><span class="brand-mark" aria-hidden="true"></span>Research Lab<span class="wordmark-by">by Jinhua Hao</span></a><nav aria-label="Main navigation"><a href="../../">Research</a><a href="../../../">About the author <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></nav></header>
-<main id="main" class="article-main"><div class="article-breadcrumb"><a href="../../">All research</a><span aria-hidden="true">/</span><span>Vision &amp; restoration</span></div><header class="article-header"><p class="eyebrow">ECCV 2024 <span aria-hidden="true">/</span> 4 min read</p><h1>OAPT: offset-aware attention for double JPEG restoration</h1><p class="standfirst">OAPT uses the offset between successive JPEG compressions to decide which image regions should attend to one another.</p><div class="article-actions">
-<a class="source-button" href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf" target="_blank" rel="noopener noreferrer">Read the original <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="https://github.com/QMoQ/OAPT" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="#citation">Cite this paper</a></div>
-<div class="publication-line"><p class="publication-title">OAPT: Offset-Aware Partition Transformer for Double JPEG Artifacts Removal</p><p class="publication-authors">Qiao Mo, Yukang Ding, Jinhua Hao, et al. <a href="#citation">Publication details</a></p></div></header>
-<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article"><p class="eyebrow">In this article</p>
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=5fe03be1d6c1"><script src="../../app.js?v=5ea4dcc66129" defer></script></head>
+<body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="home-link" href="../../../" aria-label="Home — Jinhua Hao"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a></header>
+<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#ede9dc">
+<div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/oapt.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
+<header class="article-header"><p class="eyebrow"><span>ECCV 2024</span><span>Vision &amp; restoration</span></p><h1>OAPT: offset-aware attention for double JPEG restoration</h1><p class="standfirst">OAPT uses the offset between successive JPEG compressions to decide which image regions should attend to one another.</p></header></section>
+<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#section-1">How cropping creates two JPEG grids</a>
 <a href="#section-2">Grouping regions with shared compression patterns</a>
 <a href="#section-3">Combining local and pattern-clustered attention</a>
@@ -22,9 +20,7 @@
 <a href="#section-3">Combining local and pattern-clustered attention</a>
 <a href="#section-4">Results across compression histories</a>
 <a href="#section-5">Restoration with uncertain offsets</a>
-</nav></details><div class="aside-source"><span class="eyebrow">Source</span><p>
-<a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf">OAPT: Offset-Aware Partition Transformer for Double JPEG Artifacts Removal <span class="arrow-icon" aria-hidden="true"></span></a>
-</p></div></aside><article class="article-body">
+</nav></details></aside><article class="article-body">
 <section id="section-1" class="essay-section">
 <h2>How cropping creates two JPEG grids</h2>
 <p>A photograph saved as JPEG has already been quantized on an eight-by-eight pixel grid. Crop a few pixels from its top and left edges, then save it again, and the next JPEG encoder starts a different grid. The new blocks overlap pieces of the old ones. A restoration model now has to handle two interacting compression patterns rather than a single set of block boundaries.</p>
@@ -34,7 +30,7 @@
 <section id="section-2" class="essay-section">
 <h2>Grouping regions with shared compression patterns</h2>
 <p>When both grid directions are misaligned, a block from the second compression intersects up to four blocks from the first. Its four pieces therefore have different relationships to the original boundaries. Pieces in the same relative position across many second-pass blocks share a compression pattern, even when they are far apart in the image.</p>
-<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/oapt-1.webp" data-caption="Figure 2. A compact offset predictor controls the larger image reconstructor. Within each hybrid block, conventional spatial windows alternate with attention over regrouped compression patterns, followed by an inverse rearrangement." type="button" aria-label="Enlarge figure: Offset-aware partition transformer"><img src="../../images/source/oapt-1.webp" alt="Offset-aware partition transformer" loading="lazy"><span class="figure-zoom" aria-hidden="true">View larger <span class="arrow-icon" aria-hidden="true"></span></span></button><figcaption>Figure 2. A compact offset predictor controls the larger image reconstructor. Within each hybrid block, conventional spatial windows alternate with attention over regrouped compression patterns, followed by an inverse rearrangement.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2408.11480" target="_blank" rel="noopener noreferrer">Original paper, Figure 2 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
+<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/oapt-1.webp" data-caption="Figure 2. A compact offset predictor controls the larger image reconstructor. Within each hybrid block, conventional spatial windows alternate with attention over regrouped compression patterns, followed by an inverse rearrangement." type="button" aria-label="Enlarge figure: Offset-aware partition transformer"><img src="../../images/source/oapt-1.webp" alt="Offset-aware partition transformer" loading="lazy"></button><figcaption>Figure 2. A compact offset predictor controls the larger image reconstructor. Within each hybrid block, conventional spatial windows alternate with attention over regrouped compression patterns, followed by an inverse rearrangement.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2408.11480" target="_blank" rel="noopener noreferrer">Original paper, Figure 2 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
 <p>For a simple example, shift the original grid by two pixels horizontally and vertically. Each new eight-by-eight block divides into rectangles with side lengths two and six. The four areas are 2 × 2, 2 × 6, 6 × 2, and 6 × 6, up to the chosen coordinate orientation. OAPT groups the corresponding pieces across blocks, letting attention compare regions with a common compression history.</p>
 <p>Figure 2 separates the two jobs. A small predictor estimates the row and column offsets; the larger reconstructor receives those offsets at its hybrid attention blocks. The grouping is based on a predicted degradation pattern, not on a learned semantic label such as sky or skin. That difference explains why it can complement ordinary local attention.</p>
 </section>
@@ -58,6 +54,10 @@
 <p>Its assumptions should remain visible. The main analysis concerns two JPEG encodings with a pixel-level crop offset. Arbitrary resizing, rotation, several recompression stages, or a mixed-codec history can produce more complicated patterns than a single pair of shifted grids. Those cases require additional evidence before the same grouping logic can be assumed to apply.</p>
 </section>
 <section class="paper-details" id="citation"><p class="eyebrow">Original publication</p><h2>OAPT: Offset-Aware Partition Transformer for Double JPEG Artifacts Removal</h2><p class="paper-authors">Qiao Mo, Yukang Ding, Jinhua Hao, Qiang Zhu, Ming Sun, Chao Zhou, Feiyu Chen, Shuyuan Zhu</p><p>ECCV 2024</p>
+<div class="article-actions">
+<a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf" target="_blank" rel="noopener noreferrer">Read the original paper <span class="arrow-icon" aria-hidden="true"></span></a>
+<a href="https://github.com/QMoQ/OAPT" target="_blank" rel="noopener noreferrer">Code <span class="arrow-icon" aria-hidden="true"></span></a>
+</div>
 <details class="citation"><summary>BibTeX citation</summary><button type="button" class="copy-citation">Copy citation</button><pre>@misc{mo2024oaptoffsetawarepartitiontransformer,
   title = {OAPT: Offset-Aware Partition Transformer for Double JPEG Artifacts Removal},
   author = {Qiao Mo
@@ -79,10 +79,10 @@
 <li><a href="https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf" target="_blank" rel="noopener noreferrer">Original paper <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>
 <section class="related"><div class="collection-heading"><h2>Continue reading</h2><a href="../../">All research <span class="arrow-icon" aria-hidden="true"></span></a></div><div class="related-grid">
-<a href="../../articles/shiftlut/"><span class="card-meta">CVPR 2026</span><h3>ShiftLUT: wider restoration context with compact lookup tables</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/tinvblocks/"><span class="card-meta">AAAI 2025</span><h3>T-InvBlocks: separating luminance, color, and detail for image rescaling</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/cpga/"><span class="card-meta">CVPR 2024</span><h3>CPGA: reusing codec motion and residuals for video enhancement</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
+<a href="../../articles/shiftlut/"><div class="related-cover"><img src="../../images/covers-index-2026/shiftlut-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>ShiftLUT: wider restoration context with compact lookup tables</h3><span class="card-meta">CVPR 2026</span></a>
+<a href="../../articles/tinvblocks/"><div class="related-cover"><img src="../../images/covers-index-2026/tinvblocks-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>T-InvBlocks: separating luminance, color, and detail for image rescaling</h3><span class="card-meta">AAAI 2025</span></a>
+<a href="../../articles/cpga/"><div class="related-cover"><img src="../../images/covers-index-2026/cpga-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>CPGA: reusing codec motion and residuals for video enhancement</h3><span class="card-meta">CVPR 2024</span></a>
 </div></section>
 </main>
-<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><p>Research explained through its methods, results, and open questions.</p><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
+<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
 <dialog class="image-viewer" aria-label="Research figure viewer"><button type="button" class="viewer-close" aria-label="Close figure">Close ×</button><div class="viewer-content"><img alt=""><p></p></div></dialog></body></html>

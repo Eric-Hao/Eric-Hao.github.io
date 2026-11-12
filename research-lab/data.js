@@ -258,17 +258,17 @@ const papers = [
   },
   {
     "title": "Vortex bursting in twisted magnetic flux tubes with opposite chiralities",
-    "venue": "Manuscript unavailable",
-    "year": null,
+    "venue": "J. Fluid Mech.",
+    "year": 2026,
     "authors": "Yanru Wang, Anda Xiong, Jinhua Hao, Shiying Xiong",
-    "url": null,
+    "url": "https://doi.org/10.1017/jfm.2026.12259",
     "links": [],
     "cats": [
       "Physics & Fluid Dynamics"
     ],
     "image": "vortex-bursting",
     "article": "articles/vortex-bursting/",
-    "headline": "Vortex bursting in twisted magnetic flux tubes with opposite chiralities"
+    "headline": "How opposite magnetic twists set a still fluid in motion"
   },
   {
     "title": "Effects of magnetic–vortical interactions on magnetic splitting",

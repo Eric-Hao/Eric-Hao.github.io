@@ -70,17 +70,16 @@ def head(title, description, prefix='', canonical=''):
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{e(title)} · Research Lab</title><meta name="description" content="{e(description)}">
 <link rel="canonical" href="{SITE}{e(canonical)}"><meta property="og:type" content="{'article' if canonical else 'website'}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{SITE}{e(canonical)}">
-<meta name="theme-color" content="#f9f8f4"><link rel="stylesheet" href="{prefix}site.css?v={version('site.css')}"><script src="{prefix}app.js?v={version('app.js')}" defer></script></head>
-<body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="wordmark" href="{prefix or './'}" aria-label="Research Lab home"><span class="brand-mark" aria-hidden="true"></span>Research Lab<span class="wordmark-by">by Jinhua Hao</span></a><nav aria-label="Main navigation"><a href="{prefix or './'}">Research</a><a href="{prefix}../">About the author <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></nav></header>'''
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="{prefix}fonts/openai/openai-fonts.css"><link rel="stylesheet" href="{prefix}site.css?v={version('site.css')}"><script src="{prefix}app.js?v={version('app.js')}" defer></script></head>
+<body class="{'article-page' if canonical else 'index-page'}"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="home-link" href="{prefix}../" aria-label="Home — Jinhua Hao">{icon('home')}<span>Home</span></a></header>'''
 
 
 def footer(prefix=''):
- return f'''<footer class="site-footer"><a class="footer-brand" href="{prefix or './'}">Research Lab</a><p>Research explained through its methods, results, and open questions.</p><a href="{prefix}../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>'''
+ return f'''<footer class="site-footer"><a class="footer-brand" href="{prefix or './'}">Research Lab</a><a href="{prefix}../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>'''
 
 
 def venue_label(paper):
- if paper['image'] == 'vortex-bursting': return 'Source unavailable'
  venue = paper['venue']
  year = str(paper.get('year') or '')
  return venue + (' ' + year if year and year not in venue else '')
@@ -90,58 +89,78 @@ def meta(paper):
  return f'<span>{e(venue_label(paper))}</span><span aria-hidden="true">·</span><span>{e(CATEGORY[paper["cats"][0]][0])}</span>'
 
 
+def publication_type(paper):
+ venue = paper['venue'].lower()
+ if 'model release' in venue: return ('Model release', 'release')
+ if 'arxiv' in venue or 'technical report' in venue: return ('Preprint & report', 'report')
+ return ('Publication', 'publication')
+
+
+def icon(name):
+ paths = {
+  'home': '<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>',
+  'filter': '<path d="M4 6h10m4 0h2M4 17h2m4 0h10"/><circle cx="16" cy="6" r="2"/><circle cx="8" cy="17" r="2"/>',
+  'chevron': '<path d="m6 9 6 6 6-6"/>',
+  'grid': '<rect x="4" y="4" width="6" height="6" rx=".5"/><rect x="14" y="4" width="6" height="6" rx=".5"/><rect x="4" y="14" width="6" height="6" rx=".5"/><rect x="14" y="14" width="6" height="6" rx=".5"/>',
+  'list': '<path d="M9 5h11M9 12h11M9 19h11M4 5h.01M4 12h.01M4 19h.01"/>',
+  'search': '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
+ }
+ return f'<svg viewBox="0 0 24 24" fill="none" aria-hidden="true">{paths[name]}</svg>'
+
+
 def card(paper, record, cover):
  key = paper['image']; category = CATEGORY[paper['cats'][0]][1]
- search = ' '.join([paper['title'], record['title'], paper['authors'], paper['venue'], paper['cats'][0]])
- attrs = f'data-category="{category}" data-search="{e(search.lower())}"'
- if cover:
-  return f'''<article class="paper-card" {attrs}><a href="{e(paper['article'])}" class="card-link"><div class="cover"><img src="{e(cover['thumbnail'])}" width="{cover['width']}" height="{cover['height']}" alt="" loading="lazy"><span class="cover-label">Research note <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></span></div><div class="card-meta">{meta(paper)}</div><h3>{e(record['title'])}</h3></a></article>'''
- return f'''<article class="text-card" {attrs}><a class="text-card-link" href="{e(paper['article'])}"><div><div class="card-meta">{meta(paper)}</div><h3>{e(record['title'])}</h3><p>{e(record['standfirst'])}</p>{'<span class="source-tag">Manuscript unavailable</span>' if record['status'] != 'complete' else ''}</div><span class="card-arrow" aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></article>'''
+ search = ' '.join([paper['title'], record['title'], record['standfirst'], paper['authors'], paper['venue'], paper['cats'][0]])
+ kind, kind_key = publication_type(paper)
+ attrs = f'data-category="{category}" data-search="{e(search.lower())}" data-year="{paper.get("year") or "unknown"}" data-type="{kind_key}" data-title="{e(record["title"])}" data-order="{CATALOG.index(paper)}"'
+ image = f'<div class="cover"><img src="{e(cover["thumbnail"])}" width="{cover["width"]}" height="{cover["height"]}" alt="" loading="lazy" decoding="async"></div>' if cover else ''
+ return f'''<article class="research-card" {attrs}><a href="{e(paper['article'])}" class="card-link">{image}<div class="card-meta"><span class="card-category">{e(CATEGORY[paper['cats'][0]][0])}</span><span class="card-venue">{e(venue_label(paper))}</span></div><div class="card-copy"><h2>{e(record['title'])}</h2><p>{e(record['standfirst'])}</p></div></a></article>'''
 
 
 def build_index(records):
- parts = [head('Research', 'Original research on language models, generative vision, and fluid dynamics. Clear explanations, primary sources, and the limits of the evidence.')]
- parts.append('''<main id="main" class="index-main"><section class="index-intro"><div><p class="eyebrow">Research notes & technical reports</p><h1>Research</h1></div><p class="index-description">Language models, generative vision, and fluid dynamics.<br>Methods, results, and limitations from the original research.</p></section>
-<section class="research-browser" aria-label="Browse research"><div class="browse-bar"><div class="filters" role="group" aria-label="Filter by topic"><button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All research</button>''')
+ parts = [head('Research Notes', 'Research on language models, generative vision, and fluid dynamics. Methods, results, and limitations from the original sources.')]
+ parts.append('''<main id="main" class="index-main"><header class="index-intro"><h1>Research Notes</h1></header>
+<section class="research-browser" aria-label="Browse research"><div class="browse-bar"><div class="filters" role="group" aria-label="Filter by topic"><button type="button" class="filter is-active" data-filter="all" aria-pressed="true">All</button>''')
  for label, key in CATEGORY.values(): parts.append(f'<button type="button" class="filter" data-filter="{key}" aria-pressed="false">{e(label)}</button>')
- parts.append('''</div><label class="search"><span class="sr-only">Search research</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" placeholder="Search papers" autocomplete="off" id="research-search"></label></div><p class="results-count" aria-live="polite" aria-atomic="true">22 entries</p>''')
- with_covers = [p for p in CATALOG if p['image'] in COVERS and records[p['image']]['status'] == 'complete']
- without_covers = [p for p in CATALOG if p not in with_covers]
- for heading, cls, papers in [('Research articles', 'paper-grid', with_covers), ('Reports & papers', 'text-grid', without_covers)]:
-  parts.append(f'<section class="collection"><div class="collection-heading"><h2>{heading}</h2><span>{"Illustrated research notes" if cls == "paper-grid" else "Methods & evaluations"}</span></div><div class="{cls}">')
-  for paper in papers: parts.append(card(paper, records[paper['image']], COVERS.get(paper['image']) if cls == 'paper-grid' else None))
-  parts.append('</div></section>')
- parts.append('<div class="empty-state" hidden><h2>No matching papers</h2><p>Try another title, author, or topic.</p><button type="button" id="reset-search">Clear filters</button></div></section></main>')
+ parts.append(f'''</div><div class="browse-tools"><button class="tool-button" id="filter-toggle" type="button" aria-controls="filter-panel" aria-expanded="false" data-popover="filter-panel">Filter <span class="filter-count" hidden></span>{icon('filter')}</button><button class="tool-button" type="button" aria-controls="sort-panel" aria-expanded="false" data-popover="sort-panel">Sort {icon('chevron')}</button><div class="view-switch" role="group" aria-label="Research view"><button type="button" class="view-button" data-view="grid" aria-label="Panel view, show images" aria-pressed="false" title="Panel view">{icon('grid')}</button><button type="button" class="view-button is-active" data-view="list" aria-label="List view, hide images" aria-pressed="true" title="List view">{icon('list')}</button></div></div></div>
+<input type="hidden" id="research-search" value="">
+<div class="filter-panel popover" id="filter-panel" hidden><div class="filter-columns"><fieldset><legend>Year</legend>''')
+ for year in sorted({p['year'] for p in CATALOG if p.get('year')}, reverse=True):
+  parts.append(f'<label><input type="checkbox" name="year" value="{year}"><span>{year}</span></label>')
+ parts.append('</fieldset><fieldset><legend>Type</legend>')
+ for label, key in [('Publication', 'publication'), ('Preprint & report', 'report'), ('Model release', 'release')]:
+  parts.append(f'<label><input type="checkbox" name="type" value="{key}"><span>{e(label)}</span></label>')
+ parts.append('</fieldset></div><div class="filter-panel-footer"><button type="button" id="clear-refinements">Clear filters</button><button type="button" data-close-popover>Cancel</button></div></div><div class="sort-panel popover" id="sort-panel" hidden><fieldset><legend class="sr-only">Sort research</legend>')
+ for label, key in [('Newest first', 'newest'), ('Oldest first', 'oldest'), ('Title: A–Z', 'title'), ('Title: Z–A', 'title-desc')]:
+  parts.append(f'<label><input type="radio" name="sort" value="{key}"{" checked" if key == "newest" else ""}><span>{label}</span></label>')
+ parts.append('</fieldset></div><div class="results-bar sr-only"><p class="results-count" aria-live="polite" aria-atomic="true">22 entries</p><button type="button" id="clear-all" hidden>Clear all filters</button></div><div class="research-results" data-layout="list">')
+ for paper in sorted(CATALOG, key=lambda p: -(p.get('year') or 0)):
+  parts.append(card(paper, records[paper['image']], COVERS.get(paper['image'])))
+ parts.append('</div><div class="empty-state" hidden><h2>No matching research</h2><p>Try another title, author, or topic.</p><button type="button" id="reset-search">Clear filters</button></div><noscript><p class="no-script">All research is shown below. Enable JavaScript to filter, sort, or switch views.</p></noscript></section></main>')
  parts.append(footer()); parts.append('</body></html>')
  (ROOT / 'index.html').write_text('\n'.join(parts))
 
 
 def render_figure(figure):
- return f'''<figure class="paper-figure"><button class="figure-open" data-image="../../{e(figure['src'])}" data-caption="{e(figure['caption'])}" type="button" aria-label="Enlarge figure: {e(figure['alt'])}"><img src="../../{e(figure['src'])}" alt="{e(figure['alt'])}" loading="lazy"><span class="figure-zoom" aria-hidden="true">View larger <span class="arrow-icon" aria-hidden="true"></span></span></button><figcaption>{rich(figure['caption'])}<span class="figure-source">Source: <a href="{safe_url(figure['sourceUrl'])}" target="_blank" rel="noopener noreferrer">{e(figure['sourceLabel'])} <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>'''
+ return f'''<figure class="paper-figure"><button class="figure-open" data-image="../../{e(figure['src'])}" data-caption="{e(figure['caption'])}" type="button" aria-label="Enlarge figure: {e(figure['alt'])}"><img src="../../{e(figure['src'])}" alt="{e(figure['alt'])}" loading="lazy"></button><figcaption>{rich(figure['caption'])}<span class="figure-source">Source: <a href="{safe_url(figure['sourceUrl'])}" target="_blank" rel="noopener noreferrer">{e(figure['sourceLabel'])} <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>'''
 
 
 def build_article(paper, record, records):
  prefix = '../../'; key = paper['image']
  parts = [head(record['title'], record['standfirst'], prefix, paper['article'])]
- words = len(' '.join(p for s in record['sections'] for p in s['paragraphs']).split())
- reading = max(2, round(words / 220))
- parts.append(f'''<main id="main" class="article-main"><div class="article-breadcrumb"><a href="../../">All research</a><span aria-hidden="true">/</span><span>{e(CATEGORY[paper['cats'][0]][0])}</span></div><header class="article-header"><p class="eyebrow">{e(venue_label(paper))} <span aria-hidden="true">/</span> {reading} min read</p><h1>{e(record['title'])}</h1><p class="standfirst">{rich(record['standfirst'])}</p><div class="article-actions">''')
- if paper.get('url'): parts.append(f'<a class="source-button" href="{safe_url(paper["url"])}" target="_blank" rel="noopener noreferrer">Read the original <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>')
- for link in paper.get('links', []): parts.append(f'<a href="{safe_url(link["url"])}" target="_blank" rel="noopener noreferrer">{e(link["label"])} <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>')
- parts.append('<a href="#citation">Cite this paper</a></div>')
- authors = paper['authors'].split(', ')
- short_authors = ', '.join(authors[:3]) + ', et al.' if len(authors) > 6 else paper['authors']
- parts.append(f'<div class="publication-line"><p class="publication-title">{e(paper["title"])}</p><p class="publication-authors">{e(short_authors)} <a href="#citation">Publication details</a></p></div></header>')
- parts.append('<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article"><p class="eyebrow">In this article</p>')
+ cover = COVERS.get(key)
+ background = cover.get('background', '#f1f1ed') if cover else '#f1f1ed'
+ parts.append(f'''<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:{e(background)}">''')
+ if cover:
+  parts.append(f'<div class="article-banner" aria-hidden="true"><img src="../../{e(cover.get("full", cover["thumbnail"]))}" width="{cover.get("fullWidth", cover["width"])}" height="{cover.get("fullHeight", cover["height"])}" alt="" fetchpriority="high"></div>')
+ parts.append(f'<header class="article-header"><p class="eyebrow"><span>{e(venue_label(paper))}</span><span>{e(CATEGORY[paper["cats"][0]][0])}</span></p><h1>{e(record["title"])}</h1><p class="standfirst">{rich(record["standfirst"])}</p></header></section>')
+ parts.append('<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">')
  for section in record['sections']:
   if not section.get('intro'): parts.append(f'<a href="#{e(section["id"])}">{e(section["title"])}</a>')
  parts.append('</nav><details class="mobile-contents"><summary>In this article</summary><nav aria-label="Article sections">')
  for section in record['sections']:
   if not section.get('intro'): parts.append(f'<a href="#{e(section["id"])}">{e(section["title"])}</a>')
- parts.append('</nav></details><div class="aside-source"><span class="eyebrow">Source</span><p>')
- if record['source'].get('url'): parts.append(f'<a href="{safe_url(record["source"]["url"])}">{e(record["source"]["label"])} <span class="arrow-icon" aria-hidden="true"></span></a>')
- else: parts.append(e(record['source']['label']))
- parts.append('</p></div></aside><article class="article-body">')
+ parts.append('</nav></details></aside><article class="article-body">')
  if record['status'] != 'complete': parts.append('<div class="source-notice" role="note"><strong>Source unavailable</strong><p>The original manuscript is needed before a research explanation can be published. No conclusions have been reconstructed from the previous article.</p></div>')
 
  for section in record['sections']:
@@ -167,6 +186,11 @@ def build_article(paper, record, records):
    if table.get('note'): parts.append(f'<p class="table-note">{rich(table["note"])}</p>')
   parts.append('</section>')
  parts.append(f'<section class="paper-details" id="citation"><p class="eyebrow">{'Original publication' if record['status'] == 'complete' else 'Unverified catalog entry'}</p><h2>{e(paper["title"])}</h2><p class="paper-authors">{e(paper["authors"])}</p><p>{e(paper["venue"])}</p>')
+ if record.get('publicationNote'): parts.append(f'<p>{e(record["publicationNote"])}</p>')
+ parts.append('<div class="article-actions">')
+ if paper.get('url'): parts.append(f'<a href="{safe_url(paper["url"])}" target="_blank" rel="noopener noreferrer">Read the original paper <span class="arrow-icon" aria-hidden="true"></span></a>')
+ for link in paper.get('links', []): parts.append(f'<a href="{safe_url(link["url"])}" target="_blank" rel="noopener noreferrer">{e(link["label"])} <span class="arrow-icon" aria-hidden="true"></span></a>')
+ parts.append('</div>')
  bib_path = ROOT / 'citations' / f'{key}.bib'
  if bib_path.exists() and record['status'] == 'complete':
   parts.append(f'<details class="citation"><summary>BibTeX citation</summary><button type="button" class="copy-citation">Copy citation</button><pre>{e(bib_path.read_text())}</pre><span class="copy-status" role="status"></span></details>')
@@ -177,7 +201,9 @@ def build_article(paper, record, records):
  if related:
   parts.append('<section class="related"><div class="collection-heading"><h2>Continue reading</h2><a href="../../">All research <span class="arrow-icon" aria-hidden="true"></span></a></div><div class="related-grid">')
   for p in related:
-   parts.append(f'<a href="../../{e(p["article"])}"><span class="card-meta">{e(p["venue"])}</span><h3>{e(records[p["image"]]["title"])}</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>')
+   related_cover = COVERS.get(p['image'])
+   cover_markup = f'<div class="related-cover"><img src="../../{e(related_cover["thumbnail"])}" width="{related_cover["width"]}" height="{related_cover["height"]}" alt="" loading="lazy" decoding="async"></div>' if related_cover else ''
+   parts.append(f'<a href="../../{e(p["article"])}">{cover_markup}<h3>{e(records[p["image"]]["title"])}</h3><span class="card-meta">{e(venue_label(p))}</span></a>')
   parts.append('</div></section>')
  parts.append('</main>'); parts.append(footer(prefix))
  parts.append('''<dialog class="image-viewer" aria-label="Research figure viewer"><button type="button" class="viewer-close" aria-label="Close figure">Close ×</button><div class="viewer-content"><img alt=""><p></p></div></dialog></body></html>''')

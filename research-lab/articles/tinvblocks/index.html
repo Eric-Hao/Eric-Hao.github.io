@@ -2,16 +2,13 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>T-InvBlocks: separating luminance, color, and detail for image rescaling · Research Lab</title><meta name="description" content="A three-branch invertible block separates brightness, color, and fine detail to improve learned downscaling and reconstruction.">
 <link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/tinvblocks/"><meta property="og:type" content="article"><meta property="og:title" content="T-InvBlocks: separating luminance, color, and detail for image rescaling"><meta property="og:description" content="A three-branch invertible block separates brightness, color, and fine detail to improve learned downscaling and reconstruction."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/tinvblocks/">
-<meta name="theme-color" content="#f9f8f4"><link rel="stylesheet" href="../../site.css?v=61420c89531a"><script src="../../app.js?v=8e7cb70a6af1" defer></script></head>
-<body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="wordmark" href="../../" aria-label="Research Lab home"><span class="brand-mark" aria-hidden="true"></span>Research Lab<span class="wordmark-by">by Jinhua Hao</span></a><nav aria-label="Main navigation"><a href="../../">Research</a><a href="../../../">About the author <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></nav></header>
-<main id="main" class="article-main"><div class="article-breadcrumb"><a href="../../">All research</a><span aria-hidden="true">/</span><span>Vision &amp; restoration</span></div><header class="article-header"><p class="eyebrow">AAAI 2025 <span aria-hidden="true">/</span> 4 min read</p><h1>T-InvBlocks: separating luminance, color, and detail for image rescaling</h1><p class="standfirst">A three-branch invertible block separates brightness, color, and fine detail to improve learned downscaling and reconstruction.</p><div class="article-actions">
-<a class="source-button" href="https://arxiv.org/abs/2412.13508" target="_blank" rel="noopener noreferrer">Read the original <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="https://github.com/Jingwei-Bao/T-InvBlocks" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="https://mp.weixin.qq.com/s/H2bAM1RmZxNpsMp6IsNauQ" target="_blank" rel="noopener noreferrer">Post <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="#citation">Cite this paper</a></div>
-<div class="publication-line"><p class="publication-title">Plug-and-Play Tri-Branch Invertible Block for Image Rescaling</p><p class="publication-authors">Jingwei Bao, Jinhua Hao, Pengcheng Xu, Ming Sun, Chao Zhou, Shuyuan Zhu <a href="#citation">Publication details</a></p></div></header>
-<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article"><p class="eyebrow">In this article</p>
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=5fe03be1d6c1"><script src="../../app.js?v=5ea4dcc66129" defer></script></head>
+<body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="home-link" href="../../../" aria-label="Home — Jinhua Hao"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a></header>
+<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#f3ecdf">
+<div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/tinvblocks.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
+<header class="article-header"><p class="eyebrow"><span>AAAI 2025</span><span>Vision &amp; restoration</span></p><h1>T-InvBlocks: separating luminance, color, and detail for image rescaling</h1><p class="standfirst">A three-branch invertible block separates brightness, color, and fine detail to improve learned downscaling and reconstruction.</p></header></section>
+<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#section-1">Learning the downscaler and upscaler together</a>
 <a href="#section-2">Three invertible streams</a>
 <a href="#section-3">Reconstructing with a zero detail latent</a>
@@ -23,9 +20,7 @@
 <a href="#section-3">Reconstructing with a zero detail latent</a>
 <a href="#section-4">Reconstruction gains at 2× and 4×</a>
 <a href="#section-5">Rescaling through JPEG compression</a>
-</nav></details><div class="aside-source"><span class="eyebrow">Source</span><p>
-<a href="https://arxiv.org/abs/2412.13508">Plug-and-Play Tri-Branch Invertible Block for Image Rescaling <span class="arrow-icon" aria-hidden="true"></span></a>
-</p></div></aside><article class="article-body">
+</nav></details></aside><article class="article-body">
 <section id="section-1" class="essay-section">
 <h2>Learning the downscaler and upscaler together</h2>
 <p>An image service can reduce bandwidth by sending a smaller picture and enlarging it at the destination. If downscaling is fixed, the reconstruction model must infer whatever that operation discarded. Image rescaling offers another option: learn the downscaler and upscaler together, allowing the small image to retain information useful to its eventual decoder.</p>
@@ -35,7 +30,7 @@
 <section id="section-2" class="essay-section">
 <h2>Three invertible streams</h2>
 <p>A Haar wavelet transform first separates low-frequency image content from high-frequency components. Conventional invertible blocks process the low-frequency content in RGB and place the high-frequency content in a second branch. T-InvBlocks converts the low-frequency component to YCbCr, separating luminance, Y, from the two chrominance channels, Cb and Cr. Fine detail becomes the third branch.</p>
-<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/tinvblocks-1.webp" data-caption="Figure 2. The three paths carry chrominance, luminance, and high-frequency features. The ordered additive and affine updates allow reversal even though the internal transformation networks are ordinary learned functions." type="button" aria-label="Enlarge figure: The tri-branch invertible block"><img src="../../images/source/tinvblocks-1.webp" alt="The tri-branch invertible block" loading="lazy"><span class="figure-zoom" aria-hidden="true">View larger <span class="arrow-icon" aria-hidden="true"></span></span></button><figcaption>Figure 2. The three paths carry chrominance, luminance, and high-frequency features. The ordered additive and affine updates allow reversal even though the internal transformation networks are ordinary learned functions.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2412.13508" target="_blank" rel="noopener noreferrer">Original paper, Figure 2 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
+<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/tinvblocks-1.webp" data-caption="Figure 2. The three paths carry chrominance, luminance, and high-frequency features. The ordered additive and affine updates allow reversal even though the internal transformation networks are ordinary learned functions." type="button" aria-label="Enlarge figure: The tri-branch invertible block"><img src="../../images/source/tinvblocks-1.webp" alt="The tri-branch invertible block" loading="lazy"></button><figcaption>Figure 2. The three paths carry chrominance, luminance, and high-frequency features. The ordered additive and affine updates allow reversal even though the internal transformation networks are ordinary learned functions.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2412.13508" target="_blank" rel="noopener noreferrer">Original paper, Figure 2 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
 <p>The streams exchange information in an ordered sequence. The chrominance update uses the original high-frequency and luminance inputs. The luminance update then uses the updated chrominance and original high-frequency input. Finally, an affine transformation updates the high-frequency branch using both updated low-frequency branches. Its scale is expressed as an exponential, keeping it nonzero.</p>
 <p>Figure 2 is useful because the arrows show why this remains invertible. At reversal, the updated color and luminance streams are available to undo the high-frequency affine transformation. The recovered high-frequency stream then allows the luminance addition to be subtracted, followed by the chrominance addition. The neural functions inside these updates need not themselves be invertible; the coupling arrangement makes the overall block reversible.</p>
 </section>
@@ -60,6 +55,11 @@
 <p>The practical limits follow from the same mechanism. Deployment needs the compatible downscaling pipeline; unknown edits, different codecs, or repeated recompression may alter the learned representation. The reported JPEG quality-factor sweep is evidence for those tested conditions, not a guarantee across every image-processing chain.</p>
 </section>
 <section class="paper-details" id="citation"><p class="eyebrow">Original publication</p><h2>Plug-and-Play Tri-Branch Invertible Block for Image Rescaling</h2><p class="paper-authors">Jingwei Bao, Jinhua Hao, Pengcheng Xu, Ming Sun, Chao Zhou, Shuyuan Zhu</p><p>AAAI 2025</p>
+<div class="article-actions">
+<a href="https://arxiv.org/abs/2412.13508" target="_blank" rel="noopener noreferrer">Read the original paper <span class="arrow-icon" aria-hidden="true"></span></a>
+<a href="https://github.com/Jingwei-Bao/T-InvBlocks" target="_blank" rel="noopener noreferrer">Code <span class="arrow-icon" aria-hidden="true"></span></a>
+<a href="https://mp.weixin.qq.com/s/H2bAM1RmZxNpsMp6IsNauQ" target="_blank" rel="noopener noreferrer">Post <span class="arrow-icon" aria-hidden="true"></span></a>
+</div>
 <details class="citation"><summary>BibTeX citation</summary><button type="button" class="copy-citation">Copy citation</button><pre>@misc{bao2024plugandplaytribranchinvertibleblock,
   title = {Plug-and-Play Tri-Branch Invertible Block for Image Rescaling},
   author = {Jingwei Bao
@@ -79,10 +79,10 @@
 <li><a href="https://arxiv.org/abs/2412.13508" target="_blank" rel="noopener noreferrer">Original paper <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>
 <section class="related"><div class="collection-heading"><h2>Continue reading</h2><a href="../../">All research <span class="arrow-icon" aria-hidden="true"></span></a></div><div class="related-grid">
-<a href="../../articles/shiftlut/"><span class="card-meta">CVPR 2026</span><h3>ShiftLUT: wider restoration context with compact lookup tables</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/oapt/"><span class="card-meta">ECCV 2024</span><h3>OAPT: offset-aware attention for double JPEG restoration</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/cpga/"><span class="card-meta">CVPR 2024</span><h3>CPGA: reusing codec motion and residuals for video enhancement</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
+<a href="../../articles/shiftlut/"><div class="related-cover"><img src="../../images/covers-index-2026/shiftlut-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>ShiftLUT: wider restoration context with compact lookup tables</h3><span class="card-meta">CVPR 2026</span></a>
+<a href="../../articles/oapt/"><div class="related-cover"><img src="../../images/covers-index-2026/oapt-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>OAPT: offset-aware attention for double JPEG restoration</h3><span class="card-meta">ECCV 2024</span></a>
+<a href="../../articles/cpga/"><div class="related-cover"><img src="../../images/covers-index-2026/cpga-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>CPGA: reusing codec motion and residuals for video enhancement</h3><span class="card-meta">CVPR 2024</span></a>
 </div></section>
 </main>
-<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><p>Research explained through its methods, results, and open questions.</p><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
+<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
 <dialog class="image-viewer" aria-label="Research figure viewer"><button type="button" class="viewer-close" aria-label="Close figure">Close ×</button><div class="viewer-content"><img alt=""><p></p></div></dialog></body></html>

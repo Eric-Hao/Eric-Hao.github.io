@@ -63,12 +63,33 @@ def verify():
    check('source-notice' in (root/paper['article']/'index.html').read_text(),'Source-gap notice missing')
  index=docs[root/'index.html']
  check(sum('data-search' in a for t,a in index.tags)==22,'Index missing papers')
- check(sum(a.get('class')=='paper-card' for t,a in index.tags)==12,'Cover grid should have 12 available illustrated notes')
- check(sum(a.get('class')=='text-card' for t,a in index.tags)==10,'Coverless grid should have 10 entries')
+ check(sum(a.get('class')=='research-card' for t,a in index.tags)==22,'Unified index should have all 22 entries')
+ check(len(build.COVERS)==22,'All 22 entries must have new illustrations')
+ check(sum('data-view' in a for t,a in index.tags)==2,'Grid/list controls missing')
+ check(sum(a.get('name')=='sort' for t,a in index.tags)==4,'Expected four sort choices')
+ for control in ('filter-panel','sort-panel','research-search','clear-all'):
+  check(control in index.ids,f'Index control missing: {control}')
+ for p in catalog:
+  doc=docs[root/p['article']/'index.html']
+  check(any(t=='div' and a.get('class')=='article-banner' for t,a in doc.tags),f'{p["image"]}: article banner missing')
+ for key,cover in build.COVERS.items():
+  check(cover['thumbnail'].startswith('images/covers-index-2026/'),f'{key}: artwork was not redrawn')
+  check((root/cover['thumbnail']).is_file(),f'{key}: new cover missing')
  css=(root/'site.css').read_text()
- check('grid-template-columns:repeat(5,minmax(0,1fr))' in css,'Five-column desktop grid missing')
- check('.text-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))' in css,'Two-column title grid missing')
+ check('grid-template-columns:repeat(3,minmax(0,1fr))' in css,'Three-column panel layout missing')
+ check('.research-results[data-layout=list]' in css,'List view missing')
+ check("'PingFang SC'" in css and "'Microsoft YaHei'" in css,'CJK sans-serif fallbacks missing')
+ check('--paper:#fff' in css,'White research canvas missing')
+ check('.article-hero{container-type:inline-size' in css,'Measured full-bleed hero missing')
+ check('grid-template-columns:1fr;gap:80px 24px' in css,'Single-column mobile panel layout missing')
+ check('search-toggle' not in (root/'index.html').read_text(),'Extra index search control remains')
  check((root/'site.css').read_text()==(root/'_content/styles/research.css').read_text(),'CSS source differs from output')
+ font_css=(root/'fonts/openai/openai-fonts.css').read_text()
+ font_files=re.findall(r'url\("\./([^\"]+)"\)',font_css)
+ check(len(font_files)==141,'Expected 10 Latin faces and 131 SC subsets')
+ for name in font_files:
+  font=root/'fonts/openai'/name
+  check(font.exists() and font.read_bytes()[:4]==b'wOF2',f'Invalid webfont: {name}')
  report={'checks':checks,'passed':checks-len(failures),'failures':failures,'pages':len(pages),'complete_articles':sum(r['status']=='complete' for r in records.values()),'source_gaps':[k for k,r in records.items() if r['status']!='complete'],'words':sum(len(' '.join(p for s in r['sections'] for p in s['paragraphs']).split()) for r in records.values())}
  print(json.dumps(report,indent=2))
  if failures:sys.exit(1)

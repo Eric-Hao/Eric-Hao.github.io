@@ -2,16 +2,13 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VARSR: coarse-to-fine super-resolution with a diffusion refiner · Research Lab</title><meta name="description" content="VARSR adapts visual autoregression to super-resolution, using the input image as a prefix and diffusion only to repair quantization residuals.">
 <link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/varsr/"><meta property="og:type" content="article"><meta property="og:title" content="VARSR: coarse-to-fine super-resolution with a diffusion refiner"><meta property="og:description" content="VARSR adapts visual autoregression to super-resolution, using the input image as a prefix and diffusion only to repair quantization residuals."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/varsr/">
-<meta name="theme-color" content="#f9f8f4"><link rel="stylesheet" href="../../site.css?v=61420c89531a"><script src="../../app.js?v=8e7cb70a6af1" defer></script></head>
-<body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="wordmark" href="../../" aria-label="Research Lab home"><span class="brand-mark" aria-hidden="true"></span>Research Lab<span class="wordmark-by">by Jinhua Hao</span></a><nav aria-label="Main navigation"><a href="../../">Research</a><a href="../../../">About the author <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></nav></header>
-<main id="main" class="article-main"><div class="article-breadcrumb"><a href="../../">All research</a><span aria-hidden="true">/</span><span>Generative models</span></div><header class="article-header"><p class="eyebrow">ICML 2025 <span aria-hidden="true">/</span> 4 min read</p><h1>VARSR: coarse-to-fine super-resolution with a diffusion refiner</h1><p class="standfirst">VARSR adapts visual autoregression to super-resolution, using the input image as a prefix and diffusion only to repair quantization residuals.</p><div class="article-actions">
-<a class="source-button" href="https://arxiv.org/abs/2501.18993" target="_blank" rel="noopener noreferrer">Read the original <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="https://github.com/quyp2000/VARSR" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="https://mp.weixin.qq.com/s/ogBBftschUT4-R0_6I26SQ" target="_blank" rel="noopener noreferrer">Post <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="#citation">Cite this paper</a></div>
-<div class="publication-line"><p class="publication-title">Visual Autoregressive Modeling for Image Super-Resolution</p><p class="publication-authors">Yunpeng Qu, Kun Yuan, Jinhua Hao, et al. <a href="#citation">Publication details</a></p></div></header>
-<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article"><p class="eyebrow">In this article</p>
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=5fe03be1d6c1"><script src="../../app.js?v=5ea4dcc66129" defer></script></head>
+<body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="home-link" href="../../../" aria-label="Home — Jinhua Hao"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a></header>
+<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#e3e8dc">
+<div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/varsr.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
+<header class="article-header"><p class="eyebrow"><span>ICML 2025</span><span>Generative models</span></p><h1>VARSR: coarse-to-fine super-resolution with a diffusion refiner</h1><p class="standfirst">VARSR adapts visual autoregression to super-resolution, using the input image as a prefix and diffusion only to repair quantization residuals.</p></header></section>
+<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#section-1">Generating an image scale by scale</a>
 <a href="#section-2">Conditioning across scales</a>
 <a href="#section-4">Correcting codebook quantization error</a>
@@ -23,9 +20,7 @@
 <a href="#section-4">Correcting codebook quantization error</a>
 <a href="#section-5">Controlling the fidelity–realism trade-off</a>
 <a href="#section-6">Runtime and semantic coverage</a>
-</nav></details><div class="aside-source"><span class="eyebrow">Source</span><p>
-<a href="https://arxiv.org/abs/2501.18993">Visual Autoregressive Modeling for Image Super-Resolution <span class="arrow-icon" aria-hidden="true"></span></a>
-</p></div></aside><article class="article-body">
+</nav></details></aside><article class="article-body">
 <section id="section-1" class="essay-section">
 <h2>Generating an image scale by scale</h2>
 <p>A generative model can produce a plausible high-resolution photograph without reproducing the particular scene in a low-resolution input. Super-resolution needs both capabilities: a prior strong enough to fill missing detail and conditioning precise enough to preserve the observed structure. VARSR asks whether a visual autoregressive model can provide that combination with fewer expensive generation steps.</p>
@@ -36,7 +31,7 @@
 <h2>Conditioning across scales</h2>
 <p>VARSR encodes the low-resolution image as prefix tokens placed before the generated scales. Every later scale can attend to that prefix as well as earlier predictions. The observation remains available throughout reconstruction instead of being compressed into a single global label or injected through a separate large control network.</p>
 <p>The prefix is spatially structured: it has the token-map dimensions of the final scale. That makes its relationship to generated positions important. If a coarse token and a fine token describe the same part of the image, ordinary sequence indices do not automatically express that correspondence.</p>
-<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/varsr-1.webp" data-caption="Figure 1. Low-resolution prefix tokens condition every predicted scale. The continuous branch corrects the codebook residual after the autoregressive transformer has generated the discrete image representation." type="button" aria-label="Enlarge figure: The VARSR restoration pipeline"><img src="../../images/source/varsr-1.webp" alt="The VARSR restoration pipeline" loading="lazy"><span class="figure-zoom" aria-hidden="true">View larger <span class="arrow-icon" aria-hidden="true"></span></span></button><figcaption>Figure 1. Low-resolution prefix tokens condition every predicted scale. The continuous branch corrects the codebook residual after the autoregressive transformer has generated the discrete image representation.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2501.18993" target="_blank" rel="noopener noreferrer">Original paper, Figure 1 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
+<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/varsr-1.webp" data-caption="Figure 1. Low-resolution prefix tokens condition every predicted scale. The continuous branch corrects the codebook residual after the autoregressive transformer has generated the discrete image representation." type="button" aria-label="Enlarge figure: The VARSR restoration pipeline"><img src="../../images/source/varsr-1.webp" alt="The VARSR restoration pipeline" loading="lazy"></button><figcaption>Figure 1. Low-resolution prefix tokens condition every predicted scale. The continuous branch corrects the codebook residual after the autoregressive transformer has generated the discrete image representation.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2501.18993" target="_blank" rel="noopener noreferrer">Original paper, Figure 1 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
 <p>Figure 1 shows the full information path. The image encoder creates the conditional tokens, the autoregressive transformer predicts discrete scale maps, and a smaller diffusion branch estimates a continuous residual. Diffusion handles the correction after the autoregressive backbone has organized the image.</p>
 <p>Scale-aligned rotary positional encoding gives horizontal and vertical positions a common reference across scales. Rotary embeddings modify attention’s query-key relationships using position-dependent rotations. VARSR normalizes each scale’s coordinates against a shared spatial extent and applies the same alignment to the conditional image tokens.</p>
 <p>For an illustrative example, a location halfway across a four-column map and one halfway across an eight-column map should refer to the same horizontal region. Their raw column indices differ, but their normalized coordinates agree. This lets attention express cross-scale correspondence without confusing a change of sampling density with a change of scene position.</p>
@@ -61,6 +56,11 @@
 <p>The appendix identifies limited semantic coverage as a failure source despite pretraining on four million images. Rare content combined with severe degradation can still be reconstructed incorrectly. Coarse-to-fine generation may preserve a coherent interpretation once selected, but coherence does not establish that the interpretation is true. VARSR therefore provides an alternative quality-speed trade-off for generative restoration, with guidance strength and reference fidelity still requiring deliberate evaluation for the intended use.</p>
 </section>
 <section class="paper-details" id="citation"><p class="eyebrow">Original publication</p><h2>Visual Autoregressive Modeling for Image Super-Resolution</h2><p class="paper-authors">Yunpeng Qu, Kun Yuan, Jinhua Hao, Kai Zhao, Qizhi Xie, Ming Sun, Chao Zhou</p><p>ICML 2025</p>
+<div class="article-actions">
+<a href="https://arxiv.org/abs/2501.18993" target="_blank" rel="noopener noreferrer">Read the original paper <span class="arrow-icon" aria-hidden="true"></span></a>
+<a href="https://github.com/quyp2000/VARSR" target="_blank" rel="noopener noreferrer">Code <span class="arrow-icon" aria-hidden="true"></span></a>
+<a href="https://mp.weixin.qq.com/s/ogBBftschUT4-R0_6I26SQ" target="_blank" rel="noopener noreferrer">Post <span class="arrow-icon" aria-hidden="true"></span></a>
+</div>
 <details class="citation"><summary>BibTeX citation</summary><button type="button" class="copy-citation">Copy citation</button><pre>@misc{qu2025visualautoregressivemodelingimage,
   title = {Visual Autoregressive Modeling for Image Super-Resolution},
   author = {Yunpeng Qu
@@ -81,10 +81,10 @@
 <li><a href="https://arxiv.org/abs/2501.18993" target="_blank" rel="noopener noreferrer">Original paper <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>
 <section class="related"><div class="collection-heading"><h2>Continue reading</h2><a href="../../">All research <span class="arrow-icon" aria-hidden="true"></span></a></div><div class="related-grid">
-<a href="../../articles/color/"><span class="card-meta">ICML 2026</span><h3>ASASR: frequency-aware preference learning for faithful super-resolution</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/tta-flow/"><span class="card-meta">ECCV 2026</span><h3>ResFlow-Tuner: searching flow trajectories for image restoration</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/instantvir/"><span class="card-meta">CVPR 2026 Highlight</span><h3>InstantViR: distilling video restoration into a streaming solver</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
+<a href="../../articles/color/"><div class="related-cover"><img src="../../images/covers-index-2026/color-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>ASASR: frequency-aware preference learning for faithful super-resolution</h3><span class="card-meta">ICML 2026</span></a>
+<a href="../../articles/tta-flow/"><div class="related-cover"><img src="../../images/covers-index-2026/tta_flow-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>ResFlow-Tuner: searching flow trajectories for image restoration</h3><span class="card-meta">ECCV 2026</span></a>
+<a href="../../articles/instantvir/"><div class="related-cover"><img src="../../images/covers-index-2026/instantvir-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>InstantViR: distilling video restoration into a streaming solver</h3><span class="card-meta">CVPR 2026 Highlight</span></a>
 </div></section>
 </main>
-<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><p>Research explained through its methods, results, and open questions.</p><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
+<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
 <dialog class="image-viewer" aria-label="Research figure viewer"><button type="button" class="viewer-close" aria-label="Close figure">Close ×</button><div class="viewer-content"><img alt=""><p></p></div></dialog></body></html>

@@ -2,15 +2,13 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ShiftLUT: wider restoration context with compact lookup tables · Research Lab</title><meta name="description" content="ShiftLUT learns where to gather image features, then turns that spatial knowledge into cheap, fixed shifts for deployment.">
 <link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/shiftlut/"><meta property="og:type" content="article"><meta property="og:title" content="ShiftLUT: wider restoration context with compact lookup tables"><meta property="og:description" content="ShiftLUT learns where to gather image features, then turns that spatial knowledge into cheap, fixed shifts for deployment."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/shiftlut/">
-<meta name="theme-color" content="#f9f8f4"><link rel="stylesheet" href="../../site.css?v=61420c89531a"><script src="../../app.js?v=8e7cb70a6af1" defer></script></head>
-<body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="wordmark" href="../../" aria-label="Research Lab home"><span class="brand-mark" aria-hidden="true"></span>Research Lab<span class="wordmark-by">by Jinhua Hao</span></a><nav aria-label="Main navigation"><a href="../../">Research</a><a href="../../../">About the author <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></nav></header>
-<main id="main" class="article-main"><div class="article-breadcrumb"><a href="../../">All research</a><span aria-hidden="true">/</span><span>Vision &amp; restoration</span></div><header class="article-header"><p class="eyebrow">CVPR 2026 <span aria-hidden="true">/</span> 4 min read</p><h1>ShiftLUT: wider restoration context with compact lookup tables</h1><p class="standfirst">ShiftLUT learns where to gather image features, then turns that spatial knowledge into cheap, fixed shifts for deployment.</p><div class="article-actions">
-<a class="source-button" href="https://arxiv.org/abs/2603.00906" target="_blank" rel="noopener noreferrer">Read the original <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="https://github.com/Sailor-t/ShiftLUT" target="_blank" rel="noopener noreferrer">Code <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="#citation">Cite this paper</a></div>
-<div class="publication-line"><p class="publication-title">ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration</p><p class="publication-authors">Xiaolong Zeng, Yitong Yu, Shiyao Xiong, et al. <a href="#citation">Publication details</a></p></div></header>
-<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article"><p class="eyebrow">In this article</p>
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=5fe03be1d6c1"><script src="../../app.js?v=5ea4dcc66129" defer></script></head>
+<body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="home-link" href="../../../" aria-label="Home — Jinhua Hao"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a></header>
+<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#eee8da">
+<div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/shiftlut.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
+<header class="article-header"><p class="eyebrow"><span>CVPR 2026</span><span>Vision &amp; restoration</span></p><h1>ShiftLUT: wider restoration context with compact lookup tables</h1><p class="standfirst">ShiftLUT learns where to gather image features, then turns that spatial knowledge into cheap, fixed shifts for deployment.</p></header></section>
+<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#section-1">The storage cost of spatial context</a>
 <a href="#section-2">Learning static spatial shifts</a>
 <a href="#section-3">Allocating computation across pixel bits</a>
@@ -24,9 +22,7 @@
 <a href="#section-4">Compressing tables and caching interpolation</a>
 <a href="#section-5">Quality, storage, and latency on a phone CPU</a>
 <a href="#section-6">Transfer to other lookup-table models</a>
-</nav></details><div class="aside-source"><span class="eyebrow">Source</span><p>
-<a href="https://arxiv.org/abs/2603.00906">ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration <span class="arrow-icon" aria-hidden="true"></span></a>
-</p></div></aside><article class="article-body">
+</nav></details></aside><article class="article-body">
 <section id="section-1" class="essay-section">
 <h2>The storage cost of spatial context</h2>
 <p>A restoration model needs neighboring pixels to decide whether a dark line is an edge, texture, or noise. On a phone CPU, reading that wider neighborhood can be expensive. Lookup-table models offer a practical shortcut: train a small neural network, evaluate its possible inputs in advance, and store the answers. At deployment, retrieve those answers instead of repeating the network’s arithmetic.</p>
@@ -35,7 +31,7 @@
 <section id="section-2" class="essay-section">
 <h2>Learning static spatial shifts</h2>
 <p>A feature map contains several channels, each describing different aspects of an image. ShiftLUT moves each channel by its own horizontal and vertical offset before mixing the channels. A pointwise operation that previously saw only one position can now combine information collected from several positions. Subsequent depthwise operations add local processing without requiring one enormous joint lookup table.</p>
-<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/shiftlut-1.webp" data-caption="Figure 2. The offset predictor exists during the first training stage; deployed shifts are rounded constants. The right-hand panels show table compression and cached interpolation, which are separate contributors to efficiency." type="button" aria-label="Enlarge figure: ShiftLUT architecture and spatial shifts"><img src="../../images/source/shiftlut-1.webp" alt="ShiftLUT architecture and spatial shifts" loading="lazy"><span class="figure-zoom" aria-hidden="true">View larger <span class="arrow-icon" aria-hidden="true"></span></span></button><figcaption>Figure 2. The offset predictor exists during the first training stage; deployed shifts are rounded constants. The right-hand panels show table compression and cached interpolation, which are separate contributors to efficiency.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2603.00906" target="_blank" rel="noopener noreferrer">Original paper, Figure 2 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
+<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/shiftlut-1.webp" data-caption="Figure 2. The offset predictor exists during the first training stage; deployed shifts are rounded constants. The right-hand panels show table compression and cached interpolation, which are separate contributors to efficiency." type="button" aria-label="Enlarge figure: ShiftLUT architecture and spatial shifts"><img src="../../images/source/shiftlut-1.webp" alt="ShiftLUT architecture and spatial shifts" loading="lazy"></button><figcaption>Figure 2. The offset predictor exists during the first training stage; deployed shifts are rounded constants. The right-hand panels show table compression and cached interpolation, which are separate contributors to efficiency.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2603.00906" target="_blank" rel="noopener noreferrer">Original paper, Figure 2 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
 <p>For a small illustrative example, imagine three channels sampled from one pixel left, the current pixel, and one pixel above. Mixing those channels at a common output location combines three spatial observations even though the mixing operation itself has no spatial extent. Repeating this pattern across blocks extends the effective context.</p>
 <p>The lower-left panel of Figure 2 explains an important deployment detail. Initially an offset network predicts continuous displacements, implemented with interpolation so they can be trained. Later, the model replaces them with rounded average offsets and discards the predictor. These are learned static shifts at inference, not image-dependent deformation. Section 3.2 reports low variation in the learned offsets, supporting that simplification.</p>
 </section>
@@ -64,6 +60,10 @@
 <p>At deployment, the offset predictor is gone. What remains is the spatial pattern learned during training, the reduced branch computation, and the table-buffer strategy. Those choices determine the method’s storage and runtime advantage.</p>
 </section>
 <section class="paper-details" id="citation"><p class="eyebrow">Original publication</p><h2>ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration</h2><p class="paper-authors">Xiaolong Zeng, Yitong Yu, Shiyao Xiong, Jinhua Hao, Ming Sun, Chao Zhou, Bin Wang</p><p>CVPR 2026</p>
+<div class="article-actions">
+<a href="https://arxiv.org/abs/2603.00906" target="_blank" rel="noopener noreferrer">Read the original paper <span class="arrow-icon" aria-hidden="true"></span></a>
+<a href="https://github.com/Sailor-t/ShiftLUT" target="_blank" rel="noopener noreferrer">Code <span class="arrow-icon" aria-hidden="true"></span></a>
+</div>
 <details class="citation"><summary>BibTeX citation</summary><button type="button" class="copy-citation">Copy citation</button><pre>@misc{zeng2026shiftlutspatialshiftenhanced,
   title = {ShiftLUT: Spatial Shift Enhanced Look-Up Tables for Efficient Image Restoration},
   author = {Xiaolong Zeng
@@ -84,10 +84,10 @@
 <li><a href="https://arxiv.org/abs/2603.00906" target="_blank" rel="noopener noreferrer">Original paper <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>
 <section class="related"><div class="collection-heading"><h2>Continue reading</h2><a href="../../">All research <span class="arrow-icon" aria-hidden="true"></span></a></div><div class="related-grid">
-<a href="../../articles/tinvblocks/"><span class="card-meta">AAAI 2025</span><h3>T-InvBlocks: separating luminance, color, and detail for image rescaling</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/oapt/"><span class="card-meta">ECCV 2024</span><h3>OAPT: offset-aware attention for double JPEG restoration</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/cpga/"><span class="card-meta">CVPR 2024</span><h3>CPGA: reusing codec motion and residuals for video enhancement</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
+<a href="../../articles/tinvblocks/"><div class="related-cover"><img src="../../images/covers-index-2026/tinvblocks-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>T-InvBlocks: separating luminance, color, and detail for image rescaling</h3><span class="card-meta">AAAI 2025</span></a>
+<a href="../../articles/oapt/"><div class="related-cover"><img src="../../images/covers-index-2026/oapt-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>OAPT: offset-aware attention for double JPEG restoration</h3><span class="card-meta">ECCV 2024</span></a>
+<a href="../../articles/cpga/"><div class="related-cover"><img src="../../images/covers-index-2026/cpga-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>CPGA: reusing codec motion and residuals for video enhancement</h3><span class="card-meta">CVPR 2024</span></a>
 </div></section>
 </main>
-<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><p>Research explained through its methods, results, and open questions.</p><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
+<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
 <dialog class="image-viewer" aria-label="Research figure viewer"><button type="button" class="viewer-close" aria-label="Close figure">Close ×</button><div class="viewer-content"><img alt=""><p></p></div></dialog></body></html>

@@ -2,15 +2,13 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>InstantViR: distilling video restoration into a streaming solver · Research Lab</title><meta name="description" content="InstantViR distills a video diffusion prior into a streaming solver, then confronts the decoder bottleneck that remains.">
 <link rel="canonical" href="https://eric-hao.github.io/research-lab/articles/instantvir/"><meta property="og:type" content="article"><meta property="og:title" content="InstantViR: distilling video restoration into a streaming solver"><meta property="og:description" content="InstantViR distills a video diffusion prior into a streaming solver, then confronts the decoder bottleneck that remains."><meta property="og:url" content="https://eric-hao.github.io/research-lab/articles/instantvir/">
-<meta name="theme-color" content="#f9f8f4"><link rel="stylesheet" href="../../site.css?v=61420c89531a"><script src="../../app.js?v=8e7cb70a6af1" defer></script></head>
-<body><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="wordmark" href="../../" aria-label="Research Lab home"><span class="brand-mark" aria-hidden="true"></span>Research Lab<span class="wordmark-by">by Jinhua Hao</span></a><nav aria-label="Main navigation"><a href="../../">Research</a><a href="../../../">About the author <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></nav></header>
-<main id="main" class="article-main"><div class="article-breadcrumb"><a href="../../">All research</a><span aria-hidden="true">/</span><span>Generative models</span></div><header class="article-header"><p class="eyebrow">CVPR 2026 Highlight <span aria-hidden="true">/</span> 4 min read</p><h1>InstantViR: distilling video restoration into a streaming solver</h1><p class="standfirst">InstantViR distills a video diffusion prior into a streaming solver, then confronts the decoder bottleneck that remains.</p><div class="article-actions">
-<a class="source-button" href="https://arxiv.org/abs/2511.14208" target="_blank" rel="noopener noreferrer">Read the original <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="https://ai4scientificimaging.org/instantvir/" target="_blank" rel="noopener noreferrer">Project <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="#citation">Cite this paper</a></div>
-<div class="publication-line"><p class="publication-title">InstantViR: Real-Time Video Inverse Problem Solver with Distilled Diffusion Prior</p><p class="publication-authors">Weimin Bai, Suzhe Xu, Yiwei Ren, et al. <a href="#citation">Publication details</a></p></div></header>
-<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article"><p class="eyebrow">In this article</p>
+<meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="../../fonts/openai/openai-fonts.css"><link rel="stylesheet" href="../../site.css?v=5fe03be1d6c1"><script src="../../app.js?v=5ea4dcc66129" defer></script></head>
+<body class="article-page"><a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header"><a class="home-link" href="../../../" aria-label="Home — Jinhua Hao"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg><span>Home</span></a></header>
+<main id="main" class="article-main"><section class="article-hero" style="--hero-bg:#d4dfd8">
+<div class="article-banner" aria-hidden="true"><img src="../../images/covers-index-2026/instantvir.webp" width="1254" height="1254" alt="" fetchpriority="high"></div>
+<header class="article-header"><p class="eyebrow"><span>CVPR 2026 Highlight</span><span>Generative models</span></p><h1>InstantViR: distilling video restoration into a streaming solver</h1><p class="standfirst">InstantViR distills a video diffusion prior into a streaming solver, then confronts the decoder bottleneck that remains.</p></header></section>
+<div class="article-layout"><aside class="article-aside"><nav class="desktop-contents" aria-label="In this article">
 <a href="#section-1">From iterative sampling to streaming reconstruction</a>
 <a href="#section-2">Combining measurement fidelity with a video prior</a>
 <a href="#section-3">Causal blocks and their buffering cost</a>
@@ -24,9 +22,7 @@
 <a href="#section-4">Adapting the teacher to a faster autoencoder</a>
 <a href="#section-5">Throughput and reconstruction quality</a>
 <a href="#section-6">Training data, compute, and degradation assumptions</a>
-</nav></details><div class="aside-source"><span class="eyebrow">Source</span><p>
-<a href="https://arxiv.org/abs/2511.14208">InstantViR: Real-Time Video Inverse Problem Solver with Distilled Diffusion Prior <span class="arrow-icon" aria-hidden="true"></span></a>
-</p></div></aside><article class="article-body">
+</nav></details></aside><article class="article-body">
 <section id="section-1" class="essay-section">
 <h2>From iterative sampling to streaming reconstruction</h2>
 <p>A restoration system for live video cannot wait for a long denoising trajectory before displaying the next frame. Video diffusion models have strong learned knowledge of appearance and motion, but using that knowledge through repeated posterior sampling is expensive. Models trained for offline generation can also attend to future frames that a live stream has not delivered yet.</p>
@@ -36,7 +32,7 @@
 <section id="section-2" class="essay-section">
 <h2>Combining measurement fidelity with a video prior</h2>
 <p>The method starts from a Bayesian inverse problem. The measurement model describes how a clean video would be blurred, masked, or downsampled. The video prior describes which candidate videos look plausible. Training a conditional student to approximate the posterior leads to an objective combining measurement fidelity with a regularizer derived from the frozen teacher.</p>
-<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/instantvir-1.webp" data-caption="Figure 2. The upper panel separates measurement consistency from teacher-prior supervision. The lower panel shows causal block processing and KV reuse; the student does not run the teacher’s iterative sampler at inference." type="button" aria-label="Enlarge figure: Single-step training and causal inference"><img src="../../images/source/instantvir-1.webp" alt="Single-step training and causal inference" loading="lazy"><span class="figure-zoom" aria-hidden="true">View larger <span class="arrow-icon" aria-hidden="true"></span></span></button><figcaption>Figure 2. The upper panel separates measurement consistency from teacher-prior supervision. The lower panel shows causal block processing and KV reuse; the student does not run the teacher’s iterative sampler at inference.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2511.14208" target="_blank" rel="noopener noreferrer">Original paper, Figure 2 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
+<figure class="paper-figure"><button class="figure-open" data-image="../../images/source/instantvir-1.webp" data-caption="Figure 2. The upper panel separates measurement consistency from teacher-prior supervision. The lower panel shows causal block processing and KV reuse; the student does not run the teacher’s iterative sampler at inference." type="button" aria-label="Enlarge figure: Single-step training and causal inference"><img src="../../images/source/instantvir-1.webp" alt="Single-step training and causal inference" loading="lazy"></button><figcaption>Figure 2. The upper panel separates measurement consistency from teacher-prior supervision. The lower panel shows causal block processing and KV reuse; the student does not run the teacher’s iterative sampler at inference.<span class="figure-source">Source: <a href="https://arxiv.org/abs/2511.14208" target="_blank" rel="noopener noreferrer">Original paper, Figure 2 <span class="arrow-icon" aria-hidden="true"></span></a></span></figcaption></figure>
 <p>For inpainting, imagine that half the observed pixels are missing. Reapplying the mask to the restored video should reproduce the visible pixels. That constraint alone says little about the missing half. The teacher supplies a learned preference for coherent video structure there. For deblurring, the corresponding check blurs the reconstruction and compares it with the observed blurred input.</p>
 <p>Figure 2 shows this division directly: the data-likelihood branch evaluates consistency with the known operator, while the distillation branch evaluates the reconstruction through a video diffusion prior and an auxiliary score network. The paper approximates the prior objective using score-based training; it does not compute an exact posterior distribution. A single feed-forward result should therefore be understood as a learned approximation, not an exact solution to every inverse problem.</p>
 </section>
@@ -65,6 +61,10 @@
 <p>The choice between decoders therefore depends on the application. A live preview may favor throughput; an archival reconstruction may value the original decoder’s super-resolution fidelity enough to accept lower speed.</p>
 </section>
 <section class="paper-details" id="citation"><p class="eyebrow">Original publication</p><h2>InstantViR: Real-Time Video Inverse Problem Solver with Distilled Diffusion Prior</h2><p class="paper-authors">Weimin Bai, Suzhe Xu, Yiwei Ren, Jinhua Hao, Ming Sun, Wenzheng Chen, He Sun</p><p>CVPR 2026 Highlight</p>
+<div class="article-actions">
+<a href="https://arxiv.org/abs/2511.14208" target="_blank" rel="noopener noreferrer">Read the original paper <span class="arrow-icon" aria-hidden="true"></span></a>
+<a href="https://ai4scientificimaging.org/instantvir/" target="_blank" rel="noopener noreferrer">Project <span class="arrow-icon" aria-hidden="true"></span></a>
+</div>
 <details class="citation"><summary>BibTeX citation</summary><button type="button" class="copy-citation">Copy citation</button><pre>@misc{bai2025instantvirrealtimevideoinverse,
   title = {InstantViR: Real-Time Video Inverse Problem Solver with Distilled Diffusion Prior},
   author = {Weimin Bai
@@ -85,10 +85,10 @@
 <li><a href="https://arxiv.org/abs/2511.14208" target="_blank" rel="noopener noreferrer">Original paper <span class="arrow-icon" aria-hidden="true"></span></a></li>
 </ol><p class="editorial-note">Results are quoted from the cited sources and have not been independently reproduced for this note.</p></section></article></div>
 <section class="related"><div class="collection-heading"><h2>Continue reading</h2><a href="../../">All research <span class="arrow-icon" aria-hidden="true"></span></a></div><div class="related-grid">
-<a href="../../articles/color/"><span class="card-meta">ICML 2026</span><h3>ASASR: frequency-aware preference learning for faithful super-resolution</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/tta-flow/"><span class="card-meta">ECCV 2026</span><h3>ResFlow-Tuner: searching flow trajectories for image restoration</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
-<a href="../../articles/varsr/"><span class="card-meta">ICML 2025</span><h3>VARSR: coarse-to-fine super-resolution with a diffusion refiner</h3><span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a>
+<a href="../../articles/color/"><div class="related-cover"><img src="../../images/covers-index-2026/color-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>ASASR: frequency-aware preference learning for faithful super-resolution</h3><span class="card-meta">ICML 2026</span></a>
+<a href="../../articles/tta-flow/"><div class="related-cover"><img src="../../images/covers-index-2026/tta_flow-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>ResFlow-Tuner: searching flow trajectories for image restoration</h3><span class="card-meta">ECCV 2026</span></a>
+<a href="../../articles/varsr/"><div class="related-cover"><img src="../../images/covers-index-2026/varsr-thumb.webp" width="640" height="640" alt="" loading="lazy" decoding="async"></div><h3>VARSR: coarse-to-fine super-resolution with a diffusion refiner</h3><span class="card-meta">ICML 2025</span></a>
 </div></section>
 </main>
-<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><p>Research explained through its methods, results, and open questions.</p><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
+<footer class="site-footer"><a class="footer-brand" href="../../">Research Lab</a><a href="../../../">Jinhua Hao <span aria-hidden="true"><span class="arrow-icon" aria-hidden="true"></span></span></a></footer>
 <dialog class="image-viewer" aria-label="Research figure viewer"><button type="button" class="viewer-close" aria-label="Close figure">Close ×</button><div class="viewer-content"><img alt=""><p></p></div></dialog></body></html>
