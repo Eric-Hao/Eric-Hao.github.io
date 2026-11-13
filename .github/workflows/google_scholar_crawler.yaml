@@ -31,7 +31,9 @@ jobs:
       run: python3 -m unittest discover -s google_scholar_crawler -p 'test_*.py' -v
         
     - name: Run Crawler
-      if: github.event_name != 'pull_request'
+      # Same-repository PRs verify a live crawl, but never publish its results.
+      # Fork PRs only run the offline tests above, without access to the secret.
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
       run: |
         cd ./google_scholar_crawler
         python3 main.py
