@@ -102,6 +102,13 @@ class ResponsiveResearchTests(unittest.TestCase):
   self.assertIn('grid-template-columns:80px minmax(0,1fr)',css)
   self.assertIn('grid-area:cover',css)
   self.assertIn('List view, compact covers',(CONTENT/'build_editorial.py').read_text())
+ def test_compact_nav_wordmarks(self):
+  css=(CONTENT/'styles/research.css').read_text()
+  self.assertIn('font-size:17px;font-weight:500;letter-spacing:-.45px',css)
+  self.assertIn('min-width:44px;min-height:44px',css)
+ def test_list_centered_column(self):
+  css=(CONTENT/'styles/research.css').read_text()
+  self.assertIn('.research-results[data-layout=list]{max-width:960px;margin-left:auto;margin-right:auto}',css)
  def test_no_footer(self):
   self.assertEqual(b.footer(),'')
   self.assertEqual(b.footer('../../'),'')

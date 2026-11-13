@@ -73,7 +73,7 @@ def head(title, description, prefix='', canonical=''):
 <link rel="canonical" href="{SITE}{e(canonical)}"><meta property="og:type" content="{'article' if canonical else 'website'}"><meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(description)}"><meta property="og:url" content="{SITE}{e(canonical)}">
 <meta name="theme-color" content="#ffffff"><link rel="stylesheet" href="{prefix}fonts/openai/openai-fonts.css"><link rel="stylesheet" href="{prefix}site.css?v={version('site.css')}"><script src="{prefix}app.js?v={version('app.js')}" defer></script></head>
 <body class="{'article-page' if canonical else 'index-page'}"><a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header"><a class="home-link" href="{prefix}../" aria-label="Home"><svg class="nav-wordmark" width="56" height="28" viewBox="0 0 56 28" aria-hidden="true"><text x="0" y="21">Home</text></svg></a><a class="blog-link" href="{prefix or './'}" aria-label="Blog"><svg class="nav-wordmark" width="44" height="28" viewBox="0 0 44 28" aria-hidden="true"><text x="0" y="21">Blog</text></svg></a></header>'''
+<header class="site-header"><a class="home-link" href="{prefix}../" aria-label="Home"><svg class="nav-wordmark" width="48" height="24" viewBox="0 0 48 24" aria-hidden="true"><text x="0" y="18">Home</text></svg></a><a class="blog-link" href="{prefix or './'}" aria-label="Blog"><svg class="nav-wordmark" width="38" height="24" viewBox="0 0 38 24" aria-hidden="true"><text x="0" y="18">Blog</text></svg></a></header>'''
 
 
 def footer(prefix=''):

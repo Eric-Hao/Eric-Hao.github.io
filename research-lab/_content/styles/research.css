@@ -19,7 +19,7 @@
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
 
 /* Compact, text-only navigation and responsive research panels. */
-.site-header{gap:24px;height:64px}.home-link,.blog-link{display:inline-flex;align-items:center;min-width:44px;min-height:44px;padding:0 4px;margin-left:-4px}.nav-wordmark{display:block;overflow:visible;fill:currentColor;stroke:none}.nav-wordmark text{font-family:var(--sans);font-size:20px;font-weight:500;letter-spacing:-.6px}.index-intro{padding:40px 0 24px}.index-main{padding-bottom:64px}.research-results{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px}.view-button{width:44px;height:44px}.view-switch{gap:4px}.tool-button{min-height:44px}.filters .filter{min-height:44px}.popover label{min-height:44px}.filter-panel-footer button{min-height:44px}.browse-tools{height:44px;gap:16px}.sort-panel{right:104px}
+.site-header{gap:24px;height:64px}.home-link,.blog-link{display:inline-flex;align-items:center;min-width:44px;min-height:44px;padding:0 4px;margin-left:-4px}.nav-wordmark{display:block;overflow:visible;fill:currentColor;stroke:none}.nav-wordmark text{font-family:var(--sans);font-size:17px;font-weight:500;letter-spacing:-.45px}.index-intro{padding:40px 0 24px}.index-main{padding-bottom:64px}.research-results{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:40px}.view-button{width:44px;height:44px}.view-switch{gap:4px}.tool-button{min-height:44px}.filters .filter{min-height:44px}.popover label{min-height:44px}.filter-panel-footer button{min-height:44px}.browse-tools{height:44px;gap:16px}.sort-panel{right:104px}
 @media(min-width:768px) and (max-width:1199px){.research-results{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(min-width:360px) and (max-width:767px){.research-results{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:16px}.research-results[data-layout=grid] .card-copy h2{font-size:16px;line-height:1.35;padding-right:0;overflow-wrap:anywhere}.research-results[data-layout=grid] .card-meta{font-size:12px;line-height:1.4;flex-wrap:wrap;gap:4px 8px}}
 @media(max-width:767px){.site-header{height:56px;gap:20px}.index-intro{padding:28px 0 20px}.research-results{margin-top:24px;row-gap:48px}.browse-tools{gap:12px}.popover{top:116px}.filter-panel{max-width:100%}.sort-panel{right:104px}.index-main{padding-bottom:48px}}
@@ -49,3 +49,6 @@
 .research-results[data-layout=list] .card-copy p{display:none}
 }
 @media(max-width:359px){.research-results[data-layout=list] .card-link{grid-template-columns:64px minmax(0,1fr);column-gap:12px}}
+
+/* Center the list as a reading column; preserve left-aligned row content. */
+.research-results[data-layout=list]{max-width:960px;margin-left:auto;margin-right:auto}
