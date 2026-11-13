@@ -414,3 +414,14 @@ h1:before, .anchor:before {
         &:focus-visible { outline: 2px solid #555; outline-offset: 3px; }
     }
 }
+/* Targeted model-card images only. Existing typography and page layout stay unchanged. */
+.home-model-card{overflow:hidden}
+.home-model-cover{display:block;margin:-24px -24px 20px;line-height:0;overflow:hidden}
+.home-model-cover img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:cover;object-position:center;transition:transform .2s}
+.home-model-cover:hover img{transform:scale(1.025)}
+.home-model-cover:focus-visible{outline:3px solid #1769aa;outline-offset:-3px}
+.resource-link__hf{width:16px;height:16px;object-fit:contain;vertical-align:-3px;display:inline-block}
+@media(prefers-reduced-motion:reduce){.home-model-cover img{transition:none}}
+
+/* Tighten only the space before the three model-card CTAs. */
+.home-model-grid > .home-model-card > .home-model-features{margin-bottom:12px}
