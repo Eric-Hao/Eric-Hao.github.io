@@ -36,7 +36,7 @@ Built with [Jekyll](https://jekyllrb.com/) and deployed via **GitHub Pages**, ba
 - **Responsive Design** — Mobile-friendly academic layout with sidebar navigation
 - **Multi-section Portfolio** — Bio, News, Publications, Competitions, Projects, Honors, Education
 - **Publication Showcase** — Paper teaser images with lazy loading (PNG + WebP retina-ready)
-- **Google Scholar Integration** — Automatic citation stats updates via GitHub Actions (daily cron)
+- **Google Scholar Integration** — Manual citation refresh via GitHub Actions; automatic refresh is paused
 - **SEO Optimized** — Google Analytics, Google Search Console, Bing Webmaster, Baidu verification
 - **Sitemap & Feeds** — Auto-generated `sitemap.xml` and RSS feed
 - **Containerized Development** — Build via Podman/Docker, no local Ruby installation required
@@ -253,9 +253,9 @@ pngquant --quality=80-95 --force --ext .png images/papers/*.png
 
 Push to the `main` branch — GitHub Pages builds and deploys automatically via the `pages/pages-build-deployment` workflow.
 
-### Google Scholar Auto-Update
+### Google Scholar Manual Refresh
 
-Citation stats are updated **daily at 08:00 UTC** via the `google_scholar_crawler` GitHub Action. This requires:
+Automatic citation refresh is paused because Google Scholar returns HTTP 403 to hosted runners. The existing `google-scholar-stats` snapshot is preserved. To retry manually, open **Actions → Get Citation Data → Run workflow**. A failed attempt does not publish new data. Manual refresh requires:
 
 1. A **`GOOGLE_SCHOLAR_ID`** secret set in repository settings
 2. The Python crawler script lives in `google_scholar_crawler/`
