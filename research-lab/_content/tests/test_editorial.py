@@ -96,6 +96,12 @@ class ResponsiveResearchTests(unittest.TestCase):
   self.assertIn("['grid', 'list'], 'grid'",js)
   self.assertNotIn('localStorage',js)
   self.assertIn("state.view !== 'grid'",js)
+ def test_list_covers(self):
+  css=(CONTENT/'styles/research.css').read_text()
+  self.assertIn('grid-template-columns:128px minmax(0,1fr)',css)
+  self.assertIn('grid-template-columns:80px minmax(0,1fr)',css)
+  self.assertIn('grid-area:cover',css)
+  self.assertIn('List view, compact covers',(CONTENT/'build_editorial.py').read_text())
  def test_no_footer(self):
   self.assertEqual(b.footer(),'')
   self.assertEqual(b.footer('../../'),'')

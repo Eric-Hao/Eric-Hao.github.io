@@ -120,3 +120,7 @@ All four covers use OpenAI Sans Bold on a 1254px square canvas, with 190px line 
 ## Continue reading
 
 Article recommendations show up to four other articles from the same topic, in the existing catalog order. Current-article links and duplicates are excluded; physics articles have three eligible peers and are not padded with unrelated items. The layout uses four columns at desktop widths, two at 360–1023px, and one below 360px.
+
+## List thumbnails
+
+List view reuses each existing square cover at 128px on desktop, 80px on mobile, and 64px below 360px. Metadata and untruncated titles sit to the right; summaries remain on desktop and are hidden on mobile. Each row stays one accessible article link. Missing covers fall back to a full-width text row. Panel layout is unchanged.
