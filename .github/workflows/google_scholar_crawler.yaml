@@ -1,13 +1,8 @@
 name: Get Citation Data
 
-on: 
-  pull_request:
-    paths:
-      - '.github/workflows/google_scholar_crawler.yaml'
-      - 'google_scholar_crawler/**'
-  page_build: 
-  schedule:
-    - cron: '0 8 * * *'
+# Automatic refresh is paused: Scholar rejects hosted runners (HTTP 403).
+# Keep manual dispatch and the existing google-scholar-stats snapshot.
+on:
   workflow_dispatch:
 
 jobs:
