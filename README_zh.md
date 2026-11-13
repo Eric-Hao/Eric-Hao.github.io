@@ -43,7 +43,7 @@
 - **响应式设计** — 移动友好的学术布局，配备侧边栏导航
 - **多板块内容** — 个人简介、新闻动态、论文列表、竞赛荣誉、项目经历、所获奖项、教育背景
 - **论文展示** — 带缩略图（PNG + WebP Retina 适配）的论文陈列，支持懒加载
-- **Google Scholar 集成** — 通过 GitHub Actions 定时任务自动更新引用统计数据（每日同步）
+- **Google Scholar 集成** — 保留 GitHub Actions 手动刷新入口，自动刷新已暂停
 - **SEO 优化** — 已配置 Google Analytics、Google Search Console、Bing Webmaster、百度站长验证
 - **站点地图与 RSS** — 自动生成 `sitemap.xml` 和 RSS Feed
 - **容器化开发** — 通过 Podman/Docker 构建，无需本地安装 Ruby 环境
@@ -240,9 +240,9 @@ pngquant --quality=80-95 --force --ext .png images/papers/*.png
 
 推送到 `main` 分支后 — GitHub Pages 会自动通过 `pages/pages-build-deployment` 工作流完成构建和部署，无需手动操作。
 
-### Google Scholar 自动更新
+### Google Scholar 手动刷新
 
-引用统计数据通过 `google_scholar_crawler` GitHub Action 在 **每天 UTC 08:00（北京时间 16:00）** 自动更新。需要：
+Google Scholar 对托管运行器返回 HTTP 403，因此已暂停自动刷新，保留 `google-scholar-stats` 分支历史数据。需要重试时，打开 **Actions → Get Citation Data → Run workflow** 手动运行。抓取失败不会发布新数据。手动刷新需要：
 
 1. 在仓库 Settings → Secrets and variables → Actions 中配置 **`GOOGLE_SCHOLAR_ID`** 密钥
 2. Python 爬虫脚本位于 `google_scholar_crawler/` 目录下
