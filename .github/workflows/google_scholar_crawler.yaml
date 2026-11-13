@@ -30,7 +30,30 @@ jobs:
     - name: Test crawler dependencies and output
       run: python3 -m unittest discover -s google_scholar_crawler -p 'test_*.py' -v
         
+    - name: Check Scholar availability
+      if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+      env:
+        GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
+      run: |
+        python3 - <<'PY'
+        import os
+        import requests
+
+        scholar_id = os.environ.get('GOOGLE_SCHOLAR_ID', '').strip()
+        if not scholar_id:
+            raise SystemExit('GOOGLE_SCHOLAR_ID is not configured; existing statistics were not changed.')
+        try:
+            response = requests.get('https://scholar.google.com/citations',
+                                    params={'user': scholar_id, 'hl': 'en'}, timeout=30)
+        except requests.RequestException as error:
+            raise SystemExit(f'Scholar connection failed ({type(error).__name__}); existing statistics were not changed.') from None
+        print(f'Google Scholar HTTP status: {response.status_code}')
+        if response.status_code != 200:
+            raise SystemExit('Google Scholar is unavailable to this runner; existing statistics were not changed. Retry later rather than publishing empty data.')
+        PY
+
     - name: Run Crawler
+      timeout-minutes: 3
       # Same-repository PRs verify a live crawl, but never publish its results.
       # Fork PRs only run the offline tests above, without access to the secret.
       if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
