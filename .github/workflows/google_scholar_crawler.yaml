@@ -1,6 +1,10 @@
 name: Get Citation Data
 
 on: 
+  pull_request:
+    paths:
+      - '.github/workflows/google_scholar_crawler.yaml'
+      - 'google_scholar_crawler/**'
   page_build: 
   schedule:
     - cron: '0 8 * * *'
@@ -9,19 +13,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
     - uses: actions/checkout@v4
     
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.x'
+        python-version: '3.12'
         
     - name: Install Reqs
       run: |
         pip3 install -r google_scholar_crawler/requirements.txt
+        python3 -m pip check
+
+    - name: Test crawler dependencies and output
+      run: python3 -m unittest discover -s google_scholar_crawler -p 'test_*.py' -v
         
     - name: Run Crawler
+      if: github.event_name != 'pull_request'
       run: |
         cd ./google_scholar_crawler
         python3 main.py
@@ -29,6 +39,7 @@ jobs:
         GOOGLE_SCHOLAR_ID: ${{ secrets.GOOGLE_SCHOLAR_ID }}
 
     - name: Push results
+      if: github.event_name != 'pull_request'
       run: |
         cd google_scholar_crawler/results
         git init
