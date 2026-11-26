@@ -1,4 +1,5 @@
 # News
+- *2026.10*: [MMG2Skill](https://aclanthology.org/2026.findings-emnlp.523/) published in EMNLP 2026 Findings.
 - *2026.09*: Explore my new [Research Notes](/research-lab/): paper stories on language models, generative AI, image restoration, and fluid dynamics.
 - *2026.07*: Open-sourced [KAT-Coder-V2.5-Dev](https://huggingface.co/Kwaipilot/KAT-Coder-V2.5-Dev), a lightweight 35B-A3B MoE model with over 3M cumulative Hugging Face downloads.
 - *2026.07*: Released [KAT-Coder-Pro V2.5](https://mp.weixin.qq.com/s/Ylz2hAbKs9gm5CXMfavIxw), a trillion-parameter coding LLM approaching GLM-5.2 and Claude Opus 4.8.

@@ -4,8 +4,8 @@
   "standfirst": "MMG2Skill separates access to instructions from the harder work of grounding, revising, and knowing when to stop following them.",
   "thesis": "MMG2Skill turns public tutorials into editable procedures with applicability conditions, visible state cues, and completion checks.",
   "source": {
-    "label": "Original research paper",
-    "url": "https://arxiv.org/abs/2606.01993",
+    "label": "Findings of the Association for Computational Linguistics: EMNLP 2026",
+    "url": "https://aclanthology.org/2026.findings-emnlp.523/",
     "kind": "paper"
   },
   "sections": [
@@ -109,8 +109,8 @@
   ],
   "references": [
     {
-      "label": "Read the paper",
-      "url": "https://arxiv.org/abs/2606.01993"
+      "label": "ACL Anthology",
+      "url": "https://aclanthology.org/2026.findings-emnlp.523/"
     },
     {
       "label": "Code and benchmark",

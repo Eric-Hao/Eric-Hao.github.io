@@ -15,14 +15,14 @@
   {
     "title": "MMG2Skill: Can Agents Distill In-the-Wild Guides into Self-Evolving Skills?",
     "authors": "Xinyu Che, Junqi Xiong, Yunfei Ge, Xinping Lei, Shihao Li, Hang Yan, Han Li, Yuanxing Zhang, Zhiqi Bai, Jinhua Hao, Ming Sun, Han Li, Jiaheng Liu",
-    "url": "https://arxiv.org/abs/2606.01993",
+    "url": "https://aclanthology.org/2026.findings-emnlp.523/",
     "cats": [
       "Large Language Models"
     ],
     "image": "mmg2skill",
     "links": [],
     "year": 2026,
-    "venue": "arXiv 2026",
+    "venue": "EMNLP 2026 Findings",
     "article": "articles/mmg2skill/"
   },
   {
