@@ -6,8 +6,8 @@
 - *2026.06*: One paper accepted to ECCV 2026 ([ResFlow-Tuner](https://arxiv.org/abs/2603.22027)).
 - *2026.05*: One paper accepted to ICML 2026 ([ASASR](https://arxiv.org/abs/2605.23264)).
 - *2026.03*: [KAT-Coder-Pro V2](https://mp.weixin.qq.com/s/5JpX2UxW-SKpyPR4yWOVEw) released, ranked Top 10 on the [Artificial Analysis Coding Index](https://artificialanalysis.ai/?intelligence=coding-index&models=gpt-oss-120b%2Cgpt-oss-20b%2Cgpt-5-4-mini%2Cgpt-5-4-pro%2Cgpt-5-4%2Cllama-4-maverick%2Cgemini-3-1-pro-preview%2Cgemini-3-1-flash-lite-preview%2Cgemini-3-flash-reasoning%2Cclaude-sonnet-4-6-adaptive%2Cclaude-opus-4-6-adaptive%2Cclaude-4-5-haiku-reasoning%2Cmistral-large-3%2Cdeepseek-v3-2-reasoning%2Cgrok-4-20%2Cnova-2-0-pro-reasoning-medium%2Cminimax-m2-7%2Cnvidia-nemotron-3-nano-30b-a3b-reasoning%2Cnvidia-nemotron-3-super-120b-a12b%2Ckimi-k2-5%2Ck-exaone%2Cmimo-v2-0206%2Cmimo-v2-pro%2Ckat-coder-pro-v2%2Ck2-think-v2%2Cmi-dm-k-2-5-pro-dec28%2Cglm-5%2Cqwen3-5-397b-a17b).
-- *2026.02*: Two papers accepted to CVPR 2026 ([ShiftLUT](https://arxiv.org/abs/2603.00906), [InstantViR](https://arxiv.org/abs/2511.14208) (Highlight)).
-- *2025.05*: One paper accepted to ICML 2025 ([VAR](https://arxiv.org/abs/2501.18993)).
+- *2026.02*: Two papers accepted to CVPR 2026 ([ShiftLUT](https://arxiv.org/abs/2603.00906), [InstantViR](https://arxiv.org/abs/2511.14208) Highlight).
+- *2025.05*: One paper accepted to ICML 2025 ([VARSR](https://arxiv.org/abs/2501.18993)).
 - *2025.01*: One paper accepted to AAAI 2025 ([TriBranch](https://arxiv.org/abs/2412.13508)).
 - *2024.07*: Two papers accepted to ECCV 2024 ([OAPT](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/03228.pdf), [XPSR](https://www.ecva.net/papers/eccv_2024/papers_ECCV/papers/01755.pdf)).
 - *2024.02*: Two papers accepted to CVPR 2024 ([CPGA](https://openaccess.thecvf.com/content/CVPR2024/papers/Zhu_CPGA_Coding_Priors-Guided_Aggregation_Network_for_Compressed_Video_Quality_Enhancement_CVPR_2024_paper.pdf), [PTM-VQA](https://openaccess.thecvf.com/content/CVPR2024/papers/Yuan_PTM-VQA_Efficient_Video_Quality_Assessment_Leveraging_Diverse_PreTrained_Models_from_CVPR_2024_paper.pdf)).
