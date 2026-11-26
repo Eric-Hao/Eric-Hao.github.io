@@ -4,9 +4,9 @@
   "standfirst": "A twisted magnetic ring generates its own vortices and counter-propagating waves, opening a route from stored magnetic energy to local bursting.",
   "thesis": "In this idealized simulation, a reversal of magnetic twist organizes both the initial rotational forcing and the wave interaction that turns a quiet fluid into an expanding, fragmenting vortex structure.",
   "source": {
-    "label": "Wang et al., Vortex bursting in twisted magnetic flux tubes with opposite chiralities (supplied manuscript)",
-    "url": "https://doi.org/10.1017/jfm.2026.12259",
-    "kind": "Original research manuscript"
+    "label": "Wang et al. (2026), Vortex bursting in twisted magnetic flux tubes with opposite chiralities. Journal of Fluid Mechanics, 1047, A34.",
+    "url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/vortex-bursting-in-twisted-magnetic-flux-tubes-with-opposite-chiralities/B28CC852A6FDEFB83B2BF73BB331B582",
+    "kind": "Published journal article"
   },
   "sections": [
     {
@@ -149,8 +149,8 @@
   ],
   "references": [
     {
-      "label": "Wang, Y., Xiong, A., Hao, J. & Xiong, S. (2026). Vortex bursting in twisted magnetic flux tubes with opposite chiralities. DOI printed in the supplied manuscript; final publication metadata not independently verified.",
-      "url": "https://doi.org/10.1017/jfm.2026.12259"
+      "label": "Wang, Y., Xiong, A., Hao, J. & Xiong, S. (2026). Vortex bursting in twisted magnetic flux tubes with opposite chiralities. Journal of Fluid Mechanics, 1047, A34.",
+      "url": "https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/abs/vortex-bursting-in-twisted-magnetic-flux-tubes-with-opposite-chiralities/B28CC852A6FDEFB83B2BF73BB331B582"
     }
   ],
   "evidence": [
